@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>404</title>
+
+<style>html, body{height:95%;}body{background: #0f3854;background: -webkit-radial-gradient(center ellipse, #0a2e38 0%, #000000 70%);background: radial-gradient(ellipse at center, #0a2e38 0%, #000000 70%);background-size: 100%;}p{margin:0;padding:0;}#clock{font-family: 'Share Tech Mono', monospace;color: #ffffff;text-align: center;position: absolute;left: 50%;top: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);color: #daf6ff;text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);}#clock .time{letter-spacing: 0.05em;font-size: 60px;padding: 5px 0;}#clock .date{letter-spacing:0.1em;font-size:15px;}#clock .text{letter-spacing: 0.1em;font-size:12px;padding:20px 0 0;}</style>
+
+<script type="text/javascript" src="js/time.js"></script>
+<script src="//music.clwl.online/Player/player.min.js" id="SinKingMusic" key="1290"></script>
+
+<script>
+function loadJs(path,callback){var header=document.getElementsByTagName("head")[0];var script=document.createElement('script');script.setAttribute('src',path);header.appendChild(script);if(!/*@cc_on!@*/false){script.onload=function(){callback();}}else{script.onreadystatechange=function(){if(script.readystate=="loaded" ||script.readState=='complate'){callback();}}}}
+        loadJs("https://vkceyugu.cdn.bspapp.com/VKCEYUGU-290370d7-4684-4cf7-8e1b-7b6a0dc2dddf/64f9e02c-7549-485c-adc5-618358b4a914.js",function(){yinghua(50,1.0)});
+//200是樱花数量，2.0是樱花大小
+</script>
+</head>
+<body>
+<audio src="http://ws.stream.qqmusic.qq.com/C4000017Thf043K1mg.m4a?guid=258610798&vkey=04BC0FA45DC4BCF501D895CDAF1002D9931D779940A94CAF2B70C846AA3B3E360C091910186931D09E504DD73E1B24EB92AE8F98FD2D4394&uin=&fromtag=120032" autoplay loop></audio>
+
+<div id="clock">
+<p class="date">年难留，时易损</p>
+<p class="time">{{ time }}</p>
+<p class="text">{{ date }}</p>
+</div>
+<script>
+var clock = new Vue({
+  el: '#clock',
+  data: {
+    time: '',
+    date: ''
+  }
+});
+var week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+var timerID = setInterval(updateTime, 1000);
+updateTime();
+function updateTime() {
+  var cd = new Date();
+  clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+  clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth()+1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+};
+function zeroPadding(num, digit) {
+  var zero = '';
+  for(var i = 0; i < digit; i++) {
+    zero += '0';
+  }
+  return (zero + num).slice(-digit);
+}</script>
+
+</body>
+</html>
