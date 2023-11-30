@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #EFEFEF;
+  overflow: hidden;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+   <canvas />
+  <script>
+   !function(n,r){"object"==typeof exports&&"undefined"!=typeof module?module.exports=r():"function"==typeof define&&define.amd?define(r):n.starlings=r()}(this,function(){"use strict";return function(n,r,t,o,e,u,f,i,a,c,v,d){void 0===c&&(c=null),void 0===v&&(v=1),void 0===d&&(d=1);var l,m,s=r.length,p=function(n,r){var t=l.createShader(n);return l.shaderSource(t,r),l.compileShader(t),t},y=function(){for(var n=l.createBuffer(),o=new Float32Array(t*s*3),e=0,u=0;u<t;u+=1)for(var f=0,i=s;f<i;f+=1,e+=3){var a=r[f];o[e]=a.x,o[e+1]=a.y,o[e+2]=a.z}l.bindBuffer(l.ARRAY_BUFFER,n),l.bufferData(l.ARRAY_BUFFER,o,l.STATIC_DRAW);var c=l.getAttribLocation(m,"position");l.enableVertexAttribArray(c),l.vertexAttribPointer(c,3,l.FLOAT,!1,!1,0,0)},w=function(){for(var n=0;n<o.length;n+=1){for(var r=l.createBuffer(),e=o[n],u=e.data(0,0).length,f=new Float32Array(t*s*u),i=0;i<t;i+=1)for(var a=e.data(i,t),v=i*s*u,d=0;d<s;d+=1)for(var p=0;p<u;p+=1)null!==c&&e.name===c.attribute?f[v]=c.value(f[v],a,p,d):f[v]=a[p],v+=1;l.bindBuffer(l.ARRAY_BUFFER,r),l.bufferData(l.ARRAY_BUFFER,f,l.STATIC_DRAW);var y=l.getAttribLocation(m,o[n].name);l.enableVertexAttribArray(y),l.vertexAttribPointer(y,u,l.FLOAT,!1,!1,0,0)}},A=function(){e.push({name:"uMVP",type:"mat4"});for(var n=0;n<e.length;n+=1){var r=l.getUniformLocation(m,e[n].name);e[n].location=r}},F={float:function(n,r){return l.uniform1f(n,r)},vec2:function(n,r){return l.uniform2fv(n,r)},vec3:function(n,r){return l.uniform3fv(n,r)},vec4:function(n,r){return l.uniform4fv(n,r)},mat2:function(n,r){return l.uniformMatrix2fv(n,!1,r)},mat3:function(n,r){return l.uniformMatrix3fv(n,!1,r)},mat4:function(n,r){return l.uniformMatrix4fv(n,!1,r)}},b=function(){l.clear(16640),l.useProgram(m),a(l,m,e);for(var n=0;n<e.length;n+=1)F[e[n].type](e[n].location,e[n].value);l.drawArrays(l.TRIANGLES,0,s*t),requestAnimationFrame(b)},g=function(){n.width=n.clientWidth*d,n.height=n.clientHeight*d;var r=l.drawingBufferWidth,t=l.drawingBufferHeight;l.viewport(0,0,r,t),e[e.length-1].value=[v/(r/t),0,0,0,0,v,0,0,0,0,-1,-1,0,0,1,1]};l=n.getContext("webgl"),m=l.createProgram(),l.attachShader(m,p(l.VERTEX_SHADER,u)),l.attachShader(m,p(l.FRAGMENT_SHADER,f)),l.linkProgram(m),A(),g(),y(),w(),i(l),b(),window.addEventListener("resize",g,!1)}});
+  </script>
+  <script>
+   var images = 8;
+var count = 1;
+
+var createGeometry = function createGeometry(size) {
+  return [{ x: -size, y: size, z: size }, { x: -size, y: -size, z: size }, { x: size, y: size, z: size }, { x: -size, y: -size, z: size }, { x: size, y: -size, z: size }, { x: size, y: size, z: size }];
+};
+
+var getRandom = function getRandom(value) {
+  return Math.random() * value - value / 2;
+};
+
+var loadImage = function loadImage(callback) {
+  var image = new Image();
+  image.onload = function () {
+    count += count === images ? -(images - 1) : 1;
+    callback(image);
+  };
+  image.crossOrigin = "Anonymous";
+  image.src = "https://use-the-platform.com/webp/images/" + count;
+};
+
+var initialize = function initialize(image) {
+  var canvas = document.querySelector("canvas");
+  var grid = 200;
+  var size = 0.004;
+  var step = 0.004;
+  var duration = 0.4;
+
+  var imageRatio = image.width / image.height;
+  var geometry = createGeometry(size);
+  var gridRatio = Math.ceil(grid / imageRatio);
+  var multiplier = gridRatio * grid;
+
+  var texture = void 0;
+  var forward = false;
+
+  var attributes = [{
+    name: "aPositionStart",
+    data: function data(i) {
+      return [(-((grid - 1) / 2) + i % grid) / (0.5 / size), ((gridRatio - 1) / 2 - Math.floor(i / grid)) / (0.5 / size), 0.0];
+    }
+  }, {
+    name: "aControlPointOne",
+    data: function data() {
+      return [getRandom(2), getRandom(2), 0];
+    }
+  }, {
+    name: "aControlPointTwo",
+    data: function data() {
+      return [getRandom(2), getRandom(2), 0];
+    }
+  }, {
+    name: "aPositionEnd",
+    data: function data() {
+      return [0, 0, -10];
+    }
+  }, {
+    name: "aOffset",
+    data: function data(i) {
+      return [i * ((1 - duration) / (multiplier - 1))];
+    }
+  }, {
+    name: "aTextureCoord",
+    data: function data(i) {
+      return [i % grid / grid, Math.floor(i / grid) / gridRatio];
+    }
+  }];
+
+  var uniforms = [{
+    name: "uProgress",
+    type: "float",
+    value: 1.0
+  }];
+
+  var vertexShader = "\n    attribute vec3 position;\n    attribute vec3 aPositionStart;\n    attribute vec3 aControlPointOne;\n    attribute vec3 aControlPointTwo;\n    attribute vec3 aPositionEnd;\n    attribute float aOffset;\n    attribute float aAngle;\n\n    attribute vec2 aTextureCoord;\n    varying vec2 vTextureCoord;\n\n    uniform float uProgress;\n    uniform mat4 uMVP;\n\n    vec3 bezier4(vec3 a, vec3 b, vec3 c, vec3 d, float t) {\n      return mix(mix(mix(a, b, t), mix(b, c, t), t), mix(mix(b, c, t), mix(c, d, t), t), t);\n    }\n\n    float easeInOutSin(float t){\n      return (1.0 + sin(3.142 * t - 3.142 / 2.0)) / 2.0;\n    }\n\n    void main () {\n      float tProgress = easeInOutSin(min(1.0, max(0.0, (uProgress - aOffset)) / " + duration + "));\n      vec3 newPosition = bezier4(aPositionStart, aControlPointOne, aControlPointTwo, aPositionEnd, tProgress);\n      gl_Position = uMVP * vec4(newPosition + position, 1.0);\n\n      vTextureCoord = aTextureCoord;\n    }\n  ";
+
+  var fragmentShader = "\n    precision mediump float;\n\n    uniform sampler2D uSampler;\n    varying vec2 vTextureCoord;\n\n    void main() {\n      gl_FragColor = texture2D(uSampler, vTextureCoord);\n    }\n  ";
+
+  var onSetup = function onSetup(gl) {
+    texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.bindTexture(gl.TEXTURE_2D, null);
+  };
+
+  var onRepeat = function onRepeat(gl, program) {
+    var uSampler = gl.getUniformLocation(program, "uSampler");
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.uniform1i(uSampler, 0);
+
+    if (uniforms[0].value > 1) {
+      loadImage(function (newImage) {
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, newImage);
+      });
+      forward = false;
+    } else if (uniforms[0].value < -0.2) {
+      forward = true;
+    }
+    uniforms[0].value += forward ? step : -step;
+  };
+
+  var textureCoordLayout = [false, true, false, false, true, true, false, false, true, false, true, true];
+
+  var modifier = {
+    attribute: "aTextureCoord",
+    value: function value(attributeBufferDataOffset, attributeData, l, k) {
+      var current = textureCoordLayout[k * 2 + l];
+      if (l === 1) {
+        return !current ? attributeData[1] + imageRatio / grid : attributeData[1];
+      }
+      return current ? attributeData[0] + 1 / grid : attributeData[0];
+    }
+  };
+
+  starlings(canvas, geometry, multiplier, attributes, uniforms, vertexShader, fragmentShader, onSetup, onRepeat, modifier);
+};
+
+loadImage(initialize);
+  </script>
+ </BODY>
+</HTML>

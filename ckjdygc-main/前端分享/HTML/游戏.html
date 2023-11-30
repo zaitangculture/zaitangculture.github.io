@@ -1,0 +1,788 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  max-width: 100vw;
+  width: 100%;
+}
+
+.btn {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  color: white;
+}
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  
+<canvas id="mycanvas"></canvas><a class="btn" href="https://codepen.io/frank890417/pen/JZJxQx" target="_blank" title="Create enemies or weapon by your self">See Pixel Graphic Creator</a>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.1/dat.gui.js"></script> 
+  <script>
+   //環境變數
+var updateFPS = 30
+var showMouse = true
+var time = 0
+var bgColor ="black"
+
+//控制
+var controls = {
+  value: 0
+}
+// var gui = new dat.GUI()
+// gui.add(controls,"value",-2,2).step(0.01).onChange(function(value){})
+
+
+var pixelDatas = [
+      {
+        name: "Jelly",
+        data: "8,8:18|3c|7e|db|ff|24|5a|a5#18|3c|7e|db|ff|5a|81|42"
+      },{
+        name: "Invader",
+        data: "11,8:104|88|1fc|376|7ff|5fd|104|88#104|489|5fd|777|1fc|88|104|"
+      },{
+        name: "Ghost",
+        data: "12,8:f0|7fe|fff|e67|fff|198|36c|c03#f0|7fe|fff|e67|fff|39c|666|30c"
+      },{
+        name: "Plane",
+        data: "15,9:80|80|11c4|1364|17f4|1ffc|3ffe|770|220#80|80|1c0|1364|17f4|1ffc|3ffe|770|220"
+      },{
+        name: "Bomb",
+        data: "7,7:|8|8|36|8|8|#49|2a||63||2a|49"
+      },{
+        name: "EnemyBullet",
+        data: "3,5:2|1|2|4|2#2|2|2|2|2"
+      },{
+        name: "PlaneBullet",
+        data: "3,3:2|7|2"
+      },{
+        name: "PlaneBulletWave",
+        data: "13,4:e0|7fc|a0a|1001#|7fc|1f1f|"    
+      },{
+        name: "Ufo",
+        data: "14,7:1e0|7f8|ffc|1ad6|3fff|e1c|408#1e0|7f8|ffc|1ad6|3fff|e1c|"
+      }
+    ]
+function getPixelData(name){
+  return pixelDatas.find(p=>p.name==name).data
+}
+
+//------------------------
+// Vec2
+
+class Vec2{
+  constructor(x,y){
+    this.x = x
+    this.y = y
+  }
+  set(x,y){
+    this.x =x
+    this.y =y
+  }
+  move(x,y){
+    this.x+=x
+    this.y+=y
+  }
+  add(v){
+    return new Vec2(this.x+v.x,this.y+v.y)
+  }
+  sub(v){
+    return new Vec2(this.x-v.x,this.y-v.y)
+  }
+  mul(s){
+    return new Vec2(this.x*s,this.y*s)
+  }
+  get length(){
+    return Math.sqrt(this.x*this.x+this.y*this.y)
+  }
+  set length(nv){
+    let temp = this.unit.mul(nv)
+    this.set(temp.x,temp.y)
+  }
+  clone(){
+    return new Vec2(this.x,this.y)
+  }
+  toString(){
+    return `(${this.x}, ${this.y})`
+  }
+  equal(v){
+    return this.x==v.x && this.y ==v.y
+  }
+  get angle(){
+    return Math.atan2(this.y,this.x)  
+  }
+  get unit(){
+    return this.mul(1/this.length)
+  }
+  
+  static get ZERO(){
+    return new Vec2(0,0)
+  }
+  static get UP(){
+    return new Vec2(0,-1)
+  }
+  static get DOWN(){
+    return new Vec2(0,1)
+  }
+  static get LEFT(){
+    return new Vec2(-1,0)
+  }
+  static get RIGHT(){
+    return new Vec2(1,0)
+  }
+  static DIR(str){
+    if (!str){
+      return Vec2.ZERO
+    }
+    let type = (""+str).toUpperCase()
+    return Vec2[type]
+  }
+  static DIR_ANGLE(str){
+    switch(str){
+      case "right":
+        return 0
+      case "left":
+        return PI()
+      case "up":
+        return PI(-0.5)
+      case "down":
+        return PI(0.5)
+    }
+    return 0
+  }
+  
+}
+
+//------
+
+var canvas = document.getElementById("mycanvas")
+var ctx = canvas.getContext("2d")
+ctx.circle= function(v,r){
+  this.arc(v.x,v.y,r,0,Math.PI*2)
+}
+ctx.line= function(v1,v2){
+  this.moveTo(v1.x,v1.y)
+  this.lineTo(v2.x,v2.y)
+}
+
+let getVec2 = (args)=>{
+  if (args.length==1){
+    return args[0]
+  }else if (args.length==2){
+    return new Vec2(args[0],args[1])
+  }
+}
+
+let moveTo = function(){
+  let v = getVec2(arguments)
+  ctx.moveTo(v.x,v.y)
+}
+let lineTo = function(){
+  let v = getVec2(arguments)
+  ctx.lineTo(v.x,v.y)
+}
+let translate = function(){
+  let v = getVec2(arguments)
+  ctx.translate(v.x,v.y)
+}
+let arc = function(){
+  ctx.arc.apply(ctx,arguments)
+}
+let rotate = (angle)=>{
+  if (angle!=0){
+    ctx.rotate(angle)
+  }
+}
+let beginPath = ()=>{ctx.beginPath()}
+let closePath = ()=>{ctx.closePath()}
+
+let setFill = (color)=>{ctx.fillStyle=color}
+let setStroke = (color)=>{ctx.strokeStyle=color}
+
+let fill = (color)=>{
+  if (color){
+    setFill(color)
+  }
+  ctx.fill()
+}
+let stroke = (color)=>{
+  if (color){
+    setStroke(color)
+  }
+  ctx.stroke()
+}
+
+let save = (func)=>{
+  ctx.save()
+  func()
+  ctx.restore()
+}
+
+//遊戲物件 - 所有出現在遊戲場景中的物件原型
+class GameObject {
+  constructor(args){
+    let def = {
+      p: Vec2.ZERO,
+      v: Vec2.ZERO,
+      a: Vec2.ZERO,
+      size: Vec2.ZERO,
+      name: "",
+      tags: [],
+      graphic: null
+    }
+    Object.assign(def,args)
+    Object.assign(this,def)
+    if (this.graphic){
+      this.size = this.graphic.getRealSize()
+    }
+  }
+  update(){
+    this.p=this.p.add(this.v)
+    this.v=this.v.add(this.a)
+  }
+  draw(){
+    save(()=>{
+        translate(this.p)
+        if (this.graphic){
+          setStroke("rgba(255,255,255,0.5)")
+          // ctx.strokeRect(0,0,this.size.x,this.size.y)
+          this.graphic.render()
+        }else{
+          setFill("white")
+          ctx.font="10px Ariel"
+          ctx.fillText("GameObject",0,-10) 
+        }
+    })
+  }
+  get boundaryPoints(){
+    let LT = this.p, RB=this.p.add(this.size)
+    return {
+      LT: LT,
+      LB: new Vec2(LT.x,RB.y),
+      RT: new Vec2(RB.x,LT.y),
+      RB: RB,
+      MM: LT.add(this.size.mul(0.5))
+    }
+  }
+  inRange(pos){
+    let points = this.boundaryPoints
+    return pos.x>points.LT.x && pos.x<points.RB.x && pos.y>points.LT.y && pos.y<points.RB.y
+        
+  }
+  collide(obj){
+    //取得彼此的點，如果有一方有點落在另一方中，代表有重疊
+    //自己的邊界點
+    let points1 = Object.values(this.boundaryPoints)
+    //對方的邊界點
+    let points2 = Object.values(obj.boundaryPoints)
+    
+    //如果自己的點出現在對方範圍內
+    let flag = false
+    points1.forEach(p=>{
+      if (obj.inRange(p)){
+        flag=true
+      }
+    })
+     
+    //如果對方點出現在自己範圍內
+    points2.forEach(p=>{
+      if (this.inRange(p)){
+        flag=true
+      }
+    })
+    return flag
+    
+  }
+}
+
+
+//貼圖物件 - 繪製點陣圖
+class PixelGraphic {
+  constructor(args){
+    let def = {
+      span: 5 ,
+      data: null,
+      pixels:[],
+      frameDuration: 8,
+      color: "white",
+      size: new Vec2(0,0)
+    }
+
+    Object.assign(def,args)
+    Object.assign(this,def)
+    
+    //如果有預設資料就執行載入
+    if (this.data){
+      this.load(this.data)
+    }
+  } 
+  //載入文字資料
+  load(invaderData){ 
+    //取得尺寸
+    let invaderSize = invaderData.split(':')[0].split(",")
+    this.size=new Vec2(parseInt(invaderSize[0]),parseInt(invaderSize[1]))
+    //取得每一模式的資料 -> 每一行資料map成2進位
+    this.pixels = invaderData.split(':')[1].split("#").map(mode=>{
+      return mode.split("|").map(row=>{
+        return this.convertBinary(row,this.size)
+      })
+    }) 
+  }
+  //渲染動畫
+  render(){
+    this.renderFrame(parseInt(time/this.frameDuration)%(this.pixels.length))
+  }
+  //渲染單格影像
+  renderFrame(id){
+    let frame = this.pixels[id]
+    if (frame){
+      save(()=>{
+        translate(this.size.mul(-0.5))
+        translate(new Vec2(this.span/2,this.span/2))
+        setFill(this.color)
+        for(var i=0;i<this.size.x;i++){
+          for(var o=0;o<this.size.y;o++){
+            if (frame[o][i]=="+"){
+               ctx.fillRect(i*this.span,o*this.span,this.span-1,this.span-1)
+            }
+          }
+        }
+      })
+    }
+  }
+  //轉換成文字
+  convertBinary(text,settings){
+    let b = parseInt(text || "0",16).toString(2)
+    b = b.padStart(settings.x,'0')
+    b = b.replace(/0/g,'-').replace(/1/g,'+')
+    return b
+  }  
+  getRealSize(){
+    return this.size.mul(this.span)
+  }
+}
+
+//玩家物件，有更新大小跟有死亡控制
+class Player extends GameObject{
+  constructor(args){
+    super(args)
+    let def = { 
+      size: new Vec2(70,50),
+      isDead: false,
+    }
+    Object.assign(def,args)
+    Object.assign(this,def)
+    
+  }
+}
+
+//敵人物件，有更新大小跟死亡
+class Enemy extends GameObject{
+  constructor(args){
+    super(args)
+    let def = {
+      isDead: false,
+      reward: 10
+    }
+    Object.assign(def,args)
+    Object.assign(this,def)
+    
+  }
+}
+
+//子彈物件 有預設大小跟速度
+class Bullet extends GameObject{
+  constructor(args){
+    super(args)
+    let def = {
+
+      v: new Vec2(0,-10)
+    }
+    Object.assign(def,args)
+    Object.assign(this,def)
+  }
+}
+
+class Scene {
+  constructor(args){
+    let def = {
+      children: [],
+      score: 0,
+      life: 3
+    }
+    Object.assign(def,args)
+    Object.assign(this,def)
+  }
+  //加入遊戲物件到舞台
+  addChild(obj){
+    if (obj instanceof GameObject){
+      this.children.push(obj)
+    }else if (obj instanceof Array){
+      this.children=this.children.concat(obj)
+    }else{
+      console.error("Object is not a game object")
+    }
+  }
+  //移除特定物件
+  removeChild(obj){
+    this.children=this.children.filter(c=>c!==obj)
+    
+  }
+  removeAllChildren(){
+    this.children=[]
+  }
+  //以名稱取得物件
+  getChildByName(name){
+    return this.children.find(c=>c.name==name)
+  }
+  //以tag取得物件
+  getChildrenByTag(tag){
+    return this.children.filter(c=>c.tags.find(t=>t==tag))
+  }
+  update(){
+    //更新每個物件 / 限制
+    this.children.forEach(obj=>{
+      obj.update()
+    })
+  }
+  draw(){
+    this.children.forEach(obj=>{
+      obj.draw()
+    })
+    setFill("white")
+    ctx.font="20px Ariel"
+    ctx.fillText("Score: "+this.score,20,50)
+  }
+}
+
+function initCanvas(){
+  ww = canvas.width = window.innerWidth
+  wh = canvas.height = window.innerHeight
+}
+initCanvas()
+
+var scene,game
+
+function init(){
+  mousePos.x = ww/2
+  scene = new Scene()
+  scene.removeAllChildren()
+    let graphPlane = new PixelGraphic({
+      data: getPixelData("Plane")
+    })
+    scene.addChild(new Player({
+      p: new Vec2(100,wh-100),
+      name: "player",
+      graphic: graphPlane
+    }))
+    
+    //加入鬼
+    let graphicJelly = new PixelGraphic({
+      data: getPixelData("Jelly")
+    })
+    let graphicInvader = new PixelGraphic({
+      data: getPixelData("Invader")
+    })
+    let graphicGhost = new PixelGraphic({
+      data: getPixelData("Ghost")
+    })
+    
+    for(var i=0;i<10;i++){
+      for(var o=0;o<5;o++){
+        let g = null
+        if (o==0){
+          g = graphicJelly
+        }else if (o<3){
+          g = graphicInvader
+        }else {
+          g = graphicGhost
+        }
+        scene.addChild(new Enemy({
+          p: new Vec2(ww/2+(i-5)*100,o*70+ 50),
+          v: new Vec2(0,0.1),
+          reward: 10,
+          graphic: g,
+          tags: ['enemy','enemy_flock']
+        }))
+      }
+    }
+  
+  scene.life=3
+  for(var i=0;i<scene.life;i++){
+    let graphPlane = new PixelGraphic({
+      data: getPixelData("Plane"),
+      span: 3,
+      color: "#777"
+    })
+    let lifeobj = new GameObject({
+      p: new Vec2(ww-i*60-80,20),
+      graphic: graphPlane,
+      tags: ['life']
+      
+    })
+    scene.addChild(lifeobj)
+  }
+
+}
+function update(){
+  time++
+  scene.update()
+    //取得飛機
+  let plane = scene.getChildByName("player")
+  
+   //飛機射子彈
+  if(time%20==0){
+    let graphicBullet = new PixelGraphic({
+      data: getPixelData("PlaneBullet")
+    }) 
+    let bullet1 = new Bullet({
+      p: plane.boundaryPoints.LT,
+      graphic: graphicBullet,
+      tags: ["bullet"]
+
+    })
+    let bullet2 = new Bullet({
+      p: plane.boundaryPoints.RT,
+      graphic: graphicBullet,
+      tags: ["bullet"]
+    })
+    scene.addChild(bullet1)
+    scene.addChild(bullet2)
+  }
+
+  
+  //根據滑鼠設定飛機移動
+  if (plane){
+    //中間
+    if ( Math.abs(plane.boundaryPoints.MM.x-mousePos.x)<10){
+      plane.a.x=0
+      plane.v.x=0
+    //滑鼠在飛機右側
+    }else if (plane.boundaryPoints.MM.x>mousePos.x){
+      plane.a.x = (-10-plane.v.x)*0.2
+    //滑鼠在飛機左測
+    }else if (plane.boundaryPoints.MM.x<mousePos.x){
+      plane.a.x = (10-plane.v.x)*0.2
+    }
+  }
+
+  //取得所有陣敵人
+  let allFlockEnemies = scene.getChildrenByTag("enemy_flock")
+  allFlockEnemies.forEach(enemy=>{
+    //更新敵人速度
+    enemy.p = enemy.p.add(new Vec2(Math.sin(time/50),0))
+  }) 
+
+  let allBullets = scene.getChildrenByTag("bullet")
+  //取得所有敵人
+  let allEnemies = scene.getChildrenByTag("enemy")
+
+  allEnemies.forEach(enemy=>{
+    //取得所有子彈
+    allBullets.forEach(bullet=>{
+      if (enemy && bullet && enemy.collide(bullet)){
+        //打到敵人
+        scene.removeChild(enemy)
+        scene.removeChild(bullet)
+        scene.score+=enemy.reward
+
+        let graphBomb = new PixelGraphic({
+          data: getPixelData("Bomb"),
+          color: "red"
+        })
+        let bombEffect = new GameObject({
+          p: enemy.boundaryPoints.MM,
+          graphic: graphBomb,
+          tags: ['effect']
+        })
+
+        scene.addChild(bombEffect)
+        setTimeout(()=>{
+          scene.removeChild(bombEffect)
+        },500)
+      } 
+    })
+  }) 
+
+  let allEnemyBullets = scene.getChildrenByTag("enemybullet")
+  if (plane){
+    //敵人子彈打到飛機
+    allEnemyBullets.forEach(eb=>{
+      if (eb.collide(plane)){
+        scene.removeChild(plane) 
+        scene.removeChild(eb) 
+        scene.life--
+        if (scene.life<=0){
+          init()
+        }else{
+          //重新放生命顯示
+          let lifeSign = scene.getChildrenByTag('life')
+            lifeSign.forEach(l=>{
+              scene.removeChild(l)
+            })
+            for(var i=0;i<scene.life;i++){
+              let graphPlane = new PixelGraphic({
+                data: getPixelData("Plane"),
+                span: 3,
+                color: "#777"
+              })
+              let lifeobj = new GameObject({
+                p: new Vec2(ww-i*60-80,20),
+                graphic: graphPlane,
+                tags: ['life']
+
+              })
+              scene.addChild(lifeobj)
+            }
+
+
+          setTimeout(()=>{
+
+            let graphPlane = new PixelGraphic({
+              data: getPixelData("Plane")
+            })
+            scene.addChild(plane)
+          },2000)
+          
+        }
+        
+      }
+    })
+
+  }
+
+  //敵人射子彈
+  allEnemies.forEach(enemy=>{
+    if(time%50==0 && Math.random()<0.1){
+      let ebgraphic = new PixelGraphic({
+        data: getPixelData("EnemyBullet"),
+        color: "yellow"
+      })
+      let enemyBullet = new Bullet({
+        p: enemy.boundaryPoints.MM,
+        v: new Vec2(0,5), 
+        size: new Vec2(15,30),
+        tags: ["enemybullet"],
+        graphic: ebgraphic
+      })
+
+      scene.addChild(enemyBullet)
+    }
+  })
+
+  //檢查所有子彈有沒有超過舞台範圍移除
+  allBullets.concat(allEnemyBullets).forEach(bullet=>{
+    let points = bullet.boundaryPoints
+    if (points.LT.y<0 || points.LT.y>wh){
+      scene.removeChild(bullet)
+    }
+  })
+
+ 
+  //偶爾有飛碟
+  if (time%500==0){
+    let graphUfo = new PixelGraphic({
+      data: getPixelData("Ufo")
+    })
+    let enemyUfo = new Enemy({
+      p: new Vec2(ww+50,30),
+      v: new Vec2(-8,0), 
+      graphic: graphUfo,
+      reward: 100,
+      tags: ["enemy"]
+    })
+    scene.addChild(enemyUfo) 
+  }
+
+
+   
+}
+function draw(){
+   //清空背景
+  ctx.fillStyle=bgColor
+  ctx.fillRect(0,0,ww,wh)
+  
+  //-------------------------
+  //   在這裡繪製
+  
+  scene.draw()
+  
+  //-----------------------
+  //繪製滑鼠座標
+  
+  ctx.fillStyle="red"
+  ctx.beginPath()
+  ctx.circle(mousePos,2)
+  ctx.fill()
+  
+  ctx.save()
+  ctx.beginPath()
+  ctx.translate(mousePos.x,mousePos.y)
+    ctx.strokeStyle="red"
+    let len = 20
+    ctx.line(new Vec2(-len,0),new Vec2(len,0))
+    ctx.line(new Vec2(0,-len),new Vec2(0,len))
+    ctx.font="10px Ariel"
+    ctx.fillText(mousePos,10,-10)
+    ctx.stroke()
+  ctx.restore()
+  
+  //schedule next render
+
+  requestAnimationFrame(draw)
+}
+function loaded(){
+  initCanvas()
+  init()
+  requestAnimationFrame(draw)
+  setInterval(update,1000/updateFPS)
+}
+window.addEventListener("load",loaded)
+window.addEventListener("resize",initCanvas)
+
+//滑鼠事件跟紀錄
+var mousePos = new Vec2(0,0)
+var mousePosDown = new Vec2(0,0)
+var mousePosUp = new Vec2(0,0)
+
+window.addEventListener("mousemove",mousemove)
+window.addEventListener("mouseup",mouseup)
+window.addEventListener("mousedown",mousedown)
+function mousemove(evt){
+  mousePos.set(evt.x,evt.y)
+  // console.log(mousePos)
+}
+function mouseup(evt){
+  mousePos.set(evt.x,evt.y)
+  mousePosUp = mousePos.clone()
+  
+}
+function mousedown(evt){
+  mousePos.set(evt.x,evt.y)
+  mousePosDown = mousePos.clone()
+}
+  </script>
+ </BODY>
+</HTML>

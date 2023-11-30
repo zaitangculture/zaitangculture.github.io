@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  canvas {cursor:pointer;}
+  </style>
+ </HEAD>
+
+ <BODY>
+  <script type="text/javascript" src="https://hankuro.sakura.ne.jp/build/r90/three.min.js"></script> 
+  <script type="text/javascript" src="https://hankuro.sakura.ne.jp/build/r90/OrbitControls.js"></script> 
+  <script type="text/javascript" src="https://hankuro.sakura.ne.jp/build/r90/OutlineEffect.js"></script> 
+  <script>
+  		var controls;
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setPixelRatio( window.devicePixelRatio );
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.animate( render );
+		document.body.appendChild( renderer.domElement );
+		var scene = new THREE.Scene();
+		scene.background = new THREE.Color( 0x000000 );
+		var light = new THREE.DirectionalLight( 0xffffff, 1 );
+		light.position.set(-1, 0, 1);
+		scene.add( light );
+		var light2 = new THREE.DirectionalLight( 0xffffff, 1 );
+		light2.position.set(1, 0, 1);
+		scene.add( light2 );
+		var camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight );
+		camera.position.set(0, 0, 10);
+		controls = new THREE.OrbitControls( camera, renderer.domElement );
+		controls.userPan = false;
+		controls.userPanSpeed = 0.0;
+		controls.autoRotate = false;
+		controls.autoRotateSpeed = -10.0;
+
+		var textureUrl = [
+		                'https://hankuro.sakura.ne.jp/Model_333/4.jpg',
+		                'https://hankuro.sakura.ne.jp/Model_333/5.jpg',
+		                'https://hankuro.sakura.ne.jp/Model_333/TX87F9D405.B4E7C553.jpg'
+		                ]
+		var textures = [];
+		textureUrl.forEach(function(t){
+			var loader = new THREE.TextureLoader();
+			loader.crossOrigin = '*';
+		    loader.load(t, function(texture){
+		    	setTexture(texture)
+		    });
+		})
+		function setTexture(t){
+			t.wrapS = THREE.RepeatWrapping;
+			t.wrapT = THREE.RepeatWrapping;
+			t.repeat.set( 4, 4 );
+			textures.push(t);
+			if(textures.length == 2) jsonLoad();
+		}
+
+		var skinInfo , current = 0;
+		var MOTIONS = ['Action01','Action02','Action03','Action04']
+		function jsonLoad(){
+			var loader = new THREE.JSONLoader();
+			loader.crossOrigin = '*';
+			loader.load('https://hankuro.sakura.ne.jp/Model_333/model278_33301.json', function ( geometry ,  materials ) {
+				var mats = [];
+				materials.forEach(function(m){
+					switch (m.name) {
+					case 'Material_14':
+						var material = new THREE.MeshStandardMaterial( {
+						    roughness: 1,
+						    metalness: 0,
+						    skinning: true,
+						    map:m.map,
+						    bumpScale:0.03,
+						    bumpMap:textures[0]
+						} );
+						mats.push(material);
+						break;
+					case 'Material_10':
+						var material = new THREE.MeshStandardMaterial( {
+						    roughness: 0.9,
+						    metalness: 0,
+						    skinning: true,
+						    map:m.map,
+						    bumpScale:0.02,
+						    bumpMap:textures[1]
+						} );
+						mats.push(material);
+						break;
+					case 'Material_alpha':
+						var material = new THREE.MeshStandardMaterial( {
+						    transparent:true,
+						    shading:'phong',
+						    roughness: 1,
+						    metalness: 0,
+						    skinning: true,
+						    map:m.map,
+						    bumpScale:0.02,
+						    bumpMap:textures[1]
+						} );
+						mats.push(material);
+						break;
+					case 'Material_weapon':
+						var material = new THREE.MeshStandardMaterial( {
+						    roughness: 1,
+						    metalness: 0,
+						    skinning: true,
+						    map:m.map,
+						    bumpScale:0.05,
+						    bumpMap:textures[2]
+						} );
+						mats.push(material);
+						break;
+					}
+				});
+				console.log(mats);
+				mesh = new THREE.SkinnedMesh(geometry, mats);
+				scene.add( mesh );
+				mesh.scale.set(1.2, 1.2, 1.2);
+				mesh.rotation.set(0, 0, 0);
+				mesh.position.set(0, -3, 0);
+				var skin = new THREE.AnimationMixer( mesh );
+				var clipActions = {};
+				geometry.animations.forEach(function(a){
+					clipActions[a.name] = skin.clipAction(a);
+				})
+				skinInfo = {skin:skin , clips:clipActions , current:'Base'}
+		    	skinInfo.clips[skinInfo.current].play();
+			} );
+
+		}
+
+		document.addEventListener( 'click', onDocumentClick, false );
+		function onDocumentClick(){
+			if ( !skinInfo ) return;
+			if(skinInfo.current != 'Base') return;
+			var clip = skinInfo.clips[skinInfo.current];
+			clip.stop();
+			current =  current % MOTIONS.length;
+			skinInfo.current = MOTIONS[current];
+			clip = skinInfo.clips[skinInfo.current];
+			clip.play();
+			current++;
+		}
+
+		var clock = new THREE.Clock();
+		function render() {
+			controls.update();
+			if(skinInfo){
+				var delta = 0.75 * clock.getDelta();
+				var clip = skinInfo.clips[skinInfo.current];
+				if(skinInfo.current != 'Base'){
+					if(clip.time > 2.3){
+						clip.stop();
+						skinInfo.current = 'Base';
+						clip = skinInfo.clips[skinInfo.current];
+						clip.play();
+					}
+				}
+				skinInfo.skin.update(delta);
+			}
+			renderer.render( scene, camera );
+		}
+  </script>
+ </BODY>
+</HTML>

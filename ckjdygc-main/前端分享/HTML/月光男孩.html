@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  @import 'https://fonts.googleapis.com/css?family=Lato:400,400i,900,900i';
+.txt__normal {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+.txt__normal--it {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+.txt__bold {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+}
+.txt__bold--it {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+/* VARIABLES ================================================*/
+/* ===========================================================*/
+body {
+  height: 100%;
+  cursor: none;
+}
+#cursor {
+  position: absolute;
+  z-index: 1000;
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff;
+  opacity: 0;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+#cursor.isVisible {
+  opacity: .2;
+}
+#cursor span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  border: solid 1px #ffffff;
+  opacity: .5;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  transform: scale(1.4);
+  -webkit-transform: scale(1.4);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+html {
+  background: #000000;
+  height: 100%;
+  color: #ffffff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+.wrapper {
+  position: relative;
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+}
+.c-portrait {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.c-mask {
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+}
+.c-portrait__one {
+  background-image: url('http://moonlight.movie/assets/images/header/main01.jpg');
+  -webkit-clip-path: url(#clipping-one);
+          clip-path: url(#clipping-one);
+}
+.c-portrait__two {
+  background-image: url('http://moonlight.movie/assets/images/header/main02.jpg');
+  -webkit-clip-path: url(#clipping-two);
+          clip-path: url(#clipping-two);
+}
+.c-portrait__three {
+  background-image: url('http://moonlight.movie/assets/images/header/main03.jpg');
+  -webkit-clip-path: url(#clipping-three);
+          clip-path: url(#clipping-three);
+}
+/* UTILITY ===========================================================*/
+.u-border-box {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.u-clearfix:after {
+  content: '';
+  display: block;
+  float: none;
+  clear: both;
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <div id="cursor"><span></span></div>
+<div class="c-portrait c-portrait__one">
+<svg width="100%" height="100%">
+  <defs>
+    <clipPath id="clipping-one">
+        <rect class="c-mask__one c-mask" x="40%" y="30%" width="40%" height="50%"/>
+    </clipPath>
+  </defs>
+</svg>
+</div>
+
+<div class="c-portrait c-portrait__two">
+<svg width="100%" height="100%">
+  <defs>
+    <clipPath id="clipping-two">
+        <rect class="c-mask__two c-mask" x="15%" y="15%" width="50%" height="30%"/>
+    </clipPath>
+  </defs>
+</svg>
+</div>
+
+<div class="c-portrait c-portrait__three">
+<svg width="100%" height="100%">
+  <defs>
+    <clipPath id="clipping-three">
+        <rect class="c-mask__three c-mask" x="52%" y="60%" width="40%" height="30%"/>
+    </clipPath>
+  </defs>
+</svg>
+</div>
+  <script>
+  
+//--------------------
+//global variables
+//--------------------
+var maskOne = $('.c-mask__one');
+var maskTwo = $('.c-mask__two');
+var maskThree = $('.c-mask__three');
+
+//--------------------
+//global functions
+//--------------------
+function moveMask(event, maskEl, operX, operY) {
+  //var e = window.event;
+  var winX = $(window).innerWidth()/2;
+  var winY = $(window).innerHeight()/2;
+  var posX = ((event.pageX - winX)/ operX).toFixed(0);
+  var posY = ((event.pageY - winY)/ operY).toFixed(0);
+  maskEl.css({
+    transform: 'translate('+posX+'px, '+posY+'px)',
+    '-webkit-transform': 'translate('+posX+'px, '+posY+'px)',
+    '-moz-transform': 'translate('+posX+'px, '+posY+'px)',
+    '-ms-transform': 'translate('+posX+'px, '+posY+'px)',
+  });
+};
+function resetPos(maskEl) {
+  maskEl.css({
+    transform: 'translate(0, 0)',
+    '-webkit-transform': 'translate(0, 0)',
+    '-moz-transform': 'translate(0, 0)',
+    '-ms-transform': 'translate(0, 0)',
+  });
+};
+$(document,window,'html').mouseleave(function(event){
+  $('#cursor').removeClass('isVisible');
+}).mouseenter(function(){
+  $('#cursor').addClass('isVisible');
+  $(this).on('mousemove', function(event){
+    //var e = window.event;
+    var posX = event.pageX;
+    var posY = event.pageY;
+    $('#cursor').css({
+      transform: 'translate('+posX+'px, '+posY+'px)',
+      '-webkit-transform': 'translate('+posX+'px, '+posY+'px)',
+      '-moz-transform': 'translate('+posX+'px, '+posY+'px)',
+      '-ms-transform': 'translate('+posX+'px, '+posY+'px)',
+    });
+  });
+});
+
+//--------------------
+//launch functions
+//--------------------
+$(document,window,'html').on('mousemove', function(event){
+  setTimeout(
+    moveMask(event, maskOne, 4, 4)
+    ,1600);
+}).mouseleave(function() {
+  resetPos(maskOne);
+});
+
+$(document,window,'html').on('mousemove', function(event){
+  setTimeout(
+    moveMask(event, maskTwo, 8, 4)
+    ,2800);
+}).mouseleave(function() {
+  resetPos(maskTwo);
+});
+
+$(document,window,'html').on('mousemove', function(event){
+  setTimeout(
+    moveMask(event, maskThree, 8, 4)
+    ,500);
+}).mouseleave(function() {
+  resetPos(maskThree);
+});
+
+  </script>
+ </BODY>
+</HTML>

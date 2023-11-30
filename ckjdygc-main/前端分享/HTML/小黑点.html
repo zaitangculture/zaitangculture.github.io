@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  * {
+  margin: 0;
+  padding: 0;
+}
+
+#canvas {
+  display: block;
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+ <canvas id="canvas"></canvas>
+  <script>
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+window.requestAnimFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+  window.setTimeout(callback, 1000 / 60);
+};
+
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+var Vector = function () {
+  function Vector(x, y) {
+    _classCallCheck(this, Vector);
+
+    this.x = isNaN(x) ? 0 : x;
+    this.y = isNaN(y) ? 0 : y;
+  }
+
+  _createClass(Vector, [{
+    key: 'add',
+    value: function add(v) {
+      this.x += isNaN(v) ? v.x : v;
+      this.y += isNaN(v) ? v.y : v;
+      return this;
+    }
+  }, {
+    key: 'sub',
+    value: function sub(v) {
+      this.x -= isNaN(v) ? v.x : v;
+      this.y -= isNaN(v) ? v.y : v;
+      return this;
+    }
+  }, {
+    key: 'mul',
+    value: function mul(v) {
+      this.x *= isNaN(v) ? v.x : v;
+      this.y *= isNaN(v) ? v.y : v;
+      return this;
+    }
+  }, {
+    key: 'div',
+    value: function div(v) {
+      this.x /= isNaN(v) ? v.x : v;
+      this.y /= isNaN(v) ? v.y : v;
+      return this;
+    }
+  }, {
+    key: 'clone',
+    value: function clone() {
+      return new Vector(this.x, this.y);
+    }
+  }, {
+    key: 'dist',
+    value: function dist(v) {
+      var dx = this.x - v.x;
+      var dy = this.y - v.y;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+  }, {
+    key: 'clamp',
+    value: function clamp(min, max) {
+      this.x = Math.min(Math.max(this.x, min), max);
+      this.y = Math.min(Math.max(this.y, min), max);
+      return this;
+    }
+  }, {
+    key: 'normalise',
+    value: function normalise() {
+      var mag = Math.sqrt(this.x * this.x + this.y * this.y);
+      this.x = mag === 0 ? 0 : this.x / mag;
+      this.y = mag === 0 ? 0 : this.y / mag;
+      return this;
+    }
+  }]);
+
+  return Vector;
+}();
+
+var Creature = function () {
+  function Creature(x, y, tx, ty) {
+    _classCallCheck(this, Creature);
+
+    this.position = new Vector(x, y);
+    this.velocity = new Vector();
+    this.steering = new Vector();
+    this.target = new Vector(tx, ty);
+
+    this.size = 3;
+
+    this.maxVelocity = 1;
+    this.maxSteer = 0.01;
+    this.maxSpeed = 2;
+  }
+
+  _createClass(Creature, [{
+    key: 'update',
+    value: function update() {
+      var vel = this.target.clone().sub(this.position).normalise().mul(this.maxVelocity);
+      this.steering = vel.sub(this.velocity).clamp(-this.maxSteer, this.maxSteer);
+      this.velocity.add(this.steering).clamp(-this.maxSpeed, this.maxSpeed);
+      this.position.add(this.velocity);
+
+      if (Math.abs(this.position.dist(this.target)) < 10) {
+        this.target.x = Math.random() * canvas.width;
+        this.target.y = Math.random() * canvas.height;
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render(ctx) {
+      ctx.beginPath();
+      ctx.arc(this.position.x, this.position.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = '#000';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(this.target.x, this.target.y, this.size / 2, 0, Math.PI * 2);
+      ctx.fillStyle = '#f0f';
+      ctx.fill();
+    }
+  }]);
+
+  return Creature;
+}();
+
+var creatures = [];
+
+for (var i = 0; i < 20; i++) {
+  creatures.push(new Creature(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * canvas.width, Math.random() * canvas.height));
+}
+
+;(function loop(timestamp) {
+  ctx.fillStyle = 'rgba(255,255,255,0.2)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  creatures.forEach(function (creature) {
+    creature.update();
+    creature.render(ctx);
+  });
+
+  window.requestAnimFrame(loop);
+})(0);
+  </script>
+ </BODY>
+</HTML>

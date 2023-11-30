@@ -1,0 +1,441 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   :root {
+    --default-scene-height: 500px
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    height: 100vh;
+}
+
+.defs-svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.outside,
+.outside-lightning {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.outside {
+    background-image: linear-gradient(-180deg, #37455f 0%, #c8d1e5 100%);
+}
+
+.outside-lightning {
+    background-image: linear-gradient(111deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 200%);
+    -webkit-animation: lightning 6s step-end infinite;
+            animation: lightning 6s step-end infinite;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+/*
+ * Rain
+ */
+.rain-back-svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .2;
+}
+.rain-line-svg {
+    -webkit-animation: rain .4s linear infinite;
+            animation: rain .4s linear infinite;
+}
+.rain-line-svg:nth-child(3n+0) {
+    stroke-opacity: .6;
+    -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+}
+.rain-line-svg:nth-child(3n+1) {
+    stroke-opacity: .7;
+}
+.rain-line-svg:nth-child(3n+2) {
+    stroke-opacity: .9;
+    -webkit-animation-duration: .3s;
+            animation-duration: .3s;
+}
+
+@-webkit-keyframes rain {
+    100% {
+        stroke-dashoffset: -550px;
+    }
+}
+
+@keyframes rain {
+    100% {
+        stroke-dashoffset: -550px;
+    }
+}
+
+/*
+ * Cat
+ */
+.cat {
+    position: relative;
+    width: 0;
+    height: calc(100% * 240 / 500);
+    min-height: 240px;
+}
+.cat-svg {
+    position: absolute;
+    height: 100%;
+    -webkit-transform: translate(calc(-100% * 82 / 178), 0);
+            transform: translate(calc(-100% * 82 / 178), 0);
+}
+.cat-paw-right-svg {
+    position: absolute;
+    height: calc(100% * 26 / 240);
+    -webkit-transform: translate(calc(-100% * 82 / 40), calc(100% * 110 / 26));
+            transform: translate(calc(-100% * 82 / 40), calc(100% * 110 / 26));
+}
+.cat-paw-left-svg {
+    position: absolute;
+    height: calc(100% * 61 / 240);
+    -webkit-transform: translate(calc(100% * 23 / 48), calc(100% * 111 / 61));
+            transform: translate(calc(100% * 23 / 48), calc(100% * 111 / 61));
+}
+
+/*
+ * Umbrella
+ */
+.umbrella-svg {
+    position: absolute;
+    height: calc(100% * 212 / 240);
+    -webkit-transform: translate(calc(-100% * 229 / 359), calc(-100% * 65 / 212));
+            transform: translate(calc(-100% * 229 / 359), calc(-100% * 65 / 212));
+}
+
+/*
+ * Flowers
+ */
+.bunch-svg {
+    position: absolute;
+    height: calc(100% * 110 / 240);
+    -webkit-transform: translate(calc(-100% * 5 / 57), calc(100% * 96 / 110));
+            transform: translate(calc(-100% * 5 / 57), calc(100% * 96 / 110));
+}
+
+/*
+ * Animations
+ */
+.umbrella-hat-light,
+.umbrella-stick-light,
+.bunch-light,
+.cat-paw-right-light,
+.cat-paw-left-light,
+.cat-ear-left-light,
+.cat-ear-right-light,
+.cat-face-light,
+.cat-scarf-light,
+.cat-leg-left-light,
+.cat-body-light {
+    -webkit-animation: lightning 6s step-end infinite;
+            animation: lightning 6s step-end infinite;
+}
+.cat-eye-pupil {
+    -webkit-animation: 6s cat-eyes 3s linear infinite;
+            animation: 6s cat-eyes 3s linear infinite;
+}
+
+@-webkit-keyframes lightning {
+    0%, 53%, 61% {
+        opacity: 0;
+    }
+    50%, 56% {
+        opacity: 1;
+    }
+}
+
+@keyframes lightning {
+    0%, 53%, 61% {
+        opacity: 0;
+    }
+    50%, 56% {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes cat-eyes {
+    5%, 75% {
+        rx: 4px;
+        ry: 4px;
+    }
+    7%, 60% {
+        rx: 1px;
+        ry: 5px;
+    }
+}
+@keyframes cat-eyes {
+    5%, 75% {
+        rx: 4px;
+        ry: 4px;
+    }
+    7%, 60% {
+        rx: 1px;
+        ry: 5px;
+    }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <svg class="defs-svg" viewBox="0 0 2 500">
+    <title>Defs</title>
+    <defs>
+        <path id="rain-line" fill="none" stroke-width="2" stroke="#FFFFFF"
+              d="M1,0 L1,1000" stroke-linecap="round" stroke-dasharray="50 160 70 270"/>
+        <pattern id="rain" width="500" height="500" patternUnits="userSpaceOnUse">
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(10 0)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(200 -200)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(350 -300)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(490 -400)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(75 -20)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(140 -120)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(270 -220)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(400 -320)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(450 -420)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(105 -180)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(165 -270)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(375 -370)"/>
+            <use class="rain-line-svg" xlink:href="#rain-line" transform="translate(460 -500)"/>
+        </pattern>
+    </defs>
+</svg>
+
+<div class="outside">
+    <div class="outside-lightning"></div>
+
+    <svg class="rain-back-svg">
+        <title>Rain in the back</title>
+        <rect fill="url(#rain)" width="100%" height="100%"/>
+    </svg>
+</div>
+
+<div class="container">
+    <div class="cat">
+        <svg class="cat-svg" viewBox="0 0 178 240">
+            <title>Cat</title>
+            <defs>
+                <path id="cat-a"
+                      d="M35,197 L43,197 L41,170 L75,170 L72.328125,197 L82,197 C82,197 111,141.459871 111,89.5454545 C111,21.4909091 85.6829948,3.11556336e-14 57.71875,2.84217094e-14 C29.7545052,2.56877852e-14 3,20.0909091 1,89.5454545 C-1,159 35,197 35,197 Z"/>
+                <path id="cat-c"
+                      d="M44,0 C44,0 0,44 0,52 C2.82039869e-16,60 17.0001922,59 21.0001922,59 C23.3811033,59 36.4394491,37.9222883 44,21 C49.1413947,9.49235131 44,0 44,0 Z"/>
+                <path id="cat-e"
+                      d="M40.1347018,52 C60.1347018,53 92,22 75,-7.10542736e-15 C69,4.98761085e-15 14,-7.10542736e-15 5,9.31944543e-15 C-9,19 16.0417113,50.7953505 40.1347018,52 Z"/>
+                <path id="cat-g"
+                      d="M37.5,78 C58.2106781,78 75,55.7689435 75,32.9153079 C75,10.0616722 58.2106781,0 37.5,0 C16.7893219,0 0,10.0616722 0,32.9153079 C0,55.7689435 16.7893219,78 37.5,78 Z"/>
+                <polygon id="cat-i" points="6.395 0 0 28 19 15.805"/>
+                <polygon id="cat-k" points="11.929 0 20 27 0 15.983"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <g transform="translate(25 43)">
+                    <mask id="cat-b" fill="white">
+                        <use xlink:href="#cat-a"/>
+                    </mask>
+                    <use fill="#000000" xlink:href="#cat-a"/>
+                    <path class="cat-body-light" fill="#FFFFFF" fill-opacity=".85"
+                          d="M38,197 C38,197 9,161 9,93 C-4,89 -9,93 -9,93 L19,197 L38,197 Z" mask="url(#cat-b)"/>
+                    <polygon class="cat-leg-left-light" fill="#FFFFFF" fill-opacity=".85" points="79 170 75 197 68 197 68 170" mask="url(#cat-b)"/>
+                </g>
+                <g transform="translate(0 63)">
+                    <mask id="cat-d" fill="white">
+                        <use xlink:href="#cat-c"/>
+                    </mask>
+                    <use fill="#000000" xlink:href="#cat-c"/>
+                    <polygon class="cat-paw-right-light" fill="#FFFFFF" fill-opacity=".85"
+                            points="-5 60 49 5 23 -12" mask="url(#cat-d)"/>
+                </g>
+                <path fill="#000000"
+                    d="M123,68 C134,79 149,100 153,119 C149,132 134.909366,128 132,121 C126,114 107,76 123,68 Z"/>
+                <g transform="translate(42 52)">
+                    <mask id="cat-f" fill="white">
+                        <use xlink:href="#cat-e"/>
+                    </mask>
+                    <use fill="#8D8D8D" xlink:href="#cat-e"/>
+                    <path class="cat-scarf-light" fill="#FFFFFF" fill-opacity=".85"
+                          d="M6,1.42108547e-14 C6,1.42108547e-14 16,18.5411855 16,29 C13,29 11,25.4464639 8,23.4464639 C13,31.4464639 15,40 29,50 C16.53125,59 -19,1.42108547e-14 -19,1.42108547e-14 L6,1.42108547e-14 Z"
+                          mask="url(#cat-f)"/>
+                    <path fill="#8D8D8D" stroke="#7F7F7F"
+                          d="M37,52 C32,62 25,70 22,85 C27,84 43,82 50,83 C49,66 60,60 62,44 C52,50 45,51 37,52 Z"/>
+                    <path fill="#8D8D8D" stroke="#7F7F7F"
+                          d="M33,92 C42.1641669,93 47.2304986,84 58,86 C60,63 68,44 73,32 C65,45 49,50 49,50 C49,50 37,77 33,92 Z"/>
+                </g>
+                <g transform="translate(45)">
+                    <g transform="translate(0 14)">
+                        <mask id="cat-h" fill="white">
+                            <use xlink:href="#cat-g"/>
+                        </mask>
+                        <use fill="#000000" xlink:href="#cat-g"/>
+                        <path class="cat-face-light" fill="#FFFFFF" fill-opacity=".85"
+                              d="M14,69 C-2,35 17,2 17,2 L-2,7 C-2,7 -9,69 14,69 Z" mask="url(#cat-h)"/>
+                    </g>
+                    <g transform="translate(7)">
+                        <mask id="cat-j" fill="white">
+                            <use xlink:href="#cat-i"/>
+                        </mask>
+                        <use fill="#000000" xlink:href="#cat-i"/>
+                        <polygon class="cat-ear-right-light" fill="#FFFFFF" fill-opacity=".85"
+                                points="6 25 7 -5 -8 36" mask="url(#cat-j)"/>
+                    </g>
+                    <g transform="translate(48 1)">
+                        <mask id="cat-l" fill="white">
+                            <use xlink:href="#cat-k"/>
+                        </mask>
+                        <use fill="#000000" xlink:href="#cat-k"/>
+                        <polygon class="cat-ear-left-light" fill="#FFFFFF" fill-opacity=".85"
+                                points="3 19 14 -5 -9 11" mask="url(#cat-l)"/>
+                    </g>
+                    <g transform="translate(17 48)">
+                        <circle cx="6" cy="6" r="6" fill="#F8E81C"/>
+                        <ellipse class="cat-eye-pupil" cx="6" cy="6" fill="#000000" rx="4" ry="4"/>
+                    </g>
+                    <g transform="translate(45 48)">
+                        <circle cx="6" cy="6" r="6" fill="#F8E81C"/>
+                        <ellipse class="cat-eye-pupil" cx="6" cy="6" fill="#000000" rx="4" ry="4"/>
+                    </g>
+                </g>
+            </g>
+        </svg>
+
+        <svg class="umbrella-svg" viewBox="0 0 359 212">
+            <title>Umbrella</title>
+            <defs>
+                <path id="umbrella-a"
+                      d="M29.705,2 C29.705,-4.60742555e-15 33.295,1.66533454e-16 33.295,2 C33.295,3.79545455 33.295,195.858717 33.295,195.858717 C33.295,195.858717 33.295,212 17.14,212 C0.985,212 0.985,195.858717 0.985,195.858717 C0.985,194.045455 4.575,194.045455 4.575,195.858717 C4.575,195.840909 4.575,208.409091 17.14,208.409091 C29.705,208.409091 29.705,195.858717 29.705,195.858717 L29.705,2 Z"/>
+                <path id="umbrella-c"
+                      d="M180.3975,0.340909091 C288.54625,0.340909091 359,63.1818182 359,63.1818182 C359,63.1818182 351.82,57.7954545 344.64,57.7954545 C337.46,57.7954545 332.075,63.1818182 332.075,63.1818182 C332.075,63.1818182 326.69,57.7954545 314.125,57.7954545 C301.56,57.7954545 294.38,63.1818182 294.38,63.1818182 C294.38,63.1818182 288.995,57.7954545 269.25,57.7954545 C249.505,57.7954545 244.12,63.1818182 244.12,63.1818182 C244.12,63.1818182 233.35,57.7954545 211.81,57.7954545 C190.27,57.7954545 179.5,63.1818182 179.5,63.1818182 C179.5,63.1818182 170.525,57.7954545 147.19,57.7954545 C123.855,57.7954545 114.88,63.1818182 114.88,63.1818182 C114.88,63.1818182 107.7,57.7954545 87.955,57.7954545 C68.21,57.7954545 62.825,63.1818182 62.825,63.1818182 C62.825,63.1818182 57.44,57.7954545 44.875,57.7954545 C32.31,57.7954545 26.925,63.1818182 26.925,63.1818182 C26.925,63.1818182 23.335,57.7954545 14.36,57.7954545 C5.385,57.7954545 0,63.1818182 0,63.1818182 C0,63.1818182 72.24875,0.340909091 180.3975,0.340909091 Z"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <g transform="translate(148)">
+                    <mask id="umbrella-b" fill="white">
+                        <use xlink:href="#umbrella-a"/>
+                    </mask>
+                    <use fill="#8B572A" xlink:href="#umbrella-a"/>
+                    <path class="umbrella-stick-light" fill="#FFFFFF" fill-opacity=".85"
+                          d="M31,2 C31,2 31,161.813429 31,194 C31,208 18,208 18,208 L18,194 L2,194 C2,194 2,212 16,212 C2.13162821e-14,212 -7,212 -7,212 L29,1.17683641e-14 C29,1.17683641e-14 30,0 33,0 C31,0 31,2 31,2 Z"
+                          mask="url(#umbrella-b)"/>
+                </g>
+                <g transform="translate(0 8)">
+                    <mask id="umbrella-d" fill="white">
+                        <use xlink:href="#umbrella-c"/>
+                    </mask>
+                    <use fill="#1E0056" xlink:href="#umbrella-c"/>
+                    <path class="umbrella-hat-light" fill="#FFFFFF" fill-opacity=".85"
+                          d="M180,0 L-4,0 L-4,62.9898117 L29,62.9898117 C61.1010168,17 180,0 180,0 Z" mask="url(#umbrella-d)"/>
+                </g>
+            </g>
+        </svg>
+
+        <svg class="bunch-svg" viewBox="0 0 57 110">
+            <title>Flowers</title>
+            <defs>
+                <path id="bunch-a"
+                      d="M42.8288288,13.2657658 L90.3548841,0.552917698 L99.4779589,3.08791072 L44.4074074,24.3158158 L8.42136123,44.0474997 C8.42136123,44.0474997 11.1577579,37.0775559 9.16490901,29.8597629 C7.17206011,22.6419699 0.264078688,18.7232619 0.264078688,18.7232619 L42.8288288,13.2657658 Z"/>
+                <ellipse id="bunch-c" cx="8.631" cy="11.535" rx="5.525" ry="10.261"/>
+                <ellipse id="bunch-e" cx="11.311" cy="12.038" rx="7.893" ry="9.471"/>
+                <ellipse id="bunch-g" cx="5.96" cy="8.442" rx="3.747" ry="7.082"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd" transform="rotate(87 27.5 24.5)">
+                <g transform="translate(14)">
+                    <mask id="bunch-b" fill="white">
+                        <use xlink:href="#bunch-a"/>
+                    </mask>
+                    <use fill="#D8CAAC" xlink:href="#bunch-a"/>
+                    <polygon class="bunch-light" fill="#FFFFFF" fill-opacity=".85" points="5.189 41.404 53.485 17.9 100.417 1.333 75.834 69.139"
+                             mask="url(#bunch-b)"/>
+                </g>
+                <g transform="translate(8 30)">
+                    <mask id="bunch-d" fill="white">
+                        <use xlink:href="#bunch-c"/>
+                    </mask>
+                    <use fill="#850101" transform="rotate(-17 8.63 11.535)" xlink:href="#bunch-c"/>
+                    <path class="bunch-light" fill="#FFFFFF" fill-opacity=".85"
+                          d="M2.25369107,9.93444202 C6.72347918,20.1824171 14.8695233,17.6052162 14.8695233,17.6052162 L11.2456032,29.4317627 C11.2456032,29.4317627 -0.343431598,16.1130919 2.25369107,9.93444202 Z"
+                          mask="url(#bunch-d)"/>
+                </g>
+                <ellipse cx="8.283" cy="29.237" fill="#AE3333" transform="rotate(-17 8.283 29.237)" rx="4.736" ry="9.471"/>
+                <ellipse cx="14.476" cy="27.532" fill="#7D1313" transform="rotate(-17 14.476 27.532)" rx="7.104" ry="10.261"/>
+                <g transform="translate(9 23)">
+                    <mask id="bunch-f" fill="white">
+                        <use xlink:href="#bunch-e"/>
+                    </mask>
+                    <use fill="#AC0C0C" transform="rotate(-17 11.311 12.038)" xlink:href="#bunch-e"/>
+                    <path class="bunch-light" fill="#FFFFFF" fill-opacity=".85"
+                          d="M3.72197374,8.05144812 C8.03475398,21.2953118 17.1794277,18.7704469 17.1794277,18.7704469 L6.88336295,43.2651616 C6.88336295,43.2651616 0.578259372,15.1885612 3.72197374,8.05144812 Z"
+                          mask="url(#bunch-f)"/>
+                </g>
+                <g transform="translate(4 28)">
+                    <mask id="bunch-h" fill="white">
+                        <use xlink:href="#bunch-g"/>
+                    </mask>
+                    <use fill="#AF1616" transform="rotate(-17 5.96 8.442)" xlink:href="#bunch-g"/>
+                    <path class="bunch-light" fill="#FFFFFF" fill-opacity=".85"
+                          d="M1.62689509,4.68235549 C4.04032667,15.9533053 10.3005452,11.1451563 10.3005452,11.1451563 L5.15888235,51.9319594 C5.15888235,51.9319594 0.269046772,15.7556609 1.62689509,4.68235549 Z"
+                          mask="url(#bunch-h)"/>
+                </g>
+            </g>
+        </svg>
+
+        <svg class="cat-paw-left-svg" viewBox="0 0 48 61">
+            <title>Cat's left paw</title>
+            <defs>
+                <path id="cat-paw-left-a"
+                      d="M48,8 C49.7383416,28.8600991 22,51 22,51 C22,51 19.7494853,58.7223366 14,60 C8.25051471,61.2776634 10,61 3,57 C-1,49 -1,46 4,43 C9,40 12,38 12,38 C12,38 23,24 27,10 C30,2 42,-5 48,8 Z"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <mask id="cat-paw-left-b" fill="white">
+                    <use xlink:href="#cat-paw-left-a"/>
+                </mask>
+                <use fill="#000000" xlink:href="#cat-paw-left-a"/>
+                <path class="cat-paw-left-light" fill="#FFFFFF" fill-opacity=".85"
+                      d="M7,41 C2,44 1,55 10,61 C3.40371959,64.0444371 -21,54 -21,54 C-21,54 -1.21747876,39.1444403 7,41 Z"
+                      mask="url(#cat-paw-left-b)"/>
+                <g transform="translate(12 32)">
+                    <polygon fill="#8B572A" points="0 4 12 18 16 14 4 0"/>
+                    <circle cx="8.5" cy="9.5" r="4.5" fill="#FFFFFF" stroke="#979797"/>
+                    <polyline stroke="#000000" points="9 13 9 9 6 8"/>
+                </g>
+            </g>
+        </svg>
+
+        <svg class="cat-paw-right-svg" viewBox="0 0 40 26">
+            <title>Cat's right paw</title>
+            <defs>
+                <path id="cat-paw-right-a"
+                      d="M0,5 C9.06749912e-16,14 25,25 29,25 C33,25 35.8167249,26.3665503 38,22 C40.1832751,17.6334497 40.6639333,11.5286866 38,7 C35.3360667,2.47131339 28,5 28,5 C28,5 5,-5 0,5 Z"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <mask id="cat-paw-right-b" fill="white">
+                    <use xlink:href="#cat-paw-right-a"/>
+                </mask>
+                <use fill="#000000" xlink:href="#cat-paw-right-a"/>
+                <path class="cat-paw-right-light" fill="#FFFFFF" fill-opacity=".85"
+                      d="M37,5 C37,5 30,4 27,6.5 C16.3127666,3.29382999 1,5 6,14 C11,18 -15,20 -15,20 L-15,-7 L37,5 Z"
+                      mask="url(#cat-paw-right-b)"/>
+            </g>
+        </svg>
+    </div>
+</div>
+ </BODY>
+</HTML>

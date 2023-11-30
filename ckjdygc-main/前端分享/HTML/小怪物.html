@@ -1,0 +1,426 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  /*--------------------
+Body
+--------------------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(60deg, #fbb959, #FF7F50);
+  color: #8b9095;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/*--------------------
+Stage
+--------------------*/
+.stage {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 800px;
+  height: 600px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0px 10px 40px -10px rgba(0, 64, 128, 0.2);
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  height: 600px;
+}
+
+.head {
+  width: 80px;
+  height: 170px;
+  background: #f06292;
+  border-radius: 50px;
+  z-index: 9;
+}
+
+.eyes, .eyes2 {
+  position: absolute;
+  height: 70px;
+  width: 38px;
+  background: #f8f4ef;
+  border-radius: 50%;
+  top: 200px;
+  z-index: 8;
+  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.eyes2 {
+  left: 402px;
+}
+
+.point, .point2 {
+  height: 12px;
+  width: 12px;
+  background: #212;
+  border-radius: 50%;
+  top: 30px;
+  position: absolute;
+}
+
+.point {
+  left: 20px;
+  -webkit-animation: shake 2.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+          animation: shake 2.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+}
+
+.point2 {
+  left: 5px;
+  -webkit-animation: shake 2.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+          animation: shake 2.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+}
+
+.hair, .hair2 {
+  width: 80px;
+  height: 20px;
+  background: #2c2358;
+  position: absolute;
+  border-radius: 0 0 200px 200px;
+}
+
+.hair {
+  left: 320px;
+  top: 225px;
+}
+
+.hair2 {
+  left: 401px;
+  top: 225px;
+}
+
+.nariz {
+  top: 277px;
+  position: absolute;
+  width: 45px;
+  height: 23px;
+  background: #242756;
+  z-index: 2;
+  left: 378px;
+  border-radius: 22px;
+  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+}
+
+.nariz1, .nariz2 {
+  background: #db4f89;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  position: absolute;
+  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+}
+
+.nariz1 {
+  top: 280px;
+  left: 355px;
+}
+
+.nariz2 {
+  top: 280px;
+  left: 400px;
+}
+
+.points {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #212121;
+  top: 17px;
+  left: 8px;
+}
+.points:before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #212121;
+  top: 9px;
+}
+.points:after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #212121;
+  left: 9px;
+}
+
+.points2 {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #212121;
+  top: 17px;
+  left: 34px;
+  z-index: 9;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.points2:before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #212121;
+  top: 9px;
+}
+.points2:after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #212121;
+  left: 9px;
+}
+
+.line {
+  width: 15px;
+  height: 2px;
+  background: #212121;
+  position: absolute;
+  top: 17.5px;
+  border-radius: 21px;
+  left: -11px;
+}
+.line:before {
+  content: "";
+  width: 15px;
+  height: 2px;
+  background: #212121;
+  position: absolute;
+  top: 11px;
+  border-radius: 21px;
+  -webkit-transform: rotate(-29deg);
+          transform: rotate(-29deg);
+  left: 2px;
+}
+
+.line2 {
+  width: 15px;
+  height: 2px;
+  background: #212121;
+  position: absolute;
+  top: 28.5px;
+  border-radius: 21px;
+  left: 39px;
+  -webkit-transform: rotate(205deg);
+          transform: rotate(205deg);
+}
+.line2:before {
+  content: "";
+  width: 15px;
+  height: 2px;
+  background: #212121;
+  position: absolute;
+  top: 11px;
+  border-radius: 21px;
+  -webkit-transform: rotate(-29deg);
+          transform: rotate(-29deg);
+  left: 2px;
+}
+
+.hand {
+  width: 6px;
+  height: 100px;
+  background: #f06292;
+  z-index: 2;
+  position: absolute;
+  top: 308px;
+  left: 374px;
+  border-radius: 53px;
+}
+
+.hand2 {
+  width: 6px;
+  height: 100px;
+  background: #f06292;
+  z-index: 2;
+  position: absolute;
+  top: 308px;
+  left: 417px;
+  border-radius: 53px;
+}
+
+.mano {
+  background: #f06292;
+  width: 14px;
+  height: 6px;
+  border-radius: 50px;
+  left: -4px;
+  position: absolute;
+  top: 4px;
+}
+
+.mano2 {
+  background: #f06292;
+  width: 14px;
+  height: 6px;
+  border-radius: 50px;
+  left: -4px;
+  position: absolute;
+  top: 4px;
+}
+
+.shadow {
+  width: 100px;
+  height: 3px;
+  background: #24214b;
+  position: absolute;
+  top: 408px;
+  border-radius: 20px;
+}
+
+.lado {
+  width: 9px;
+  height: 25px;
+  background: #24214b;
+  position: absolute;
+  top: 323px;
+  left: 360px;
+  border-radius: 0 50px 50px 0;
+}
+
+.lado2 {
+  width: 9px;
+  height: 25px;
+  background: #24214b;
+  position: absolute;
+  top: 322px;
+  left: 431px;
+  border-radius: 0 50px 50px 0;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.scary {
+  width: 150px;
+  height: 60px;
+  box-shadow: 3px 0px 0px 0px rgba(0, 0, 0, 0.3), -3px 0px 0px 0px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  border-radius: 50px;
+  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+}
+
+.scary2 {
+  width: 215px;
+  height: 90px;
+  box-shadow: 3px 0px 0px 0px rgba(0, 0, 0, 0.3), -3px 0px 0px 0px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  border-radius: 50px;
+  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+          animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+}
+
+@-webkit-keyframes shake {
+  10%, 90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+            transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    -webkit-transform: translate3d(2px, 0, 0);
+            transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+            transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    -webkit-transform: translate3d(4px, 0, 0);
+            transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes shake {
+  10%, 90% {
+    -webkit-transform: translate3d(-1px, 0, 0);
+            transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    -webkit-transform: translate3d(2px, 0, 0);
+            transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    -webkit-transform: translate3d(-4px, 0, 0);
+            transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    -webkit-transform: translate3d(4px, 0, 0);
+            transform: translate3d(4px, 0, 0);
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  
+<div class="stage">
+  <div class="center">
+    <div class="scary"></div>
+    <div class="scary2"></div>
+    <div class="hair"></div>
+    <div class="hair2"></div>
+    <div class="head">
+      <div class="lado"></div>
+      <div class="lado2"></div>
+      <div class="eyes">
+        <div class="point"></div>
+      </div>
+      <div class="eyes2">
+        <div class="point2"></div>
+      </div>
+      <div class="nariz"></div>
+      <div class="nariz1">
+        <div class="points"></div>
+        <div class="line"></div>
+      </div>
+      <div class="nariz2">
+        <div class="points2"></div>
+        <div class="line2"></div>
+      </div>
+      <div class="hand">
+        <div class="mano"></div>
+        <div class="mano" style="top:91px;"></div>
+      </div>
+      <div class="hand2">
+        <div class="mano2"></div>
+        <div class="mano2" style="top:91px;"></div>
+      </div>
+    </div>
+    <div class="shadow"></div>
+  </div>
+</div>
+ </BODY>
+</HTML>

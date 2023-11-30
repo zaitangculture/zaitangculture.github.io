@@ -1,0 +1,437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body {
+  margin: 0;
+}
+
+div, div:after, div:before {
+  position: absolute;
+  content: "";
+}
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #b7b9a4, #6a7f83);
+}
+
+.boh-yubird {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 130px;
+  width: 100px;
+  margin: auto;
+  animation: floatanim ease-in-out 4s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes floatanim {
+  0% {
+    transform: translate(0px, -45px);
+  }
+  50% {
+    transform: translate(0px, -60px);
+  }
+  100% {
+    transform: translate(0px, -45px);
+  }
+}
+.upper-body {
+  width: 100px;
+  height: 130px;
+  background: #f3d9cd;
+  border-radius: 50% 50% 50% 50%/65% 65% 35% 35%;
+  box-shadow: inset -15px -10px #d7b5aa;
+  background: radial-gradient(circle at top, #f3d9cd, #e7cabf);
+}
+
+.lower-body {
+  width: 50px;
+  height: 90px;
+  background: #f3d9cd;
+  border-radius: 50%;
+  top: 75px;
+  left: 3px;
+  box-shadow: 45px 0 0 0 #d7b5aa, inset -15px 0 #d7b5aa;
+}
+
+.lower-body:after {
+  background: #fbe9da;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  top: 0px;
+  left: 7.5px;
+  box-shadow: inset -30px -5px #e9d2c0;
+}
+
+.head {
+  border: 2px solid #e7cabf;
+  background: #f3d9cd;
+  width: 55px;
+  height: 55px;
+  border-radius: 45% 45% 0 0;
+  top: 60px;
+  left: 22px;
+  box-shadow: inset -10px -10px #dec0b7;
+}
+
+.head:before {
+  background: #f3d9cd;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 38px;
+  left: 23px;
+  box-shadow: -31px 0 0 0 #f3d9cd, inset -10px -5px #dec0b7;
+}
+
+.eyes {
+  background: #fff8f3;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  top: 25px;
+  left: 5px;
+  box-shadow: 30px 0 0 0 #fff8f3;
+}
+
+.eyes:before {
+  background: #26130e;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  top: 3px;
+  left: 6px;
+  box-shadow: 26px 0 0 0 #26130e;
+}
+
+.nose {
+  background: #f5aba0;
+  width: 6px;
+  height: 6px;
+  border-radius: 20% 20% 50% 50%;
+  top: 35px;
+  left: 24px;
+}
+
+.ears {
+  background: #f3d9cd;
+  width: 20px;
+  height: 25px;
+  border-radius: 50%/70% 70% 30% 30%;
+  top: -15px;
+  left: 0;
+  box-shadow: 35px 0 0 0 #f3d9cd;
+}
+
+.ears:after {
+  background: #efbbba;
+  width: 15px;
+  height: 24px;
+  border-radius: 50%/70% 70% 30% 30%;
+  top: 0;
+  left: 40px;
+  box-shadow: -40px 0 0 0 #efbbba, inset 5px -5px #deafac;
+}
+
+.feet {
+  background: #e89d97;
+  width: 3px;
+  height: 30px;
+  top: 150px;
+  left: 27px;
+  border-radius: 5px;
+  box-shadow: 45px 0 0 0 #e89d97;
+}
+
+.feet:after {
+  background: #e89d97;
+  width: 3px;
+  height: 30px;
+  top: -3px;
+  left: -3px;
+  border-radius: -3px;
+  box-shadow: 45px -4px 0 0 #e89d97;
+  transform: rotate(6deg);
+}
+
+.feet:before {
+  background: #e89d97;
+  width: 3px;
+  height: 30px;
+  top: -3px;
+  left: 3px;
+  border-radius: -3px;
+  box-shadow: 45px 5px 0 0 #e89d97;
+  transform: rotate(-6deg);
+}
+
+.tail {
+  width: 30px;
+  height: 80px;
+  top: 145px;
+  left: 45px;
+  border-radius: 0 0 0 100%;
+  border-left: 10px solid #d88589;
+}
+
+.body {
+  background: #322730;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%/0% 0% 100% 100%;
+  top: -60px;
+  left: 35px;
+}
+
+.body:before {
+  width: 30px;
+  height: 30px;
+  background: #7c5c5c;
+  border-radius: 50%;
+  top: -30px;
+}
+
+.body:after {
+  background: #322730;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  top: 15px;
+  left: 1px;
+  box-shadow: 18px 0 0 0 #322730;
+}
+
+.beak {
+  background: #fbdd8f;
+  width: 50px;
+  height: 15px;
+  border-radius: 50%/100% 100% 0 0;
+  top: -70px;
+  left: 25px;
+  box-shadow: inset -10px 0 #e8b96a;
+}
+
+.beak:after {
+  background: #e8b96a;
+  width: 35px;
+  height: 7px;
+  border-radius: 50%/0 0 100% 100%;
+  top: 15px;
+  left: 8px;
+}
+
+.yu-eyes {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #fff8f3;
+  top: -86px;
+  left: 25px;
+  box-shadow: 25px 0 0 0 #fff8f3;
+}
+
+.yu-eyes:after {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #322730;
+  top: 8px;
+  left: 8px;
+  box-shadow: 25px 0 0 0 #322730;
+}
+
+.left-leg {
+  width: 30px;
+  height: 30px;
+  border-left: 2px solid #322730;
+  border-bottom: 2px solid #322730;
+  transform: rotate(45deg) skewy(20deg);
+  top: -35px;
+  left: 23px;
+}
+
+.left-leg:after {
+  width: 5px;
+  height: 5px;
+  border-left: 2px solid #322730;
+  border-top: 2px solid #322730;
+  transform: rotate(45deg) skewx(50deg);
+  top: 34px;
+  left: 28px;
+}
+
+.right-leg {
+  width: 30px;
+  height: 30px;
+  border-right: 2px solid #322730;
+  border-top: 2px solid #322730;
+  transform: rotate(45deg) skewx(20deg);
+  top: -35px;
+  left: 45px;
+}
+
+.right-leg:after {
+  width: 5px;
+  height: 5px;
+  border-left: 2px solid #322730;
+  border-top: 2px solid #322730;
+  transform: rotate(-45deg) skewy(50deg);
+  top: 28px;
+  left: 34px;
+}
+
+.hair-1 {
+  width: 5px;
+  height: 20px;
+  border-left: 1px solid #322730;
+  top: -115px;
+  left: 49px;
+}
+
+.hair-1:after {
+  width: 5px;
+  height: 20px;
+  border-left: 1px solid #322730;
+  transform: rotate(10deg);
+  top: 2px;
+  left: 7px;
+}
+
+.hair-1:before {
+  width: 5px;
+  height: 20px;
+  border-left: 1px solid #322730;
+  transform: rotate(-10deg);
+  top: 1px;
+  left: -9px;
+}
+
+.hair-2 {
+  width: 5px;
+  height: 20px;
+  border-left: 1px solid #322730;
+  transform: rotate(-30deg);
+  top: -111px;
+  left: 32px;
+}
+
+.hair-2:after {
+  width: 5px;
+  height: 20px;
+  border-left: 1px solid #322730;
+  transform: rotate(60deg);
+  top: 19px;
+  left: 28px;
+}
+
+.left-wing {
+  width: 40px;
+  height: 10px;
+  border-radius: 50%;
+  background: #322730;
+  top: -60px;
+  left: -25px;
+  animation: leftwinganim linear 0.15s;
+  animation-iteration-count: infinite;
+  transform-origin: 100% 50%;
+}
+
+@keyframes leftwinganim {
+  0% {
+    transform: translate(0px, 15px) rotate(-60deg);
+  }
+  50% {
+    transform: translate(5px, -15px) rotate(60deg);
+  }
+  100% {
+    transform: translate(0px, 15px) rotate(-60deg);
+  }
+}
+.right-wing {
+  width: 40px;
+  height: 10px;
+  border-radius: 50%;
+  background: #322730;
+  top: -60px;
+  left: 80px;
+  animation: rightwinganim linear 0.15s;
+  animation-iteration-count: infinite;
+  transform-origin: 0% 100%;
+}
+
+@keyframes rightwinganim {
+  0% {
+    transform: translate(0px, 15px) rotate(60deg);
+  }
+  50% {
+    transform: translate(5px, -15px) rotate(-60deg);
+  }
+  100% {
+    transform: translate(0px, 15px) rotate(60deg);
+  }
+}
+.ccc, .ccc a {
+  bottom: 0px;
+  right: 0px;
+  font-family: Tahoma;
+  font-size: 10pt;
+  padding: 5px;
+  background: #eb5252;
+  border-radius: 5px 0 0 0;
+  color: white;
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+  
+<div class="wrap">
+  <div class="boh-yubird">
+    <div class="boh">
+      <div class="feet"></div>
+      <div class="tail"></div>
+      <div class="lower-body"></div>
+      <div class="upper-body"></div>
+      <div class="head">
+        <div class="eyes"></div>
+        <div class="nose"></div>
+        <div class="ears"></div>
+      </div>
+    </div>
+    <div class="yubird">
+      <div class="left-wing"></div>
+      <div class="right-wing"></div>
+      <div class="left-leg"></div>
+      <div class="right-leg"></div>
+      <div class="hair">
+        <div class="hair-1"></div>
+        <div class="hair-2"></div>
+      </div>
+      <div class="body"></div>
+      <div class="beak"></div>
+      <div class="yu-eyes"></div>
+    </div>
+  </div>
+</div>
+<div class="ccc">Made by <a href="http://chilliconcode.com" target="_blank">chilliconcode.com</a></div>
+  <script>
+   /*-------------------------------------
+See all in the Ghibli CSS series: 
+
+https://codepen.io/chilliconcode/pens/tags/?selected_tag=ghibli
+
+-------------------------------------*/
+  </script>
+ </BODY>
+</HTML>

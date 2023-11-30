@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   * {
+  box-sizing: border-box;
+  position: relative;
+}
+
+body {
+  font-size: 14pt;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", "Calibri", "Lucida Grande", "Helvetica", "Arial", sans-serif;
+  overflow: hidden;
+}
+
+.page-container,
+.canvas-container {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#skyDragon {
+  position: absolute;
+  top: 100px;
+  left: 20%;
+  width: 145px;
+  height: 129px;
+  background-image: url(https://ajcjazz.com/images/sky_dragon_crop.png);
+  z-index: 100;
+  -webkit-animation: fly 2.5s ease-in-out infinite;
+          animation: fly 2.5s ease-in-out infinite;
+}
+
+canvas {
+  margin: 0 auto;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#foreground4 {
+  -webkit-animation: scroll 15s linear infinite;
+          animation: scroll 15s linear infinite;
+}
+
+#foreground3 {
+  -webkit-animation: scroll 7s linear infinite;
+          animation: scroll 7s linear infinite;
+}
+
+#foreground2 {
+  -webkit-animation: scroll 4s linear infinite;
+          animation: scroll 4s linear infinite;
+}
+
+#foreground1 {
+  -webkit-animation: scroll 1s linear infinite;
+          animation: scroll 1s linear infinite;
+}
+
+@-webkit-keyframes scroll {
+  from {
+    left: 0%;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@keyframes scroll {
+  from {
+    left: 0%;
+  }
+  to {
+    left: -100%;
+  }
+}
+@-webkit-keyframes fly {
+  0% {
+    top: 100px;
+  }
+  50% {
+    top: 200px;
+  }
+  100% {
+    top: 100px;
+  }
+}
+@keyframes fly {
+  0% {
+    top: 100px;
+  }
+  50% {
+    top: 200px;
+  }
+  100% {
+    top: 100px;
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <div class="page-container">
+  <div id="skyDragon"></div>
+  <div class="canvas-container">
+    <canvas id="static-canvas"></canvas>
+    <canvas id="foreground4"></canvas>
+    <canvas id="foreground3"></canvas>
+    <canvas id="foreground2"></canvas>
+    <canvas id="foreground1"></canvas>
+  </div>
+</div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+  <script>
+   var staticCanvas = document.getElementById('static-canvas'),
+    fg1 = document.getElementById('foreground1'),
+    fg2 = document.getElementById('foreground2'),
+    fg3 = document.getElementById('foreground3'),
+    fg4 = document.getElementById('foreground4');
+
+var ctx_static = staticCanvas.getContext('2d'),
+    ctx_fg1 = fg1.getContext('2d'),
+    ctx_fg2 = fg2.getContext('2d'),
+    ctx_fg3 = fg3.getContext('2d'),
+    ctx_fg4 = fg4.getContext('2d');
+
+var cSet = [staticCanvas, fg1, fg2, fg3, fg4];
+
+var ctxSet = [ctx_static, ctx_fg1, ctx_fg2, ctx_fg3, ctx_fg4];
+
+window.addEventListener('load', function () {
+  init();
+});
+
+window.addEventListener('resize', function () {
+  init();
+});
+
+colors = {
+  sky: '#010001',
+  moon: '#fef9bc',
+  clouds1: '#6897d5',
+  clouds2: '#5074a3',
+  clouds3: '#364d6d',
+  clouds4: '#1b2637'
+};
+
+function init() {
+  /* initialize the static (background) canvas */
+  sizeCanvas(staticCanvas, window.innerWidth, window.innerHeight);
+
+  for (var i = 1; i < cSet.length; i++) {
+    cSet[i].width = window.innerWidth * 2;
+    cSet[i].height = window.innerHeight;
+  }
+
+  renderScene();
+}
+
+function sizeCanvas(c, x, y) {
+  c.width = x;
+  c.height = y;
+}
+
+function renderScene() {
+  /* render sky */
+  ctx_static.fillStyle = colors.sky;
+  ctx_static.fillRect(0, 0, innerWidth, innerHeight);
+
+  /* render point stars */
+  for (var i = 0; i < 24; i++) {
+    var x = Math.round(Math.random() * innerWidth);
+    var y = Math.round(Math.random() * innerHeight * 0.4);
+    var d = distToPoint(x, y, staticCanvas.width * 0.65, staticCanvas.height * 0.15);
+    var col = d < 150 ? 96 : Math.random() < 0.1 ? 100 : 255;
+    ctx_static.fillStyle = 'rgb(' + col + ',' + col + ',' + col + ')';
+    ctx_static.fillRect(x, y, 1, 1);
+  }
+
+  /* render bright stars */
+  var s1x = Math.round(staticCanvas.width * 0.4) - 0.5;
+  var s1y = Math.round(staticCanvas.height * 0.1) - 0.5;
+  var s1Grad = ctx_static.createRadialGradient(s1x, s1y, 0, s1x, s1y, 8);
+  s1Grad.addColorStop(0, 'rgba(255,255,255,1)');
+  s1Grad.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx_static.strokeStyle = s1Grad;
+  ctx_static.beginPath();
+  ctx_static.moveTo(s1x - 4, s1y);
+  ctx_static.lineTo(s1x + 4, s1y);
+  ctx_static.stroke();
+  ctx_static.beginPath();
+  ctx_static.moveTo(s1x, s1y - 4);
+  ctx_static.lineTo(s1x, s1y + 4);
+  ctx_static.stroke();
+
+  var s2x = Math.round(staticCanvas.width * 0.9) - 0.5;
+  var s2y = Math.round(staticCanvas.height * 0.16) - 0.5;
+  var s2Grad = ctx_static.createRadialGradient(s2x, s2y, 0, s2x, s2y, 8);
+  s2Grad.addColorStop(0, 'rgba(255,255,255,1)');
+  s2Grad.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx_static.strokeStyle = s2Grad;
+  ctx_static.beginPath();
+  ctx_static.moveTo(s2x - 4, s2y);
+  ctx_static.lineTo(s2x + 4, s2y);
+  ctx_static.stroke();
+  ctx_static.beginPath();
+  ctx_static.moveTo(s2x, s2y - 4);
+  ctx_static.lineTo(s2x, s2y + 4);
+  ctx_static.stroke();
+
+  /* render moon */
+  ctx_static.fillStyle = colors.moon;
+  ctx_static.beginPath();
+  ctx_static.arc(staticCanvas.width * 0.65, staticCanvas.height * 0.15, 30, 0, Math.PI * 2);
+  ctx_static.fill();
+
+  /* render clouds */
+  renderCloudSet(innerHeight * 0.5, ctx_fg4, colors.clouds4, 10, 20, 100);
+  renderCloudSet(innerHeight * 0.65, ctx_fg3, colors.clouds3, 10, 20, 100);
+  renderCloudSet(innerHeight * 0.8, ctx_fg2, colors.clouds2, 10, 20, 100);
+  renderCloudSet(innerHeight * 0.95, ctx_fg1, colors.clouds1, 10, 20, 100);
+}
+
+function distToPoint(x1, y1, x2, y2) {
+  var a = (x2 - x1) * (x2 - x1);
+  var b = (y2 - y1) * (y2 - y1);
+  return Math.sqrt(a + b);
+}
+
+function renderCloudSet(cloudSurface, ctx, color, minM, maxM, yVariance) {
+  ctx.fillStyle = colors;
+  ctx.fillRect(0, cloudSurface, innerWidth, innerHeight - cloudSurface);
+
+  var mX = 0;
+  var mY = cloudSurface - Math.round(Math.random() * yVariance);
+  var currentM = Math.round(Math.random() * maxM) + minM;
+  while (mX < innerWidth) {
+    createM(ctx, color, mX, mY, currentM, cloudSurface);
+    //mY = cloudSurface - Math.round(Math.random() * yVariance);
+    if (mY + currentM > cloudSurface) {
+      mY -= currentM;
+    } else if (mY - currentM < cloudSurface - yVariance) {
+      mY += currentM;
+    } else {
+      mY = Math.random() < 0.5 ? mY - currentM : mY + currentM;
+    }
+    currentM = Math.round(Math.random() * maxM) + minM;
+    mX += currentM * 0.6;
+  }
+}
+
+function createM(ctx, color, x, y, r, cloudSurface) {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.arc(x + innerWidth, y, r, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillRect(x - r, y, r * 2, window.innerHeight);
+  ctx.fillRect(x + innerWidth - r, y, r * 2, window.innerHeight);
+}
+
+/*
+function animate() {
+  window.requestAnimationFrame(animate);
+}
+*/
+  </script>
+ </BODY>
+</HTML>
