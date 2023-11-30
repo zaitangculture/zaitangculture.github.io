@@ -1,0 +1,2465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  html, body {
+  background: darkgrey;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.space-scene {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#152037+0,222352+100 */
+  background: #152037;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #152037 0%, #222352 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #152037 0%, #222352 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #152037 0%, #222352 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#152037', endColorstr='#222352',GradientType=0 );
+  /* IE6-9 */
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes walking-anim {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-5600px);
+  }
+}
+@keyframes slow-rotate {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.astronaut {
+  width: 160px;
+  height: 207px;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  bottom: 48.7804878049vw;
+  transform: translateX(-50%);
+}
+@media only screen and (min-width: 640px) {
+  .astronaut {
+    bottom: 16.2601626016vw;
+  }
+}
+.astronaut__walking-anim {
+  animation: walking-anim 1.3s steps(35);
+  animation-iteration-count: infinite;
+}
+
+.planet {
+  width: 300vw;
+  height: 300vw;
+  animation: slow-rotate 28s linear reverse infinite;
+}
+@media only screen and (min-width: 640px) {
+  .planet {
+    width: 100vw;
+    height: 100vw;
+  }
+}
+
+.planet-wrapper {
+  position: absolute;
+  left: 50%;
+  bottom: -240vw;
+  transform: translateX(-50%);
+}
+@media only screen and (min-width: 640px) {
+  .planet-wrapper {
+    bottom: -80vw;
+  }
+}
+
+.cloud {
+  background: #1f275b;
+  border-radius: 5vh;
+  width: 30vw;
+  height: 10vh;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.cloud1 {
+  top: 50%;
+  left: 20%;
+}
+
+.cloud2 {
+  top: 10%;
+  left: 35%;
+}
+
+.cloud3 {
+  top: 25%;
+  left: 68%;
+}
+
+.cloud4 {
+  top: 32%;
+  left: 80%;
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+  <div class="space-scene">
+  
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+  <div class="cloud cloud4"></div>
+  
+  <div class="astronaut">
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="5570px" height="207px" viewBox="0 0 5570 207" class="astronaut__walking-anim">
+<defs>
+<g id="characters_astronaut_astronaut_body_0_Layer0_0_FILL">
+<path fill="#FFFFFF" stroke="none" d="
+M 3 1
+L 3 3 5 3 11 3 11 1 3 1
+M 9 -7
+L 2 -7
+Q 1.6 -7 1.3 -6.7 1 -6.4 1 -6 1 -5.6 1.3 -5.3 1.6 -5 2 -5
+L 3 -5 3 -1 11 -1 11 -5 12 -5
+Q 12.4 -5 12.7 -5.3 13 -5.6 13 -6 13 -6.4 12.7 -6.7 12.4 -7 12 -7
+L 9 -7 Z"/>
+
+<path fill="#F1F1F1" stroke="none" d="
+M 11 -1
+L 3 -1 3 1 11 1 11 -1 Z"/>
+
+<path fill="#2D2B28" stroke="none" d="
+M 2 -7
+L 9 -7 9 -13 -5 -13 -5 5 5 5 5 3 3 3 3 1 3 -1 3 -5 2 -5
+Q 1.6 -5 1.3 -5.3 1 -5.6 1 -6 1 -6.4 1.3 -6.7 1.6 -7 2 -7 Z"/>
+</g>
+
+<g id="characters_astronaut_arm_upper_0_Layer0_0_FILL">
+<path fill="#FFFFFF" stroke="none" d="
+M 0.7 -0.7
+Q 0.4 -1 0 -1 -0.4 -1 -0.7 -0.7 -1 -0.4 -1 0
+L -1 5
+Q -1 5.4 -0.7 5.7 -0.4 6 0 6 0.4 6 0.7 5.7 1 5.4 1 5
+L 1 0
+Q 1 -0.4 0.7 -0.7 Z"/>
+</g>
+
+<g id="characters_astronaut_arm_lower_0_Layer0_0_FILL">
+<path fill="#CCCCCC" stroke="none" d="
+M 1 8
+L 1 6 -1 6 -1 8 1 8 Z"/>
+
+<path fill="#FFFFFF" stroke="none" d="
+M 0.7 -0.7
+Q 0.4 -1 0 -1 -0.4 -1 -0.7 -0.7 -1 -0.4 -1 0
+L -1 6 1 6 1 0
+Q 1 -0.4 0.7 -0.7 Z"/>
+</g>
+
+<g id="characters_astronaut_leg_upper_0_Layer0_0_FILL">
+<path fill="#FFFFFF" stroke="none" d="
+M 0.7 -0.7
+Q 0.4 -1 0 -1 -0.4 -1 -0.7 -0.7 -1 -0.4 -1 0
+L -1 6
+Q -1 6.4 -0.7 6.7 -0.4 7 0 7 0.4 7 0.7 6.7 1 6.4 1 6
+L 1 0
+Q 1 -0.4 0.7 -0.7 Z"/>
+</g>
+
+<g id="characters_astronaut_leg_lower_0_Layer0_0_FILL">
+<path fill="#2D2B28" stroke="none" d="
+M 3 13
+L 3 11 1 11 -1 11 -1 13 3 13 Z"/>
+
+<path fill="#FFFFFF" stroke="none" d="
+M 0.7 -0.7
+Q 0.4 -1 0 -1 -0.4 -1 -0.7 -0.7 -1 -0.4 -1 0
+L -1 11 1 11 1 0
+Q 1 -0.4 0.7 -0.7 Z"/>
+</g>
+
+<g id="characters_astronaut_astronaut_head_0_Layer0_0_FILL">
+<path fill="#2D2B28" stroke="none" d="
+M 3 -2
+L 3 -5 -1 -5 -1 -2 3 -2 Z"/>
+
+<path fill="#FFFFFF" stroke="none" d="
+M 3 -1
+L 3 -2 -1 -2 -1 -5 3 -5 3 -6 -2 -6 -2 -1 -1 -1 -1 0
+Q -1 0.4 -0.7 0.7 -0.4 1 0 1 0.4 1 0.7 0.7 1 0.4 1 0
+L 1 -1 3 -1 Z"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 72.7,95.35) ">
+<g id="ikNode_6" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, -34.55,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 26.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 26.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, -27.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, -28,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7" transform="matrix( 4.77392578125, 1.3175048828125, -1.3175048828125, 4.77392578125, -12,14.75) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10" transform="matrix( 4.78741455078125, -1.3691864013671875, 1.3691864013671875, 4.78741455078125, 22.5,43.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8" transform="matrix( 4.7539520263671875, -1.513916015625, 1.513916015625, 4.7539520263671875, 13.3,14.4) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9" transform="matrix( 3.2154998779296875, 3.789154052734375, -3.789154052734375, 3.2154998779296875, -20.25,43.85) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 0.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 125.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 186.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 186.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 132.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 132,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL" transform="matrix( 4.8983154296875, 0.7127685546875, -0.7127685546875, 4.8983154296875, 147.95,14.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL" transform="matrix( 4.88446044921875, -0.95098876953125, 0.95098876953125, 4.88446044921875, 180.4,43.2) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL" transform="matrix( 4.8515625, -1.1468505859375, 1.1468505859375, 4.8515625, 173.25,14.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL" transform="matrix( 3.1928558349609375, 3.7942352294921875, -3.7942352294921875, 3.1928558349609375, 143.45,43.85) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 160.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 285.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 346.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 346.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 292.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 292,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL" transform="matrix( 4.9505615234375, 0.108367919921875, -0.108367919921875, 4.9505615234375, 307.9,14.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL" transform="matrix( 4.949951171875, -0.52313232421875, 0.52313232421875, 4.949951171875, 338.15,43.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL" transform="matrix( 4.9244384765625, -0.7835540771484375, 0.7835540771484375, 4.9244384765625, 333.2,14.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL" transform="matrix( 3.16143798828125, 3.81781005859375, -3.81781005859375, 3.16143798828125, 307.1,43.85) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 320.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 445.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 506.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 506.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 452.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 452,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL" transform="matrix( 4.9254608154296875, -0.49761962890625, 0.49761962890625, 4.9254608154296875, 467.85,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL" transform="matrix( 4.97808837890625, -0.0912628173828125, 0.0912628173828125, 4.97808837890625, 495.95,43.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL" transform="matrix( 4.97021484375, -0.415985107421875, 0.415985107421875, 4.97021484375, 493.3,14.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL" transform="matrix( 3.142333984375, 3.8306884765625, -3.8306884765625, 3.142333984375, 470.85,43.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 480.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 605.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 666.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 666.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 612.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 612,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL" transform="matrix( 4.82574462890625, -1.096160888671875, 1.096160888671875, 4.82574462890625, 627.9,15.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL" transform="matrix( 4.9686126708984375, 0.30859375, -0.30859375, 4.9686126708984375, 653.7,43.4) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL" transform="matrix( 4.9885711669921875, -0.0460662841796875, 0.0460662841796875, 4.9885711669921875, 653.25,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL" transform="matrix( 3.1280975341796875, 3.8505859375, -3.8505859375, 3.1280975341796875, 634.65,43.7) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 640.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 765.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 826.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 826.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 772.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 772,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL" transform="matrix( 4.6535491943359375, -1.67822265625, 1.67822265625, 4.6535491943359375, 787.85,15.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL" transform="matrix( 4.9216156005859375, 0.7388916015625, -0.7388916015625, 4.9216156005859375, 811.5,43.4) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL" transform="matrix( 4.9783935546875, 0.30780029296875, -0.30780029296875, 4.9783935546875, 813.3,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL" transform="matrix( 3.106689453125, 3.85992431640625, -3.85992431640625, 3.106689453125, 798,42.2) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 800.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 925.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 986.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 986.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 932.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 932,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL" transform="matrix( 4.4041748046875, -2.24969482421875, 2.24969482421875, 4.4041748046875, 947.9,15.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8375244140625, 1.163543701171875, -1.163543701171875, 4.8375244140625, 969.15,43.45) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL" transform="matrix( 4.940673828125, 0.6763916015625, -0.6763916015625, 4.940673828125, 973.3,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL" transform="matrix( 3.0771484375, 3.88629150390625, -3.88629150390625, 3.0771484375, 961.2,40.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 960.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 1085.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1146.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1146.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 1092.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 1092,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.09442138671875, -2.7720794677734375, 2.7720794677734375, 4.09442138671875, 1107.8,15.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.7220458984375, 1.5639495849609375, -1.5639495849609375, 4.7220458984375, 1126.95,43.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8756561279296875, 1.04119873046875, -1.04119873046875, 4.8756561279296875, 1133.35,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.0601806640625, 3.90252685546875, -3.90252685546875, 3.0601806640625, 1124.4,39.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 1120.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 1245.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1306.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1306.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 1252.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 1252,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.723114013671875, -3.2656097412109375, 3.2656097412109375, 3.723114013671875, 1268,15.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.56988525390625, 1.97735595703125, -1.97735595703125, 4.56988525390625, 1284.7,43.45) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.7846527099609375, 1.41387939453125, -1.41387939453125, 4.7846527099609375, 1293.5,14.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.0455322265625, 3.9268646240234375, -3.9268646240234375, 3.0455322265625, 1287.65,37.45) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 1280.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 1405.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1466.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1466.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 1412.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 1412,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.8104248046875, -3.1504364013671875, 3.1504364013671875, 3.8104248046875, 1428.1,15.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.46728515625, 2.1842041015625, -2.1842041015625, 4.46728515625, 1445.1,43.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.79595947265625, 1.35894775390625, -1.35894775390625, 4.79595947265625, 1453.35,14.75) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.4833831787109375, 3.5322723388671875, -3.5322723388671875, 3.4833831787109375, 1446.95,38.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 1440.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 1565.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1626.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1626.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 1572.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 1572,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.9049072265625, -3.03265380859375, 3.03265380859375, 3.9049072265625, 1588.1,15.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.3652801513671875, 2.38055419921875, -2.38055419921875, 4.3652801513671875, 1605.4,43.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.807708740234375, 1.3170166015625, -1.3170166015625, 4.807708740234375, 1613.35,14.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.8755950927734375, 3.097015380859375, -3.097015380859375, 3.8755950927734375, 1606.2,38.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 1600.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 1725.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1786.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1786.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 1732.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 1732,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.995819091796875, -2.9121551513671875, 2.9121551513671875, 3.995819091796875, 1748.15,15.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.2462158203125, 2.586181640625, -2.586181640625, 4.2462158203125, 1765.65,43.7) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.81915283203125, 1.274993896484375, -1.274993896484375, 4.81915283203125, 1773.35,14.75) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.21429443359375, 2.618896484375, -2.618896484375, 4.21429443359375, 1765.5,39.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 1760.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 1885.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1946.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 1946.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 1892.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 1892,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.08294677734375, -2.7888641357421875, 2.7888641357421875, 4.08294677734375, 1908.15,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.1175384521484375, 2.785888671875, -2.785888671875, 4.1175384521484375, 1925.85,43.75) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8302001953125, 1.2327728271484375, -1.2327728271484375, 4.8302001953125, 1933.35,14.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.4945068359375, 2.104461669921875, -2.104461669921875, 4.4945068359375, 1924.8,39.85) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 1920.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 2045.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2106.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2106.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 2052.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 2052,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.166259765625, -2.66302490234375, 2.66302490234375, 4.166259765625, 2068.2,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.97943115234375, 2.9793701171875, -2.9793701171875, 3.97943115234375, 2086.15,43.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8409423828125, 1.19061279296875, -1.19061279296875, 4.8409423828125, 2093.3,14.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.71246337890625, 1.560791015625, -1.560791015625, 4.71246337890625, 2084.1,40.4) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 2080.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 2205.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2266.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2266.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 2212.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 2212,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.245849609375, -2.5347900390625, 2.5347900390625, 4.245849609375, 2228.15,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.8427581787109375, 3.1534423828125, -3.1534423828125, 3.8427581787109375, 2246.4,43.85) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8513031005859375, 1.14825439453125, -1.14825439453125, 4.8513031005859375, 2253.3,14.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.86505126953125, 0.9955902099609375, -0.9955902099609375, 4.86505126953125, 2243.4,40.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 2240.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 2365.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2426.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2426.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 2372.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 2372,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.3213958740234375, -2.404144287109375, 2.404144287109375, 4.3213958740234375, 2388.25,15.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.687469482421875, 3.333465576171875, -3.333465576171875, 3.687469482421875, 2406.65,43.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.86126708984375, 1.10589599609375, -1.10589599609375, 4.86126708984375, 2413.3,14.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9501800537109375, 0.41656494140625, -0.41656494140625, 4.9501800537109375, 2402.7,41.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 2400.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 2525.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2586.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2586.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 2532.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 2532,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.39300537109375, -2.2713623046875, 2.2713623046875, 4.39300537109375, 2548.2,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.52386474609375, 3.5059051513671875, -3.5059051513671875, 3.52386474609375, 2566.9,44.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8708343505859375, 1.0633544921875, -1.0633544921875, 4.8708343505859375, 2573.3,14.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9661712646484375, -0.152008056640625, 0.152008056640625, 4.9661712646484375, 2562,42.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 2560.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 2685.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2746.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2746.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 2692.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 2692,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.4604949951171875, -2.1363525390625, 2.1363525390625, 4.4604949951171875, 2708.25,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.3643798828125, 3.6593475341796875, -3.6593475341796875, 3.3643798828125, 2727.2,44.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.88006591796875, 1.020751953125, -1.020751953125, 4.88006591796875, 2733.3,14.75) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.91204833984375, -0.734649658203125, 0.734649658203125, 4.91204833984375, 2721.3,42.7) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 2720.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 2845.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2906.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 2906.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 2852.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 2852,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.5238037109375, -2.01507568359375, 2.01507568359375, 4.5238037109375, 2868.2,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.19232177734375, 3.8212890625, -3.8212890625, 3.19232177734375, 2887.35,44.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.88958740234375, 0.9918212890625, -0.9918212890625, 4.88958740234375, 2893.45,14.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.7941131591796875, -1.30828857421875, 1.30828857421875, 4.7941131591796875, 2880.55,43.2) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 2880.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 3005.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3066.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3066.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 3012.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 3012,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.6680145263671875, -1.63763427734375, 1.63763427734375, 4.6680145263671875, 3028.1,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.1675872802734375, 3.82818603515625, -3.82818603515625, 3.1675872802734375, 3050.2,44.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9640350341796875, 0.4796142578125, -0.4796142578125, 4.9640350341796875, 3053.35,14.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8818359375, -0.9109344482421875, 0.9109344482421875, 4.8818359375, 3038.25,43.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 3040.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 3165.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3226.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3226.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 3172.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 3172,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.7834930419921875, -1.26544189453125, 1.26544189453125, 4.7834930419921875, 3188.15,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.1494140625, 3.8404541015625, -3.8404541015625, 3.1494140625, 3213.25,44.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9886474609375, -0.0236053466796875, 0.0236053466796875, 4.9886474609375, 3213.25,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.93963623046875, -0.5244140625, 0.5244140625, 4.93963623046875, 3195.9,43.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 3200.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 3325.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3386.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3386.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 3332.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 3332,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8693084716796875, -0.8854217529296875, 0.8854217529296875, 4.8693084716796875, 3348.15,14.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.13116455078125, 3.852752685546875, -3.852752685546875, 3.13116455078125, 3376.35,44.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.959197998046875, -0.5266571044921875, 0.5266571044921875, 4.959197998046875, 3373.3,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.96685791015625, -0.134613037109375, 0.134613037109375, 4.96685791015625, 3353.5,43.7) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 3360.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 3485.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3546.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3546.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 3492.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 3492,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.925048828125, -0.4998779296875, 0.4998779296875, 4.925048828125, 3508.25,15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.1185302734375, 3.87091064453125, -3.87091064453125, 3.1185302734375, 3539.6,43.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.875701904296875, -1.0402679443359375, 1.0402679443359375, 4.875701904296875, 3533.2,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9625244140625, 0.23980712890625, -0.23980712890625, 4.9625244140625, 3511.2,43.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 3520.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 3645.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3706.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3706.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 3652.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 3652,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9503173828125, -0.1112518310546875, 0.1112518310546875, 4.9503173828125, 3668.25,14.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.09735107421875, 3.87994384765625, -3.87994384765625, 3.09735107421875, 3702.6,42.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.73919677734375, -1.542572021484375, 1.542572021484375, 4.73919677734375, 3693.25,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9271087646484375, 0.62896728515625, -0.62896728515625, 4.9271087646484375, 3668.85,44.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 3680.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 3805.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3866.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 3866.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 3812.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 3812,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9442138671875, 0.2618255615234375, -0.2618255615234375, 4.9442138671875, 3828.25,14.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.08184814453125, 3.8948974609375, -3.8948974609375, 3.08184814453125, 3865.5,41.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.557861328125, -2.01318359375, 2.01318359375, 4.557861328125, 3853.15,14.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.86114501953125, 1.01434326171875, -1.01434326171875, 4.86114501953125, 3826.5,44.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 3840.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 3965.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4026.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4026.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 3972.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 3972,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9071044921875, 0.6494598388671875, -0.6494598388671875, 4.9071044921875, 3988.25,14.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.0662689208984375, 3.909881591796875, -3.909881591796875, 3.0662689208984375, 4028.35,40.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.3220062255859375, -2.47747802734375, 2.47747802734375, 4.3220062255859375, 4013.2,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.76507568359375, 1.393310546875, -1.393310546875, 4.76507568359375, 3984.1,44.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 4000.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 4125.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4186.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4186.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 4132.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 4132,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8408203125, 1.0447998046875, -1.0447998046875, 4.8408203125, 4148.35,14.85) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.058074951171875, 3.929443359375, -3.929443359375, 3.058074951171875, 4191,38.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.04840087890625, -2.915771484375, 2.915771484375, 4.04840087890625, 4173.3,14.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.6416473388671875, 1.77484130859375, -1.77484130859375, 4.6416473388671875, 4141.65,44.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 4160.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 4285.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4346.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4346.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 4292.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 4292,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8302001953125, 1.0727386474609375, -1.0727386474609375, 4.8302001953125, 4308.45,15.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.5387420654296875, 3.4903564453125, -3.4903564453125, 3.5387420654296875, 4350.1,39.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.147216796875, -2.757293701171875, 2.757293701171875, 4.147216796875, 4333.3,14.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.5311737060546875, 2.02294921875, -2.02294921875, 4.5311737060546875, 4301.25,44.75) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 4320.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 4445.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4506.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4506.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 4452.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 4452,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.824462890625, 1.0958251953125, -1.0958251953125, 4.824462890625, 4468.45,15.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.9660491943359375, 2.9959716796875, -2.9959716796875, 3.9660491943359375, 4509.1,39.8) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.24114990234375, -2.609710693359375, 2.609710693359375, 4.24114990234375, 4493.35,14.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.4081268310546875, 2.27532958984375, -2.27532958984375, 4.4081268310546875, 4461.05,44.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 4480.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 4605.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4666.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4666.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 4612.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 4612,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.81842041015625, 1.1191253662109375, -1.1191253662109375, 4.81842041015625, 4628.45,15.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.33319091796875, 2.4361572265625, -2.4361572265625, 4.33319091796875, 4668.15,40.2) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.329803466796875, -2.458984375, 2.458984375, 4.329803466796875, 4653.35,14.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.27923583984375, 2.5062103271484375, -2.5062103271484375, 4.27923583984375, 4620.75,44.5) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 4640.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 4765.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4826.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4826.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 4772.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 4772,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8086395263671875, 1.1580657958984375, -1.1580657958984375, 4.8086395263671875, 4788.45,15.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.616058349609375, 1.8475799560546875, -1.8475799560546875, 4.616058349609375, 4827.15,40.7) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.4130706787109375, -2.3053436279296875, 2.3053436279296875, 4.4130706787109375, 4813.4,14.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.1294403076171875, 2.7434539794921875, -2.7434539794921875, 4.1294403076171875, 4780.6,44.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 4800.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 4925.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4986.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 4986.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 4932.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 4932,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8023529052734375, 1.1810302734375, -1.1810302734375, 4.8023529052734375, 4948.35,15.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.8197021484375, 1.22735595703125, -1.22735595703125, 4.8197021484375, 4986.15,41.1) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.490966796875, -2.14886474609375, 2.14886474609375, 4.490966796875, 4973.4,14.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.966552734375, 2.971923828125, -2.971923828125, 3.966552734375, 4940.35,44.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 4960.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 5085.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 5146.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 5146.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 5092.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 5092,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.7919769287109375, 1.2198486328125, -1.2198486328125, 4.7919769287109375, 5108.35,15.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9405517578125, 0.58599853515625, -0.58599853515625, 4.9405517578125, 5145.2,41.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.5633392333984375, -1.9898681640625, 1.9898681640625, 4.5633392333984375, 5133.45,14.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.791015625, 3.19091796875, -3.19091796875, 3.791015625, 5100.1,44.05) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 5120.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 5245.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 5306.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 5306.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 5252.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 5252,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.78546142578125, 1.242889404296875, -1.242889404296875, 4.78546142578125, 5268.4,15.4) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9763641357421875, -0.048858642578125, 0.048858642578125, 4.9763641357421875, 5304.2,41.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.6300048828125, -1.8284149169921875, 1.8284149169921875, 4.6300048828125, 5293.45,14.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.61468505859375, 3.3877410888671875, -3.3877410888671875, 3.61468505859375, 5259.9,43.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 5280.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_6_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.968994140625, 0, 0, 4.968994140625, 5405.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_body_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 5466.95,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.9999237060546875, 0, 0, 5, 5466.9,-4.9) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99127197265625, -0.0078582763671875, 0.0078582763671875, 4.99127197265625, 5412.05,-29.65) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 4.99725341796875, -0.01544189453125, 0.01544189453125, 4.99725341796875, 5412,-4.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_arm_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_7_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.77862548828125, 1.28338623046875, -1.28338623046875, 4.77862548828125, 5428.25,15.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_10_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.9246826171875, -0.717803955078125, 0.717803955078125, 4.9246826171875, 5463.25,42.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_8_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 4.6956787109375, -1.6689453125, 1.6689453125, 4.6956787109375, 5453.4,14.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_upper_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g id="ikNode_9_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL_FL" transform="matrix( 3.4208984375, 3.5933074951171875, -3.5933074951171875, 3.4208984375, 5419.8,43.85) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_leg_lower_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 10, 0, 0, 10, 5440.45,-35.35) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#characters_astronaut_astronaut_head_0_Layer0_0_FILL"/>
+</g>
+</g>
+</g>
+</svg>
+</div><!-- astronaut -->
+  
+  <div class="planet-wrapper">
+    
+<svg class="planet" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="814px" height="814px" viewBox="0 0 814 814">
+<defs>
+<g id="planet_0_Layer0_0_FILL">
+<path fill="#F1BA86" stroke="none" d="
+M 69.25 -69.25
+Q 40.55 -97.95 0 -97.95 -40.55 -97.95 -69.25 -69.25 -97.95 -40.55 -97.95 0
+L 97.95 0
+Q 97.95 -40.55 69.25 -69.25 Z"/>
+</g>
+
+<g id="crater_0_Layer0_0_FILL">
+<path fill="#F1BA86" stroke="none" d="
+M 79.8 -114.65
+Q 42.35 -128.2 2.9 -130.7 -35.45 -132.75 -72.25 -124 -87.35 -121.05 -101.35 -114.95 -115.75 -108.5 -119 -93.85 -119.85 -89.95 -121.15 -70.5 -122.15 -54.8 -125.6 -47.9 -132.45 -34.25 -139.5 -23.65 -147.15 -12.3 -157.65 -0.6
+L 157.65 0
+Q 155.55 -11.05 147.3 -18.75 130.55 -34.25 117.7 -52.65 111.15 -61.95 110.35 -73.15 108.1 -104.5 79.8 -114.65
+M 78.75 -63.25
+Q 68.55 -56 56.05 -55 19.15 -52.1 -18.05 -54.2 -55.25 -56.9 -91.1 -64.35 -103.95 -66.9 -103.05 -80.8 -100.9 -114.65 -63.65 -118.8 -52.6 -119.95 -41.4 -121.1 -3.65 -124.1 33.65 -117.4 59.7 -112.6 84.35 -103.65 104.55 -81.6 78.75 -63.25 Z"/>
+
+<path fill="#DD9C68" stroke="none" d="
+M 56.05 -55
+Q 68.55 -56 78.75 -63.25 104.55 -81.6 84.35 -103.65 59.7 -112.6 33.65 -117.4 -3.65 -124.1 -41.4 -121.1 -52.6 -119.95 -63.65 -118.8 -100.9 -114.65 -103.05 -80.8 -103.95 -66.9 -91.1 -64.35 -55.25 -56.9 -18.05 -54.2 19.15 -52.1 56.05 -55 Z"/>
+</g>
+</defs>
+
+<g transform="matrix( 0.9999847412109375, 0, 0, 0.9999847412109375, 406.85,856.2) ">
+<g transform="matrix( 1, 0, 0, 1, -0.5,-449.25) ">
+<g transform="matrix( 3.849853515625, 0, 0, 3.849853515625, 0.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#planet_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.2042236328125, -0.155181884765625, 0.155181884765625, 0.2042236328125, -214.3,-303.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.19989013671875, 0.160675048828125, -0.160675048828125, 0.19989013671875, 229.05,-291.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.0376739501953125, 0.253662109375, -0.253662109375, 0.0376739501953125, 368.15,-58.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.1062469482421875, -0.233428955078125, 0.233428955078125, 0.1062469482421875, -332.1,-166.7) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.2552947998046875, 0.024810791015625, -0.024810791015625, 0.2552947998046875, 34.1,-369.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.06866455078125, 0.23602294921875, -0.23602294921875, 0.06866455078125, 285.9,-84.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.2120361328125, -0.0352783203125, 0.0352783203125, 0.2120361328125, -49.05,-256.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+</g>
+
+<g transform="matrix( -1, 0, 0, -1, 0.5,-450.25) ">
+<g transform="matrix( 3.849853515625, 0, 0, 3.849853515625, 0.45,0) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#planet_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.2042236328125, -0.155181884765625, 0.155181884765625, 0.2042236328125, -214.3,-303.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.19989013671875, 0.160675048828125, -0.160675048828125, 0.19989013671875, 229.05,-291.55) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.0376739501953125, 0.253662109375, -0.253662109375, 0.0376739501953125, 368.15,-58.25) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.1062469482421875, -0.233428955078125, 0.233428955078125, 0.1062469482421875, -332.1,-166.7) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.2552947998046875, 0.024810791015625, -0.024810791015625, 0.2552947998046875, 34.1,-369.6) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.06866455078125, 0.23602294921875, -0.23602294921875, 0.06866455078125, 285.9,-84.3) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+
+<g transform="matrix( 0.2120361328125, -0.0352783203125, 0.0352783203125, 0.2120361328125, -49.05,-256.95) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#crater_0_Layer0_0_FILL"/>
+</g>
+</g>
+</g>
+</g>
+</svg>
+
+
+  </div><!-- planet-wrapper -->
+
+
+  
+  
+</div><!-- space-scene -->
+
+
+ </BODY>
+</HTML>

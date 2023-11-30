@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body {
+  background: #000;
+  overflow: hidden;
+}
+body .area {
+  border: 2px dashed rgba(100, 100, 100, 0.4);
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+body .area:nth-child(1) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 500px;
+  height: 500px;
+  margin-left: -250px;
+  margin-top: -250px;
+}
+body .area:nth-child(1):hover {
+  border-color: rgba(100, 100, 100, 0.8);
+}
+body .area:nth-child(1):hover ~ .heart {
+  background: #f44336;
+  -webkit-animation-duration: 0.7s;
+  -moz-animation-duration: 0.7s;
+  -o-animation-duration: 0.7s;
+  animation-duration: 0.7s;
+}
+body .area:nth-child(1):hover ~ .heart:before, body .area:nth-child(1):hover ~ .heart:after {
+  background: #f44336;
+}
+body .area:nth-child(2) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 400px;
+  height: 400px;
+  margin-left: -200px;
+  margin-top: -200px;
+}
+body .area:nth-child(2):hover {
+  border-color: rgba(100, 100, 100, 0.8);
+}
+body .area:nth-child(2):hover ~ .heart {
+  background: #e53935;
+  -webkit-animation-duration: 0.4666666667s;
+  -moz-animation-duration: 0.4666666667s;
+  -o-animation-duration: 0.4666666667s;
+  animation-duration: 0.4666666667s;
+}
+body .area:nth-child(2):hover ~ .heart:before, body .area:nth-child(2):hover ~ .heart:after {
+  background: #e53935;
+}
+body .area:nth-child(3) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  height: 300px;
+  margin-left: -150px;
+  margin-top: -150px;
+}
+body .area:nth-child(3):hover {
+  border-color: rgba(100, 100, 100, 0.8);
+}
+body .area:nth-child(3):hover ~ .heart {
+  background: #d32f2f;
+  -webkit-animation-duration: 0.35s;
+  -moz-animation-duration: 0.35s;
+  -o-animation-duration: 0.35s;
+  animation-duration: 0.35s;
+}
+body .area:nth-child(3):hover ~ .heart:before, body .area:nth-child(3):hover ~ .heart:after {
+  background: #d32f2f;
+}
+body .area:nth-child(4) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200px;
+  height: 200px;
+  margin-left: -100px;
+  margin-top: -100px;
+}
+body .area:nth-child(4):hover {
+  border-color: rgba(100, 100, 100, 0.8);
+}
+body .area:nth-child(4):hover ~ .heart {
+  background: #c62828;
+  -webkit-animation-duration: 0.28s;
+  -moz-animation-duration: 0.28s;
+  -o-animation-duration: 0.28s;
+  animation-duration: 0.28s;
+}
+body .area:nth-child(4):hover ~ .heart:before, body .area:nth-child(4):hover ~ .heart:after {
+  background: #c62828;
+}
+body .area:nth-child(5) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+}
+body .area:nth-child(5):hover {
+  border-color: rgba(100, 100, 100, 0.8);
+}
+body .area:nth-child(5):hover ~ .heart {
+  background: #b71c1c;
+  -webkit-animation-duration: 0.2333333333s;
+  -moz-animation-duration: 0.2333333333s;
+  -o-animation-duration: 0.2333333333s;
+  animation-duration: 0.2333333333s;
+}
+body .area:nth-child(5):hover ~ .heart:before, body .area:nth-child(5):hover ~ .heart:after {
+  background: #b71c1c;
+}
+body .heart {
+  background: #f44336;
+  pointer-events: none;
+  transition: .3s;
+  will-change: transform;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 25px;
+  height: 25px;
+  margin-left: -12.5px;
+  margin-top: -12.5px;
+  -webkit-animation: pulse 1.4s ease-in-out infinite;
+  -moz-animation: pulse 1.4s ease-in-out infinite;
+  -o-animation: pulse 1.4s ease-in-out infinite;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+body .heart:before, body .heart:after {
+  position: absolute;
+  content: "";
+  background: #f44336;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  left: 12.5px;
+  transition: .3s;
+}
+body .heart:before {
+  top: -12.5px;
+  left: 0;
+}
+
+@-webkit-keyframes pulse {
+  0%, 100% {
+    -webkit-transform: scale(1) rotate(-45deg);
+    -ms-transform: scale(1) rotate(-45deg);
+    transform: scale(1) rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: scale(1.3) rotate(-45deg);
+    -ms-transform: scale(1.3) rotate(-45deg);
+    transform: scale(1.3) rotate(-45deg);
+  }
+}
+@-moz-keyframes pulse {
+  0%, 100% {
+    -webkit-transform: scale(1) rotate(-45deg);
+    -ms-transform: scale(1) rotate(-45deg);
+    transform: scale(1) rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: scale(1.3) rotate(-45deg);
+    -ms-transform: scale(1.3) rotate(-45deg);
+    transform: scale(1.3) rotate(-45deg);
+  }
+}
+@-o-keyframes pulse {
+  0%, 100% {
+    -webkit-transform: scale(1) rotate(-45deg);
+    -ms-transform: scale(1) rotate(-45deg);
+    transform: scale(1) rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: scale(1.3) rotate(-45deg);
+    -ms-transform: scale(1.3) rotate(-45deg);
+    transform: scale(1.3) rotate(-45deg);
+  }
+}
+@keyframes pulse {
+  0%, 100% {
+    -webkit-transform: scale(1) rotate(-45deg);
+    -ms-transform: scale(1) rotate(-45deg);
+    transform: scale(1) rotate(-45deg);
+  }
+  50% {
+    -webkit-transform: scale(1.3) rotate(-45deg);
+    -ms-transform: scale(1.3) rotate(-45deg);
+    transform: scale(1.3) rotate(-45deg);
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  
+<div class="area"></div>
+<div class="area"></div>
+<div class="area"></div>
+<div class="area"></div>
+<div class="area"></div>
+<div class="heart"></div>
+ </BODY>
+</HTML>

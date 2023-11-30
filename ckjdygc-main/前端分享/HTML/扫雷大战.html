@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>html {
+  font-size: 10px;
+}
+
+body {
+  counter-reset: total cleared bombs flagged;
+  font-size: 1.6rem;
+  font-family: sans-serif;
+}
+H1 {
+  font-size:2rem;
+  margin:1rem auto;
+  width:fit-content
+}
+#game {
+  overflow:hidden;
+  position:relative;
+  margin:0 auto;
+  background:lightgrey;
+  width:fit-content;
+  height:fit-content;
+  padding:1rem;
+  border:0.3rem outset lightgrey;
+  border-radius:1rem;
+}
+/*
+ grid square.
+*/
+
+.square {
+  position: relative;
+  float: left;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border: 1px grey solid;
+  background-color: lightgrey;
+  text-align: center;
+}
+/*
+these will be the "buttons"
+that hide the grid.
+*/
+
+.square > label,
+.square > .flag {
+  position: absolute;
+  left: -0.1rem;
+  top: -0.1rem;
+  right: -0.1rem;
+  bottom: -0.1rem;
+  border: 0.2rem outset grey;
+  background-color: darkgrey;
+}
+/*
+switch for flag mode and clear mode
+*/
+#flag-mode {
+  display:none;
+}
+/*
+buttons for global settings
+*/
+[for="flag-mode"],
+[for="show-bombs"] {
+  display:block;
+  margin:0 auto;
+  width:fit-content;
+  background:lightgrey;
+  padding:0 0.5rem;
+  border:2px outset grey;
+  border-radius:0.5rem;
+  margin:0.2rem auto;
+}
+#flag-mode:not(:checked) + [for="flag-mode"]:after {
+  content:" OFF ";
+  font-weight:bold;
+}
+#flag-mode:checked + [for="flag-mode"]:after {
+  content:" ON ";
+  font-weight:bold;
+}
+
+/*
+checkboxes to control state of each square
+these need to be "visible"
+for the counter to work.
+push them far off to the left.
+*/
+.open-square,.flag-square {
+  position: absolute;
+  left: -1000rem;
+}
+/*
+count the total clearable
+*/
+.open-square:not(.bomb) {
+  counter-increment:total;
+}
+/*
+count the number of bombs
+*/
+.open-square.bomb {
+  counter-increment:bombs;
+}
+/*
+hide the label "button" when it's clicked
+*/
+.open-square:checked + .square > label {
+  display: none;
+}
+/*
+show the number of surounding bombs (if any)
+with different colors for the count values
+*/
+:not(.bomb)[data-count] + .square:before {
+  line-height:2rem;
+  font-weight:bold;
+}
+:not(.bomb)[data-count="1"] + .square:before {
+  content:"1";
+  color: blue;
+}
+:not(.bomb)[data-count="2"] + .square:before {
+  content:"2";
+  color: green;
+}
+:not(.bomb)[data-count="3"] + .square:before {
+  content:"3";
+  color: red;
+}
+:not(.bomb)[data-count="4"] + .square:before {
+  content:"4";
+  color: darkblue;
+}
+:not(.bomb)[data-count="5"] + .square:before {
+  content:"5";
+  color: brown;
+}
+:not(.bomb)[data-count="6"] + .square:before {
+  content:"6";
+  color: cyan;
+}
+:not(.bomb)[data-count="7"] + .square:before {
+  content:"7";
+  color: black;
+}
+:not(.bomb)[data-count="8"] + .square:before {
+  content:8;
+  color: grey;
+}
+/*
+bomb square.
+*/
+.bomb + .square {
+  background-color: red
+}
+.bomb + .square:before {
+  content: "💣";
+  line-height: 2rem;
+  font-size: 1.2rem;
+}
+/*
+default hide the flag
+*/
+.flag {
+  display:none;
+}
+/*
+show the flag if square is flagged
+and count it
+*/
+.flag-square:checked ~ .flag {
+  display:block;
+  counter-increment:flagged;
+}
+/*
+display flag as needed
+*/
+.flag-square:checked ~ .flag-label:before,
+.flag-square:checked ~ .flag:before {
+content:"🚩"
+}
+/*
+hide the label when not in flag mode
+*/
+#flag-mode:not(:checked) ~ .square > .flag-label {
+  display:none;
+}
+/*
+only show the flag if the square isn't in "show" mode.
+*/
+#flag-mode:checked ~ .show-square:not(:checked) + .square > .flag-label {
+  display:block;
+}
+
+/*
+increment cleared counter 
+for each non-bomb checked
+and keep the total intact
+*/
+.open-square:not(.bomb):checked {
+  counter-increment: total cleared;
+}
+/*
+various counter displays
+*/
+.bombs {
+  width:50%;
+  text-align:center;
+}
+.score {
+  clear:both;
+  float:right;
+  text-align:right;
+  width:50%;
+  text-align:center;
+}
+
+/*
+track the bombs
+*/
+.bombs:after {
+  content: counter(bombs) "🚩" counter(flagged);
+  line-height:3rem;
+  border:0.2rem inset lightgrey;
+  padding:0.2rem 0.5rem;
+  background-color:white;
+  border-radius:0.5rem;
+}
+/*
+track the total cleareable & cleared 
+*/
+.score:after {
+  content: counter(cleared) " of " counter(total);
+  line-height:3rem;
+  border:0.2rem inset lightgrey;
+  padding:0.2rem 0.5rem;
+  background-color:white;
+  border-radius:0.5rem;
+}
+/*
+default setting is the win state
+*/
+.message {
+  clear: left;
+  color: limegreen;
+  text-align:center;
+  font-weight:bold;
+}
+.message:before {
+  content: "(: YOU WIN! :) "
+}
+/*
+  block user interaction with
+  game board after a win.
+*/
+.pane
+{
+  display:block;
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+}
+/*
+override for the playing state
+*/
+.open-square:not(.grouped):not(.bomb):not(:checked) ~ .message:before,
+.group-master:not(:checked) ~ .message:before
+{
+  content: none;
+}
+/*
+  play state. hide the blocking pane.
+*/
+.open-square:not(.grouped):not(.bomb):not(:checked) ~ .pane,
+.group-master:not(:checked) ~ .pane,
+.lost-game
+{
+  display: none;
+}
+/*
+finally, the losing state
+*/
+.open-square.bomb:checked ~ .message {
+  color: red;
+}
+/*
+  reinstate the blocking pane
+*/
+.open-square.bomb:checked ~ .pane
+{
+  position:relative;
+  display:block;
+}
+.open-square.bomb:checked ~ .message:before {
+  content: " ): You Lose :(" !important;
+}
+/*
+display thre show bombs button if you've lost
+*/
+.open-square.bomb:checked ~ .lost-game
+{
+  position:relative;
+  display:block;
+  z-index:2
+}
+/*
+display any hidden bombs
+*/
+#show-bombs:checked ~ .bomb + .square > label {
+  display:none;
+}
+/*
+mark any falsely flagged squares as wrong.
+*/
+#show-bombs:checked ~ .open-square:not(.bomb) + .square > .flag:after {
+  content: "❌";
+  position:absolute;
+  top:-0.4rem;
+  left:-0.1rem;
+}
+  </style>
+ </head>
+ <body>
+ <div id="game">
+  <h1>Bomb CSSweeper</h1>
+  <input type="checkbox" id="show-bombs" hidden>
+  <input type="checkbox" id="flag-mode">
+  <label for="flag-mode">🚩mode</label>
+  <div class="pane"></div>
+  <div class="score">Cleared:
+    <br>
+  </div>
+  <div class="bombs">Bombs:
+    <br>
+  </div>
+  <div class="message"></div>
+  <div class="lost-game">
+    <label for="show-bombs">Show Bombs</label>
+  </div>
+</div>
+<script>
+/*
+  Using Javascript to :
+  - generate a board of randomized size.
+  - randomly place bombs
+  - insert custom CSS to display board size properly
+  - find and group empty & ajacent squares 
+    for fast clearing
+  - insert custom CSS to handle the group clearing. 
+*/
+// randomize board size and bomb count
+var rows = Math.floor(10 + (Math.random() * 5));
+var cols = Math.floor(10 + (Math.random() * 5));
+var bombs = Math.floor(15 + (Math.random() * 10));
+var i, s, l, fi, fs, fl;
+var game = document.getElementById('game');
+var pane = game.querySelector('.pane');
+var grid = [];
+//add stylesheet handle board size
+var style = document.createElement('style');
+//row wrapping.
+style.innerHTML = ".square:nth-of-type(" + cols + "n+1) {clear:left;}\n";
+game.insertBefore(style, pane);
+//add the grid elements
+for (var r = 1; r <= rows; r++) {
+  grid[r] = [];
+  for (var c = 1; c <= cols; c++) {
+    //controls the showing of a grid
+    i = grid[r][c] = document.createElement('input');
+    i.type = 'checkbox';
+    i.classList.add('open-square')
+    i.id = 'open-r' + r + '-c' + c;
+    i.r = r;
+    i.c = c;
+    game.insertBefore(i, pane);
+    //the actual grid square
+    s = document.createElement('span');
+    s.classList.add('square');
+    game.insertBefore(s, pane);
+    //hide the square contents 
+    //and switches the show control
+    l = document.createElement('label');
+    l.htmlFor = i.id;
+    l.classList.add('open-label');
+    s.appendChild(l);
+    //flag switch control
+    fi = document.createElement('input');
+    fi.type = "checkbox";
+    fi.classList.add('flag-square');
+    fi.id = 'flag-r' + r + '-c' + c;
+    s.appendChild(fi);
+    //only visible is squre "flagged"
+    //hide the square contents
+    //and the show label
+    fs = document.createElement('span');
+    fs.classList.add('flag');
+    s.appendChild(fs);
+    //only visible in "flag mode" 
+    //(if square not "shown") 
+    //and switches the flag control
+    fl = document.createElement('label');
+    fl.htmlFor = fi.id;
+    fl.classList.add('flag-label');
+    s.appendChild(fl);
+  }
+}
+//randomly assign bomb state to some
+for (var b = 0; b < bombs; b++) {
+  do {
+    r = 1 + (Math.random() * rows) >> 0;
+    c = 1 + (Math.random() * cols) >> 0;
+    console.log(r, c, grid[r][c]);
+  } while (grid[r][c].classList.contains('bomb'));
+  i = grid[r][c];
+  i.classList.add('bomb');
+  //also increment
+  //surronding square's count
+  //to indicate number of adjacent
+  //bombs.
+  var list = getSurrounding(i)
+  for (r = 0; r < list.length; r++) {
+    i = list[r];
+    var count = Number(i.getAttribute('data-count')) || 0;
+    i.setAttribute('data-count', ++count);
+    i = i.nextElementSibling;
+    i.setAttribute('data-count', count);
+  }
+}
+//locate the groups of "empty" squares
+var group = 1;
+//while an ungrouped empty square exists
+while (i = document.querySelector('.open-square:not([data-count]):not(.grouped)')) {
+  //create an array of empty squares to group
+  var check = [i];
+  do {
+    //grab a square off the check list
+    i = check.pop();
+    //get surrounding squares
+    list = getSurrounding(i)
+    for (r = 0; r < list.length; r++) {
+      i = list[r];
+      //if they're not part of the group
+      if (!i.classList.contains('group' + group)) {
+        //mark them as so
+        i.classList.add('grouped');
+        i.classList.add('group' + group);
+        //if they're also empty
+        if (!i.getAttribute('data-count')) {
+          //add the m to the group check array
+          check.push(i);
+          //and point their label to the group master switch
+          i = document.querySelector('[for="' + i.id + '"]');
+          i.htmlFor = 'group' + group;
+        }
+      }
+    }
+    //repeat until all empty squares are grouped
+  } while (check.length);
+  //create the master switch
+  i = document.createElement('input');
+  i.type = 'checkbox';
+  i.classList.add('group-master');
+  i.hidden = true;
+  i.id = 'group' + group;
+  //add styles to disply all squares in the group
+  //and increment the cleared counter accordingly
+  style.innerHTML += '#group' + group + ':checked ~ .group' + group + ' + .square > label { display:none; }\n' + '#group' + group + ':checked ~ .group' + group + ' { counter-increment:cleared total }\n';
+  game.insertBefore(i, style);
+  //and move on to the next group (if any)
+  group++;
+}
+//grabs squares around a given square, inclusive
+function getSurrounding(i) {
+  var rs = Math.max(i.r - 1, 1);
+  var re = Math.min(i.r + 1, rows);
+  var cs = Math.max(i.c - 1, 1);
+  var ce = Math.min(i.c + 1, cols);
+  var result = [];
+  for (r = rs; r <= re; r++) {
+    for (c = cs; c <= ce; c++) {
+      result.push(grid[r][c]);
+    }
+  }
+  return result;
+}
+</script>
+ </body>
+</html>

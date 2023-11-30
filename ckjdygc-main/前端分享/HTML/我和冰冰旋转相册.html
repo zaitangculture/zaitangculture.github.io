@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			img{
+				width:200px;
+				height: 300px;
+			}
+			body{ background-color: #313131; }
+			@keyframes fn{
+				0% {transform:rotateX(-15deg) rotateY(0deg);}
+			    100%{transform:rotateX(-15deg) rotateY(360deg);}
+
+			}
+			@-moz-keyframes fn{
+				0% {transform:rotateX(-15deg) rotateY(0deg);}
+			    100%{transform:rotateX(-15deg) rotateY(360deg);}
+			}
+			@-ms-keyframes fn{
+				0% {transform:rotateX(-15deg) rotateY(0deg);}
+			    100%{transform:rotateX(-15deg) rotateY(360deg);}
+			}
+			@-webkit-keyframes fn{
+				0% {transform:rotateX(-15deg) rotateY(0deg);}
+			    100%{transform:rotateX(-15deg) rotateY(360deg);}
+			}
+			.box{				
+		    	width:200px;
+            	height:300px;
+            	position:relative;
+            	margin:auto;
+            	margin-top:150px;
+            	transform-style:preserve-3d;
+            	transform:rotateX(-10deg);
+            	animation: fn 10s;
+            	animation-iteration-count: infinite;
+		    	animation-timing-function: linear;
+		    	position: relative
+			}
+			.box:hover{
+				animation-play-state: paused;
+			}
+			.box>div{
+				width:200px;
+				height:300px;
+				position: absolute;
+				left:0;
+				top:0;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div style="transform: rotateY(0deg) translateZ(275px);">
+				<img src="https://p1.ssl.qhimgs1.com/sdr/400__/t019bae24663c31bddb.jpg" >
+			</div>
+			<div style="transform: rotateY(40deg) translateZ(275px);">
+				<img src="http://cdn.u1.huluxia.com/g4/M02/A6/9D/rBAAdmIrTr2AL17vAAHagZSjHvM912.jpg">
+			</div>
+			<div style="transform: rotateY(80deg) translateZ(275px);">
+				<img src="https://p0.ssl.img.360kuai.com/t017e797481e65b548e.jpg?size=1080x1505">
+			</div>
+			<div style="transform: rotateY(120deg) translateZ(275px);">
+				<img src="http://i0.hdslb.com/bfs/article/bbaea5a78537496e5fd548a8a439f472719c214f.jpg">
+			</div>
+			<div style="transform: rotateY(160deg) translateZ(275px);">
+				<img src="http://i0.hdslb.com/bfs/article/05e259b7d8acd674314fd532b8b4c8fba9cd4f07.jpg">
+			</div>
+			<div style="transform: rotateY(200deg) translateZ(275px);">
+				<img src="https://p2.ssl.qhimgs1.com/sdr/400__/t016a69dedb8b0b2e58.jpg">
+			</div>
+			<div style="transform: rotateY(240deg) translateZ(275px);">
+				<img src="https://p0.ssl.img.360kuai.com/t0144f77c3d120abd53.jpg">
+			</div>
+			<div style="transform: rotateY(280deg) translateZ(275px);">
+				<img src="http://cdn.u1.huluxia.com/g4/M01/A6/9D/rBAAdmIrTxSAVIzlAALkZbCrWDk769.jpg">
+			</div>
+			<div style="transform: rotateY(320deg) translateZ(275px);">
+				<img src="http://n.sinaimg.cn/sinakd20201231ac/553/w1200h953/20201231/1325-kfxsuvx3461876.jpg" >
+			</div>					
+		</div>
+			    <audio autoplay="autoplay" loop="loop" preload="auto"
+            src="http://music.163.com/song/media/outer/url?id=1828026086.mp3">       
+</audio>
+	</body>
+</html>
+

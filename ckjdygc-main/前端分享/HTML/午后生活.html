@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   @import url('https://fonts.googleapis.com/css?family=Mr+Dafoe');*{margin:0;padding:0}body{display:flex;align-items:center;justify-content:center;height:100vh;background-image:url(https://images.unsplash.com/photo-1518655048521-f130df041f66?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=95618c0e060665fcf0c9e489d8b22982&auto=format&fit=crop&w=1500&q=80);background-size:cover;background-position:top right}svg{cursor:pointer}.path{stroke-dasharray:1272;stroke-dashoffset:1272;animation:dash 3s linear forwards}@keyframes dash{from{stroke-dashoffset:1272}to{stroke-dashoffset:0}}.heart{animation:heart .5s 3s forwards;opacity:0}@keyframes heart{to{opacity:1}}
+  </style>
+ </HEAD>
+
+ <BODY>
+  <svg height="275" width="245" onclick="re(this)">
+  <text x="50" y="20" style="font-family: 'Mr Dafoe', cursive;color:#3d100f;font-size:30px">Yours&nbsp;&nbsp;Truly,</text>
+  <path class="path" d="M 100 180 q -30 17, -55 0 c -80 -60, 20 -200, 80 -70 c 20 -110, 160 -30, 80 70 c -30 40, -50 40, -70 80 q -20 -30, -80 -60 q 15 -40, 20 -90 q 5 50, 20 90 q 15 15, 10 -40 c -20 0, 15 20, 20 0 q -20 0, -10 40 q 10 -10, 10 -20 q 0 10, 10 20 q 10 8, 5 -30 c 0 -10, 14 -10, 14 0 q -5 20, 0 30 q 10 -10, 10 -20 q 13 20, 26 0" fill="none" stroke-width="3" stroke="#3d100f" stroke-linecap="round"/>
+    <path class="heart" d="M 195 165 c 0 -14.7 18.7 -2 0 10 m 0 -10 c 0 -14.7 -18.7 -2 0 10" stroke="none" fill="#3d100f"/>
+</svg>
+  <script>
+   function re(elm) {
+    var newone = elm.cloneNode(true);
+    elm.parentNode.replaceChild(newone, elm);
+}
+  </script>
+ </BODY>
+</HTML>

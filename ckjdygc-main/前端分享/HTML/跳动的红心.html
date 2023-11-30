@@ -1,0 +1,357 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   *{
+  margin:0;
+  padding:0px;
+}
+body{
+  width:100%;
+  height:auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+/*   overflow:hidden; */
+}
+.layer{
+  padding:200px 0px;
+  position:relative;
+  width:100%;
+  height:100%;
+  display:flex;
+  margin:auto;
+/*   transform:rotate(-45deg); */
+  filter: contrast(50);
+  background-color:#fff;
+  overflow:hidden;
+}
+h1{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  text-align:center;
+  font-family: 'Roboto Condensed', sans-serif;
+  color:#ff0066;
+  font-weight:bold;
+  font-size:30px;
+}
+h2{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  text-align:center;
+  font-family: 'Roboto Condensed', sans-serif;
+  color:#fafafa;
+  font-weight:bold;
+  font-size:30px;
+}
+.ptr{
+  height:200px;
+  width:200px;
+  background-color:red;
+  margin:auto;
+  position:relative;
+  animation: love 1s cubic-bezier(0,1,0,3) infinite;
+  position:relative;
+}
+.ptr::after{
+  content:"";
+  position:absolute;
+  height:200px;
+  width:200px;
+  background:red;
+  border-radius:50%;
+  bottom:50%;
+  left:0;
+}
+.ptr::before{
+  content:"";
+  position:absolute;
+  height:200px;
+  width:200px;
+  background:red;
+  border-radius:50%;
+  bottom:0%;
+  left:50%;
+}
+
+.ptr:hover{
+/*   animation: love 1s cubic-bezier(.32,2,.59,2) infinite; */
+/*   transition: 2s cubic-bezier(.32,2,.59,2) infinite; */
+}
+@keyframes love{
+  from{
+    transform: scale(1) rotate(-45deg);
+  }
+  to{
+    transform: scale(1.2) rotate(-45deg);
+  }
+}
+
+.ptr{
+/*   opacity:0; */
+  filter: blur(10px);
+}
+
+.rmrlu, .rmrlu-1, .rmrlu-2, .rmrlu-3{
+  position:absolute;
+  margin:auto;
+  height:100px;
+  width:100px;
+/*   border-radius: 50%; */
+  background-color:red;
+/*   transform: translatex(-50%) translatey(-50%); */
+  filter: blur(10px);
+}
+.rmrlu::after, .rmrlu-1::after, .rmrlu-2::after, .rmrlu-3::after{
+  content:"";
+  position:absolute;
+  height:100px;
+  width:100px;
+  background:red;
+  border-radius:50%;
+  bottom:50%;
+  left:0;
+}
+.rmrlu::before, .rmrlu-1::before, .rmrlu-2::before, .rmrlu-3::before{
+  content:"";
+  position:absolute;
+  height:100px;
+  width:100px;
+  background:red;
+  border-radius:50%;
+  bottom:0%;
+  left:50%;
+}
+.rmrlu{
+  top:-50%;
+  left:-50%;
+  animation: latir 2s 0s linear infinite;
+}
+.rmrlu-1{
+  top:-50%;
+  right:-50%;
+  animation: latir-1 2s 0.5s linear infinite;
+}
+.rmrlu-2{
+  bottom:-50%;
+  right:-50%;
+  animation: latir-2 2s 1s linear infinite;
+}
+.rmrlu-3{
+  bottom:-50%;
+  left:-50%;
+  animation: latir-3 2s 1.5s linear infinite;
+}
+@keyframes latir{
+  from{
+    top:-50%;
+    left:-50%;
+    transform: translatex(0%) translatey(0%) rotate(-45deg);
+  }
+  to{
+    top:50%;
+    left:50%;
+    transform: translatex(-50%) translatey(-50%) rotate(-45deg);
+  }
+}
+@keyframes latir-1{
+  from{
+    top:-50%;
+    right:-50%;
+    transform: translatex(0%) translatey(0%) rotate(-45deg);
+  }
+  to{
+    top:50%;
+    right:50%;
+    transform: translatex(-50%) translatey(-50%) rotate(-45deg);
+  }
+}
+
+@keyframes latir-2{
+  from{
+    bottom:-50%;
+    right:-50%;
+    transform: translatex(0%) translatey(0%) rotate(-45deg);
+  }
+  to{
+    bottom:50%;
+    right:50%;
+    transform: translatex(0%) translatey(0%) rotate(-45deg);
+  }
+}
+@keyframes latir-3{
+  from{
+    bottom:-50%;
+    left:-50%;
+    transform: translatex(0%) translatey(0%) rotate(-45deg);
+  }
+  to{
+    bottom:50%;
+    left:50%;
+    transform: translatex(0%) translatey(0%) rotate(-45deg);
+  }
+}
+
+
+
+
+
+
+
+.musica{
+  position:relative;
+  margin:auto;
+  width:300px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  padding:20px 0px;
+}
+.datos_artista{
+  position:absolute;
+  top:10px;
+  left:60px;
+  color: red;
+  font-weight:bold;
+  font-size:18px;
+}
+
+.player-button {
+  background:none;
+  border:0;
+  line-height:1;
+  color:#ff0066;
+  text-align: center;
+  outline:0;
+  padding: 0;
+  cursor:pointer;
+  max-width:50px;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+
+.progress {
+  margin-top: 0px;
+  flex:10;
+  position: relative;
+  display:flex;
+  flex-basis:100%;
+  height:10px;
+  background:#33ffcc;
+}
+
+.progress-filled {
+  width:50%;
+  background:#ff0066;
+  flex:0;
+  flex-basis: 0%;
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <div class="layer">
+  <h1>Feliz San Valentin</h1>
+  <div class="ptr">
+  </div>
+  <div class="rmrlu">
+  </div>
+  <div class="rmrlu-1">
+  </div>
+  <div class="rmrlu-2">
+  </div>
+  <div class="rmrlu-3">
+  </div>
+  <h2>
+    yunsu
+  </h2>
+</div>
+<div class="musica">
+  
+  <button data-skip="-10" class="player-button">
+    <i class="fa fa-backward"></i>
+  </button>
+  <button class="player-button toggle">
+    <i class="fa fa-play fa-4x"></i>
+  </button>
+  <button data-skip="10" class="player-button">
+    <i class="fa fa-forward"></i>
+  </button>
+  <div class="progress">
+    <div class="progress-filled"></div>
+  </div>
+  
+<!--   <div class="datos_artista">
+    <div class="name_song">Reik</div>
+    <div class="name_title">Sabes</div>
+  </div> -->
+  <audio class="player">
+    <source src="http://fullritmo.net/Mp3/baladas/Reik%20-%20Sabes.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+  <script>
+   // get our elements 
+const song = document.querySelector('.player');
+const toggleBtn = document.querySelector('.toggle');
+const loader = document.querySelector('.progress');
+const loaderBar = document.querySelector('.progress-filled');
+const skipButtons = document.querySelectorAll('[data-skip]');
+
+//build out functions 
+
+function toggleSong(){
+  if(song.paused){
+     song.play();
+   } else{
+     song.pause();
+   }
+}
+
+function updateBtn(){
+  if(song.paused){
+     toggleBtn.innerHTML = '<i class="fa fa-play fa-4x"></i>';
+     }else{
+     toggleBtn.innerHTML = '<i class="fa fa-pause fa-4x"></i>';
+     }
+}
+
+function handleProgress(){
+  loaderBar.style.flexBasis = ((song.currentTime / song.duration) * 100) + "%"; 
+}
+
+function scrub(event){
+  const scrubTime = (event.offsetX / loader.offsetWidth) * song.duration;
+  song.currentTime = scrubTime;
+}
+
+function skip(){
+    song.currentTime = song.currentTime + parseFloat(this.dataset.skip);
+}
+//attach our functions to elements using event listeners
+toggleBtn.addEventListener("click", toggleSong);
+song.addEventListener("play", updateBtn);
+song.addEventListener("pause", updateBtn);
+song.addEventListener("timeupdate", handleProgress);
+
+skipButtons.forEach(button => button.addEventListener("click", skip));
+
+let mousedown = false;
+loader.addEventListener("click", scrub);
+loader.addEventListener("mousemove", (e) => mousedown && scrub(e));
+loader.addEventListener("mousedown", () => mousedown = true);
+loader.addEventListener("mouseup", () => mousedown = false);
+  </script>
+ </BODY>
+</HTML>

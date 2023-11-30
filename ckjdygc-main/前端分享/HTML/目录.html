@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   @import url('https://fonts.googleapis.com/css?family=IM+Fell+English+SC');
+
+:root {
+  font-size:0.625em;
+}
+
+/* 
+layout
+*/
+html,body {min-height:100vh}
+body {
+  display:flex;
+  flex-flow:column nowrap;
+  justify-content:center;
+  align-items:center;
+}
+
+
+
+/* 
+Counters 
+*/
+
+.menu ol { 
+  counter-reset:menu;
+}
+
+
+
+/*
+Regular menu items
+*/
+
+.menu-item a {
+  display:flex;
+  justify-content:flex-start; /*shrink towards text*/
+  color:currentColor;
+  text-decoration:none;
+  padding:0.3rem 0; /* avoid flickin' */
+  order:0;
+}
+
+.menu-item a::before { /* dots */
+  content:"";
+  display:block;
+  border-bottom:1px dotted black;
+  position:relative; top:-3px;
+  flex:1 1 auto;
+  margin:0 1rem;
+  order:1;
+}
+
+.menu-item a::after { /* item ids */
+  counter-increment:menu;
+  content:counters(menu, ".");
+  flex:0 0 auto;
+  order:2;
+  -webkit-transform:rotate(30deg)scale(1.2);
+          transform:rotate(30deg)scale(1.2);
+  text-decoration:underline;
+}
+
+
+
+/* 
+Sub menu & items
+*/
+
+.sub-menu {
+  font-size:1.6rem;
+  font-weight:normal;
+}
+
+.sub-menu > li > a {
+  text-indent:0ch; /*
+    Chrome indentS the "dots" elm, i.e. it counts pseudo-elm.
+    FF and Edge indents first non pseudo-elm. 
+    Turn it off for consistency.
+  */
+  padding:0.5rem 0 0.5rem 2ch;
+  margin:0;
+}
+
+
+
+/*
+Main menu
+*/
+
+.menu {
+  width:22vw;
+  min-width:20ch;
+  display:flex;
+  flex-flow:column nowrap;
+  font:bold 2.4rem/1 'IM Fell English SC', serif;
+  position:relative;
+  -webkit-transform:rotate(-30deg);
+          transform:rotate(-30deg);
+}
+
+.menu::before {
+  content:"/";
+  align-self:center;
+  -webkit-transform:rotate(30deg);
+          transform:rotate(30deg);
+  margin-bottom:1rem;
+}
+
+.menu::after {
+  content:"/";
+  align-self:center;
+  -webkit-transform:rotate(30deg);
+          transform:rotate(30deg);
+  margin-top:1rem;
+}
+
+
+
+/*
+Fx
+*/
+
+.menu { transition:-webkit-transform 0.3s; transition:transform 0.3s; transition:transform 0.3s, -webkit-transform 0.3s; }
+.menu:hover { -webkit-transform:rotate(0); transform:rotate(0); }
+
+.menu::before { transition:-webkit-transform 0.5s; transition:transform 0.5s; transition:transform 0.5s, -webkit-transform 0.5s; }
+.menu:hover::before { -webkit-transform:rotate(0); transform:rotate(0); content:"__"; }
+.menu::after { transition:-webkit-transform 0.5s; transition:transform 0.5s; transition:transform 0.5s, -webkit-transform 0.5s; }
+.menu:hover::after { -webkit-transform:rotate(0); transform:rotate(0); content:"__"; }
+
+.menu .menu-item a::after { transition:-webkit-transform 0.3s; transition:transform 0.3s; transition:transform 0.3s, -webkit-transform 0.3s }
+.menu:hover .menu-item a::after { -webkit-transform:rotate(0); transform:rotate(0) }
+
+.menu:hover > ol > .menu-item { opacity:0.3; }
+
+.menu-item:hover {
+  transition:background-color 0.3s;
+  background:rgba(255,255,0,0.15);
+  opacity:1 !important;
+}
+
+.menu-item:hover a::after {
+  text-decoration:none;
+}
+
+.menu-item:hover > a::before {
+  transition:flex-grow 0.3s;
+  width:0; flex-grow:0;
+  -webkit-transform-origin:center bottom;
+          transform-origin:center bottom;
+}
+
+/*
+Collapse
+*/
+
+.sub-menu > .menu-item {
+  max-height:1ch;
+  -webkit-transform:scaleY(0.1);
+          transform:scaleY(0.1);
+  -webkit-transform-origin:center top;
+          transform-origin:center top;
+  transition:max-height 0.5s, -webkit-transform 0.2s;
+  transition:transform 0.2s, max-height 0.5s;
+  transition:transform 0.2s, max-height 0.5s, -webkit-transform 0.2s;
+}
+
+.menu:hover .sub-menu .menu-item {
+  max-height:10em;
+  -webkit-transform:scaleY(1);
+          transform:scaleY(1);
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+  <nav class="menu">
+  <ol>
+    <li class="menu-item"><a href="#0">Home</a></li>
+    <li class="menu-item"><a href="#0">About</a></li>
+    <li class="menu-item">
+      <a href="#0">Widgets</a>
+      <ol class="sub-menu">
+        <li class="menu-item"><a href="#0">Big Widgets</a></li>
+        <li class="menu-item"><a href="#0">Bigger Widgets</a></li>
+        <li class="menu-item"><a href="#0">Huge Widgets</a></li>
+      </ol>
+    </li>
+    <li class="menu-item">
+      <a href="#0">Kabobs</a>
+      <ol class="sub-menu">
+        <li class="menu-item"><a href="#0">Shishkabobs</a></li>
+        <li class="menu-item"><a href="#0">BBQ kabobs</a></li>
+        <li class="menu-item"><a href="#0">Summer kabobs</a></li>
+      </ol>
+    </li>
+    <li class="menu-item"><a href="#0">Contact</a></li>
+  </ol>
+</nav>
+ </BODY>
+</HTML>

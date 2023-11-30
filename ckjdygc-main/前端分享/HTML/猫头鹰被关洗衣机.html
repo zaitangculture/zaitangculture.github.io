@@ -1,0 +1,2108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  background: #202125;
+  height: 100vh;
+  font-family: 'Open Sans';
+}
+
+.wall {
+  position: absolute;
+  top: 0;
+  height: 80vh;
+  width: 100%;
+  background-color: #bd8578;
+  border-bottom: 10px solid #a7412a;
+  background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23000000' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.wall .board {
+  border: 10px solid #15A8CC;
+  height: 150px;
+  width: 250px;
+  position: absolute;
+  top: 20%;
+  background: #e0d7d7;
+  right: 20%;
+  box-sizing: border-box;
+  font-family: Lato, cursive;
+  padding: 10px 20px;
+}
+.wall .board:after {
+  content: "";
+  background: #f8e13b;
+  width: 40px;
+  height: 34px;
+  -webkit-transform: rotate(8deg);
+  transform: rotate(8deg);
+  border-bottom: 3px solid #e9d01b;
+  display: inline-block;
+  position: absolute;
+  bottom: -26px;
+  left: 14px;
+}
+.wall .board:before {
+  content: "";
+  background: #f8e13b;
+  width: 40px;
+  height: 34px;
+  -webkit-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+  border-bottom: 3px solid #e9d01b;
+  display: inline-block;
+  position: absolute;
+  bottom: -26px;
+  left: 80px;
+}
+.wall h3 {
+  margin: 0;
+}
+.wall ul {
+  margin-top: 10px;
+  padding-left: 3px;
+}
+.wall ul li {
+  list-style: none;
+}
+.wall ul li:before {
+  content: "-";
+  margin-right: 5px;
+}
+
+.floor {
+  position: absolute;
+  bottom: 0;
+  height: 20vh;
+  width: 100%;
+  background-color: #DFDBE5;
+  background-image: linear-gradient(to bottom left, #6C7D73 20%, #759a4a 100%);
+}
+
+.wrapper {
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: -50%;
+  margin: .5em auto;
+  padding: 1em;
+  width: 320px;
+  height: 100px;
+  border-radius: .25em;
+  background: #629bdd;
+  z-index: 5;
+  -webkit-animation: pop-out 3s ease-in-out infinite;
+          animation: pop-out 3s ease-in-out infinite;
+}
+.bubble:before {
+  position: absolute;
+  content: '';
+  background: #629bdd;
+  border: solid 0 transparent;
+  border-right: solid 3.5em #629bdd;
+  border-bottom: solid .25em #629bdd;
+  bottom: 5px;
+  right: 20px;
+  width: 0;
+  height: 1em;
+  -webkit-transform: rotate(45deg) skewX(75deg);
+          transform: rotate(45deg) skewX(75deg);
+  z-index: -1;
+}
+.bubble .words {
+  text-align: center;
+  color: #fff;
+  font-family: Bangers, cursive;
+  letter-spacing: 1.5px;
+  padding: 3px;
+  font-size: 40px;
+}
+
+.washer {
+  -webkit-perspective: 2700px;
+          perspective: 2700px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+  border: 10px solid #B0B7C1;
+  border-radius: 15%;
+  background: #d8dde3;
+  background: linear-gradient(to bottom, #d8dde3 0%, #f4f5f7 51%, #d8dde3 100%);
+  box-shadow: inset 0px 3px 0px 0px #C8CFD8;
+}
+.washer:before, .washer:after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  width: 25px;
+  height: 10px;
+  background: #666869;
+  border-radius: 20%;
+}
+.washer:before {
+  right: 20%;
+}
+.washer:after {
+  left: 20%;
+  background: #666869;
+  border-radius: 20%;
+}
+.washer .top {
+  display: flex;
+  position: absolute;
+  top: 0;
+  height: 85px;
+  width: 100%;
+  border-bottom: 3px solid #9096A5;
+  box-shadow: inset 0px -1px 0px 0px #C3C7CF, 0px 1px 0px 0px #C3C7CF;
+}
+.washer .top .lside, .washer .top .rside {
+  display: inline-block;
+  height: 100%;
+}
+.washer .top .lside {
+  width: 36%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 3px solid #A3A9BC;
+}
+.washer .top .lside .tray {
+  width: 85px;
+  height: 25px;
+  border-radius: 5px;
+  border: 3px solid #848C96;
+  background: #9da5ae;
+  background: linear-gradient(to bottom, #9da5ae 0%, #d4d7db 100%);
+  box-shadow: 0px 2px 3px white, 0px -2px 0px #D4D8DD;
+}
+.washer .top .rside {
+  width: 62.95%;
+  display: flex;
+  align-items: center;
+}
+.washer .top .rside .display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 57px;
+  background: #494949;
+  border-radius: 10%;
+  margin-left: 13px;
+}
+.washer .top .rside .display h1 {
+  font-family: Orbitron;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  color: #ff578f;
+  text-shadow: 0 0 10px rgba(255, 69, 131, 0.5);
+}
+.washer .top .rside .display .on {
+  color: #32ff32;
+  text-shadow: 0 0 10px rgba(26, 255, 179, 0.5);
+}
+.washer .top .rside .knobs {
+  margin-left: 4px;
+}
+.washer .top .rside .knob {
+  margin: 7px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid #5A5E69;
+  box-shadow: 0px 0px 1px 2px #C1C9D3, 0px 1px 1px 2px #F9FAFB, 0px -0.5px 1px 2px #97A2AD;
+  background-image: radial-gradient(circle at top center, white, #969FA8);
+}
+.washer .top .rside .kn-one {
+  background-image: radial-gradient(circle at top center, white, #90ce47);
+}
+.washer .top .rside .kn-two {
+  background-image: radial-gradient(circle at top center, white, #ff8c57);
+}
+.washer .top .rside .kn-three {
+  background-image: radial-gradient(circle at top center, white, #57e2ff);
+}
+.washer .bottom {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  border-top: 3px solid #9096A5;
+  box-shadow: inset 0px 1px 0px 0px #C3C7CF, 0px -1px 0px 0px #C3C7CF;
+}
+.washer .bottom .lside, .washer .bottom .rside {
+  display: inline-block;
+  height: 100%;
+}
+.washer .bottom .lside:before, .washer .bottom .rside:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 3px;
+  background: rgba(252, 252, 252, 0);
+  background: linear-gradient(to right, rgba(252, 252, 252, 0) 0%, rgba(247, 248, 249, 0.46) 25%, #f2f4f5 50%, rgba(248, 247, 246, 0.38) 82%, rgba(252, 248, 247, 0) 100%);
+}
+.washer .bottom .lside {
+  width: 67%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 3px solid #A3A9BC;
+}
+.washer .bottom .lside:before {
+  left: 0;
+  width: 67%;
+}
+.washer .bottom .rside {
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.washer .bottom .rside:before {
+  right: 0;
+  width: 33%;
+}
+.washer .middle {
+  height: 245px;
+  width: 100%;
+  position: absolute;
+  top: 85px;
+  left: 0;
+}
+.washer .middle .backside {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 245px;
+  height: 245px;
+  background: #494949;
+  z-index: 1;
+  box-shadow: inset 0 0 1px 7px #B0B7C1;
+}
+.washer .middle .backside:after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 50px;
+  background-image: repeating-linear-gradient(to left, #aaa59f 0%, #54514c 50%, #54514c 60%, #f7f6f2 70%, #f7f6f2 79%, #54514c 100%);
+  border: 2px solid #4E4F54;
+  left: 0px;
+  top: 50%;
+  border-radius: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.washer .middle .door {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 245px;
+  height: 245px;
+  z-index: 3;
+  -webkit-transform: translate(-50%, -50%) perspective(3000px) rotateY(0deg);
+          transform: translate(-50%, -50%) perspective(3000px) rotateY(0deg);
+  -webkit-transform-origin: 1% 100%;
+          transform-origin: 1% 100%;
+  transition: all 2s;
+  cursor: pointer;
+}
+.washer .middle .door .st0 {
+  fill: none;
+  stroke: url(#inner_1_);
+  stroke-width: 10;
+  stroke-miterlimit: 10;
+}
+.washer .middle .door .st1 {
+  fill: none;
+  stroke: url(#door_1_);
+  stroke-width: 20;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+.washer .middle .door .st2 {
+  fill: #FFFFFF;
+}
+.washer .middle .door .st3 {
+  fill: none;
+  stroke: #636571;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+}
+.washer .middle .door:before {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: '';
+  position: absolute;
+  background: #d8e7e6;
+  width: 195px;
+  height: 195px;
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.7;
+}
+.washer .middle .door .mount {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 50px;
+  background: #a1a2ab;
+  border: 2px solid #4E4F54;
+  left: 0px;
+  top: 50%;
+  border-radius: 20%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.washer .middle .door .mount:before {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  left: 35%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
+}
+.washer .middle .door .mount:after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 35%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: white;
+}
+.washer .middle .door .dropflare {
+  box-shadow: inset 20px 0px 5px white;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: absolute;
+  width: 195px;
+  height: 195px;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+.washer .middle .open {
+  -webkit-transform: translate(-50%, -50%) perspective(3000px) rotateY(180deg);
+          transform: translate(-50%, -50%) perspective(3000px) rotateY(180deg);
+}
+.washer .middle .owl {
+  position: absolute;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 225px;
+  z-index: 2;
+}
+
+.shaking {
+  -webkit-animation: shake ease-in-out 2s  infinite;
+          animation: shake ease-in-out 2s  infinite;
+}
+
+.active .dial i {
+  color: #0095ff;
+}
+
+.outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 34px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  box-shadow: 0px 3px 2px -2px #F9FAFB, inset 0px 1px 4px 1px #97A2AD;
+  background: #BAC2CD;
+  position: relative;
+}
+.outer.active:before {
+  -webkit-animation: 0.7s linear infinite circle-spin;
+          animation: 0.7s linear infinite circle-spin;
+  -webkit-animation-fill-mode: forwards;
+}
+.outer:before {
+  top: 0;
+  left: 0;
+  border-width: 3.33333px;
+  content: " ";
+  width: 45px;
+  height: 45px;
+  display: block;
+  border-radius: 50%;
+  border: 10px solid white;
+  position: absolute;
+  border-color: #0095ff #fcd000 #AE63E4 #47CF73;
+  pointer-events: none;
+}
+.outer .dial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: 3px solid #555763;
+  border-radius: 50%;
+  cursor: pointer;
+  background: linear-gradient(to bottom, #e8e9eb 0%, #a8adb5 100%);
+}
+.outer .dial:active {
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+}
+.outer .dial i {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  text-shadow: 0px 1px 2px white;
+}
+.outer span {
+  position: absolute;
+  font-size: 7px;
+  font-family: Lato;
+  font-weight: bold;
+}
+.outer span:after {
+  content: '';
+  width: 3px;
+  height: 3px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  right: -5px;
+  top: 35%;
+}
+.outer span:nth-of-type(1) {
+  left: -37px;
+  top: 9px;
+}
+.outer span:nth-of-type(2) {
+  left: -34px;
+  top: 26px;
+}
+.outer span:nth-of-type(3) {
+  left: -27px;
+  top: 44px;
+}
+.outer span:nth-of-type(4) {
+  left: -12px;
+  top: 59px;
+}
+
+@-webkit-keyframes circle-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes circle-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.veins {
+  transition: all 3s;
+}
+
+.lwing {
+  -webkit-animation: shake-left-wing 4s infinite;
+          animation: shake-left-wing 4s infinite;
+  -webkit-transform-origin: 68% 11%;
+          transform-origin: 68% 11%;
+}
+
+.rwing {
+  -webkit-animation: shake-right-wing 4s infinite;
+          animation: shake-right-wing 4s infinite;
+  -webkit-transform-origin: 34% 9%;
+          transform-origin: 34% 9%;
+}
+
+.rleg {
+  -webkit-animation: angry-foot 4s infinite;
+          animation: angry-foot 4s infinite;
+}
+
+.lleg {
+  -webkit-animation: angry-foot 4s infinite;
+          animation: angry-foot 4s infinite;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+}
+
+.rear {
+  -webkit-animation: right-ear 4s infinite;
+          animation: right-ear 4s infinite;
+  -webkit-transform-origin: 0% 100%;
+          transform-origin: 0% 100%;
+}
+
+.lear {
+  -webkit-animation: left-ear 4s infinite;
+          animation: left-ear 4s infinite;
+  -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+}
+
+.leye, .reye {
+  -webkit-animation: blink 5s infinite;
+          animation: blink 5s infinite;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  transition: all 2s;
+}
+
+.pupil {
+  -webkit-animation: look-aside 10s infinite alternate;
+          animation: look-aside 10s infinite alternate;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.free {
+  -webkit-animation: free 7s;
+          animation: free 7s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+
+.lflitter {
+  -webkit-animation: lflitter 0.5s infinite;
+          animation: lflitter 0.5s infinite;
+  -webkit-transform-origin: 68% 11%;
+          transform-origin: 68% 11%;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+
+.rflitter {
+  -webkit-animation: rflitter 0.5s infinite;
+          animation: rflitter 0.5s infinite;
+  -webkit-transform-origin: 34% 9%;
+          transform-origin: 34% 9%;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+
+.rotate {
+  -webkit-animation: rotate 6s infinite;
+          animation: rotate 6s infinite;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-timing-function: cubic-bezier(0.72, 0.08, 0.36, 0.98);
+          animation-timing-function: cubic-bezier(0.72, 0.08, 0.36, 0.98);
+}
+
+.googley {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.lwing, .rwing, .rleg, .lleg, .rear, .lear, .leye, .reye, .pupil, .lflitter, .rflitter {
+  transform-box: fill-box;
+}
+
+@-webkit-keyframes shake-left-wing {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  10% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+  15% {
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+  20% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+  25% {
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+  30% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+  35% {
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+  45% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes shake-left-wing {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  10% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+  15% {
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+  20% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+  25% {
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+  30% {
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+  }
+  35% {
+    -webkit-transform: rotate(100deg);
+            transform: rotate(100deg);
+  }
+  45% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes shake-right-wing {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes shake-right-wing {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes angry-foot {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  5% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+  }
+  10% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  15% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+  }
+  20% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@keyframes angry-foot {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  5% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+  }
+  10% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  15% {
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+  }
+  20% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@-webkit-keyframes right-ear {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  30% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@keyframes right-ear {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  30% {
+    -webkit-transform: rotate(30deg);
+            transform: rotate(30deg);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@-webkit-keyframes left-ear {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  30% {
+    -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@keyframes left-ear {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  30% {
+    -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+@-webkit-keyframes blink {
+  40% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  45% {
+    -webkit-transform: scaleY(0.1);
+            transform: scaleY(0.1);
+  }
+  50% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+@keyframes blink {
+  40% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  45% {
+    -webkit-transform: scaleY(0.1);
+            transform: scaleY(0.1);
+  }
+  50% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+@-webkit-keyframes look-aside {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  10% {
+    -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+  }
+  40% {
+    -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+  }
+  50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes look-aside {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  10% {
+    -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+  }
+  40% {
+    -webkit-transform: rotate(50deg);
+            transform: rotate(50deg);
+  }
+  50% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes pop-out {
+  0% {
+    -webkit-transform: rotate(-4deg) rotateY(35deg) scale3d(0, 0, 1);
+            transform: rotate(-4deg) rotateY(35deg) scale3d(0, 0, 1);
+    opacity: 1;
+  }
+  25% {
+    -webkit-transform: rotate(-4deg) rotateY(35deg) scale3d(1, 1, 1);
+            transform: rotate(-4deg) rotateY(35deg) scale3d(1, 1, 1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-4deg) rotateY(35deg) scale3d(1.5, 1.5, 1);
+            transform: rotate(-4deg) rotateY(35deg) scale3d(1.5, 1.5, 1);
+    opacity: 0;
+  }
+}
+@keyframes pop-out {
+  0% {
+    -webkit-transform: rotate(-4deg) rotateY(35deg) scale3d(0, 0, 1);
+            transform: rotate(-4deg) rotateY(35deg) scale3d(0, 0, 1);
+    opacity: 1;
+  }
+  25% {
+    -webkit-transform: rotate(-4deg) rotateY(35deg) scale3d(1, 1, 1);
+            transform: rotate(-4deg) rotateY(35deg) scale3d(1, 1, 1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-4deg) rotateY(35deg) scale3d(1.5, 1.5, 1);
+            transform: rotate(-4deg) rotateY(35deg) scale3d(1.5, 1.5, 1);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes free {
+  0% {
+    -webkit-transform: translate(-50%, -50%) translateY(0px);
+            transform: translate(-50%, -50%) translateY(0px);
+  }
+  20% {
+    -webkit-transform: translate(-50%, -50%) translateY(-50px);
+            transform: translate(-50%, -50%) translateY(-50px);
+  }
+  25% {
+    -webkit-transform: translate(-50%, -50%) translateY(-45px);
+            transform: translate(-50%, -50%) translateY(-45px);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) translateY(-1000px);
+            transform: translate(-50%, -50%) translateY(-1000px);
+  }
+}
+@keyframes free {
+  0% {
+    -webkit-transform: translate(-50%, -50%) translateY(0px);
+            transform: translate(-50%, -50%) translateY(0px);
+  }
+  20% {
+    -webkit-transform: translate(-50%, -50%) translateY(-50px);
+            transform: translate(-50%, -50%) translateY(-50px);
+  }
+  25% {
+    -webkit-transform: translate(-50%, -50%) translateY(-45px);
+            transform: translate(-50%, -50%) translateY(-45px);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) translateY(-1000px);
+            transform: translate(-50%, -50%) translateY(-1000px);
+  }
+}
+@-webkit-keyframes lflitter {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes lflitter {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes rflitter {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(-100deg);
+            transform: rotate(-100deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes rflitter {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(-100deg);
+            transform: rotate(-100deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(3600deg);
+            transform: translate(-50%, -50%) rotate(3600deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+            transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(3600deg);
+            transform: translate(-50%, -50%) rotate(3600deg);
+  }
+}
+@-webkit-keyframes shake {
+  2% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  4% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  6% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  8% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  10% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  12% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  14% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  16% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  18% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  20% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  22% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  24% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  26% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  28% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  30% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  32% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  34% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  36% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  38% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  40% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  42% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  44% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  46% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  48% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  50% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  52% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  54% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  56% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  58% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  60% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  62% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  64% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  66% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  68% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  70% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  72% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  74% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  76% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  78% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  80% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  82% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  84% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  86% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  88% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  90% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  92% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  94% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  96% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  98% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  0%,100% {
+    -webkit-transform: translate(0, 0) rotate(0);
+            transform: translate(0, 0) rotate(0);
+  }
+}
+@keyframes shake {
+  2% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  4% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  6% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  8% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  10% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  12% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  14% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  16% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  18% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  20% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  22% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  24% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  26% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  28% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  30% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  32% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  34% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  36% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  38% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  40% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  42% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  44% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  46% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  48% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  50% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  52% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  54% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  56% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  58% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  60% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  62% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  64% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  66% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  68% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  70% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  72% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  74% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  76% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  78% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  80% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  82% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  84% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  86% {
+    -webkit-transform: translate(0px, 1px) rotate(0.5deg);
+            transform: translate(0px, 1px) rotate(0.5deg);
+  }
+  88% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  90% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  92% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  94% {
+    -webkit-transform: translate(0px, 0px) rotate(0.5deg);
+            transform: translate(0px, 0px) rotate(0.5deg);
+  }
+  96% {
+    -webkit-transform: translate(1px, 1px) rotate(0.5deg);
+            transform: translate(1px, 1px) rotate(0.5deg);
+  }
+  98% {
+    -webkit-transform: translate(1px, 0px) rotate(0.5deg);
+            transform: translate(1px, 0px) rotate(0.5deg);
+  }
+  0%,100% {
+    -webkit-transform: translate(0, 0) rotate(0);
+            transform: translate(0, 0) rotate(0);
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+ 
+	<div class="wall">
+		<div class='board'>
+	     <h3>Jobs for today:</h3>
+	     <ul>
+	       <li>Mop floors, shake rugs</li>
+	       <li>Clean dirty dishes</li>
+	       <li>Get rid of trash</li>
+	       <li>Wash an owl</li>
+	     </ul>
+	   </div>
+	</div>
+	<div class="floor">
+	</div>
+	<div class="wrapper">
+		<div class="washer">
+			<div class="bubble">
+				<div class="words"></div>
+			</div>
+			<section class="top">
+				<div class="lside">
+					<div class="tray"></div>
+				</div>
+				<div class="rside">
+					<div class="display">
+						<h1 class="status">ON</h1>
+					</div>
+					<div class="knobs">
+						<div class="knob kn-one"></div>
+						<div class="knob kn-two"></div>
+						<div class="knob kn-three"></div>
+					</div>
+					<div class="outer">
+						<div class="dial">
+							<i class="material-icons md-48 power-button__icon">power_settings_new</i>
+						</div>
+						<span>Synthetics</span>
+						<span>Delicate</span>
+						<span>Cotton</span>
+						<span>Wool</span>
+					</div>
+				</div>
+			</section>
+			<section class="middle">
+				<div class="owl">
+					<?xml version="1.0" encoding="utf-8"?>
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 viewBox="-20 10 360 300" style="enable-background:new 0 0 317.9 352;" xml:space="preserve">
+					<style type="text/css">
+						.st0{display:none;}
+						.st1{fill:#2DAAE1;}
+						.st2{fill:#C69C6D;}
+						.st3{fill:#FFFFFF;}
+						.st4{fill:#FBB03B;}
+						.st5{fill:#FF1D25;}
+						.st6{fill:#F9B233;}
+					</style>
+					<g class="rear">
+						<path class="st1" d="M195.9,55.6l35.8-47.2c0,0,16.5,25.2,5.3,39.5S195.9,55.6,195.9,55.6z"/>
+						<path class="st2" d="M205.9,50.5L230.6,18c0,0,11.4,17.4,3.6,27.2S205.9,50.5,205.9,50.5z"/>
+					</g>
+					<g class="lear">
+						<path class="st1" d="M118.9,56.6L83.1,9.4c0,0-16.5,25.2-5.3,39.5S118.9,56.6,118.9,56.6z"/>
+						<path class="st2" d="M109,51.5L84.2,19c0,0-11.4,17.4-3.6,27.2S109,51.5,109,51.5z"/>
+					</g>
+					<g id="Layer_5">
+						<path class="st1" d="M101.4,57.9c0,0,60-32,118,2.7c53,31.3,20,100,20,100s40.8,74.3-18.7,117.7c-28.3,16.7-64.3,12.3-64.3,12.3
+							s-37,0.7-59.7-13.3s-47-61.7-15.7-115.3C40.1,91.6,101.4,57.9,101.4,57.9z"/>
+					</g>
+					<g class="belly">
+						<path class="st3" d="M156.2,170.4c0,0,58.5-6.3,78.8,26.3s-5.4,63.8-10.5,68.2c-5.1,4.4-18.4,16.5-68.4,17.1s-61.1-18.7-61.1-18.7
+							s-28.9-27.9-7.6-67.6C106.5,166.9,156.2,170.4,156.2,170.4z"/>
+						<g>
+							<g>
+								<path class="st1" d="M97.6,195.2c5.2,5.2,13.2,13.7,21,14c7.7,0.3,15-8.6,19.4-14c-1.4,0-2.8,0-4.2,0c6.2,6.2,15,13.3,24.1,13.9
+									c9.5,0.6,17.9-7.4,23.1-14.5c-1.7,0-3.5,0-5.2,0c5.4,8.3,15.1,14.6,25.1,14.6c9.7,0,19-6.1,23.5-14.6c1.8-3.4-3.4-6.4-5.2-3
+									c-3.5,6.6-10.8,11.7-18.4,11.6c-7.9,0-15.7-5.1-19.9-11.6c-1.3-2-3.8-1.8-5.2,0c-4.2,5.7-11.6,13-19.3,11.3
+									c-6.9-1.5-13.5-7-18.4-11.9c-1.1-1.1-3.2-1.3-4.2,0c-3.2,3.9-9.6,12.4-15.1,12.2c-3.7-0.1-8.4-4.7-11-6.9c-2-1.7-3.9-3.4-5.8-5.3
+									C99.1,188.2,94.8,192.4,97.6,195.2L97.6,195.2z"/>
+							</g>
+						</g>
+						<g>
+							<g>
+								<path class="st1" d="M97.6,224.2c5.2,5.2,13.2,13.7,21,14c7.7,0.3,15-8.6,19.4-14c-1.4,0-2.8,0-4.2,0c6.2,6.2,15,13.3,24.1,13.9
+									c9.5,0.6,17.9-7.4,23.1-14.5c-1.7,0-3.5,0-5.2,0c5.4,8.3,15.1,14.6,25.1,14.6c9.7,0,19-6.1,23.5-14.6c1.8-3.4-3.4-6.4-5.2-3
+									c-3.5,6.6-10.8,11.7-18.4,11.6c-7.9,0-15.7-5.1-19.9-11.6c-1.3-2-3.8-1.8-5.2,0c-4.2,5.7-11.6,13-19.3,11.3
+									c-6.9-1.5-13.5-7-18.4-11.9c-1.1-1.1-3.2-1.3-4.2,0c-3.2,3.9-9.6,12.4-15.1,12.2c-3.7-0.1-8.4-4.7-11-6.9c-2-1.7-3.9-3.4-5.8-5.3
+									C99.1,217.2,94.8,221.4,97.6,224.2L97.6,224.2z"/>
+							</g>
+						</g>
+						<g>
+							<g>
+								<path class="st1" d="M122.2,253.6c3.4,7.4,10.2,17.7,19.4,17.7c9.2,0,16.3-10.3,19.9-17.7c-1.8-0.2-3.7-0.5-5.5-0.7
+									c3.5,8.8,10.9,18.5,21.2,18.4c10.1,0,17-9.6,19.7-18.4c1.1-3.7-4.7-5.3-5.8-1.6c-1.8,6.2-6.6,14-13.9,14c-7.5,0-13.2-8.4-15.4-14
+									c-0.9-2.2-4.2-3.3-5.5-0.7c-2.6,5.3-8,14.8-14.7,14.8c-6.7,0-11.8-9.5-14.2-14.8C125.8,247,120.6,250.1,122.2,253.6L122.2,253.6z
+									"/>
+							</g>
+						</g>
+					</g>
+					<g class="beak">
+						<path class="st4" d="M158.1,128.9c-3.8-0.5-12.3,0.3-15.3,11s11,43.7,11,43.7s20.3-30,18.3-40S165.8,130,158.1,128.9z"/>
+					</g>
+					<g class="leye">
+						<circle class="st3" cx="115.9" cy="115.1" r="38.2"/>
+						<g class="veins">
+							<g>
+								<path class="st5" d="M92.8,85.4c1-0.1,2-0.1,3-0.2c1-0.1,2-0.1,3-0.1c0.2,0,0.3,0.1,0.3,0.3c0,0,0,0.1,0,0.1l0,0
+									c-0.9,3.2-1.8,6.4-2.9,9.5l-0.3-0.6c2,0.6,4,1.3,6,2c1,0.3,2,0.7,3,1c1,0.4,2,0.7,3,1.1c-1-0.2-2.1-0.5-3.1-0.7
+									c-1-0.2-2.1-0.5-3.1-0.8c-2.1-0.5-4.1-1.1-6.1-1.7c-0.3-0.1-0.4-0.3-0.3-0.6l0,0c1-3.2,2-6.3,3.1-9.5l0.3,0.4c-1,0-2-0.1-3-0.1
+									C94.8,85.6,93.8,85.5,92.8,85.4z"/>
+							</g>
+							<g>
+								<path class="st5" d="M106.9,78.9c0.9,0.7,1.8,1.5,2.7,2.2c0.9,0.7,1.8,1.5,2.7,2.2c0.1,0.1,0.1,0.3,0,0.4l0,0l0,0
+									c-1.7,1.9-3.3,3.9-5,5.8l-0.1-0.7c3,2,6,4.1,9,6.1c0.2,0.1,0.3,0.4,0.2,0.6c-1.5,3-3.1,6.1-4.7,9.1l0-0.2
+									c0.2,1.2,0.4,2.5,0.5,3.7c0.2,1.2,0.3,2.5,0.5,3.7c-0.3-1.2-0.6-2.4-0.8-3.6c-0.3-1.2-0.5-2.4-0.8-3.6c0-0.1,0-0.1,0-0.2l0,0
+									c1.4-3.1,2.8-6.2,4.3-9.2l0.2,0.6c-3-2-6-4.1-9-6.2l0,0c-0.2-0.1-0.3-0.4-0.1-0.6l0,0c1.7-1.9,3.5-3.7,5.3-5.6l0,0.4
+									c-0.8-0.8-1.7-1.6-2.5-2.4C108.6,80.6,107.7,79.8,106.9,78.9z"/>
+							</g>
+							<g>
+								<path class="st5" d="M124.8,78.9c-0.9,0.8-1.9,1.5-2.8,2.2c-0.9,0.7-1.9,1.5-2.8,2.2l0-0.5c2,1.8,4,3.6,5.9,5.4
+									c0.2,0.1,0.2,0.4,0.1,0.6l0,0c-1.6,3-3.3,6-5,9l0-0.4c0.6,1.8,1.1,3.7,1.7,5.5l1.6,5.5l0,0c0,0.1,0,0.2-0.1,0.3
+									c-1.5,1-3,2.1-4.5,3.1c1.4-1.2,2.8-2.4,4.2-3.5l-0.1,0.3l-1.9-5.5c-0.6-1.8-1.2-3.6-1.8-5.5c0-0.1,0-0.3,0-0.4l0,0
+									c1.6-3,3.3-6,5-9l0.1,0.6c-1.9-1.8-3.8-3.7-5.7-5.6l0,0c-0.1-0.1-0.1-0.3,0-0.4c0,0,0,0,0,0c1-0.7,2-1.3,3-2
+									C122.7,80.2,123.7,79.6,124.8,78.9z"/>
+							</g>
+							<g>
+								<path class="st5" d="M133.4,82.6c-0.4,0.8-0.8,1.6-1.2,2.4c-0.4,0.8-0.8,1.6-1.3,2.3l0.1-0.3c0.1,1.8,0.2,3.5,0.1,5.3
+									c0,0.3,0,0.4-0.1,0.8c0,0,0,0,0,0.1l0,0l-0.1,0.1l-0.1,0.2l-0.2,0.2c-0.3,0.3-0.6,0.6-1,0.9c-0.7,0.6-1.4,1.1-2.1,1.7
+									c0.5-0.7,1.1-1.4,1.6-2.1l0.8-1c0.1-0.2,0.3-0.3,0.3-0.4c0,0,0,0,0,0l0-0.1l0-0.1l-0.2-0.3c0-1.7-0.3-3.5-0.3-5.3v0
+									c0-0.1,0.2-0.2,0.3-0.2c0.5-0.7,1.1-1.5,1.6-2.2C132.2,84,132.8,83.3,133.4,82.6z"/>
+							</g>
+							<g>
+								<path class="st5" d="M143.8,90.6c-0.2,0.7-0.4,1.3-0.6,1.9c-0.2,0.6-0.4,1.3-0.7,1.9c-0.5,1.3-1,2.5-1.5,3.7l0,0
+									c-0.1,0.1-0.2,0.2-0.3,0.3c-1.1,0.3-2.3,0.6-3.4,0.8c-0.6,0.1-1.2,0.2-1.7,0.3c-0.6,0.1-1.2,0.2-1.8,0.3c0.5-0.3,1.1-0.5,1.6-0.7
+									c0.6-0.2,1.1-0.4,1.7-0.6c1.1-0.4,2.2-0.7,3.4-1.1l-0.3,0.3c0.5-1.2,1.1-2.4,1.7-3.6c0.3-0.6,0.6-1.2,0.9-1.8
+									C143.1,91.7,143.4,91.2,143.8,90.6z"/>
+							</g>
+							<g>
+								<path class="st5" d="M151.9,106.4c-1.4-0.1-2.8-0.3-4.1-0.4c-1.4-0.2-2.7-0.4-4.1-0.6l0.5-0.4c-0.2,1.9-0.4,3.8-0.6,5.7l0,0
+									c0,0.3-0.3,0.4-0.5,0.4l0,0c-1.6-0.3-3.1-0.6-4.6-0.9c-0.8-0.2-1.5-0.3-2.3-0.5c-0.8-0.2-1.5-0.4-2.3-0.6c0.8,0,1.6,0.1,2.4,0.2
+									c0.8,0.1,1.6,0.2,2.4,0.2c1.6,0.2,3.1,0.4,4.7,0.6l-0.6,0.4c0.2-1.9,0.4-3.8,0.7-5.7l0,0c0-0.2,0.3-0.4,0.5-0.4l0,0
+									c1.4,0.3,2.7,0.6,4.1,0.9C149.3,105.7,150.6,106,151.9,106.4z"/>
+							</g>
+							<g>
+								<path class="st5" d="M153.3,118.6c0,0-0.3,0.1-0.8,0.4c-0.5,0.3-1.3,0.6-2.2,1c-0.9,0.4-2,0.9-3.1,1.5c-0.6,0.3-1.1,0.6-1.6,0.9
+									c-0.1,0.1-0.2,0.2-0.3,0.2c0,0-0.3,0-0.2,0l-0.2,0v0l0.2,0.1l0.1,0l0.1,0c0,0,0,0.1,0,0.1c0,0.1-0.1,0.1-0.2,0.2
+									c-0.3,0.1-0.4,0.1-0.5,0.1c-0.4-0.1-0.7-0.2-1.1-0.3c-1.3-0.5-2.5-1-3.6-1.6c-1.1-0.6-2.2-1.1-3-1.6c-0.9-0.5-1.6-0.9-2.1-1.2
+									c-0.5-0.3-0.8-0.5-0.8-0.5s0.3,0.1,0.9,0.3c0.5,0.2,1.3,0.5,2.3,0.9c0.9,0.4,2,0.8,3.2,1.3c1.2,0.5,2.4,1,3.6,1.5
+									c0.3,0.1,0.6,0.2,0.9,0.2c0,0,0.1,0,0,0c0,0-0.1,0.1-0.1,0.1c0,0,0,0.1,0,0.1l0,0l0,0c0,0,0-0.1,0,0.1l0,0l0-0.1
+									c0.1-0.1,0.1-0.2,0.2-0.2c0.2-0.2,0.3-0.3,0.5-0.4c0.6-0.4,1.2-0.6,1.8-0.9c1.2-0.5,2.3-0.9,3.2-1.2
+									C151.9,118.9,153.3,118.6,153.3,118.6z"/>
+							</g>
+							<g>
+								<path class="st5" d="M148.4,134.9c-0.9-0.8-1.7-1.6-2.5-2.4c-0.8-0.8-1.6-1.6-2.5-2.5l0.4,0c-1.2,0.9-2.3,1.8-3.5,2.7
+									c-1.2,0.9-2.4,1.7-3.5,2.6c-0.2,0.2-0.5,0.1-0.7-0.1c-0.1-0.1-0.1-0.3-0.1-0.4c0.7-2.8,1.5-5.6,2.3-8.4l0.4,0.5l-5-0.2
+									c-0.8,0-1.7-0.1-2.5-0.1c-0.8,0-1.7-0.1-2.5-0.2c0.8-0.1,1.7-0.1,2.5-0.2c0.8,0,1.7-0.1,2.5-0.1l5-0.2c0.2,0,0.4,0.2,0.4,0.4
+									c0,0,0,0.1,0,0.1l0,0c-0.7,2.8-1.4,5.7-2.1,8.5l-0.8-0.5c1.2-0.8,2.4-1.7,3.6-2.5c1.2-0.8,2.4-1.6,3.6-2.5l0,0
+									c0.1-0.1,0.3-0.1,0.4,0.1c0.8,0.9,1.5,1.7,2.3,2.6C146.9,133.1,147.7,134,148.4,134.9z"/>
+							</g>
+							<g>
+								<path class="st5" d="M136.5,147.7c-0.2-1-0.4-2.1-0.6-3.1c-0.2-1-0.4-2.1-0.5-3.1l0.4,0.4c-2.3,0.1-4.7,0.1-7,0.1h0
+									c-0.2,0-0.4-0.1-0.4-0.3c-0.7-1.5-1.3-3.1-1.9-4.6c-0.6-1.6-1.2-3.1-1.7-4.7c0.8,1.5,1.6,2.9,2.3,4.4c0.7,1.5,1.4,3,2.1,4.5
+									l-0.4-0.3c2.3,0,4.7,0,7,0h0c0.2,0,0.4,0.2,0.4,0.4c0.1,1.1,0.2,2.1,0.2,3.2C136.4,145.6,136.5,146.7,136.5,147.7z"/>
+							</g>
+							<g>
+								<path class="st5" d="M123.8,151.6c-0.7-0.8-1.3-1.6-1.9-2.4l-1-1.2c-0.3-0.4-0.6-0.8-1-1.1l-0.1-0.1c0,0,0,0,0,0c0,0,0,0,0,0l0,0
+									l-0.2,0l0,0l0,0c0,0,0,0-0.1,0c-0.1,0-0.1-0.1-0.2-0.1c0-0.1-0.1-0.1-0.1-0.2l0-0.1c0-0.1,0-0.1,0-0.2c0-0.1,0-0.2,0-0.2
+									c0.1-0.3,0.1-0.5,0.2-0.8c0.2-0.5,0.3-1,0.5-1.5c0.4-1,0.8-1.9,1.2-2.8l0.1,0.6c-1.2-1-2.4-2.1-3.5-3.2c-1.2-1.1-2.3-2.2-3.4-3.4
+									c1.3,0.9,2.6,1.9,3.9,2.8c1.3,1,2.5,2,3.7,3c0.2,0.1,0.2,0.4,0.1,0.6l0,0l-1.2,2.8l-0.6,1.4c-0.1,0.2-0.2,0.5-0.2,0.7
+									c0,0,0,0.1,0,0.1c0,0,0,0,0,0l0,0c0,0,0-0.1-0.1-0.1c0,0-0.1-0.1-0.1-0.1c-0.1,0,0,0,0,0l0,0l0,0l0,0c0.1,0-0.2,0-0.2,0l0.1,0
+									c0,0,0.1,0,0.1,0c0.1,0,0.2,0.1,0.2,0.1l0.2,0.2c0.4,0.4,0.7,0.8,1,1.3c0.3,0.4,0.6,0.9,0.8,1.3
+									C122.8,149.8,123.3,150.7,123.8,151.6z"/>
+							</g>
+							<g>
+								<path class="st5" d="M107.1,150.7l2.2-1.6l2.2-1.5l2.2-1.6c0.4-0.3,0.7-0.5,1-0.8c0.3-0.3,0.7-0.5,0.9-0.8
+									c0.1-0.1,0.1-0.1,0.1-0.2c0,0,0,0,0,0c0,0,0,0.1,0,0.2c0,0.1,0.1,0.1,0.1,0.2l-0.5-0.2l-1.2-0.6l-2.4-1.2
+									c-1.6-0.8-3.1-1.7-4.7-2.6l0,0c-0.1,0-0.1-0.1-0.1-0.2c0-0.6,0.1-1.2,0.1-1.8c0-0.6,0.1-1.2,0.2-1.8c0.1,0.6,0.1,1.2,0.2,1.8
+									c0,0.6,0.1,1.2,0.1,1.8l-0.2-0.2c1.6,0.7,3.3,1.5,4.9,2.3l2.4,1.2l1.2,0.6l0.3,0.2l0.1,0.1l0.1,0l0,0c0,0,0.1,0.1,0.1,0.1
+									c0.1,0.1,0.2,0.2,0.2,0.3c0,0.1,0,0.3,0,0.3c0,0.1-0.1,0.3-0.1,0.3c-0.1,0.1-0.2,0.2-0.3,0.3c-0.7,0.7-1.4,1.2-2.2,1.7
+									c-0.7,0.5-1.5,1-2.3,1.4c-0.8,0.4-1.5,0.9-2.3,1.3C108.7,149.9,107.9,150.3,107.1,150.7z"/>
+							</g>
+							<g>
+								<path class="st5" d="M92.8,144.8c0.6-0.3,1.1-0.5,1.7-0.8c0.6-0.3,1.1-0.5,1.7-0.7c1.1-0.5,2.3-0.9,3.5-1.3l-0.3,0.6
+									c-0.5-2.2-0.9-4.3-1.2-6.5l0,0c0-0.1,0-0.2,0-0.2c0.4-0.6,0.8-1.2,1.2-1.8c0.4-0.6,0.8-1.2,1.3-1.7c-0.3,0.7-0.6,1.3-0.9,2
+									c-0.3,0.6-0.6,1.3-1,1.9l0-0.3c0.6,2.1,1,4.3,1.4,6.5l0,0c0,0.2-0.1,0.5-0.3,0.5c-1.2,0.4-2.4,0.7-3.5,1
+									c-0.6,0.2-1.2,0.3-1.8,0.4C94,144.5,93.4,144.6,92.8,144.8z"/>
+							</g>
+							<g>
+								<path class="st5" d="M84.1,136.1c0.2-0.7,0.4-1.3,0.7-2c0.2-0.7,0.5-1.3,0.7-2c0.1-0.2,0.2-0.3,0.4-0.2c0,0,0.1,0,0.1,0.1l0,0
+									c1.5,1.2,3,2.5,4.4,3.8l-0.8,0.2c0.5-2.3,1.1-4.6,1.8-6.9l0,0c0.1-0.2,0.2-0.3,0.4-0.2c0.8,0.1,1.6,0.3,2.4,0.5
+									c0.8,0.2,1.6,0.3,2.4,0.6c-0.8,0-1.7-0.1-2.5-0.1c-0.8-0.1-1.7-0.1-2.5-0.2l0.4-0.3c-0.4,2.3-1,4.6-1.5,6.9
+									c-0.1,0.3-0.3,0.4-0.6,0.4c-0.1,0-0.2-0.1-0.2-0.1c-1.4-1.3-2.8-2.6-4.2-4l0.5-0.1c-0.3,0.6-0.6,1.3-1,1.9
+									C84.8,134.9,84.5,135.5,84.1,136.1z"/>
+							</g>
+							<g>
+								<path class="st5" d="M79.5,126.4c0.9,0.1,1.8,0.2,2.7,0.3c0.9,0.1,1.8,0.2,2.7,0.4l-0.4,0.3c0.4-2.2,0.9-4.4,1.4-6.5l0,0
+									c0.1-0.3,0.3-0.4,0.6-0.4c0.1,0,0.1,0,0.2,0.1c2,1.4,3.9,2.9,5.8,4.4l-0.4,0.2c0.2-0.9,0.5-1.7,0.7-2.6c-0.1,0.9-0.2,1.8-0.3,2.7
+									c0,0.1-0.1,0.2-0.2,0.2c0,0-0.1,0-0.1,0l0,0c-2.1-1.3-4.1-2.6-6.1-4l0.8-0.3c-0.5,2.2-1,4.3-1.6,6.5l0,0
+									c-0.1,0.2-0.2,0.3-0.4,0.3c-0.9-0.2-1.7-0.4-2.6-0.6C81.2,126.9,80.3,126.7,79.5,126.4z"/>
+							</g>
+							<g>
+								<path class="st5" d="M83.3,95c0.4,0.7,0.8,1.4,1.1,2.1c0.4,0.7,0.7,1.4,1,2.2L85.1,99c1.9-0.1,3.8-0.1,5.6-0.1h0
+									c0.2,0,0.3,0.1,0.4,0.2c0.6,1,1.2,2,1.8,3c0.3,0.5,0.6,1,0.8,1.5c0.3,0.5,0.5,1,0.8,1.6c-0.4-0.4-0.7-0.9-1.1-1.4
+									c-0.4-0.5-0.7-0.9-1.1-1.4c-0.7-0.9-1.3-1.9-2-2.9l0.4,0.2c-1.9,0-3.8,0-5.6-0.1l0,0c-0.2,0-0.3-0.1-0.3-0.3
+									c-0.3-0.8-0.5-1.5-0.8-2.3C83.7,96.5,83.5,95.8,83.3,95z"/>
+							</g>
+							<g>
+								<path class="st5" d="M78.5,109c0.9,0.7,1.8,1.4,2.6,2.1c0.9,0.7,1.7,1.5,2.5,2.2l-0.5-0.1c1.8-1,3.7-2,5.6-2.9l0,0
+									c0.1-0.1,0.3-0.1,0.4,0c0.9,0.5,1.8,1,2.7,1.6c0.9,0.5,1.8,1.1,2.7,1.7c-1-0.4-2-0.7-2.9-1.2c-1-0.4-1.9-0.8-2.9-1.3l0.4,0
+									c-1.8,1-3.7,2-5.6,2.9l0,0c-0.2,0.1-0.4,0-0.5-0.1c-0.8-0.8-1.6-1.6-2.3-2.4C79.9,110.8,79.2,109.9,78.5,109z"/>
+							</g>
+						</g>
+						<g class="pupil">
+							<circle cx="114.9" cy="117.2" r="24.3"/>
+							<circle class="rlight st3" class="st3" cx="102.9" cy="109.3" r="7.1"/>
+						</g>
+					</g>
+					<g class="reye">
+						<circle class="st3" cx="198.9" cy="117.1" r="38.2"/>
+						<g class="veins">
+							<g>
+								<path class="st5" d="M175.8,87.4c1-0.1,2-0.1,3-0.2c1-0.1,2-0.1,3-0.1c0.2,0,0.3,0.1,0.3,0.3c0,0,0,0.1,0,0.1l0,0
+									c-0.9,3.2-1.8,6.4-2.9,9.5l-0.3-0.6c2,0.6,4,1.3,6,2c1,0.3,2,0.7,3,1c1,0.4,2,0.7,3,1.1c-1-0.2-2.1-0.5-3.1-0.7
+									c-1-0.2-2.1-0.5-3.1-0.8c-2.1-0.5-4.1-1.1-6.1-1.7c-0.3-0.1-0.4-0.3-0.3-0.6l0,0c1-3.2,2-6.3,3.1-9.5l0.3,0.4c-1,0-2-0.1-3-0.1
+									C177.8,87.6,176.8,87.5,175.8,87.4z"/>
+							</g>
+							<g>
+								<path class="st5" d="M189.9,80.9c0.9,0.7,1.8,1.5,2.7,2.2c0.9,0.7,1.8,1.5,2.7,2.2c0.1,0.1,0.1,0.3,0,0.4l0,0l0,0
+									c-1.7,1.9-3.3,3.9-5,5.8l-0.1-0.7c3,2,6,4.1,9,6.1c0.2,0.1,0.3,0.4,0.2,0.6c-1.5,3-3.1,6.1-4.7,9.1l0-0.2
+									c0.2,1.2,0.4,2.5,0.5,3.7c0.2,1.2,0.3,2.5,0.5,3.7c-0.3-1.2-0.6-2.4-0.8-3.6c-0.3-1.2-0.5-2.4-0.8-3.6c0-0.1,0-0.1,0-0.2l0,0
+									c1.4-3.1,2.8-6.2,4.3-9.2l0.2,0.6c-3-2-6-4.1-9-6.2l0,0c-0.2-0.1-0.3-0.4-0.1-0.6l0,0c1.7-1.9,3.5-3.7,5.3-5.6l0,0.4
+									c-0.8-0.8-1.7-1.6-2.5-2.4C191.6,82.6,190.7,81.8,189.9,80.9z"/>
+							</g>
+							<g>
+								<path class="st5" d="M207.8,80.9c-0.9,0.8-1.9,1.5-2.8,2.2c-0.9,0.7-1.9,1.5-2.8,2.2l0-0.5c2,1.8,4,3.6,5.9,5.4
+									c0.2,0.1,0.2,0.4,0.1,0.6l0,0c-1.6,3-3.3,6-5,9l0-0.4c0.6,1.8,1.1,3.7,1.7,5.5l1.6,5.5l0,0c0,0.1,0,0.2-0.1,0.3
+									c-1.5,1-3,2.1-4.5,3.1c1.4-1.2,2.8-2.4,4.2-3.5l-0.1,0.3l-1.9-5.5c-0.6-1.8-1.2-3.6-1.8-5.5c0-0.1,0-0.3,0-0.4l0,0
+									c1.6-3,3.3-6,5-9l0.1,0.6c-1.9-1.8-3.8-3.7-5.7-5.6l0,0c-0.1-0.1-0.1-0.3,0-0.4c0,0,0,0,0,0c1-0.7,2-1.3,3-2
+									C205.7,82.2,206.7,81.6,207.8,80.9z"/>
+							</g>
+							<g>
+								<path class="st5" d="M216.4,84.6c-0.4,0.8-0.8,1.6-1.2,2.4c-0.4,0.8-0.8,1.6-1.3,2.3l0.1-0.3c0.1,1.8,0.2,3.5,0.1,5.3
+									c0,0.3,0,0.4-0.1,0.8c0,0,0,0,0,0.1l0,0l-0.1,0.1l-0.1,0.2l-0.2,0.2c-0.3,0.3-0.6,0.6-1,0.9c-0.7,0.6-1.4,1.1-2.1,1.7
+									c0.5-0.7,1.1-1.4,1.6-2.1l0.8-1c0.1-0.2,0.3-0.3,0.3-0.4c0,0,0,0,0,0l0-0.1l0-0.1l-0.2-0.3c0-1.7-0.3-3.5-0.3-5.3v0
+									c0-0.1,0.2-0.2,0.3-0.2c0.5-0.7,1.1-1.5,1.6-2.2C215.2,86,215.8,85.3,216.4,84.6z"/>
+							</g>
+							<g>
+								<path class="st5" d="M226.8,92.6c-0.2,0.7-0.4,1.3-0.6,1.9c-0.2,0.6-0.4,1.3-0.7,1.9c-0.5,1.3-1,2.5-1.5,3.7l0,0
+									c-0.1,0.1-0.2,0.2-0.3,0.3c-1.1,0.3-2.3,0.6-3.4,0.8c-0.6,0.1-1.2,0.2-1.7,0.3c-0.6,0.1-1.2,0.2-1.8,0.3c0.5-0.3,1.1-0.5,1.6-0.7
+									c0.6-0.2,1.1-0.4,1.7-0.6c1.1-0.4,2.2-0.7,3.4-1.1l-0.3,0.3c0.5-1.2,1.1-2.4,1.7-3.6c0.3-0.6,0.6-1.2,0.9-1.8
+									C226.1,93.7,226.4,93.2,226.8,92.6z"/>
+							</g>
+							<g>
+								<path class="st5" d="M234.9,108.4c-1.4-0.1-2.8-0.3-4.1-0.4c-1.4-0.2-2.7-0.4-4.1-0.6l0.5-0.4c-0.2,1.9-0.4,3.8-0.6,5.7l0,0
+									c0,0.3-0.3,0.4-0.5,0.4l0,0c-1.6-0.3-3.1-0.6-4.6-0.9c-0.8-0.2-1.5-0.3-2.3-0.5c-0.8-0.2-1.5-0.4-2.3-0.6c0.8,0,1.6,0.1,2.4,0.2
+									c0.8,0.1,1.6,0.2,2.4,0.2c1.6,0.2,3.1,0.4,4.7,0.6l-0.6,0.4c0.2-1.9,0.4-3.8,0.7-5.7l0,0c0-0.2,0.3-0.4,0.5-0.4l0,0
+									c1.4,0.3,2.7,0.6,4.1,0.9C232.3,107.7,233.6,108,234.9,108.4z"/>
+							</g>
+							<g>
+								<path class="st5" d="M236.3,120.6c0,0-0.3,0.1-0.8,0.4c-0.5,0.3-1.3,0.6-2.2,1c-0.9,0.4-2,0.9-3.1,1.5c-0.6,0.3-1.1,0.6-1.6,0.9
+									c-0.1,0.1-0.2,0.2-0.3,0.2c0,0-0.3,0-0.2,0l-0.2,0v0l0.2,0.1l0.1,0l0.1,0c0,0,0,0.1,0,0.1c0,0.1-0.1,0.1-0.2,0.2
+									c-0.3,0.1-0.4,0.1-0.5,0.1c-0.4-0.1-0.7-0.2-1.1-0.3c-1.3-0.5-2.5-1-3.6-1.6c-1.1-0.6-2.2-1.1-3-1.6c-0.9-0.5-1.6-0.9-2.1-1.2
+									c-0.5-0.3-0.8-0.5-0.8-0.5s0.3,0.1,0.9,0.3c0.5,0.2,1.3,0.5,2.3,0.9c0.9,0.4,2,0.8,3.2,1.3c1.2,0.5,2.4,1,3.6,1.5
+									c0.3,0.1,0.6,0.2,0.9,0.2c0,0,0.1,0,0,0c0,0-0.1,0.1-0.1,0.1c0,0,0,0.1,0,0.1l0,0l0,0c0,0,0-0.1,0,0.1l0,0l0-0.1
+									c0.1-0.1,0.1-0.2,0.2-0.2c0.2-0.2,0.3-0.3,0.5-0.4c0.6-0.4,1.2-0.6,1.8-0.9c1.2-0.5,2.3-0.9,3.2-1.2
+									C234.9,120.9,236.3,120.6,236.3,120.6z"/>
+							</g>
+							<g>
+								<path class="st5" d="M231.4,136.9c-0.9-0.8-1.7-1.6-2.5-2.4c-0.8-0.8-1.6-1.6-2.5-2.5l0.4,0c-1.2,0.9-2.3,1.8-3.5,2.7
+									c-1.2,0.9-2.4,1.7-3.5,2.6c-0.2,0.2-0.5,0.1-0.7-0.1c-0.1-0.1-0.1-0.3-0.1-0.4c0.7-2.8,1.5-5.6,2.3-8.4l0.4,0.5l-5-0.2
+									c-0.8,0-1.7-0.1-2.5-0.1c-0.8,0-1.7-0.1-2.5-0.2c0.8-0.1,1.7-0.1,2.5-0.2c0.8,0,1.7-0.1,2.5-0.1l5-0.2c0.2,0,0.4,0.2,0.4,0.4
+									c0,0,0,0.1,0,0.1l0,0c-0.7,2.8-1.4,5.7-2.1,8.5l-0.8-0.5c1.2-0.8,2.4-1.7,3.6-2.5c1.2-0.8,2.4-1.6,3.6-2.5l0,0
+									c0.1-0.1,0.3-0.1,0.4,0.1c0.8,0.9,1.5,1.7,2.3,2.6C229.9,135.1,230.7,136,231.4,136.9z"/>
+							</g>
+							<g>
+								<path class="st5" d="M219.5,149.7c-0.2-1-0.4-2.1-0.6-3.1c-0.2-1-0.4-2.1-0.5-3.1l0.4,0.4c-2.3,0.1-4.7,0.1-7,0.1h0
+									c-0.2,0-0.4-0.1-0.4-0.3c-0.7-1.5-1.3-3.1-1.9-4.6c-0.6-1.6-1.2-3.1-1.7-4.7c0.8,1.5,1.6,2.9,2.3,4.4c0.7,1.5,1.4,3,2.1,4.5
+									l-0.4-0.3c2.3,0,4.7,0,7,0h0c0.2,0,0.4,0.2,0.4,0.4c0.1,1.1,0.2,2.1,0.2,3.2C219.4,147.6,219.5,148.7,219.5,149.7z"/>
+							</g>
+							<g>
+								<path class="st5" d="M206.8,153.6c-0.7-0.8-1.3-1.6-1.9-2.4l-1-1.2c-0.3-0.4-0.6-0.8-1-1.1l-0.1-0.1c0,0,0,0,0,0c0,0,0,0,0,0l0,0
+									l-0.2,0l0,0l0,0c0,0,0,0-0.1,0c-0.1,0-0.1-0.1-0.2-0.1c0-0.1-0.1-0.1-0.1-0.2l0-0.1c0-0.1,0-0.1,0-0.2c0-0.1,0-0.2,0-0.2
+									c0.1-0.3,0.1-0.5,0.2-0.8c0.2-0.5,0.3-1,0.5-1.5c0.4-1,0.8-1.9,1.2-2.8l0.1,0.6c-1.2-1-2.4-2.1-3.5-3.2c-1.2-1.1-2.3-2.2-3.4-3.4
+									c1.3,0.9,2.6,1.9,3.9,2.8c1.3,1,2.5,2,3.7,3c0.2,0.1,0.2,0.4,0.1,0.6l0,0l-1.2,2.8l-0.6,1.4c-0.1,0.2-0.2,0.5-0.2,0.7
+									c0,0,0,0.1,0,0.1c0,0,0,0,0,0l0,0c0,0,0-0.1-0.1-0.1c0,0-0.1-0.1-0.1-0.1c-0.1,0,0,0,0,0l0,0l0,0l0,0c0.1,0-0.2,0-0.2,0l0.1,0
+									c0,0,0.1,0,0.1,0c0.1,0,0.2,0.1,0.2,0.1l0.2,0.2c0.4,0.4,0.7,0.8,1,1.3c0.3,0.4,0.6,0.9,0.8,1.3
+									C205.8,151.8,206.3,152.7,206.8,153.6z"/>
+							</g>
+							<g>
+								<path class="st5" d="M190.1,152.7l2.2-1.6l2.2-1.5l2.2-1.6c0.4-0.3,0.7-0.5,1-0.8c0.3-0.3,0.7-0.5,0.9-0.8
+									c0.1-0.1,0.1-0.1,0.1-0.2c0,0,0,0,0,0c0,0,0,0.1,0,0.2c0,0.1,0.1,0.1,0.1,0.2l-0.5-0.2l-1.2-0.6l-2.4-1.2
+									c-1.6-0.8-3.1-1.7-4.7-2.6l0,0c-0.1,0-0.1-0.1-0.1-0.2c0-0.6,0.1-1.2,0.1-1.8c0-0.6,0.1-1.2,0.2-1.8c0.1,0.6,0.1,1.2,0.2,1.8
+									c0,0.6,0.1,1.2,0.1,1.8l-0.2-0.2c1.6,0.7,3.3,1.5,4.9,2.3l2.4,1.2l1.2,0.6l0.3,0.2l0.1,0.1l0.1,0l0,0c0,0,0.1,0.1,0.1,0.1
+									c0.1,0.1,0.2,0.2,0.2,0.3c0,0.1,0,0.3,0,0.3c0,0.1-0.1,0.3-0.1,0.3c-0.1,0.1-0.2,0.2-0.3,0.3c-0.7,0.7-1.4,1.2-2.2,1.7
+									c-0.7,0.5-1.5,1-2.3,1.4c-0.8,0.4-1.5,0.9-2.3,1.3C191.7,151.9,190.9,152.3,190.1,152.7z"/>
+							</g>
+							<g>
+								<path class="st5" d="M175.8,146.8c0.6-0.3,1.1-0.5,1.7-0.8c0.6-0.3,1.1-0.5,1.7-0.7c1.1-0.5,2.3-0.9,3.5-1.3l-0.3,0.6
+									c-0.5-2.2-0.9-4.3-1.2-6.5l0,0c0-0.1,0-0.2,0-0.2c0.4-0.6,0.8-1.2,1.2-1.8c0.4-0.6,0.8-1.2,1.3-1.7c-0.3,0.7-0.6,1.3-0.9,2
+									c-0.3,0.6-0.6,1.3-1,1.9l0-0.3c0.6,2.1,1,4.3,1.4,6.5l0,0c0,0.2-0.1,0.5-0.3,0.5c-1.2,0.4-2.4,0.7-3.5,1
+									c-0.6,0.2-1.2,0.3-1.8,0.4C177,146.5,176.4,146.6,175.8,146.8z"/>
+							</g>
+							<g>
+								<path class="st5" d="M167.1,138.1c0.2-0.7,0.4-1.3,0.7-2c0.2-0.7,0.5-1.3,0.7-2c0.1-0.2,0.2-0.3,0.4-0.2c0,0,0.1,0,0.1,0.1l0,0
+									c1.5,1.2,3,2.5,4.4,3.8l-0.8,0.2c0.5-2.3,1.1-4.6,1.8-6.9l0,0c0.1-0.2,0.2-0.3,0.4-0.2c0.8,0.1,1.6,0.3,2.4,0.5
+									c0.8,0.2,1.6,0.3,2.4,0.6c-0.8,0-1.7-0.1-2.5-0.1c-0.8-0.1-1.7-0.1-2.5-0.2l0.4-0.3c-0.4,2.3-1,4.6-1.5,6.9
+									c-0.1,0.3-0.3,0.4-0.6,0.4c-0.1,0-0.2-0.1-0.2-0.1c-1.4-1.3-2.8-2.6-4.2-4l0.5-0.1c-0.3,0.6-0.6,1.3-1,1.9
+									C167.8,136.9,167.5,137.5,167.1,138.1z"/>
+							</g>
+							<g>
+								<path class="st5" d="M162.5,128.4c0.9,0.1,1.8,0.2,2.7,0.3c0.9,0.1,1.8,0.2,2.7,0.4l-0.4,0.3c0.4-2.2,0.9-4.4,1.4-6.5l0,0
+									c0.1-0.3,0.3-0.4,0.6-0.4c0.1,0,0.1,0,0.2,0.1c2,1.4,3.9,2.9,5.8,4.4l-0.4,0.2c0.2-0.9,0.5-1.7,0.7-2.6c-0.1,0.9-0.2,1.8-0.3,2.7
+									c0,0.1-0.1,0.2-0.2,0.2c0,0-0.1,0-0.1,0l0,0c-2.1-1.3-4.1-2.6-6.1-4l0.8-0.3c-0.5,2.2-1,4.3-1.6,6.5l0,0
+									c-0.1,0.2-0.2,0.3-0.4,0.3c-0.9-0.2-1.7-0.4-2.6-0.6C164.2,128.9,163.3,128.7,162.5,128.4z"/>
+							</g>
+							<g>
+								<path class="st5" d="M166.3,97c0.4,0.7,0.8,1.4,1.1,2.1c0.4,0.7,0.7,1.4,1,2.2l-0.4-0.3c1.9-0.1,3.8-0.1,5.6-0.1h0
+									c0.2,0,0.3,0.1,0.4,0.2c0.6,1,1.2,2,1.8,3c0.3,0.5,0.6,1,0.8,1.5c0.3,0.5,0.5,1,0.8,1.6c-0.4-0.4-0.7-0.9-1.1-1.4
+									c-0.4-0.5-0.7-0.9-1.1-1.4c-0.7-0.9-1.3-1.9-2-2.9l0.4,0.2c-1.9,0-3.8,0-5.6-0.1l0,0c-0.2,0-0.3-0.1-0.3-0.3
+									c-0.3-0.8-0.5-1.5-0.8-2.3C166.7,98.5,166.5,97.8,166.3,97z"/>
+							</g>
+							<g>
+								<path class="st5" d="M161.5,111c0.9,0.7,1.8,1.4,2.6,2.1c0.9,0.7,1.7,1.5,2.5,2.2l-0.5-0.1c1.8-1,3.7-2,5.6-2.9l0,0
+									c0.1-0.1,0.3-0.1,0.4,0c0.9,0.5,1.8,1,2.7,1.6c0.9,0.5,1.8,1.1,2.7,1.7c-1-0.4-2-0.7-2.9-1.2c-1-0.4-1.9-0.8-2.9-1.3l0.4,0
+									c-1.8,1-3.7,2-5.6,2.9l0,0c-0.2,0.1-0.4,0-0.5-0.1c-0.8-0.8-1.6-1.6-2.3-2.4C162.9,112.8,162.2,111.9,161.5,111z"/>
+							</g>
+						</g>
+						<g class="pupil">
+							<circle  cx="197.9" cy="117.2" r="24.3"/>
+							<circle class="llight st3" class="st3" cx="185.9" cy="109.3" r="7.1"/>
+						</g>
+					</g>
+					<g class="lleg">
+						<path class="st6" d="M106.8,298.9c0,0-8.5-8-6.8-18.9s17.6-9.6,17.6-9.6s10.4-0.4,17.6,10.9s-1.5,19.3-1.5,19.3l-6-10.6l-5.9,11.5
+							l-6.9-12.1L106.8,298.9z"/>
+					</g>
+					<g class="rleg">
+						<path class="st6" d="M207.2,300.9c0,0,8.5-8,6.8-18.9s-17.6-9.6-17.6-9.6s-10.4-0.4-17.6,10.9s1.5,19.3,1.5,19.3l6-10.6l5.9,11.5
+							l6.9-12.1L207.2,300.9z"/>
+					</g>
+					<g class="rwing">
+						<path class="st1" d="M237,161.1c0,0,22.1,18.5,27.5,49.8c5.3,31.3-3.3,64-3.3,64s-23.3-20-35.3-49.3S237,161.1,237,161.1z"/>
+					</g>
+					<g class="lwing">
+						<path class="st1" d="M81.5,161.1c0,0-22.1,18.5-27.5,49.8s3.3,64,3.3,64s23.3-20,35.3-49.3S81.5,161.1,81.5,161.1z"/>
+					</g>
+					</svg>
+
+
+				</div>
+				<div class="door">
+					<div class="mount"></div>
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 viewBox="0 0 178.7 178.7" style="enable-background:new 0 0 178.7 178.7;" xml:space="preserve">
+					<linearGradient id="inner_1_" gradientUnits="userSpaceOnUse" x1="89.3333" y1="160" x2="89.3333" y2="18.6667">
+						<stop  offset="0" style="stop-color:#E4E4E4"/>
+						<stop  offset="0.1863" style="stop-color:#DBDBDC"/>
+						<stop  offset="0.4959" style="stop-color:#C1C3C6"/>
+						<stop  offset="0.8884" style="stop-color:#989BA2"/>
+						<stop  offset="1" style="stop-color:#8B8F97"/>
+					</linearGradient>
+					<circle id="inner" class="st0" cx="89.3" cy="89.3" r="65.7"/>
+					<linearGradient id="door_1_" gradientUnits="userSpaceOnUse" x1="89.3333" y1="178.6667" x2="89.3333" y2="0">
+						<stop  offset="0" style="stop-color:#8F919A"/>
+						<stop  offset="0.1817" style="stop-color:#989AA3"/>
+						<stop  offset="0.4837" style="stop-color:#B2B3BA"/>
+						<stop  offset="0.8667" style="stop-color:#DBDBDF"/>
+						<stop  offset="1" style="stop-color:#EBEBEE"/>
+					</linearGradient>
+					<path id="door" class="st1" d="M168.7,89.3c0,12.6-3,24.6-8.2,35.2c-13,26.2-39.9,44.2-71.1,44.2c-43.8,0-79.3-35.5-79.3-79.3
+						S45.5,10,89.3,10c31.2,0,58.2,18,71.1,44.2C165.7,64.8,168.7,76.7,168.7,89.3z M151.7,70.7c0,0-7,8.5-7,18.6c0,12,7,20.6,7,20.6l8,2
+						l-0.2-37.7l3.2-12.6"/>
+					<g id="outside-flare">
+						<path class="st2" d="M6.3,69.3c0,0,0.2-0.8,0.8-2.4c0.5-1.6,1.4-3.8,2.6-6.7c1.2-2.8,2.8-6.2,4.9-10c2.1-3.8,4.6-7.9,7.8-12.1
+							c3.2-4.2,6.9-8.6,11.4-12.7c4.4-4.1,9.6-8.1,15.4-11.3c5.8-3.3,12.2-5.9,19-7.6C75,4.8,82.1,4,89.2,4c7.1,0,14.2,0.9,20.9,2.7
+							c6.8,1.8,13.2,4.5,18.9,7.8c5.8,3.3,10.9,7.2,15.4,11.4c4.5,4.1,8.3,8.5,11.5,12.6c3.2,4.2,5.9,8.3,8,12c2.2,3.7,3.8,7.1,5.1,9.8
+							c1.3,2.8,2.2,5,2.8,6.6c0.6,1.5,0.8,2.4,0.8,2.4s-1.2-3.3-3.9-8.8c-2.7-5.5-7.1-13.1-13.7-21.3c-3.3-4.1-7.1-8.3-11.6-12.3
+							c-4.5-4-9.6-7.7-15.2-10.9c-5.7-3.2-11.9-5.8-18.5-7.5C103.1,6.8,96.1,6,89.2,6c-6.9,0-13.9,0.7-20.5,2.3C62,10,55.7,12.5,50,15.6
+							c-5.7,3.2-10.8,6.9-15.3,10.9c-4.5,4-8.3,8.2-11.5,12.3c-6.4,8.3-10.7,16-13.3,21.5C7.4,66,6.3,69.3,6.3,69.3z"/>
+					</g>
+					<g id="inside-flare">
+						<path class="st2" d="M24.3,61.3c0,0,0.2-0.6,0.6-1.7c0.4-1.1,1.1-2.7,2.1-4.7c1-2,2.3-4.3,4-6.9c1.7-2.6,3.8-5.4,6.3-8.2
+							c2.6-2.8,5.6-5.7,9-8.3c3.5-2.7,7.4-5.2,11.8-7.1c4.3-2,9.1-3.6,14-4.7c4.9-1.1,10-1.6,15.1-1.7c5.1-0.1,10.2,0.4,15.1,1.4
+							c4.9,1,9.7,2.5,14.1,4.4c4.4,1.9,8.4,4.2,12,6.7c3.6,2.5,6.8,5.2,9.5,7.8c2.8,2.6,5.1,5.2,7,7.7c1.9,2.4,3.5,4.6,4.7,6.5
+							c1.2,1.8,2.1,3.4,2.6,4.4c0.6,1,0.8,1.6,0.8,1.6s-1.2-2.2-3.8-5.8c-2.6-3.6-6.6-8.4-12.1-13.5c-2.8-2.5-6-5.1-9.6-7.4
+							c-3.6-2.3-7.6-4.5-11.9-6.3c-4.3-1.8-8.9-3.2-13.7-4.2c-4.8-0.9-9.8-1.3-14.8-1.2c-5,0-9.9,0.5-14.7,1.5c-4.8,1-9.4,2.5-13.6,4.4
+							c-4.2,1.9-8.2,4.2-11.6,6.7c-3.5,2.5-6.5,5.2-9.1,8c-5.2,5.4-8.7,10.7-10.8,14.5C25.2,59,24.3,61.3,24.3,61.3z"/>
+					</g>
+					<g id="handle-flare">
+						<path class="st2" d="M138.5,98.1c0,0-0.2-0.6-0.5-1.7c-0.3-1.1-0.6-2.7-0.8-4.7c0-0.5-0.1-1-0.1-1.5c0-0.5-0.1-1.1-0.1-1.7
+							c0-1.1,0-2.3,0.1-3.6c0-0.6,0.1-1.2,0.2-1.9c0.1-0.6,0.2-1.3,0.3-1.9c0.1-0.6,0.3-1.3,0.4-1.9c0.2-0.6,0.3-1.3,0.6-1.9
+							c0.2-0.6,0.4-1.3,0.7-1.9c0.3-0.6,0.6-1.2,0.9-1.8c0.6-1.1,1.3-2.2,2-3.3c1.4-2.1,2.9-3.8,4.4-5.1c0.7-0.7,1.5-1.2,2.2-1.6
+							c0.7-0.4,1.3-0.7,1.9-1c1.1-0.4,1.7-0.5,1.7-0.5s-0.7,0.1-1.7,0.7c-0.5,0.3-1.1,0.6-1.7,1.1c-0.6,0.5-1.3,1.1-2,1.7
+							c-0.7,0.7-1.4,1.5-2.1,2.3c-0.7,0.9-1.3,1.8-2,2.9c-0.3,0.5-0.6,1-0.9,1.6c-0.3,0.6-0.6,1.1-0.9,1.7c-0.3,0.6-0.5,1.1-0.8,1.7
+							c-0.3,0.6-0.4,1.2-0.7,1.8c-0.2,0.6-0.4,1.2-0.6,1.8c-0.2,0.6-0.3,1.2-0.4,1.9c-0.3,1.2-0.4,2.5-0.6,3.7c-0.1,1.2-0.2,2.4-0.2,3.5
+							c0,0.6,0,1.1,0,1.6c0,0.5,0,1,0.1,1.5c0.1,1.9,0.3,3.6,0.5,4.7C138.4,97.4,138.5,98.1,138.5,98.1z"/>
+					</g>
+					<circle id="outer" class="st3" cx="89.3" cy="89.3" r="87.7"/>
+					</svg>
+					<div class="dropflare"></div>
+				</div>
+				<div class="backside"></div>
+			</section>
+			<section class="bottom">
+				<div class="lside"></div>
+				<div class="rside"></div>
+			</section>
+		</div>
+		
+	</div>
+
+  <script>
+  // grab DOM elements
+const pwrbtn = document.querySelector(".dial");
+const outer = document.querySelector(".outer");
+const veins = document.querySelectorAll(".veins");
+const wordcontainer = document.querySelector(".words");
+const door = document.querySelector(".door");
+const owl = document.querySelector(".owl");
+const lwing = document.querySelector(".lwing");
+const rwing = document.querySelector(".rwing");
+const leye = document.querySelector(".leye");
+const reye = document.querySelector(".reye");
+const bubble = document.querySelector(".bubble");
+const status = document.querySelector(".status");
+const washer = document.querySelector(".washer");
+
+// defining phrases for an owl
+const words = [
+	"Hey!",
+	"Can anybody hear me?",
+	"They forgot me here",
+	"Let me out!",
+	"I'm scared",
+	"I'm stuck here",
+	"Come on!",
+	"Somebody!",
+	"I know you're there"
+]
+
+// init and other stuff  
+var synthesis = speechSynthesis;
+status.innerHTML = 'off';
+showSay(words[0]);
+var counter = 0;
+var complains = setInterval(shout, 3000, words);
+
+// what happens when someone presses the button
+// gracefully start and stop animation of the dial
+var running = false;
+pwrbtn.addEventListener('click', powerHandler);
+
+function powerHandler(){
+	status.innerHTML = 'on';
+	status.classList.add('on');
+	washer.classList.add('shaking');
+	door.removeEventListener('click', doorhandler);
+	// wait for the iteration to end and then change words an other stuff
+	bubble.addEventListener('animationiteration', after);
+	
+	function after(){
+		disableInterval();
+		showSay("Oops, my head is spinning");
+	}
+	setTimeout(function(){
+		bubble.removeEventListener('animationiteration', after);
+	}, 3000);
+
+	cancelAnimations(leye, reye);
+	this.classList.toggle('active');
+	if(!running){
+		start();
+		running = true;
+	}
+	owl.classList.add('rotate');
+	setTimeout(function(){
+		googleyEyes();
+		showVeins(veins);
+	}, 2000);
+	counter = 0;
+
+	// =========Animation End==============
+
+	owl.addEventListener('animationend', endanim);
+
+	function endanim(){
+		status.innerHTML = 'off';
+		status.classList.remove('on');
+		washer.classList.remove('shaking');
+		owl.removeEventListener('animationend', endanim);
+		stop();
+		graduallyHideVeins();
+		leye.classList.remove("googley");
+		reye.classList.remove("googley");
+		owl.classList.remove("rotate");
+		counter = 0;
+
+		bubble.addEventListener('animationiteration', after);
+		
+		function after(){
+			disableInterval();
+			showSay("Well, that was rough");
+			complains = setInterval(shout, 3000, words);
+		}
+		setTimeout(function(){
+			bubble.removeEventListener('animationiteration', after);
+		}, 3000);
+		door.addEventListener('click', doorhandler);
+
+	};
+}
+
+// helper functions
+hideVeins();
+function hideVeins(){
+	veins.forEach(vein => {
+		vein.style.display = "none";
+	});
+}
+
+function graduallyHideVeins(){
+	veins.forEach(vein => {
+		vein.style.opacity = 0;
+	});
+}
+
+function start() {
+	outer.classList.add('active');
+}
+
+function stop() {
+  outer.addEventListener('animationiteration', callback);
+  running = false;
+
+  function callback() {
+    outer.classList.remove('active');
+    outer.removeEventListener('animationiteration', callback);
+  }
+}
+
+function shout(arr){
+	var randWord = arr[Math.floor(arr.length * Math.random())];
+	showSay(randWord);
+	counter++;
+	if(counter >= arr.length){
+		counter = 0;
+	}
+}
+
+function disableInterval(){
+	clearInterval(complains);
+	wordcontainer.innerHTML = '';
+}
+
+function showSay(phrase){
+	wordcontainer.innerHTML = phrase;
+	var utterance = new SpeechSynthesisUtterance(phrase);
+	utterance.pitch = 1.6;
+	utterance.rate = 1.2;
+	synthesis.speak(utterance);
+}
+
+// what happens when someone opens the door
+door.addEventListener('click', doorhandler);
+
+function doorhandler(){
+	pwrbtn.removeEventListener('click', powerHandler);
+	var bubble = document.querySelector(".bubble");
+
+	bubble.addEventListener('animationiteration', function(){
+		showSay('Oh, finally, Thanks!');
+		var synthesis = '';
+		setInterval(function(){
+			bubble.style.display = 'none';
+		}, 2500);
+		owl.classList.remove('rotate');
+		owl.classList.add('free');
+	});
+
+	clearInterval(complains);
+	this.classList.add('open');
+	rwing.classList.add('rflitter');
+	lwing.classList.add('lflitter');
+}
+
+function googleyEyes(){
+	leye.classList.add("googley");
+	reye.classList.add("googley");
+}
+function showVeins(vein){
+	vein.forEach(vein => {
+		vein.style.opacity = 1;
+		vein.style.display = "block";
+	});
+}
+
+function cancelAnimations(el){
+	for (var i = 0; i < arguments.length; i++) {
+	    arguments[i].style.animation = 0;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+  </script>
+ </BODY>
+</HTML>

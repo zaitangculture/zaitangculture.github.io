@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   html {
+  font-size: 62.5%;
+}
+
+body {
+  background: lightgray;
+  font-size: 1.4rem;
+}
+body ul {
+  list-style: none;
+}
+body a {
+  text-decoration: none !important;
+  outline: none !important;
+  color: inherit;
+}
+
+*, h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.workspace {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.workspace.active .gallery-content {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.workspace.active .mobile-body {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 0 2rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.bg-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-image: url("http://doodling.surge.sh/assets/images/bg-1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-filter: blur(1rem);
+          filter: blur(1rem);
+  transition: all .5s;
+}
+
+.gallery-content {
+  position: fixed;
+  bottom: 0;
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  background-color: black;
+  height: 7.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 3rem;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-transform: translateY(7.5rem);
+          transform: translateY(7.5rem);
+  transition: all 1s;
+  overflow: auto;
+}
+.gallery-content__img {
+  width: 4.5rem;
+  height: 4.5rem;
+  flex-shrink: 0;
+  margin-right: 2rem;
+  border: .1rem solid white;
+  cursor: pointer;
+  transition: all .5s;
+}
+.gallery-content__img.active {
+  border-width: .2rem;
+  border-color: purple;
+}
+.gallery-content__img:last-child {
+  margin-right: 0;
+}
+.gallery-content__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.mobile-body {
+  position: relative;
+  flex-shrink: 0;
+  width: 35.6rem;
+  height: 72.2rem;
+  border-radius: 6rem;
+  display: flex;
+  justify-content: center;
+  background-image: url("http://doodling.surge.sh/assets/images/bg-1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  opacity: 0;
+  box-shadow: none;
+  transition: all 1s;
+  margin-bottom: 7.5rem;
+}
+.mobile-body:hover {
+  box-shadow: none !important;
+  -webkit-transform: scale(0.95) !important;
+          transform: scale(0.95) !important;
+}
+.mobile-body .layer-1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: .4rem solid #dcdcdc;
+  border-radius: 6rem;
+}
+.mobile-body .layer-2 {
+  position: absolute;
+  left: 0.3rem;
+  right: 0.3rem;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  border: 1.6rem solid #000000;
+  border-radius: 5.6rem;
+}
+.mobile-body .layer-gradient-1 {
+  position: absolute;
+  left: 1.1rem;
+  right: 1.1rem;
+  top: 1.1rem;
+  bottom: 1.1rem;
+  border: .3rem solid #484848;
+  border-radius: 5rem;
+  -webkit-filter: blur(1px);
+          filter: blur(1px);
+  opacity: .5;
+}
+.mobile-body .layer-gradient-2 {
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  top: 0.7rem;
+  bottom: 0.7rem;
+  border: .4rem solid #bcbcbc;
+  border-radius: 5.6rem;
+  opacity: .5;
+  -webkit-filter: blur(1px);
+          filter: blur(1px);
+}
+.mobile-body .top-bar {
+  width: 17.3rem;
+  height: 2.8rem;
+  background-color: #000000;
+  position: absolute;
+  top: 1.7rem;
+  left: 9.1rem;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+.mobile-body .top-bar:before {
+  content: "";
+  position: absolute;
+  bottom: 1.25rem;
+  left: -0.9rem;
+  width: .8rem;
+  height: .8rem;
+  border: .4rem solid transparent;
+  border-top: .4rem solid black;
+  border-right: .4rem solid black;
+  border-top-right-radius: .6rem;
+  -webkit-transform: rotate(28deg);
+          transform: rotate(28deg);
+}
+.mobile-body .top-bar:after {
+  content: "";
+  position: absolute;
+  bottom: 1.25rem;
+  right: -0.9rem;
+  width: .8rem;
+  height: .8rem;
+  border: .4rem solid transparent;
+  border-top: .4rem solid black;
+  border-left: .4rem solid black;
+  border-top-right-radius: .6rem;
+  -webkit-transform: rotate(-28deg);
+          transform: rotate(-28deg);
+}
+.mobile-body .camera {
+  position: absolute;
+  bottom: 1.1rem;
+  right: 4.5rem;
+  right: 4.5rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: red;
+  border-radius: 50%;
+  border: .2rem solid #1e1f22;
+  background-image: linear-gradient(right, #091528, #2363a6);
+}
+.mobile-body .speaker {
+  position: absolute;
+  bottom: 1.3rem;
+  right: 6.5rem;
+  width: 4rem;
+  height: .6rem;
+  background-color: #161616;
+  border-radius: .2rem;
+}
+.mobile-body .button {
+  width: .3rem;
+  height: 2.5rem;
+  background-color: #dcdcdc;
+  position: absolute;
+  left: -.2rem;
+  border-top-left-radius: .3rem;
+  border-bottom-left-radius: .3rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-right: none;
+}
+.mobile-body .button.silent {
+  top: 9.8rem;
+}
+.mobile-body .button.volume-up {
+  top: 15rem;
+  height: 5rem;
+}
+.mobile-body .button.volume-down {
+  top: 21.6rem;
+  height: 5rem;
+}
+.mobile-body .button.power {
+  top: 16.9rem;
+  height: 5rem;
+  right: -.3rem;
+  left: auto;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+@media (max-width: 600px) {
+  .gallery-content {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .mobile-body {
+    -webkit-transform: scale(0.65) !important;
+            transform: scale(0.65) !important;
+  }
+  .mobile-body:hover {
+    -webkit-transform: scale(0.6) !important;
+            transform: scale(0.6) !important;
+  }
+
+  .gallery-content__img:last-child {
+    margin-right: 2rem !important;
+  }
+}
+@media (max-height: 800px) {
+  .mobile-body {
+    -webkit-transform: scale(0.77) !important;
+            transform: scale(0.77) !important;
+  }
+  .mobile-body:hover {
+    -webkit-transform: scale(0.68) !important;
+            transform: scale(0.68) !important;
+  }
+}
+@media (max-height: 630px) {
+  .mobile-body {
+    -webkit-transform: scale(0.53) !important;
+            transform: scale(0.53) !important;
+  }
+  .mobile-body:hover {
+    -webkit-transform: scale(0.48) !important;
+            transform: scale(0.48) !important;
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <div class="workspace">
+  <div class="bg-content"></div>
+  <div class="mobile-body">
+    <div class="top-bar">
+      <div class="camera"></div>
+      <div class="speaker"></div>
+    </div>
+    <div class="button volume-up"></div>
+    <div class="button volume-down"></div>
+    <div class="button silent"></div>
+    <div class="button power"></div>
+    <div class="layer-2"></div>
+    <div class="layer-1"></div>
+    <div class="layer-gradient-1"></div>
+    <div class="layer-gradient-2"></div>
+  </div>
+  <div class="gallery-content">
+    <div class="gallery-content__img active" data-img="http://doodling.surge.sh/assets/images/bg-1.jpg"><img src="http://doodling.surge.sh/assets/images/bg-1.jpg"></div>
+    <div class="gallery-content__img" data-img="http://doodling.surge.sh/assets/images/bg-2.jpg"><img src="http://doodling.surge.sh/assets/images/bg-2.jpg"></div>
+    <div class="gallery-content__img" data-img="http://doodling.surge.sh/assets/images/bg-3.jpg"><img src="http://doodling.surge.sh/assets/images/bg-3.jpg"></div>
+    <div class="gallery-content__img" data-img="http://doodling.surge.sh/assets/images/bg-4.jpg"><img src="http://doodling.surge.sh/assets/images/bg-4.jpg"></div>
+    <div class="gallery-content__img" data-img="http://doodling.surge.sh/assets/images/bg-5.jpg"><img src="http://doodling.surge.sh/assets/images/bg-5.jpg"></div>
+    <div class="gallery-content__img" data-img="http://doodling.surge.sh/assets/images/bg-6.jpg"><img src="http://doodling.surge.sh/assets/images/bg-6.jpg"></div>
+    <div class="gallery-content__img" data-img="http://doodling.surge.sh/assets/images/bg-7.jpg"><img src="http://doodling.surge.sh/assets/images/bg-7.jpg"></div>
+  </div>
+</div>
+  <script>
+   window.onload = function () {
+  document.querySelector('.workspace').classList.add('active');
+};
+
+var gallery = document.querySelectorAll('.gallery-content__img'),
+    mobileBody = document.querySelector('.mobile-body'),
+    bg = document.querySelector('.bg-content');
+
+gallery.forEach(function (g) {
+  g.addEventListener('click', function () {
+    var imgSrc = this.dataset.img,
+        activeGallery = document.querySelector('.gallery-content__img.active');
+
+    activeGallery.classList.remove('active');
+    this.classList.add('active');
+    bg.style.backgroundImage = 'url(\'' + imgSrc + '\')';
+    mobileBody.style.backgroundImage = 'url(\'' + imgSrc + '\')';
+  });
+});
+  </script>
+ </BODY>
+</HTML>

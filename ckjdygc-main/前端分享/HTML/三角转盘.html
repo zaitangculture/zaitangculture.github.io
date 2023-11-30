@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   * {
+  margin: 0;
+  border: none;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+body {
+  background: black;
+  position: relative;
+}
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+canvas.flash {
+  filter: blur(1px) contrast(3);
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+  <script>
+   /**
+ * Had fun with particles again, this time for the #CodePenChallenge!
+ *
+ * @author Alexandre Andrieux <alex@icosacid.com>
+ * @since 2018-03-05
+ */
+
+var Stargate = {};
+
+Stargate.init = function() {
+  // Create canvas node
+  var flashCanvas = document.createElement('canvas'),
+      permanentCanvas = document.createElement('canvas');
+  flashCanvas.className += 'flash';
+  permanentCanvas.className = 'permanent';
+  flashCanvas.width = permanentCanvas.width = window.innerWidth;
+  flashCanvas.height = permanentCanvas.height = window.innerHeight;
+  this.fCtx = flashCanvas.getContext('2d');
+  this.pCtx = permanentCanvas.getContext('2d');
+  this.width = flashCanvas.width;
+  this.height = flashCanvas.height;
+  this.baseDim = Math.min(this.width, this.height);
+  
+  // Append canvas to body
+  document.getElementsByTagName('body')[0].appendChild(permanentCanvas);
+  document.getElementsByTagName('body')[0].appendChild(flashCanvas);
+  
+  // Set global composite operation
+  this.fCtx.globalCompositeOperation = 'lighter';
+  
+  this.xC = this.width / 2;
+  this.yC = this.height / 2;
+  this.r = 0.8 * this.baseDim / 2;
+  this.particles = [];
+  this.population = 20;
+  this.stepCount = 0;
+  
+  // Give birth
+  for (var i = 0; i < this.population; i++) {
+    Stargate.birth(i);
+  }
+  
+};
+
+Stargate.birth = function(i) {
+  var r = this.r,
+      angle = i/4 * 2 * Math.PI,
+      x = this.xC + r * Math.cos(angle),
+      y = this.yC + r * Math.sin(angle),
+      speed = 0.1 * (-0.5 + Math.random());
+  
+  var particle = {
+    x: x,
+    y: y,
+    r: r,
+    size: 30,
+    angle: angle,
+    speed: speed
+  };
+  
+  this.particles.push(particle);
+};
+
+Stargate.evolve = function() {
+  this.stepCount++;
+  this.move();
+  this.draw();
+};
+
+Stargate.move = function() {
+  for (var i = 0; i < this.particles.length; i++) {
+    var p = this.particles[i];
+    p.angle += p.speed;
+    p.x = this.xC + p.r * Math.cos(p.angle);
+    p.y = this.yC + p.r * Math.sin(p.angle);
+  }
+};
+
+Stargate.draw = function() {
+  // Clear canvases
+  this.pCtx.clearRect(0, 0, this.width, this.height);
+  this.fCtx.clearRect(0, 0, this.width, this.height);
+  
+  // Draw background circles
+  
+  for (var k = 0; k < this.baseDim * 0.8; k += 15) {
+    var rad = 0.002 * k * k * (1.5 + 0.5 * Math.sin(this.stepCount / 50)) * (1 + Math.cos(k / 20));
+    this.pCtx.beginPath();
+    this.pCtx.arc(this.xC, this.yC, rad, 0, 2 * Math.PI, true);
+    this.pCtx.lineWidth = 300 / Math.max(8, rad);
+    var hue = 180 + rad / 4,
+        color = 'hsla(' + hue + ', 83%, 43%, 1)';
+    this.pCtx.strokeStyle = color;
+    this.pCtx.shadowBlur = 10;
+    this.pCtx.shadowColor = color;
+    this.pCtx.stroke();
+    this.pCtx.closePath();
+  }
+  
+  // Draw particles
+  for (var i = 0; i < this.particles.length; i++) {
+    var p = this.particles[i];
+    
+    // Draw line between me and my right neighbour on the list
+    if (i < this.particles.length - 1) {
+      var randomIndex = Math.floor((this.particles.length) * Math.random());
+      //var nextParticle = this.particles[randomIndex];
+      var nextParticle = this.particles[i + 1];
+      this.fCtx.moveTo(p.x, p.y);
+      this.fCtx.lineTo(nextParticle.x, nextParticle.y);
+      // Add circle somewhere on the way
+      var prop = 0.5;//Math.random(),
+          x = prop * p.x + (1 - prop) * nextParticle.x,
+          y = prop * p.y + (1 - prop) * nextParticle.y;
+      this.fCtx.arc(x, y, 10, 0, 2 * Math.PI, true);
+      this.fCtx.lineWidth = 0.5;
+      this.fCtx.strokeStyle = 'white';
+      this.fCtx.stroke();
+      this.fCtx.closePath();
+    }
+    // Draw triangles around the particle position
+    this.fCtx.beginPath();
+    for (var j = 0; j < 5; j++) {
+      var angle = j * 2/3 * Math.PI + p.angle + Math.PI / 3;
+      var x = p.x + p.size * Math.cos(angle),
+          y = p.y + p.size * Math.sin(angle);
+      if (j == 0) this.fCtx.moveTo(x, y);
+      else {
+        this.fCtx.lineTo(x, y);
+      }
+    }
+    
+    //this.fCtx.arc(p.x, p.y, p.size, 0, 2 * Math.PI, true);
+    this.fCtx.fillStyle = 'rgba(0, 0, 0, 1)';
+    this.fCtx.strokeStyle = 'hsla(260, 83%, 52%, 1)';
+    this.fCtx.lineWidth = 6;
+    this.fCtx.fill();
+    this.fCtx.stroke();
+    this.fCtx.closePath();
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  Stargate.init();
+  Stargate.draw();
+  
+  setInterval(function() {
+    Stargate.evolve();
+  }, 50);
+});
+
+  </script>
+ </BODY>
+</HTML>

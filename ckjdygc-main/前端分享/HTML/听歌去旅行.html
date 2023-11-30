@@ -1,0 +1,616 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body{
+    background-color:#1d1f20;
+    overflow:hidden;
+    }
+    body,html{
+        height:100%;
+        width:100%;
+        margin:0;
+        padding:0;
+    }
+    #container{
+      max-width:730px;
+      width:100%;
+      overflow:hidden;
+      position:absolute;
+      top:50%;
+      left:50%;
+      margin-right:-50%;
+      transform:translate(-50%,-50%);
+    }
+  </style>
+ </HEAD>
+
+ <BODY>
+ <!--=================================================-->
+<!--Pen by Margus Lillemägi | codepen.io/VisualAngle/-->
+<!--=================================================-->
+<div id="container">  
+
+<svg id="mainSvg" viewBox="0 0 730 411" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMin slice">
+  
+  <defs>
+      <style type="text/css"><![CDATA[
+        /*Link your web fonts here*/
+        @import url( "https://fonts.googleapis.com/css?family=Ubuntu");
+        /*Text style here*/
+        text{
+          font-family: "Ubuntu", sans-serif;
+          font-weight: bold;
+          -webkit-user-select: none;  
+          -moz-user-select: none;    
+          -ms-user-select: none;      
+          user-select: none;
+        }
+        #htmlBtn{/*Safari fix for SVG button*/
+          width:730px;
+          height:320px;
+          background-color:none;
+          position: absolute;
+          display: inline-block;
+          top: 0;
+          left: 0;
+          margin: 0;
+          padding:0;
+          cursor:pointer;
+         }
+        .button{
+          cursor:pointer;
+        }     
+        .hidden{
+          opacity:0;
+        }
+        #mainSvg{ 
+          width: 100%; 
+          padding-bottom: 56.3%;
+          height: 1px; 
+          overflow: visible; 
+          visibility: hidden; 
+        }
+      ]]></style>
+    </defs>
+  
+  <!--JAVASCRIPT-->
+    <script type="text/javascript" xlink:href="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script type="text/javascript">
+			<![CDATA[
+        // INITIALIZE COMPOSITION AT PAGE LOAD
+        document.addEventListener("DOMContentLoaded", function(event) {
+          window.onload = function() {
+
+            
+            // DECLARE VARIABLES
+            var mainSvg,
+                bus,
+                busBody,
+                chasee,
+                wheels,
+                wheelFront,
+                wheelMid,
+                wheelRear,
+                interior,
+                boy,
+                boyHead,
+                girl,
+                girlHead,
+                busInterScene,
+                priceScene,
+                kolm,
+                tallinn,
+                tartu,
+                busScene,
+                houseFront,
+                houseMid,
+                masterTl,
+                sceneTl,
+                busTl,
+                interTl,
+                priceTl,
+                logoTl,
+                logoScene,
+                button;
+
+            // SET OBJECT REFERENCES
+            mainSvg = document.getElementById("mainSvg");
+            bus = document.getElementById("bus");
+            busScene = document.getElementById("busScene");
+            busInterScene = document.getElementById("busInterScene");
+            priceScene = document.getElementById("priceScene");
+            logoScene = document.getElementById("logoScene");
+            busBody = document.getElementById("busBody");
+            chasee = document.getElementById("chasee");
+            wheels = document.getElementById("wheels");
+            wheelFront = document.getElementById("wheelFront");
+            wheelMid = document.getElementById("wheelMid");
+            wheelRear = document.getElementById("wheelRear");
+            houseFront = document.getElementById("houseFront");
+            houseMid = document.getElementById("houseMid");
+            interior = document.getElementById("interior");
+            boy = document.getElementById("boy");
+            boyHead = document.getElementById("boyHead");
+            girl = document.getElementById("girl");
+            girlHead = document.getElementById("girlHead");
+            kolm = document.getElementById("kolm");
+            tallinn = document.getElementById("tallinn");
+            tartu = document.getElementById("tartu");
+            button = document.getElementById("button");
+
+            // COMPOSITION SETTINIGS
+            TweenMax.set(mainSvg, { visibility: "visible" });
+            TweenMax.set([busScene, busInterScene, priceScene, logoScene], { autoAlpha: 0 });
+            TweenMax.set([houseFront,houseMid], { x: -750,  autoAlpha: 0});
+
+
+            // MASTER TIMLINE
+            masterTl = new TimelineMax({ repeat:-1, repeatDelay:2});
+            
+            // SCENE TIMLINE
+            function getViewTl() {
+              var viewTl = new TimelineMax({ repeat: -1});
+
+            function getSceneTl() {
+              sceneTl = new TimelineMax({ });
+              
+              //Scene 1 // Bus Interior
+              sceneTl.set(busInterScene, { attr: { viewBox: "5 340 400 175.34"}},"-=1.5");
+              sceneTl.to(busInterScene, 1, {autoAlpha:1},"-=1.5");
+							sceneTl.to(busInterScene, 6, {attr: { viewBox: "5 320 725 317.8"}, rotation: 0.01, z:0.01, ease: Sine.easeInOut});
+              
+              //Scene 2 // Bus Scene
+              sceneTl.set(busScene, { attr: { viewBox: "469 211 130 56.98" }});
+              sceneTl.to(busInterScene, 1, {autoAlpha:0, delay:1});
+              sceneTl.to(busScene, 1, {autoAlpha:1},"-=1.5");
+              sceneTl.to(busScene, 12, { attr: { viewBox: "0 0 730  320" }, rotation: 0.01, z:0.01, delay:1, ease: Sine.easeInOut});
+              
+              //Scene 3 // Price Scene
+              sceneTl.set(priceScene, { attr: { viewBox: "0 640 730 320"}});
+              sceneTl.to(busScene, 1, {autoAlpha:0, delay:2});
+              sceneTl.to(priceScene, 1, {autoAlpha:1},"-=1.5");
+              
+              //Scene 4 // Logo
+              sceneTl.set(logoScene, { attr: { viewBox: "0 960 730 320"}});
+              sceneTl.to(priceScene, 1, {autoAlpha:0, delay:4.9});
+              sceneTl.to(logoScene, 1, {autoAlpha:1},"-=1.5");
+              sceneTl.to(logoScene, 1, {autoAlpha:0, delay:4.9});
+              
+              return sceneTl;
+            }
+
+             function initViewTl() {
+                viewTl.add(getSceneTl(), 0);
+              }
+              initViewTl();
+
+              return viewTl;
+            }
+            
+            //CREATE BUS TIMELINE
+            function getBusTl() {
+              var busTl = new TimelineMax({ repeat: -1 });
+
+              function getBusRotTl() {
+                var busRotTl = new TimelineMax( {repeat: -1, yoyo: true} );
+                busRotTl.to([busBody,chasee], 0.34, {transformOrigin: '30% 100%',rotation: -0.2, z:0.01, ease: Sine.easeInOut});
+                busRotTl.to([busBody,chasee], 0.54, {rotation: 0.2, z:0.01, repeat: 1,  yoyo: true, ease: Sine.easeInOut});
+                return busRotTl;
+              }
+              function getBusBounceTl() {
+                var busBounceTl = new TimelineMax({repeat: -1, yoyo: true});
+                busBounceTl.to([busBody,chasee], 0.49, {y: 1.3, rotation: 0.01, z:0.01, ease: Sine.easeIn});
+                busBounceTl.to([busBody,chasee], 0.5, {y: -0.3, rotation: 0.01, z:0.01, ease: Sine.easeOut});
+                return busBounceTl;
+              }
+              function getBusWheelsBounceTl() {
+                var busWheelsBounceTl = new TimelineMax({});
+                busWheelsBounceTl.to(wheels, 0.55, {y: -1, transformOrigin: '50% 100%', rotation: 0.01, z:0.01, ease: Linear.easeNone, repeat: -1, yoyo: true});
+                return busWheelsBounceTl;
+              }
+              function getBusWheelsRotTl() {
+                var busWheelsRotTl = new TimelineMax({repeat: -1});
+                busWheelsRotTl.to([wheelFront, wheelMid, wheelRear], 0.02, {transformOrigin: '50% 50%', rotation: 72, z:0.01, ease: Linear.easeNone});
+                return busWheelsRotTl;
+              }
+
+              function initBusTl() {
+                busTl.add(getBusRotTl(), 0).add(getBusBounceTl(), 0).add(getBusWheelsBounceTl(), 0).add(getBusWheelsRotTl(), 0);
+              }
+              initBusTl();
+
+              return busTl;
+
+            }
+            
+            //CREATE BUS BG TIMELINE
+            function getBgTl() {
+              var bgTl = new TimelineMax({ repeat: -1 });
+              function getHouseFrontTl() {
+                var houseFrontTl = new TimelineMax( {repeat: -1} );
+                houseFrontTl.set(houseFront, {autoAlpha:1});
+                houseFrontTl.to(houseFront, 10, {x: 750, rotation: 0.01, z:0.01, ease: Linear.easeNone});
+                houseFrontTl.set(houseFront, {autoAlpha:0});
+                return houseFrontTl;
+              }
+              function getHouseMidTl() {
+                var houseMidTl = new TimelineMax( {repeat: -1} );  
+                houseMidTl.set(houseMid, {autoAlpha:1});
+                houseMidTl.to(houseMid, 10, {x: 750, rotation: 0.01, z:0.01, ease: Linear.easeNone});
+                houseMidTl.set(houseMid, {autoAlpha:0});
+                return houseMidTl;
+              }
+              function initBgTl() {
+                bgTl.add(getHouseFrontTl(), 0).add(getHouseMidTl(), 5);
+              }
+              initBgTl();
+              return bgTl;
+            }
+            
+            //CREATE BUS INTER TIMELINE 
+
+            function getInterTl() {
+              interTl = new TimelineMax({ repeat: -1, yoyo: true });
+              function getInterViewTl() {
+                var interViewTl = new TimelineMax();
+                interViewTl.to(interior,  0.49, { y: 1.3,  x: 1.3,  ease: Sine.easeIn});
+                interViewTl.to(interior,  0.5, {y: -0.3, x:  -0.3, ease: Sine.easeIn});
+                return interViewTl;
+              }
+
+              function getBoyBounceTl() {
+                var boyBounceTl = new TimelineMax();
+                boyBounceTl.to(boy, 0.49, {y: 1.3,  x: 1.3, rotation: 0.01, z:0.01, ease: Sine.easeIn});
+                boyBounceTl.to(boy, 0.5, { y: -0.3, x:  -0.3, rotation: 0.01, z:0.01, ease: Sine.easeOut});
+                return boyBounceTl;
+              }
+
+              function getBoyHeadTl() {
+                var boyHeadTl = new TimelineMax();
+                boyHeadTl.to(boyHead, 0.49, {y: 1.3,  x: 1.3, transformOrigin: '50% 50%', rotation: 1.5,  z:0.01, ease: Sine.easeIn});
+                boyHeadTl.to(boyHead, 0.5, { y: -0.3, x:  -0.3, transformOrigin: '50% 50%', rotation: -0.5, z:0.01, ease: Sine.easeOut});
+                return boyHeadTl;
+              }
+
+               function getGirlBounceTl() {
+                var girlBounceTl = new TimelineMax();
+                girlBounceTl.to(girl, 0.49, {y: 1.3,  x: 1.3, rotation: 0.01, z:0.01, ease: Sine.easeIn});
+                girlBounceTl.to(girl, 0.5, { y: -0.3, x:  -0.3, rotation: 0.01, z:0.01, ease: Sine.easeOut});
+                return girlBounceTl;
+              }
+
+              function getGirlHeadTl() {
+                var grilHeadTl = new TimelineMax();
+                grilHeadTl.to(girlHead, 0.49, {y: 1.3,  x: 1.3, transformOrigin: '50% 50%', rotation: 1.5,  z:0.01, ease: Sine.easeIn});
+                grilHeadTl.to(girlHead, 0.5, { y: -0.3, x:  -0.3, transformOrigin: '50% 50%', rotation: -0.5, z:0.01, ease: Sine.easeOut});
+                return grilHeadTl;
+              }
+
+              function initInterTl() {
+                interTl.add(getInterViewTl(), 0).add(getBoyBounceTl(), 0).add(getBoyHeadTl(), 0).add(getGirlBounceTl(), 0).add(getGirlHeadTl(), 0);
+              }
+              initInterTl();
+
+              return interTl;
+            }
+
+            //CREATE PRICE TIMELINE 
+
+            function getPriceTl() {
+              priceTl = new TimelineMax({ repeat: -1,  yoyo: true, delay:0.5});
+
+              function getKolmTl() {
+                var kolmTl = new TimelineMax({});
+                kolmTl.set(kolm, { transformOrigin: '50% 50%'});
+                kolmTl.from(kolm,  0.5, {scale: 0.8, rotation: 0.01, z:0.01, ease: Sine.easeIn});
+                return kolmTl;
+              }
+
+              function getRouteTl() {
+                var routeTl = new TimelineMax({});
+                routeTl.set([tallinn, tartu], { transformOrigin: '50% 50%'});
+                routeTl.from(tallinn,  0.5, {scale: 0.8, rotation: 0.01, z:0.01, ease: Sine.easeIn});
+                routeTl.from(tartu,  0.5, {scale: 0.8, rotation: 0.01, z:0.01, ease: Sine.easeIn});
+                return routeTl;
+              }
+              function initPriceTl() {
+                priceTl.add(getKolmTl(), 0).add(getRouteTl(), 0);
+              }
+              initPriceTl();
+
+              return priceTl;
+            }
+
+            function initMasterTl() {
+              masterTl.add(getViewTl(),0).add(getBusTl(), 0).add(getBgTl(), -10).add(getInterTl(), 0).add(getPriceTl(), 0);
+            }
+            initMasterTl();
+            
+            
+            function showTime() {
+  time.innerHTML =  masterTl.time().toFixed(2);
+}
+
+          };
+        });
+
+      ]]>
+		</script>
+  
+  <!--HD 16:9 Aspect Ratio convert-->
+  <path fill="black" d="M0 0h730v411H0z"/>
+  
+  <!--Main wrapper-->
+  <svg id="wrapper" viewBox="0 0 730 320">
+  
+  <!--Bus on road scene-->
+  
+  <svg id="busScene" viewBox="0 0 730 320">
+    
+    <path fill="#ddb45a" d="M0 0h730v320H0z"/>
+
+        <path id="houseMid" fill="none" stroke="white" stroke-width="5" d="M-5.657 233.026H67.24v-150.1l62.004-41.72 61.034 41.72v150.1h108.754v-74c-154.068-161.927 167.056-158.2 13.344 0v74h92.896v-142h139.344v142h88.224v-60c-166.143-166.144 176.277-163.83 12.448 0v60h92.224" stroke-linecap="round"/>
+    
+         <path id="houseFront" fill="none" stroke="white" stroke-width="5" d="M-5.657 233.026H67.24v-150.1l62.004-41.72 61.034 41.72v150.1h108.754v-74c-154.068-161.927 167.056-158.2 13.344 0v74h92.896v-142h139.344v142h88.224v-60c-166.143-166.144 176.277-163.83 12.448 0v60h92.224" stroke-linecap="round"/>
+
+    <g id="bus" transform="translate(90 0)">
+      <!--bus shadow-->
+      <ellipse cx="288.157" cy="253.088" fill="#997d3e" rx="240.569" ry="11.164"/>
+
+      <!--bus chasee-->
+      <path id="chasee" fill="#2b3646" d="M51.062 226.253c-.995 5.717.68 19.29 3 19.29l77.533-.53h390.96c8.5-.25 39.017-2.41 39.017-8.98v-27.27H60.492c-1.237 8.838-8.193 15.37-9.43 17.49z"/>
+      
+      <!--bus wheels-->    
+      <g id="wheels">
+          <!--wheelFront-->  
+          <g id="wheelFront" transform="translate(-155.8 -73)">
+            <circle cx="306.829" cy="311.2" r="17" fill="#caba9b" stroke="#37465a" stroke-width="7" stroke-miterlimit="10"/>
+            <circle cx="306.829" cy="311.2" r="5.31" fill="#caba9b" stroke="#37465a" stroke-width="3.107" stroke-linecap="round"/>
+            <g fill="#2b3646" transform="translate(.018 .104)">
+              <ellipse cx="306.861" cy="299.586" rx="3.387" ry="1.099"/>
+              <ellipse cx="306.829" cy="322.651" rx="3.387" ry="1.099"/>
+            </g>
+            <g fill="#2b3646" transform="rotate(120.925 306.825 311.176)">
+              <ellipse cx="306.861" cy="299.586" rx="3.387" ry="1.099"/>
+              <ellipse cx="306.829" cy="322.651" rx="3.387" ry="1.099"/>
+            </g>
+            <g fill="#2b3646" transform="rotate(60.423 306.823 311.164)">
+              <ellipse cx="306.861" cy="299.586" rx="3.387" ry="1.099"/>
+              <ellipse cx="306.829" cy="322.651" rx="3.387" ry="1.099"/>
+            </g>
+          </g>
+          <!--wheelMid--> 
+          <g id="wheelMid" transform="translate(102 -73)">
+            <circle cx="306.829" cy="311.2" r="17" fill="#caba9b" stroke="#344356" stroke-width="7" stroke-miterlimit="10"/>
+            <circle cx="306.829" cy="311.2" r="5.31" fill="#caba9b" fill-rule="evenodd" stroke="#344356" stroke-width="3.107" stroke-linecap="round"/>
+            <g fill="#2b3646" fill-rule="evenodd" transform="translate(.018 .104)">
+              <ellipse cx="306.861" cy="299.586" rx="3.387" ry="1.099"/>
+              <ellipse cx="306.829" cy="322.651" rx="3.387" ry="1.099"/>
+            </g>
+            <g fill="#2b3646" fill-rule="evenodd" transform="rotate(120.925 306.825 311.176)">
+              <ellipse cx="306.861" cy="299.586" rx="3.387" ry="1.099"/>
+              <ellipse cx="306.829" cy="322.651" rx="3.387" ry="1.099"/>
+            </g>
+            <g fill="#2b3646" fill-rule="evenodd" transform="rotate(60.423 306.823 311.164)">
+              <ellipse cx="306.861" cy="299.586" rx="3.387" ry="1.099"/>
+              <ellipse cx="306.829" cy="322.651" rx="3.387" ry="1.099"/>
+            </g>
+          </g>
+          <!--wheelRear-->    
+          <g id="wheelRear" transform="translate(153.5 -73)">
+            <circle cx="306.829" cy="311.2" r="17" fill="#caba9b" stroke="#344356" stroke-width="7" stroke-miterlimit="10"/>
+            <circle cx="306.829" cy="311.2" r="5.31" fill="#caba9b" fill-rule="evenodd" stroke="#344356" stroke-width="3.107" stroke-linecap="round"/>
+            <g fill="#2b3646" fill-rule="evenodd" transform="translate(.018 .104)">
+              <ellipse cx="306.861" cy="299.586" rx="3.387" ry="1.099"/>
+              <ellipse cx="306.829" cy="322.651" rx="3.387" ry="1.099"/>
+            </g>
+            <g fill="#2b3646" fill-rule="evenodd" transform="rotate(120.925 306.825 311.176)">
+              <ellipse cx="306.861" cy="299.586" rx="3.387" ry="1.099"/>
+              <ellipse cx="306.829" cy="322.651" rx="3.387" ry="1.099"/>
+            </g>
+            <g fill="#2b3646" fill-rule="evenodd" transform="rotate(60.423 306.823 311.164)">
+              <ellipse cx="306.861" cy="299.586" rx="3.387" ry="1.099"/>
+              <ellipse cx="306.829" cy="322.651" rx="3.387" ry="1.099"/>
+            </g>
+          </g>
+      </g>
+      <!--busBody--> 
+      <g id="busBody">
+          <path fill="#516684" d="M131.314 116.736c-19.996 0-26.78 2.604-36.916 8.455-4.4 2.55-8.545 6.74-12.283 11.58l-5.674 8.3c-6.96 11.3-11.64 23.14-12.44 25.74-6.24 18.73-11.49 43.31-9.89 44.9 4.6 3.19-3.18 10.26-3.18 10.26-.78 4.74-.64 8.67.54 13.08h77.18c-.88-5.18 1.51-24.95 22.59-24.95 19.41 0 22.84 18.51 21.97 24.96H386.2c0-5 2.036-24.71 22.303-24.71 22.055 0 23.153 19.32 23.153 24.71h6.543c0-5.39 1.36-24.71 22.5-24.71 20.64 0 22.46 19.96 22.46 25.21 41.54 0 62.75.08 78.12-4.03 3.81-1.15 7.48-1.84 7.86-3.27.44-2.03.67-3.56.79-4.33.09-.53.36-1.41.97-2.12.18-.79.39-2.14 0-4.42-.14-.82-.89-.79-.97-1.85-1.94-27.58-4.72-54.91-8.84-81.58-.9-6.2-5.32-11.32-11.9-11.32-1.64 0-53.36-.5-100.12-.96-.287-1.96-1.95-3.46-3.994-3.46h-18.14c-1.954 0-3.575 1.38-3.96 3.21-37.754-.37-50.03-.49-75.28-.74-.615-1.45-2.05-2.47-3.736-2.47H325.8c-1.58 0-2.93.91-3.6 2.22l-28.52-.28c-.62-3.34-4.384-4.52-6.037-4.96-5.676-1.52-12.532-2.43-25.983-2.43z"/>
+          <path fill="#475973" d="M55.76 201.353s-3.24 12.676-1.647 14.268c4.596 3.19-3.182 10.26-3.182 10.26-.77 4.74-.64 8.67.54 13.08h77.18c-.88-5.18 1.51-24.95 22.59-24.95 19.41 0 22.84 18.51 21.97 24.96l212.99.5c0-5 2.04-25.2 22.31-25.2 22.06 0 23.16 19.82 23.16 25.21h6.55c0-5.39 1.37-25.21 22.51-25.21 20.64 0 22.46 19.96 22.46 25.21 41.55 0 62.76.08 78.13-4.03 3.82-1.15 7.48-1.83 7.87-3.27.45-2.03.67-3.56.8-4.33.09-.53.36-1.41.98-2.12.17-.79.39-2.14 0-4.42-.147-.82-.9-.79-.98-1.85-.97-13.79-2.34-28.07-2.34-28.07H92.76z"/>
+          <path fill="#455771" d="M157.438 116.434c-9.097-.017-18.454.057-26.124.302-20.452.653-28.908 2.522-36.996 8.618-3.65 2.75-7.868 5.846-11.195 10.115-20.097.31-38.385 3.86-38.385 28.2 0 3.26.5 4.75 3 4.75 3.256 0 4.643-15.44 6.822-17.62 3.724-2.56 5.336-7.43 9.178-7.43 1.724-.21 8.823-.32 13.73.23l-1.107 1.62c-6.96 11.3-11.64 23.14-12.44 25.73-6.24 18.72-11.49 43.31-9.89 44.9 4.6 3.18-3.18 10.25-3.18 10.25-.78 4.73-.64 8.66.54 13.08h77.18c-.88-5.19 1.51-24.96 22.59-24.96 19.41 0 22.84 18.5 21.97 24.95H353.1l-161.36-122.3c-4.7-.16-19.136-.44-34.298-.47z"/>   
+          <path fill="#62758b" d="M150.363 211.724a24.885 27.482 0 0 0-11.856 3.674 24.885 27.482 0 0 0-12.44 23.8h2.874a22.01 24.67 0 0 1 11.01-21.367 22.01 24.67 0 0 1 22.01 0 22.01 24.67 0 0 1 11.01 21.37h2.88a24.885 27.482 0 0 0-12.44-23.8 24.885 27.482 0 0 0-13.03-3.67zm257.717.26c-4.168.107-8.244 1.37-11.855 3.673-7.7 4.91-12.44 13.982-12.44 23.8h2.874c-.01-8.814 4.19-16.96 11-21.367s15.2-4.407 22.01 0c6.81 4.407 11 12.553 11 21.368h2.87c0-9.82-4.75-18.892-12.45-23.8-3.96-2.523-8.47-3.794-13.03-3.675zm51.707 0c-4.168.107-8.245 1.37-11.855 3.673-7.7 4.91-12.442 13.982-12.442 23.8h2.875c0-8.814 4.194-16.96 11.004-21.367s15.2-4.407 22.01 0c6.81 4.407 11 12.552 11 21.367h2.87c0-9.818-4.75-18.89-12.45-23.8-3.96-2.522-8.47-3.793-13.03-3.674z"/>
+          <path fill="#2b3646" d="M60 200.25l114.396-32.586 382.336.707c6.97 0-1.43-35.45-10.06-35.45l-368.11-1.77-5.416 1.44c-31.286 0-70.38.38-88.146 9.42-15.527 8.97-25 48.58-25 58.25z"/>
+        <path fill="#e3061f" fill-rule="evenodd" d="M54.008 215.955c4.423 3.562-3.182 8.882-3.182 10.09h78.336c2.047-4.123 5.018-7.597 8.63-10.09zm110.152 0c3.608 2.494 6.576 5.968 8.62 10.09h214.224c2.068-4.088 5.08-7.585 8.82-10.09zm257.45 0c3.742 2.504 6.755 6.002 8.824 10.09h8.257c2.07-4.088 5.08-7.583 8.81-10.09zm51.718 0c3.736 2.507 6.743 6.003 8.81 10.09h82.723v-10.09z"/>
+          <path fill="#caba9b" d="M65.483 191.957c0 4.136 27.086-7.707 27.086-7.707L99.82 142c-9.912 0-18.496 10.82-24.602 22.477-6.106 11.655-9.735 24.145-9.735 27.48zm40.587-50.914l-4 26.707c22.815-3.14 30.376-3.85 59.946-6.793l5.553-24.69c-26.71.783-50.02 2.008-61.5 4.776zm77.75-5.025c7.07-1.415 43.25-.458 43.25-.458v28.397h-46.337zm48.5-.458v28.397h38.645l-1-28.397zm42.75 0l1 28.043 74.73.354-1.25-27.69zm79.792.708l1.25 27.69h74.396l-1.5-27.69zm78.708 0h71.18l3.5 27.69-72.68.352zm76.285 0l3.383 27.69h41.1c3.15 0-1.744-27.19-9.244-27.19z"/>
+          <path fill="#2b3646" d="M87.805 191.352v2.013l480.01-.002-.208-2.01z"/>
+          <path fill="#62758b" d="M87.218 193.363v2.012l480.77-.008-.173-2.004z"/>
+          <path fill="#2b3646" d="M92.482 192.515h2.536v46.47h-2.536zm25.092 0h2.536v46.47h-2.536zm63.658 0h2.536v46.47h-2.536zm92 0h2.536v46.47h-2.536zm99.68 0h2.537v46.47h-2.54zm119.568.355h2.537v46.593h-2.536z"/>
+          <path fill="#2b3646" d="M53.64 212.967v2.182l39.81-.01-.017-2.18zm469.533-14.007l27.284-.25c1.37-.013 2.374 1.107 2.475 2.475l2 26.938c.102 1.367-1.104 2.45-2.475 2.475l-27.284.5c-1.37.025-2.374-1.108-2.475-2.475l-2-27.188c-.1-1.368 1.104-2.463 2.475-2.475zm27.55-18.28l6.543.18c.328.01.57.266.593.594l.48 6.94c.02.328-.27.587-.6.593l-6.55.12c-.33.006-.57-.265-.6-.593l-.48-7.24c-.03-.328.26-.602.59-.593z"/>
+          <path fill="#caba9b" d="M61.517 203.058c36.753-7.318 71.548-17.85 106.066-29.7 3.87-1.036 7.487-3.57 8.464-7.216l4.618-42.513h-5.032l-9.818 40.18L60.957 200.1c-2.827.757-2.544 3.785.56 2.953z"/>
+          <g >
+            <path fill="#2b3646" d="M176.675 118.233l.037 4.43c-43.738.03-78.43 1.094-78.43 5.354 2 0 34.668-4.046 78.924-4.046l116.536.57c-.124-.43-.407-1.44-.873-1.88h-30.7v-4.13c0-.41-.53-.75-.94-.75-.4 0-.74.37-.74.75v4.13h-82.18l.03-4.42c0-.41-.47-.75-.88-.75-.62-.01-.6.46-.8.75z"/>
+            <path fill="#62758b" d="M177.06 124.02c-43.877.03-78.777 2.027-78.777 3.997 2.006 0 34.875-2.335 79.273-2.335h116.908c.455 0-.408-1.228-.876-1.665H178.67z"/>
+          </g>
+          <path fill="#ddb45a" d="M195.87 167.884h10.428l-8.13 33.322h11.49l-2.122 8.485h-21.92zm24.924 0h10.253l-7.955 31.378c-.902 3.367 5.995 3.358 6.894 0l7.78-31.378h9.72l-7.777 33.322c-1.78 6.638-6.66 9.546-15.74 9.546-9.55 0-12.24-4.102-10.79-9.546zm29.168 0h9.9l2.12 13.17 7.426-13.17h9.546l-13.082 21.124 4.773 21.817h-10.253l-2.12-13.685-7.78 13.685h-10.076l14.142-21.817z"/>
+          <path fill="#fff" d="M371.94 187.135c-.122 1.654-.217 3.183-.286 4.664-.105 2.3.054 2.05-2.175 3.41-2.86 1.66-4.96 2.57-7.82 3.76l1.18-.09c2.82-.21 4.63-.03 5.82.59 2.41 1.24 2.46 4.34.12 7.83-3.41 5.08-13.18 12.71-22.76 17.78-6.84 3.62-12.51 5.91-17.48 7.06-2.68.45-5.76.83-7.9-.56-4.46-4.89 2.7-10.49 5.31-13.84-.38 0-4.68 3.26-7.47 5.66-6.28 5.39-8.56 9.64-6.48 12.07 2.97 2.97 9.55.8 12.91 0 14.65-3.55 30.04-11.65 42.05-22.13 4.1-3.81 8.15-7.68 11.5-11.8l6.76.11-3.55-5.71 2.16-6.32-6.47 1.56zm-89.512 4.86l-3.96 18.79H289l.805-3.808h-6.026l.86-4.075h5.55l.73-3.81h-5.45l.71-3.41 5.69-.073.73-3.62zm49.004 4.216c-.79.01-1.6.07-2.114.19-1.597.38-2.83 1.32-3.798 3-.774 1.34-2.236 7.29-1.842 8.76.375 1.4 1.136 2.2 3.076 2.68 4.318.66 6.608-.5 7.803-4.96-.04-.04-.943-.07-2.008-.07h-1.94c-.26.85-.21.82-.63 1.54-.3.53-.79.95-1.39.82-.6-.12-.74-.85-.74-1.43 0-.93.27-2.13.47-2.44h6.78c.63-2.36 1.15-7.13-1.68-7.89-.45-.12-1.23-.18-2.02-.18zm11.703.06c-2.206 0-4.797.96-6.028 3.95-.4 1.54-.026 2.97 1 3.81.935.76 1.96 1.2 3.118 1.82.822.48 1.114.88.88 1.76-.2.59-.827 1.08-1.54.97-.932-.13-1.183-.86-1.044-2.16h-3.97c0 2.02.03 4.45 4.54 4.45 2.12 0 4.93.57 6.09-3.76.25-.91.27-2.2-.04-2.74-.8-1.39-2.57-2.21-4.56-3.24-1.03-.59-.22-2.26 1-2.27.91 0 1.16 1.32 1.03 1.99h3.81c.1-2.79.13-4.53-4.27-4.53zm11.295.05c-2.206 0-4.797.96-6.028 3.95-.4 1.54-.026 2.97 1 3.81.935.77 1.96 1.2 3.118 1.82.82.48 1.114.88.88 1.76-.2.6-.827 1.08-1.54.97-.932-.13-1.183-.86-1.044-2.16h-3.97c0 2.01.025 4.39 4.535 4.39 2.12 0 4.93.62 6.09-3.71.25-.91.27-2.2-.04-2.74-.8-1.4-2.57-2.21-4.56-3.24-1.03-.59-.22-2.26 1-2.27.91 0 1.16 1.32 1.03 1.99h3.81c.11-2.8.13-4.53-4.27-4.53zm-42.346.07c-1.195.06-2.65.4-3.414 1.18l.248-.9h-4.027l-3.8 18.93h4.07l1.31-5.94c.25.43.65 1.19 1.59 1.44.95.26 2.92-.06 3.85-1.18 1.04-1.24 1.33-2.06 2.33-6.72.54-2.47.61-2.97.56-4.01 0-1.36-.73-2.77-2.7-2.77zm12.61 0c-.47.04-2.825.39-3.653 1.99.14-.46.35-1.71.35-1.71h-3.74c-1.02 4.69-1.99 9.43-2.95 14.13h4.07l2.04-9.33c.17-.61.79-.77 1.93-.74l.99.03zm-31.544.28l1.696 6.89-4.733 7.24h4.18l2.14-3.81.415 3.81h3.994l-1.705-7.24 4.426-6.88h-3.856l-2.02 3.81-.343-3.81zm37.504 2.23c1.338 0 1.25 1.48.903 2.77h-2.686c.33-1.09.71-2.76 1.79-2.76zm-20.774-.04c1.275 0 .838 1.55.544 2.97l-1.086 5.03c-.225.73-.424 1.31-1.393 1.31-1.03 0-.748-2.14-.748-2.14.307-1.82 1.046-4.64 1.196-5.2.39-1.45.564-1.96 1.487-1.96z"/>
+          <path fill="#e30713" d="M270.587 210.825h3.91l-4.824-21.817 12.846-21.124h-3.72l-12.94 21.124z"/>
+        </g>
+    </g>
+  </svg>
+  
+  <!--Bus interior-->
+  <svg id="busInterScene" viewBox="0 320 730 320">
+    <!--Background-->
+    <path fill="#516684" d="M0 320h730v320H0z"/>
+    
+    <!--Interior-->
+    <g id="interior">
+      <path fill="#8a9cb7" stroke="#2b3646" stroke-width="16.277" d="M7.128 332.322l115.18 54.202V568.04L7.128 626.95z" stroke-linecap="round" stroke-linejoin="round"/>
+      <path fill="#455771" d="M214.955 392.195a55.5 55.5 0 0 0-48.496 28.553c-24.71 5.257-43.18 27.933-43.18 57.69 0 31.41 22.22 43.825 0 66.042-14.71 14.713 0 133.325 0 133.325h184.89c0-.006 11.42-119.702 0-133.325-22.68-27.037 0-39.712 0-66.043 0-28.53-19.35-53.07-44.93-57.95a55.5 55.5 0 0 0-48.3-28.292z"/>
+      <path fill="#62758b" stroke="#2b3646" stroke-width="13.85" d="M140.73 404.064h76.39c30.056 0 54.252 26.94 54.252 58.848 0 26.33-22.677 39.005 0 66.042 11.425 13.623.006 133.318 0 133.324H86.48s-14.713-118.612 0-133.324c22.216-22.218 0-34.63 0-66.042 0-34.06 24.194-58.848 54.25-58.848z" stroke-linecap="round" stroke-linejoin="round"/>
+      <path fill="#455771" d="M436.955 396.195a55.5 55.5 0 0 0-48.496 28.553c-24.71 5.257-43.18 27.933-43.18 57.69 0 31.41 22.22 43.825 0 66.042-14.71 14.713 0 133.325 0 133.325h184.89c0-.006 11.42-119.702 0-133.325-22.68-27.037 0-39.712 0-66.043 0-28.53-19.35-53.07-44.93-57.95a55.5 55.5 0 0 0-48.3-28.292z"/>
+      <path fill="#62758b" stroke="#2b3646" stroke-width="13.85" d="M432.636 405.057h76.392c30.055 0 54.25 26.94 54.25 58.848 0 26.33-22.676 39.006 0 66.043 11.426 13.623.007 133.318 0 133.323h-184.89s-14.714-118.61 0-133.32c22.216-22.22 0-34.63 0-66.04 0-34.06 24.194-58.85 54.25-58.85z" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    
+   <!--boy-->
+   <g id="boy">
+    
+    <!--boyBody-->
+    <g id="boyBody">
+    <path fill="#c5b1a9" d="M129.966 473.463l-73.54 85.56 77.782 51.62 25.456 18.383-14.142-22.627 34.648 2.82-31.113-17.68 32.527-5.66-37.476-10.61 14.142-24.04-31.113 20.5-41.012-14.84 50.912-65.76z"/>
+    <path fill="#c5b1a9" fill-rule="evenodd" d="M231.356 481.463l73.54 85.56-77.783 51.62-25.456 18.383L215.8 614.4l-34.65 2.827 31.114-17.677-32.527-5.657 37.476-10.607-14.142-24.04 31.12 20.505 41.01-14.84-50.91-65.76z"/>
+    <path fill="#dd865a" fill-rule="evenodd" d="M178.75 447.5c-18.737 0-32.512 9.104-42.648 23.533-20.487-5.306-49.376 26.477-58.366 36.815l35.487 30.86C107.42 576.805 108 617.578 108 641h141.5c0-22.88 2.684-62.318-1.213-99.646l38.53-33.506c-9.262-10.65-39.642-44.06-60.198-36.23-10.67-14.766-25.97-24.118-47.87-24.118z"/>
+    <path fill="#c5b1a9" fill-rule="evenodd" d="M59.255 560.09l77.782 51.618s20.705 20.885 23.455 18.385c3.5-3.25-14.642-26.378-14.642-26.378s34.9 10.33 37.15 6.58c3-3.5-29.614-19.68-29.614-19.68s30.527.344 31.027-3.656c.25-2.75-39.477-9.36-39.477-9.36s12.392-13.29 10.142-17.54c-3-3-25.112 12.75-25.112 12.75l-41.013-14.85z"/>
+    <path fill="#c5b1a9" fill-rule="evenodd" d="M303.08 568.09l-77.783 51.618s-22.706 15.385-24.956 12.385c-3.25-3.5 13.65-16.628 13.65-16.628s-33.9 5.58-34.65 2.83c-1-2.5 31.12-17.68 31.12-17.68s-32.52-1.406-32.52-5.656c.25-4 37.48-10.61 37.48-10.61s-11.74-13.91-8.39-16.54c3.13-3.12 25.36 13 25.36 13l41.02-14.85z"/>
+     </g>
+    
+    <!--boyHead-->
+    <g id="boyHead">
+    <g transform="rotate(-17.935 192.97 426.374)">
+      <path fill="#c5b1a9" d="M177.13 361.012a65.407 65.407 0 0 0-63.687 50.787 15.556 15.556 0 0 0-5.255-.94 15.556 15.556 0 0 0-15.558 15.56 15.556 15.556 0 0 0 15.558 15.55 15.556 15.556 0 0 0 5.27-.94 65.407 65.407 0 0 0 63.673 50.78 65.407 65.407 0 0 0 63.55-50.21 15.556 15.556 0 0 0 3.28.36 15.556 15.556 0 0 0 15.56-15.56 15.556 15.556 0 0 0-15.55-15.56 15.556 15.556 0 0 0-3.28.37 65.407 65.407 0 0 0-63.54-50.22z"/>
+      <path fill="#2b3646" fill-rule="evenodd" d="M176.777 429.602a20.506 10.253 0 0 0-2.72.1v8.986c0 .692-.558 1.25-1.25 1.25h-5c-.693 0-1.25-.558-1.25-1.25v-7.708a20.506 10.253 0 0 0-10.286 8.875 20.506 10.253 0 0 0 20.51 10.252 20.506 10.253 0 0 0 20.51-10.252 20.506 10.253 0 0 0-11.1-9.1v7.933c0 .692-.55 1.25-1.25 1.25h-5c-.69 0-1.25-.558-1.25-1.25v-9.04a20.506 10.253 0 0 0-1.9-.046z"/>
+      <path fill="none" stroke="#2b3646" stroke-width="5.389" d="M141.87 403.67c8.243 3.982 16.635 7.62 29.852 0m10.853 0c8.243 3.982 16.635 7.62 29.852 0" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="170.75" cy="419.125" r="4.75" fill="#2b3646" fill-rule="evenodd"/>
+      <circle cx="181.5" cy="419.125" r="4.75" fill="#2b3646" fill-rule="evenodd"/>
+    </g>
+    <path fill="#ddb45a" d="M119.16 450.604c-3.222-2.632-27.702-25.113-17.742-32.367 2.02-1.47 8.045 2.126 8.045 2.126-3.643 2.274-16.68-45-8.525-37.707 1.942 1.737 19.145 12.426 14.83 3.608-2.37-11.194-7.082-17.35 1.83-28.445 5.246 14.48 9.5 12.31 14.274 13.24 1.946-18.99 7.27-25.14 21.152-32.07-2.567 15.73-.62 20.56 2.17 22.94.365-8.16 40.056-34.45 35.837-25.79-5.87 12.05-3.14 25.72.41 22.47 5.75-5.16 8.49-19.63 30.24-21.88-7.87 10.95-9.29 15.62-5.73 22.88 15.18-11.64 28.76-9.22 39.72-4.05-26.71 10.22-36.77 27.44-23.61 24.59 3.09-.67 12.01 1.37 12.01 1.37L234 394.24c6.378 18.26 2.48 23.5 3.68 30.28l-15.728-36.95c-8.514-14.644-88.757-.35-98.02 27.05-6.767 25.416-3.946 22.234-4.74 35.965z"/>
+    <path fill="none" stroke="#2b3646" stroke-width="3" d="M103.293 445.678S114.45 489.54 123 505.5c15.326 28.61 73.202 49.376 88.5 78 13.508 25.276 7 79 7 79" stroke-linecap="round" stroke-linejoin="round"/>
+    <g>
+      <ellipse cx="110" cy="450" fill="#2b3646" ry="17.491" rx="10.81"/>
+      <ellipse cx="105" cy="446" fill="#e3061f" ry="17.491" rx="10.81"/>
+    </g>
+    <g>
+      <ellipse cx="244" cy="410" fill="#2b3646" ry="17.491" rx="10.81"/>
+      <ellipse cx="250" cy="408" fill="#e3061f" ry="17.491" rx="10.81"/>
+    </g>
+    <path fill="none" stroke="#2b3646" stroke-width="6.107" d="M103.837 444.063s-16.67-44.384 53.728-69.016c68.442-23.947 87.206 27.106 87.206 27.106" stroke-linecap="round" stroke-linejoin="round"/>
+      
+    </g> 
+  </g>
+      
+  <!--girl-->
+    <g  id="girl">
+      
+    <!--girlBody-->
+    <g  id="girlBody" transform="translate(50 -22)">
+      
+      <path fill="#c5b1a9" d="M372.862 485.58l-73.54 85.56 77.783 51.62 25.455 18.384-14.142-22.628 34.648 2.83-31.112-17.68 32.527-5.656-37.47-10.606 14.14-24.042-31.11 20.506-41.01-14.85 50.92-65.76z"/>
+      <path fill="#c5b1a9" d="M474.252 493.58l73.54 85.56-77.783 51.62-25.46 18.384 14.14-22.628-34.65 2.83 31.11-17.68-32.53-5.656 37.47-10.607-14.15-24.04 31.11 20.505 41.01-14.85-50.91-65.76z"/>
+      <path fill="#ddb45a" d="M421.646 459.617c-18.737 0-32.51 9.104-42.648 23.533-20.486-5.305-49.375 26.477-58.365 36.815l35.486 30.86c-5.81 38.098-5.23 88.87-5.23 112.292h141.5c0-22.88 2.68-72.318-1.22-109.646l38.53-33.5c-9.26-10.65-39.64-44.06-60.2-36.23-10.67-14.76-25.97-24.12-47.87-24.12z"/>
+      <path fill="#455771" d="M401.33 536.136h49.886c7.226 0 13.687 6.207 13.044 13.848l-7.323 87.088c-.642 7.642-5.817 13.848-13.044 13.848h-33.41c-7.227 0-12.243-6.223-13.044-13.848l-9.16-87.088c-.8-7.624 5.82-13.848 13.04-13.848z"/>
+      <path fill="#8a9cb7" d="M396.306 536.08h49.887c7.226 0 13.686 6.206 13.043 13.848l-7.322 87.088c-.643 7.64-5.818 13.848-13.044 13.848h-33.41c-7.227 0-12.243-6.224-13.045-13.848l-9.153-87.088c-.802-7.625 5.817-13.848 13.044-13.848z"/>
+      <path fill="#c5b1a9" d="M302.15 572.206l77.783 51.62s20.706 20.884 23.456 18.384c3.5-3.25-14.65-26.378-14.65-26.378s34.9 10.33 37.15 6.58c3-3.5-29.62-19.68-29.62-19.68s30.52.344 31.02-3.656c.25-2.75-39.48-9.356-39.48-9.356l-1.86-12.292c-3-3-13.12 7.506-13.12 7.506l-41.02-14.85z"/>
+      <path fill="#c5b1a9" d="M545.975 580.206l-77.78 51.62s-22.707 15.384-24.957 12.384c-3.25-3.5 9.642-14.378 9.642-14.378s-29.898 3.33-30.648.58c-1-2.5 31.112-17.68 31.112-17.68s-32.527-1.406-32.527-5.656c.25-4 37.477-10.606 37.477-10.606l3.108-11.042c3.13-3.117 13.863 7.506 13.863 7.506l41.012-14.85z"/>
+      <circle cx="436.5" cy="555.5" r="9" fill="#455771"/>
+      
+    </g>
+    
+   <!--girlHead-->
+    <g  id="girlHead">
+    <g transform="translate(298.896 2.117)">
+      <path fill="#d1c6c0" fill-rule="evenodd" d="M177.13 361.012c-30.466.03-46.877 21.09-53.687 50.787-1.685-.62-3.463-.93-5.255-.94-13.96 2.18-7.615 29.07 0 31.11 1.798-.01 3.58-.33 5.27-.94 7.622 28.44 38.046 56.32 52.966 56.32 15.39-.02 47.22-26.34 54.248-55.75 1.077.23 2.176.35 3.28.36 9.88-2.65 9.517-28.57 0-31.12-1.104 0-2.203.13-3.28.37-7.022-29.42-23.297-50.19-53.54-50.22z"/>
+      <circle cx="165.243" cy="432.616" r="8.839" fill="#fff" fill-rule="evenodd"/>
+      <circle cx="192.167" cy="432.616" r="8.839" fill="#fff" fill-rule="evenodd"/>
+      <path fill="#2b3646" fill-rule="evenodd" d="M202.442 454.386c4.252 0-8.454 30.142-23.55 30.142-19.184 0-30.824-30.142-26.655-30.142 14.894 8.6 35.986 8.21 50.205 0z"/>
+      <path fill="none" stroke="#2b3646" stroke-width="4" d="M174.166 452.38c-3.36-7.89 14.51-7.493 10.265.247" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="165.323" cy="435.434" r="6.02" fill="#2b3646" fill-rule="evenodd"/>
+      <circle cx="191.438" cy="435.434" r="6.02" fill="#2b3646" fill-rule="evenodd"/>
+      <circle cx="190.854" cy="437.633" r="2.77" fill="#fff" fill-rule="evenodd"/>
+      <circle cx="165.104" cy="437.383" r="2.77" fill="#fff" fill-rule="evenodd"/>
+    </g>
+    <g fill-rule="evenodd">
+      <path fill="#455771" stroke="#2b3646" stroke-width="4" d="M446.008 460.007c4.495-.51 6.75-2.62 7.955-5.48m53.297 5.215c-4.636-.062-7.556-1.65-7.954-5.48" stroke-linecap="round" stroke-linejoin="round"/>
+      <path fill="#fff" d="M455.14 458.59c15.506 6.083 31.398 4.695 42.41-.486-2.386 4.44-2.477 5.06-4.89 7.474-4.324 5.804-31.176 3.92-32.584 0-3.55-2.928-4.05-4.633-4.935-6.987z"/>
+      <path fill="#455771" stroke="#2b3646" stroke-width="4" d="M456.042 424.375c2.557-3.868 5.47-5.468 8.91-3.734m29.058 1.14c4.637.06 7.557 1.65 7.955 5.48m-84.35 10.41c-2.567-3.86-2.906-7.16.03-9.66" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <path fill="#dd865a" d="M422 435c.5-3.5-1-21.5-1-21.5-14.275-9.8-17.665-20.438-8.5-45l10 6.5c-4.128-10.4-2.185-19.93 3-29-1.514 1.018 4.4 15.29 11.5 20 13.023-25.057 41.323-14.034 65-22 19.153-7.167 45.96 1.514 66.5 56-9.5-6.032-11.5-15.978-22.5-21.5l18 36-20.5-15.5c23.074 30.076 10.015 72.82-8.5 100.5-.275-12.06-.732-34.434-4.5-30.5-5.724 6.962-11.153 14.787-24.5 22 22.6-42.118 20.106-56.4 9-100 0 0-16.5 9.5-19 11s-9.5 11-38 4-36 29-36 29z"/>
+    </g>
+    </g>
+  </svg>
+ 
+  
+  <!--Price scene-->
+  <svg id="priceScene" viewBox="0 640 730 320">
+      <!--Background-->
+       <path fill="#ddb45a" fill-rule="evenodd" d="M0 640h730v320H0z"/>
+    
+    <g fill="#e3061f" transform="translate(0 -14)">
+    <circle id="tallinn" cx="63.166" cy="722.427" r="23"/>
+    <circle id="tartu" cx="129.602" cy="812.69" r="23"/>
+    <path stroke="#e3061f" stroke-width="6" d="M63 723l67 90" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <text>
+      <tspan x="105" y="730" font-weight="bold" font-size="64" fill="#fff">Tallinn</tspan>
+    </text>
+    <text>
+      <tspan x="175" y="820" font-weight="bold" font-size="64" fill="#fff">Tartu</tspan>
+    </text>
+    <text>
+      <tspan x="213" y="920" font-weight="bold" font-size="64" fill="#516684">hind al</tspan>
+    </text>
+    <g id="kolm">
+    <text >
+      <tspan x="472" y="914" font-weight="bold" font-size="329" font-family="ubuntu" fill="#516684">3</tspan>
+    </text>
+    </g>
+    <text>
+      <tspan x="645" y="729.859" font-weight="bold" font-size="64" fill="#516684">€</tspan>
+    </text>
+    </svg>
+
+   
+  <!--Logo-->
+  <svg id="logoScene" viewBox="0 960 730 320">
+     <!--Background-->
+     <path fill="#516684" d="M0 960h730v320H0z"/>
+     <!--Logo-->
+      <g id="logo">
+        <g transform="translate(-26 10)">
+          <path fill="#ddb45a" fill-rule="evenodd" d="M249.39 995.52h25.673l-20.015 82.02h28.283l-5.22 20.887h-53.95zm61.353 0h25.237l-19.58 77.234c-2.22 8.29 14.754 8.267 16.97 0l19.145-77.233h23.93l-19.144 82.02c-4.37 16.34-16.39 23.5-38.72 23.5-23.51 0-30.13-10.09-26.54-23.49zm71.795 0h24.366l5.222 32.417L430.4 995.52h23.497l-32.197 52 11.747 53.7H408.21l-5.222-33.685-19.145 33.684H359.04l34.81-53.7z"/>
+          <path fill="#fff" d="M682.778 1042.906c-.303 4.072-.538 7.834-.706 11.48-.26 5.683.132 5.07-5.356 8.394-7.023 4.098-12.207 6.327-19.24 9.263l2.91-.216c6.944-.51 11.397-.055 14.32 1.452 5.94 3.06 6.056 10.69.294 19.27-8.397 12.5-32.438 31.29-56.012 43.76-16.84 8.91-30.79 14.54-43.016 17.38-6.598 1.11-14.18 2.04-19.442-1.37-10.96-12.03 6.644-25.82 13.08-34.07-.916 0-11.504 8.03-18.378 13.93-15.447 13.27-21.063 23.73-15.95 29.7 7.313 7.31 23.51 1.97 31.78 0 36.068-8.73 73.948-28.67 103.505-54.48 10.103-9.38 20.07-18.89 28.307-29.03l16.653.28-8.73-14.05 5.32-15.55-15.907 3.84zm-220.33 11.965l-9.75 46.25h25.928l1.98-9.37h-14.83l2.13-10.03h13.676l1.803-9.38h-13.413l1.755-8.39 14.014-.18 1.81-8.89zm120.62 10.38c-1.948 0-3.938.16-5.202.45-3.932.93-6.965 3.25-9.35 7.39-1.905 3.3-5.503 17.94-4.534 21.56.923 3.45 2.796 5.41 7.57 6.59 10.63 1.61 16.266-1.23 19.207-12.21-.1-.1-2.33-.18-4.95-.18h-4.77c-.64 2.09-.51 2-1.55 3.8-.75 1.29-1.94 2.32-3.42 2.02-1.48-.3-1.8-2.11-1.8-3.52 0-2.3.67-5.24 1.16-6.01h16.7c1.55-5.81 2.84-17.56-4.12-19.43-1.11-.29-3.01-.44-4.96-.44zm28.805.14c-5.43.01-11.806 2.36-14.835 9.71-.99 3.79-.065 7.3 2.46 9.36 2.302 1.88 4.825 2.95 7.674 4.47 2.023 1.17 2.744 2.17 2.168 4.32-.494 1.46-2.037 2.65-3.793 2.39-2.294-.34-2.91-2.13-2.567-5.33h-9.774c0 4.96.063 10.94 11.163 10.94 5.21 0 12.12 1.41 14.98-9.25.6-2.24.66-5.41-.11-6.75-1.99-3.43-6.34-5.44-11.24-7.97-2.54-1.47-.55-5.58 2.46-5.59 2.22 0 2.84 3.26 2.53 4.89h9.37c.25-6.88.31-11.16-10.51-11.16zm27.802.12c-5.43.01-11.807 2.36-14.836 9.71-.99 3.79-.07 7.3 2.46 9.37 2.3 1.88 4.82 2.95 7.67 4.46 2.02 1.17 2.74 2.17 2.17 4.32-.5 1.46-2.04 2.65-3.8 2.39-2.3-.34-2.91-2.13-2.57-5.34H621c0 4.96.064 10.82 11.164 10.82 5.217 0 12.13 1.53 14.987-9.13.61-2.25.66-5.41-.11-6.75-1.98-3.44-6.33-5.45-11.23-7.97-2.54-1.46-.54-5.57 2.46-5.58 2.23 0 2.85 3.26 2.54 4.89h9.38c.25-6.89.3-11.16-10.51-11.16zm-104.23.17c-2.942.14-6.52.98-8.404 2.89l.62-2.21h-9.91l-9.36 46.58h10.02l3.21-14.63c.61 1.05 1.6 2.92 3.92 3.55 2.33.63 7.18-.15 9.48-2.91 2.55-3.06 3.26-5.09 5.73-16.56 1.32-6.08 1.49-7.31 1.37-9.86 0-3.36-1.8-6.82-6.66-6.82zm31.04 0c-1.16.1-6.955.95-8.993 4.89.325-1.13.846-4.2.846-4.2h-9.207c-2.5 11.55-4.91 23.2-7.27 34.77h10.03l5.02-22.96c.41-1.51 1.94-1.9 4.74-1.83l2.42.07zm-77.644.68l4.18 16.95-11.65 17.83h10.29l5.27-9.38 1.03 9.38h9.83l-4.19-17.82 10.9-16.94H505l-4.97 9.38-.845-9.38zm92.32 5.48c3.29 0 3.08 3.63 2.22 6.81h-6.61c.8-2.68 1.75-6.81 4.39-6.81zm-51.13-.1c3.14 0 2.07 3.82 1.34 7.32l-2.67 12.38c-.55 1.8-1.04 3.23-3.42 3.23-2.54 0-1.84-5.27-1.84-5.27.76-4.48 2.58-11.43 2.94-12.8.96-3.57 1.39-4.84 3.66-4.84z"/>
+          <path fill="#e3061f" fill-rule="evenodd" d="M433.304 1101.217h9.627l-11.87-53.7 31.62-51.996h-9.13l-31.84 52z"/>
+        </g>
+   </g>
+   <g id="button">
+    <rect width="398" height="80" x="55" y="1150" fill="#ddb45a" ry="40"/>
+    <text>
+      <tspan x="80" y="1205" font-weight="bold" font-size="40" font-family="ubuntu" fill="#516684">VAATA LÄHEMALT</tspan>
+    </text>
+    </g>
+    </svg>
+    
+  <!--Cine gamma overlay-->
+  <path id="cine" fill="#516684" opacity=".2" d="M0 0h730v320H0z"/>
+  </svg>
+    <text>
+      <tspan x="370" y="398" font-weight="bold" font-size="30" font-family="ubuntu" fill="#516684">codepen.io/VisualAngle</tspan>
+    </text>
+
+ </svg>
+  <span id="time"></span>
+</div>
+  <script>
+  // Audio Player
+// Source: http://www.rockamolly.com 
+//         http://uk6.internet-radio.com:8465/;stream
+
+var audio;
+
+function initAudioPlayer(){
+       audio = new Audio();
+       audio.src = "http://uk6.internet-radio.com:8465/;stream";
+       audio.loop = true;
+       audio.play(); 
+}
+window.addEventListener("load", initAudioPlayer);
+  </script>
+ </BODY>
+</HTML>

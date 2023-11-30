@@ -1,0 +1,560 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   .level.openhat .label,
+.level.openhat .bar,
+.pad.openhat.on:after {
+  background: #E14D54;
+}
+
+.level.hihat .label,
+.level.hihat .bar,
+.pad.hihat.on:after {
+  background: #FD8855;
+}
+
+.level.kick .label,
+.level.kick .bar,
+.pad.kick.on:after {
+  background: #FEC952;
+}
+
+.level.snare .label,
+.level.snare .bar,
+.pad.snare.on:after {
+  background: #97C95A;
+}
+
+.level.cowbell .label,
+.level.cowbell .bar,
+.pad.cowbell.on:after {
+  background: #1AB16C;
+}
+
+.level.crash .label,
+.level.crash .bar,
+.pad.crash.on:after {
+  background: #189BC6;
+}
+
+.level.hi_tom .label,
+.level.hi_tom .bar,
+.pad.hi_tom.on:after {
+  background: #8F639F;
+}
+
+.level.low_tom .label,
+.level.low_tom .bar,
+.pad.low_tom.on:after {
+  background: #F67B9F;
+}
+
+body {
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.levelWrapper {
+  display: flex;
+  margin-bottom: 1vh;
+  margin-top: 3vh;
+}
+
+.level {
+  display: flex;
+  flex-direction: column-reverse;
+  min-width: 64px;
+  width: calc(10vh + 4px);
+  min-height: 150px;
+  height: 30vh;
+  margin: 2px;
+  background: #282828;
+}
+.level.active .bar {
+  flex-grow: 1;
+}
+
+.bar {
+  flex-grow: 0;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.label {
+  display: flex;
+  width: 100%;
+  height: 40%;
+  align-items: flex-end;
+  font-family: rubik, sans-serif;
+}
+.label div {
+  color: white;
+  width: 100%;
+  margin: 15%;
+  padding-bottom: 5px;
+  font-size: calc(7px + 0.5vh);
+  text-align: center;
+  border-bottom: 3px solid white;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+}
+.step:nth-child(n+5):nth-child(-n+8) .pad, .step:nth-child(n+13):nth-child(-n+16) .pad {
+  background: #282828;
+}
+.step.active .pad {
+  -webkit-filter: brightness(130%);
+          filter: brightness(130%);
+}
+
+.drum-pads {
+  display: flex;
+}
+
+.pad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  min-height: 30px;
+  height: 5vh;
+  width: 5vh;
+  margin: 2px;
+  background: #333;
+}
+.pad:hover {
+  cursor: pointer;
+  -webkit-filter: brightness(130%);
+          filter: brightness(130%);
+}
+
+.on {
+  position: relative;
+}
+.on:after {
+  position: absolute;
+  content: "";
+  height: 35%;
+  width: 35%;
+  transition: all 0.2s ease-in-out;
+}
+
+.active .on:after {
+  height: 90%;
+  width: 90%;
+}
+
+.controls {
+  display: flex;
+  margin-top: 1vh;
+  color: #aaa;
+  font-size: calc(14px + 0.7vh);
+}
+
+#load:active .fa, #save:active .fa, #reset:active .fa {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.pulse {
+  -webkit-animation: pulse 1.2s ease-in infinite;
+          animation: pulse 1.2s ease-in infinite;
+}
+
+@-webkit-keyframes pulse {
+  50% {
+    -webkit-filter: brightness(150%);
+            filter: brightness(150%);
+  }
+  100% {
+    -webkit-filter: brightness(100%);
+            filter: brightness(100%);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    -webkit-filter: brightness(150%);
+            filter: brightness(150%);
+  }
+  100% {
+    -webkit-filter: brightness(100%);
+            filter: brightness(100%);
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  
+<div class="wrapper">
+  <div class="levelWrapper">
+    <div class="level crash">
+      <div class="label">
+        <div>CRASH</div>
+      </div>
+      <div class="bar"></div>
+    </div>
+    <div class="level hi_tom">
+      <div class="label">
+        <div>HI TOM</div>
+      </div>
+      <div class="bar"></div>
+    </div>
+    <div class="level low_tom">
+      <div class="label">
+        <div>LOW TOM</div>
+      </div>
+      <div class="bar"></div>
+    </div>
+    <div class="level openhat">
+      <div class="label">
+        <div>OPENHAT</div>
+      </div>
+      <div class="bar"></div>
+    </div>
+    <div class="level hihat">
+      <div class="label">
+        <div>HIHAT</div>
+      </div>
+      <div class="bar"></div>
+    </div>
+    <div class="level kick">
+      <div class="label">
+        <div>KICK</div>
+      </div>
+      <div class="bar"></div>
+    </div>
+    <div class="level snare">
+      <div class="label">
+        <div>SNARE</div>
+      </div>
+      <div class="bar"></div>
+    </div>
+    <div class="level cowbell">
+      <div class="label">
+        <div>COWBELL</div>
+      </div>
+      <div class="bar"></div>
+    </div>
+  </div>
+  <div class="drum-pads">
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+    <div class="step">
+      <div class="pad crash" data-instrument="crash"></div>
+      <div class="pad hi_tom" data-instrument="hi_tom"></div>
+      <div class="pad low_tom" data-instrument="low_tom"></div>
+      <div class="pad openhat" data-instrument="openhat"></div>
+      <div class="pad hihat" data-instrument="hihat"></div>
+      <div class="pad kick" data-instrument="kick"></div>
+      <div class="pad snare" data-instrument="snare"></div>
+      <div class="pad cowbell" data-instrument="cowbell"></div>
+    </div>
+  </div>
+  <div class="controls">
+    <div class="pad pulse" id="mute" title="toggle mute"><i class="fa fa-volume-up"></i></div>
+    <div class="pad" id="playpause" title="play/pause"><i class="fa fa-pause"></i></div>
+    <div class="pad" id="save" title="save"><i class="fa fa-download"></i></div>
+    <div class="pad" id="load" title="load"><i class="fa fa-upload"></i></div>
+    <div class="pad" id="reset" title="clear"><i class="fa fa-refresh">       </i></div>
+  </div>
+</div>
+<audio src="https://res.cloudinary.com/thepeted/video/upload/v152731169/sounds/crash.wav" data-instrument="crash" muted="muted"></audio>
+<audio src="https://res.cloudinary.com/thepeted/video/upload/v152731310/sounds/hi_tom.wav" data-instrument="hi_tom" muted="muted"></audio>
+<audio src="https://res.cloudinary.com/thepeted/video/upload/v152731342/sounds/low_tom.wav" data-instrument="low_tom" muted="muted"></audio>
+<audio src="https://res.cloudinary.com/thepeted/video/upload/v152730582/sounds/openhat.wav" data-instrument="openhat" muted="muted"></audio>
+<audio src="https://res.cloudinary.com/thepeted/video/upload/v152730733/sounds/hihat.wav" data-instrument="hihat" muted="muted"></audio>
+<audio src="https://res.cloudinary.com/thepeted/video/upload/v152730307/sounds/kick.wav" data-instrument="kick" muted="muted"></audio>
+<audio src="https://res.cloudinary.com/thepeted/video/upload/v152730770/sounds/snare.wav" data-instrument="snare" muted="muted"></audio>
+<audio src="https://res.cloudinary.com/thepeted/video/upload/v152730968/sounds/cowbell.wav" data-instrument="cowbell" muted="muted"></audio>
+  <script>
+   var BPM = 120;
+
+// DRUM LOOP
+var steps = document.querySelectorAll('.step');
+var levelWrapper = document.querySelector('.levelWrapper');
+var levels = document.querySelectorAll('.level');
+var audioElements = document.querySelectorAll('audio');
+
+var time = 0;
+var id = void 0;
+function start() {
+  id = setInterval(function () {
+    handleTick();
+    time < 15 ? time++ : time = 0;
+  }, 60000 / BPM / 4);
+}
+
+function pause() {
+  clearInterval(id);
+}
+
+function handleTick() {
+  var last = time > 0 ? time - 1 : 15;
+  steps[last].classList.remove('active');
+  steps[time].classList.add('active');
+
+  Array.from(steps[time].children).filter(function (e) {
+    return e.classList.contains('on');
+  }).map(function (e) {
+    return e.dataset.instrument;
+  }).forEach(play);
+}
+
+function play(instrument) {
+  var media = document.querySelector('audio[data-instrument="' + instrument + '"]');
+  media.currentTime = 0;
+  media.play();
+
+  var level = levelWrapper.querySelector('.' + instrument);
+  level.classList.remove('active');
+  setTimeout(function () {
+    level.classList.add('active');
+  }, 20);
+}
+
+levels.forEach(function (level) {
+  level.addEventListener('transitionend', function () {
+    this.classList.remove('active');
+  });
+});
+
+function loadPattern(state) {
+  if (!state) {
+    return;
+  }
+  steps.forEach(function (step, i) {
+    Array.from(step.children).forEach(function (pad, j) {
+      state[i][j] === 1 ? pad.classList.add('on') : pad.classList.remove('on');
+    });
+  });
+}
+
+// CONTROLS
+var drumPads = document.querySelectorAll('.drum-pads .pad');
+var muteBtn = document.getElementById('mute');
+var playPauseBtn = document.getElementById('playpause');
+var saveBtn = document.getElementById('save');
+var loadBtn = document.getElementById('load');
+var resetBtn = document.getElementById('reset');
+
+drumPads.forEach(function (pad) {
+  return pad.addEventListener('click', function () {
+    this.classList.toggle('on');
+  });
+});
+
+muteBtn.addEventListener('click', function () {
+  if (this.firstChild.classList.contains('fa-volume-up')) {
+    this.classList.remove('pulse');
+    this.firstChild.classList.replace('fa-volume-up', 'fa-volume-off');
+    audioElements.forEach(function (audio) {
+      return audio.muted = false;
+    });
+  } else {
+    this.classList.add('pulse');
+    this.firstChild.classList.replace('fa-volume-off', 'fa-volume-up');
+    audioElements.forEach(function (audio) {
+      return audio.muted = true;
+    });
+  }
+});
+
+playPauseBtn.addEventListener('click', function () {
+  if (this.firstChild.classList.contains('fa-play')) {
+    this.firstChild.classList.replace('fa-play', 'fa-pause');
+    start();
+  } else {
+    this.firstChild.classList.replace('fa-pause', 'fa-play');
+    pause();
+  }
+});
+
+saveBtn.addEventListener('click', function () {
+  var state = Array.from(steps).map(function (step) {
+    return Array.from(step.children).map(function (pad) {
+      return pad.classList.contains('on') ? 1 : 0;
+    });
+  });
+  localStorage.setItem('thepeted-drums', JSON.stringify(state));
+});
+
+loadBtn.addEventListener('click', function () {
+  loadPattern(JSON.parse(localStorage.getItem('thepeted-drums')));
+});
+
+reset.addEventListener('click', function () {
+  steps.forEach(function (step) {
+    Array.from(step.children).forEach(function (pad) {
+      return pad.classList.remove('on');
+    });
+  });
+});
+
+var demo = [[0, 0, 1, 0, 0, 1, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 1, 1, 0], [0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 1], [0, 0, 0, 0, 1, 0, 0, 1], [0, 0, 0, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 1, 0, 1], [0, 0, 1, 0, 0, 1, 1, 0], [0, 0, 0, 0, 1, 0, 0, 0], [1, 0, 0, 1, 0, 1, 0, 1], [0, 1, 0, 0, 0, 0, 0, 0]];
+
+loadPattern(JSON.parse(localStorage.getItem('thepeted-drums')) || demo);
+start();
+  </script>
+ </BODY>
+</HTML>

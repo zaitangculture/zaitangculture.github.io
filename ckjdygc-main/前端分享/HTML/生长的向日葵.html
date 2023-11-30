@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">``
+  <META NAME="Author" CONTENT=""> <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  @import url("https://fonts.googleapis.com/css?family=Montserrat+Alternates");
+html {
+  height: 200vh;
+  background: radial-gradient(ellipse at center, #DBB800 0%, #688ACC 50%);
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  border-bottom: 10vh #339545 solid;
+  box-sizing: border-box;
+  position: relative;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-size: 40px;
+  position: absolute;
+  width: 100%;
+  top: 0vh;
+  -webkit-transform: translate(0, 100vh);
+          transform: translate(0, 100vh);
+  -webkit-animation: move 1s 2.5s forwards;
+          animation: move 1s 2.5s forwards;
+}
+
+@-webkit-keyframes move {
+  0% {
+    -webkit-transform: translate(0, 100vh);
+            transform: translate(0, 100vh);
+  }
+  100% {
+    -webkit-transform: translate(0vh, 0);
+            transform: translate(0vh, 0);
+  }
+}
+
+@keyframes move {
+  0% {
+    -webkit-transform: translate(0, 100vh);
+            transform: translate(0, 100vh);
+  }
+  100% {
+    -webkit-transform: translate(0vh, 0);
+            transform: translate(0vh, 0);
+  }
+}
+.sunflwr {
+  width: 80vmin;
+  height: 80vmin;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+}
+.sunflwr__leaf--left, .sunflwr__leaf--right {
+  width: 0%;
+  height: 20%;
+  border-radius: 0% 50% 0% 50%;
+  position: absolute;
+  background: #6f8e4b;
+  top: 70%;
+  left: 45%;
+  -webkit-transform: translate(-100%, -50%) rotate(-20deg);
+          transform: translate(-100%, -50%) rotate(-20deg);
+  -webkit-animation: sunflwr__leaf forwards 1s .5s;
+          animation: sunflwr__leaf forwards 1s .5s;
+}
+.sunflwr__leaf--right {
+  top: 80%;
+  left: 55%;
+  -webkit-transform: translate(0%, -50%) rotate(-70deg);
+          transform: translate(0%, -50%) rotate(-70deg);
+}
+@-webkit-keyframes sunflwr__leaf {
+  0% {
+    width: 0%;
+    border: 0px solid black;
+  }
+  100% {
+    width: 20%;
+    border: 2px solid black;
+  }
+}
+@keyframes sunflwr__leaf {
+  0% {
+    width: 0%;
+    border: 0px solid black;
+  }
+  100% {
+    width: 20%;
+    border: 2px solid black;
+  }
+}
+.sunflwr__stem {
+  position: absolute;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+  width: 5%;
+  height: 60%;
+  background: #556D39;
+  left: 50%;
+  bottom: 0%;
+  border: 2px solid black;
+  -webkit-animation: sunflwr__stem forwards 1s;
+          animation: sunflwr__stem forwards 1s;
+}
+@-webkit-keyframes sunflwr__stem {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 60%;
+  }
+}
+@keyframes sunflwr__stem {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 60%;
+  }
+}
+.sunflwr__center {
+  border-radius: 50%;
+  background-color: #3C1F03;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  z-index: 2;
+  -webkit-animation: sunflwr__center 1s 1s forwards;
+          animation: sunflwr__center 1s 1s forwards;
+}
+@-webkit-keyframes sunflwr__center {
+  0% {
+    width: 0%;
+    height: 0%;
+  }
+  100% {
+    width: 25%;
+    height: 25%;
+  }
+}
+@keyframes sunflwr__center {
+  0% {
+    width: 0%;
+    height: 0%;
+  }
+  100% {
+    width: 25%;
+    height: 25%;
+  }
+}
+.sunflwr__pedal--1, .sunflwr__pedal--2, .sunflwr__pedal--3, .sunflwr__pedal--4, .sunflwr__pedal--5, .sunflwr__pedal--6, .sunflwr__pedal--7, .sunflwr__pedal--8, .sunflwr__pedal--9, .sunflwr__pedal--10, .sunflwr__pedal--11, .sunflwr__pedal--12 {
+  border-radius: 50%;
+  background: #F2FE00;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  -webkit-animation: grow-pedal-back 1s 1.5s forwards;
+          animation: grow-pedal-back 1s 1.5s forwards;
+}
+.sunflwr__pedal--2 {
+  -webkit-transform: translate(-50%, -50%) rotate(30deg);
+          transform: translate(-50%, -50%) rotate(30deg);
+}
+.sunflwr__pedal--3 {
+  -webkit-transform: translate(-50%, -50%) rotate(60deg);
+          transform: translate(-50%, -50%) rotate(60deg);
+}
+.sunflwr__pedal--4 {
+  -webkit-transform: translate(-50%, -50%) rotate(90deg);
+          transform: translate(-50%, -50%) rotate(90deg);
+}
+.sunflwr__pedal--5 {
+  -webkit-transform: translate(-50%, -50%) rotate(120deg);
+          transform: translate(-50%, -50%) rotate(120deg);
+}
+.sunflwr__pedal--6 {
+  -webkit-transform: translate(-50%, -50%) rotate(150deg);
+          transform: translate(-50%, -50%) rotate(150deg);
+}
+@-webkit-keyframes grow-pedal-back {
+  0% {
+    width: 0%;
+    height: 0%;
+    border: 0px solid black;
+  }
+  100% {
+    width: 15%;
+    height: 45%;
+    border: 2px solid black;
+  }
+}
+@keyframes grow-pedal-back {
+  0% {
+    width: 0%;
+    height: 0%;
+    border: 0px solid black;
+  }
+  100% {
+    width: 15%;
+    height: 45%;
+    border: 2px solid black;
+  }
+}
+.sunflwr__pedal--7, .sunflwr__pedal--8, .sunflwr__pedal--9, .sunflwr__pedal--10, .sunflwr__pedal--11, .sunflwr__pedal--12 {
+  border-radius: 20% 50% 20% 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(15deg);
+          transform: translate(-50%, -50%) rotate(15deg);
+  -webkit-animation: grow-pedal-front 1s 2s forwards;
+          animation: grow-pedal-front 1s 2s forwards;
+}
+.sunflwr__pedal--8 {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+}
+.sunflwr__pedal--9 {
+  -webkit-transform: translate(-50%, -50%) rotate(75deg);
+          transform: translate(-50%, -50%) rotate(75deg);
+}
+.sunflwr__pedal--10 {
+  -webkit-transform: translate(-50%, -50%) rotate(105deg);
+          transform: translate(-50%, -50%) rotate(105deg);
+}
+.sunflwr__pedal--11 {
+  -webkit-transform: translate(-50%, -50%) rotate(135deg);
+          transform: translate(-50%, -50%) rotate(135deg);
+}
+.sunflwr__pedal--12 {
+  -webkit-transform: translate(-50%, -50%) rotate(165deg);
+          transform: translate(-50%, -50%) rotate(165deg);
+}
+@-webkit-keyframes grow-pedal-front {
+  0% {
+    height: 0%;
+    width: 0%;
+    border: 0px solid black;
+  }
+  100% {
+    height: 35%;
+    width: 10%;
+    border: 2px solid black;
+  }
+}
+@keyframes grow-pedal-front {
+  0% {
+    height: 0%;
+    width: 0%;
+    border: 0px solid black;
+  }
+  100% {
+    height: 35%;
+    width: 10%;
+    border: 2px solid black;
+  }
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+ <h1>Happy Earth Day!<br><small>(click for more)</small></h1>
+<div class="sunflwr">
+  <div class="sunflwr__leaf--left"></div>
+  <div class="sunflwr__leaf--right"></div>
+  <div class="sunflwr__stem"></div>
+  <div class="sunflwr__center"></div>
+  <div class="sunflwr__pedal--1"></div>
+  <div class="sunflwr__pedal--2"></div>
+  <div class="sunflwr__pedal--3"></div>
+  <div class="sunflwr__pedal--4"></div>
+  <div class="sunflwr__pedal--5"></div>
+  <div class="sunflwr__pedal--6"></div>
+  <div class="sunflwr__pedal--7"></div>
+  <div class="sunflwr__pedal--8"></div>
+  <div class="sunflwr__pedal--9"></div>
+  <div class="sunflwr__pedal--10"></div>
+  <div class="sunflwr__pedal--11"></div>
+  <div class="sunflwr__pedal--12"></div>
+</div>
+  <script>
+  (function() {
+  const numOfFlowers = 4;
+  const growGarden = () => {
+    function getRandomArbitrary(min, max) {
+      return Math.round(Math.random() * (max - min)) + min;
+    }
+
+    let positions = [];
+
+    function getNum(){
+      let pos = getRandomArbitrary(0, 100);
+      for(let x = 0; x < positions.length; x++){
+        if(pos > positions[x] - 3 && pos < positions[x] + 3){
+          return false;
+        }
+      }
+      positions.push(pos);
+    }
+
+    while(positions.length < numOfFlowers){
+      getNum();
+    }
+
+    let more = setInterval(function() {
+      let flwr = document.createElement('div');
+      let dim = getRandomArbitrary(30, 80);
+      let leftPos = positions[0];
+      positions.shift();
+
+      flwr.classList.add('sunflwr');
+      flwr.innerHTML = `<div class="sunflwr__leaf--left"></div>
+                        <div class="sunflwr__leaf--right"></div>
+                        <div class="sunflwr__stem"></div>
+                        <div class="sunflwr__center"></div>
+                        <div class="sunflwr__pedal--1"></div>
+                        <div class="sunflwr__pedal--2"></div>
+                        <div class="sunflwr__pedal--3"></div>
+                        <div class="sunflwr__pedal--4"></div>
+                        <div class="sunflwr__pedal--5"></div>
+                        <div class="sunflwr__pedal--6"></div>
+                        <div class="sunflwr__pedal--7"></div>
+                        <div class="sunflwr__pedal--8"></div>
+                        <div class="sunflwr__pedal--9"></div>
+                        <div class="sunflwr__pedal--10"></div>
+                        <div class="sunflwr__pedal--11"></div>
+                        <div class="sunflwr__pedal--12"></div>`;
+      flwr.style.left = `${leftPos}vw`;
+      flwr.style.height = `${dim}vmin`;
+      flwr.style.width = `${dim}vmin`;
+      flwr.style.zIndex = 100 - dim;
+      flwr.style.filter = `saturate(${getRandomArbitrary(70, 100)}%) brightness(${getRandomArbitrary(80, 150)}%)`;
+      document.querySelector('body').appendChild(flwr);
+    }, 150);
+
+    setTimeout(function() {
+      window.clearInterval(more);
+    }, numOfFlowers * 150);
+  }
+  
+  document.body.addEventListener('click', () => {
+    growGarden();
+  });
+})();
+  </script>
+ </BODY>
+</HTML>
