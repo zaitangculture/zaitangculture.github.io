@@ -1,0 +1,557 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  :root {
+  --acceleration-default: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --acceleration-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --border-circular: 50%;
+  --border-mid: 33%;
+  --border-soft: 5%;
+  --border-irregular: 33% 33% 5% 5%;
+  --color-dark-100: #6b6d6f;
+  --color-dark-80: #909294;
+  --color-dark-60: #818386;
+  --color-dark-40: #8d949a;
+  --color-dark-20: #282828;
+  --color-bright-100: #dfecf9;
+  --color-bright-67: #c5d3e0;
+  --color-bright-33: #adbac5;
+  --color-accent: #ff8800;
+  --color-accent-fade: linear-gradient(
+    to top,
+    rgba(255, 172, 76, 0) 0%,
+    rgba(255, 172, 76, 1) 100%
+  );
+  --perspective: rotateX(47deg) rotateY(0deg) rotateZ(45deg);
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body{
+  background: var(--color-dark-20);
+  overflow-x: hidden;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.scene {
+  background: var(--color-dark-80);
+  width: 800px;
+  height: 600px;
+  -webkit-animation: animRevealScene ease-in 1s 1;
+          animation: animRevealScene ease-in 1s 1;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  border-radius: 3px;
+}
+
+.inner-scene {
+  -webkit-transform: var(--perspective);
+          transform: var(--perspective);
+  width: 100%;
+  height: 120%;
+  margin: 0 auto;
+  max-width: 100%;
+  max-width: 400px;
+  max-height: 600px;
+}
+
+.track {
+  position: absolute;
+  height: 200%;
+  width: 60%;
+  left: 35%;
+  top: -50%;
+  outline: 1px solid transparent;
+  -webkit-animation: animFakeParallax 3s linear infinite;
+          animation: animFakeParallax 3s linear infinite;
+  background: var(--color-dark-100);
+}
+
+.track:after {
+  content: "";
+  display: block;
+  width: 70%;
+  margin-left: -70%;
+  height: 100%;
+  background: var(--color-dark-60);
+}
+
+.track:nth-of-type(2) {
+  top: calc(-250% + 2px);
+}
+
+.item {
+  position: absolute;
+  left: calc(50% - var(--item-half-width));
+  top: calc(50% - var(--item-half-height));
+}
+
+.item:before,
+.item:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  --item-half-width: 50%;
+  --item-half-height: 50%;
+  outline: 1px solid transparent;
+}
+
+.x-wing {
+  width: 25px;
+  height: 260px;
+  --item-half-width: 30px;
+  --item-half-height: 25%;
+  border-radius: var(--border-irregular);
+  background: var(--color-bright-67);
+  top: 70%;
+  -webkit-animation: animShake 2.5s var(--acceleration-bounce) infinite alternate;
+          animation: animShake 2.5s var(--acceleration-bounce) infinite alternate;
+  outline: 1px solid transparent;
+}
+
+.x-wing:before {
+  background: var(--color-bright-100);
+  width: 100%;
+  height: 40%;
+  bottom: 25%;
+  border-radius: var(--border-irregular);
+  -webkit-transform: scale3d(0.5, 0.4, 1);
+          transform: scale3d(0.5, 0.4, 1);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+.x-left,
+.x-right {
+  width: 300%;
+  height: 33%;
+  left: -300%;
+  top: 66%;
+}
+
+.x-right {
+  -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+  left: 100%;
+}
+
+.pipe {
+  width: 10%;
+  height: 50%;
+  left: -43%;
+  top: 15%;
+  background: var(--color-bright-67);
+}
+
+.pipe:before {
+  width: 50%;
+  height: 150%;
+  left: 25%;
+  top: -150%;
+  background: var(--color-bright-33);
+}
+
+.pipe:after {
+  width: 100%;
+  height: 30%;
+  left: 0%;
+  top: -180%;
+  background: var(--color-bright-67);
+}
+
+.engine {
+  left: 80%;
+  top: 0;
+  -webkit-transform: rotateZ(180deg) scale(1.5, 0.6);
+          transform: rotateZ(180deg) scale(1.5, 0.6);
+}
+
+.engine:after {
+  -webkit-transform: scaleY(2);
+          transform: scaleY(2);
+}
+
+.wing {
+  width: 100%;
+  height: 33%;
+  left: -33%;
+  bottom: 0;
+  background: var(--color-bright-100);
+}
+
+.wing:before {
+  -webkit-transform: scale(0.33);
+          transform: scale(0.33);
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  background: var(--color-accent);
+}
+
+.wing:after {
+  width: 100%;
+  height: 80%;
+  background: var(--color-bright-100);
+  bottom: -20%;
+  -webkit-transform: skewY(10deg);
+          transform: skewY(10deg);
+}
+
+.x-left.shadow {
+  -webkit-transform: translate3d(20px, 20px, 0) skewY(-30deg);
+          transform: translate3d(20px, 20px, 0) skewY(-30deg);
+  opacity: 0.7;
+}
+
+.x-right.shadow {
+  -webkit-transform: scaleX(-1.2) translate3d(-20px, 20px, 0) skewY(-10deg);
+          transform: scaleX(-1.2) translate3d(-20px, 20px, 0) skewY(-10deg);
+  opacity: 0.7;
+}
+
+.shadow .wing:before {
+  display: none;
+}
+
+.defense {
+  width: 90px;
+  height: 90px;
+  --item-half-width: 12.5%;
+  --item-half-height: 12.5%;
+  left: 10%;
+  border-radius: var(--border-circular);
+  background: var(--color-dark-40);
+  -webkit-transform: rotateZ(180deg) translateY(50%);
+          transform: rotateZ(180deg) translateY(50%);
+  -webkit-animation: animRotate 2s var(--acceleration-default) infinite alternate;
+          animation: animRotate 2s var(--acceleration-default) infinite alternate;
+}
+
+.defense:nth-of-type(2) {
+  left: auto;
+  right: 10%;
+  top: 90%;
+  -webkit-animation: none;
+          animation: none;
+  border-radius: var(--border-soft);
+}
+
+.defense:before,
+.defense:after {
+  background: var(--color-bright-33);
+  width: 100%;
+  height: 100%;
+  bottom: -20%;
+  left: 5%;
+  border-radius: var(--border-irregular);
+  -webkit-transform: scale(0.6, 0.7) skewX(-5deg);
+          transform: scale(0.6, 0.7) skewX(-5deg);
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  z-index: 1;
+}
+
+.defense:after {
+  -webkit-transform: scale(0.15, 0.5) skewX(-5deg);
+          transform: scale(0.15, 0.5) skewX(-5deg);
+  left: 40%;
+  border-radius: var(--border-soft);
+  background: var(--color-bright-67);
+}
+
+.defense .cannon {
+  left: 45%;
+  top: 0;
+  -webkit-transform: scale(0.8, 0.6) skewX(0deg);
+          transform: scale(0.8, 0.6) skewX(0deg);
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-animation: animDefenseCannon 1.5s var(--acceleration-bounce) infinite;
+          animation: animDefenseCannon 1.5s var(--acceleration-bounce) infinite;
+}
+
+.defense .cannon:nth-of-type(2) {
+  left: auto;
+  right: 25%;
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+
+.defense:nth-of-type(2):before {
+  border-radius: var(--border-soft);
+}
+
+.laser {
+  width: 10%;
+  height: 50%;
+  --item-half-width: 5%;
+  --item-half-height: 25%;
+  
+}
+
+.laser:before,
+.laser:after {
+  background: var(--color-accent-fade);
+  width: 50%;
+  height: 100%;
+  bottom: 200%;
+  left: 100%;
+  -webkit-animation: animLaser 1.5s var(--acceleration-default) infinite;
+          animation: animLaser 1.5s var(--acceleration-default) infinite;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+}
+
+.laser:before {
+  -webkit-animation-delay: 200ms;
+          animation-delay: 200ms;
+}
+
+.laser:after {
+  left: 275%;
+  -webkit-animation-delay: 400ms;
+          animation-delay: 400ms;
+}
+
+@-webkit-keyframes animFakeParallax {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+}
+
+@keyframes animFakeParallax {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+}
+
+@-webkit-keyframes animShake {
+  0%,
+  5% {
+    -webkit-transform: scale(0.7) translate3d(0, 0%, 0) skewY(-2deg);
+            transform: scale(0.7) translate3d(0, 0%, 0) skewY(-2deg);
+  }
+  45%,
+  50% {
+    -webkit-transform: scale(0.7) translate3d(200%, 10%, 0) skewY(2deg);
+            transform: scale(0.7) translate3d(200%, 10%, 0) skewY(2deg);
+  }
+  100% {
+    -webkit-transform: scale(0.7) translate3d(0, 0%, 0) skewY(-2deg);
+            transform: scale(0.7) translate3d(0, 0%, 0) skewY(-2deg);
+  }
+}
+
+@keyframes animShake {
+  0%,
+  5% {
+    -webkit-transform: scale(0.7) translate3d(0, 0%, 0) skewY(-2deg);
+            transform: scale(0.7) translate3d(0, 0%, 0) skewY(-2deg);
+  }
+  45%,
+  50% {
+    -webkit-transform: scale(0.7) translate3d(200%, 10%, 0) skewY(2deg);
+            transform: scale(0.7) translate3d(200%, 10%, 0) skewY(2deg);
+  }
+  100% {
+    -webkit-transform: scale(0.7) translate3d(0, 0%, 0) skewY(-2deg);
+            transform: scale(0.7) translate3d(0, 0%, 0) skewY(-2deg);
+  }
+}
+
+@-webkit-keyframes animRevealScene {
+  0% {
+    opacity: 0.21;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animRevealScene {
+  0% {
+    opacity: 0.21;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes animDefenseCannon {
+  0% {
+    -webkit-transform: scale(0.8, 0.6) skewX(-3deg) translateY(5px);
+            transform: scale(0.8, 0.6) skewX(-3deg) translateY(5px);
+  }
+  50% {
+    -webkit-transform: scale(0.8, 0.6) skewX(-3deg) translateY(20px);
+            transform: scale(0.8, 0.6) skewX(-3deg) translateY(20px);
+  }
+  80%,
+  100% {
+    -webkit-transform: scale(0.8, 0.6) skewX(-3deg) translateY(5px);
+            transform: scale(0.8, 0.6) skewX(-3deg) translateY(5px);
+  }
+}
+
+@keyframes animDefenseCannon {
+  0% {
+    -webkit-transform: scale(0.8, 0.6) skewX(-3deg) translateY(5px);
+            transform: scale(0.8, 0.6) skewX(-3deg) translateY(5px);
+  }
+  50% {
+    -webkit-transform: scale(0.8, 0.6) skewX(-3deg) translateY(20px);
+            transform: scale(0.8, 0.6) skewX(-3deg) translateY(20px);
+  }
+  80%,
+  100% {
+    -webkit-transform: scale(0.8, 0.6) skewX(-3deg) translateY(5px);
+            transform: scale(0.8, 0.6) skewX(-3deg) translateY(5px);
+  }
+}
+
+@-webkit-keyframes animLaser {
+  0% {
+    opacity: 0;
+    -webkit-transform: scaleY(0) translate3d(0, 20px, 0) rotate(0.02deg);
+            transform: scaleY(0) translate3d(0, 20px, 0) rotate(0.02deg);
+  }
+  35% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+    -webkit-transform: scaleY(1.5) translate3d(0, -200px, 0) rotate(0.02deg);
+            transform: scaleY(1.5) translate3d(0, -200px, 0) rotate(0.02deg);
+  }
+}
+
+@keyframes animLaser {
+  0% {
+    opacity: 0;
+    -webkit-transform: scaleY(0) translate3d(0, 20px, 0) rotate(0.02deg);
+            transform: scaleY(0) translate3d(0, 20px, 0) rotate(0.02deg);
+  }
+  35% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+    -webkit-transform: scaleY(1.5) translate3d(0, -200px, 0) rotate(0.02deg);
+            transform: scaleY(1.5) translate3d(0, -200px, 0) rotate(0.02deg);
+  }
+}
+
+@-webkit-keyframes animRotate {
+  0% {
+    -webkit-transform: rotateZ(165deg) translateY(50%);
+            transform: rotateZ(165deg) translateY(50%);
+  }
+  100% {
+    -webkit-transform: rotateZ(175deg) translateY(50%);
+            transform: rotateZ(175deg) translateY(50%);
+  }
+}
+
+@keyframes animRotate {
+  0% {
+    -webkit-transform: rotateZ(165deg) translateY(50%);
+            transform: rotateZ(165deg) translateY(50%);
+  }
+  100% {
+    -webkit-transform: rotateZ(175deg) translateY(50%);
+            transform: rotateZ(175deg) translateY(50%);
+  }
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+ <div class="scene">
+  <div class="inner-scene">
+     <div class="track">
+      <div class="item defense">
+          <div class="item laser"></div>
+          <div class="item pipe cannon"></div>
+          <div class="item pipe cannon"></div> 
+      </div>
+       <div class="item defense">
+          <div class="item laser"></div>
+          <div class="item pipe cannon"></div>
+          <div class="item pipe cannon"></div>
+      </div>
+    </div>
+    <div class="track">
+      <div class="item defense">
+          <div class="item laser"></div>
+          <div class="item pipe cannon"></div>
+          <div class="item pipe cannon"></div>
+      </div>
+      <div class="item defense">
+           <div class="item laser"></div>
+          <div class="item pipe cannon"></div>
+          <div class="item pipe cannon"></div>
+      </div>
+    </div>
+    <div class="item x-wing">
+      <div class="item x-left shadow">
+        <div class="item pipe cannon"></div>
+        <div class="item wing"></div>
+      </div>
+      <div class="item x-left">
+        <div class="item pipe cannon"></div>
+        <div class="item wing"></div>
+        <div class="item pipe engine"></div>
+      </div>
+      <div class="item x-right shadow">
+        <div class="item pipe cannon"></div>
+        <div class="item wing"></div>
+      </div>
+      <div class="item x-right">
+        <div class="item pipe cannon"></div>
+        <div class="item wing"></div>
+        <div class="item pipe engine"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script></script>
+ </BODY>
+</HTML>

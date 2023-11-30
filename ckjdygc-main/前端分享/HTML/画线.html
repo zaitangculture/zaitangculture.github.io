@@ -1,0 +1,1120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.art {
+  width: 475px;
+  height: 325px;
+  position: relative;
+}
+
+/* Angle Top Left */
+.angle-topleft {
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 4px;
+  border-radius: 2px 2px 2px 0;
+  background-color: #520000;
+  position: absolute;
+}
+.angle-topleft:after {
+  content: '';
+  width: 4px;
+  height: 50px;
+  border-radius: 2px 0 2px 2px;
+  background-color: #520000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Angle Bottom Left */
+.angle-bottomleft {
+  top: 100px;
+  left: 0;
+  width: 4px;
+  height: 50px;
+  border-radius: 2px 2px 0 2px;
+  background-color: #520000;
+  position: absolute;
+}
+.angle-bottomleft:after {
+  content: '';
+  width: 50px;
+  height: 4px;
+  border-radius: 0 2px 2px 2px;
+  background-color: #520000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* Ball Bounce */
+.ball {
+  top: 50px;
+  left: 50px;
+  width: 50px;
+  height: 50px;
+  border: 4px solid #520000;
+  border-radius: 50%;
+  background-color: #fc8899;
+  position: absolute;
+  transform: skewX(-10px);
+  transform-origin: 50% 100%;
+  animation-duration: 1.5s;
+  animation-name: bounce;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-timing-function: linear;
+}
+.ball:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ff9cad;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translate(0, 0);
+    /*     animation-timing-function: ease-in; */
+  }
+  10% {
+    transform: scale(1.1, 0.9) translate(0, 0);
+    /*     animation-timing-function: ease-out; */
+  }
+  20% {
+    transform: scale(1, 1) translate(0, 0);
+    animation-timing-function: ease-out;
+  }
+  40% {
+    transform: scale(0.9, 1.1) translate(0, -25px);
+    animation-timing-function: ease-in;
+  }
+  60% {
+    transform: scale(1, 1) translate(0, 0);
+    animation-timing-function: ease-in;
+  }
+  65% {
+    transform: scale(1.1, 0.9) translate(0, 0);
+    animation-timing-function: ease-in;
+  }
+  70% {
+    transform: scale(1, 1) translate(0, 0);
+    /*     animation-timing-function: ease-in; */
+  }
+  100% {
+    transform: scale(1, 1) translate(0, 0);
+    /*     animation-timing-function: ease-in; */
+  }
+}
+/* Squiggle */
+.squiggle {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+.squiggle svg {
+  position: absolute;
+  bottom: -48px;
+  left: -48px;
+  width: 100px;
+  height: 100px;
+  fill: none;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 190;
+  stroke-dashoffset: 186;
+  transform: translate(0, 0);
+  animation-duration: 2s;
+  animation-name: squiggle;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-timing-function: linear;
+}
+
+@keyframes squiggle {
+  0% {
+    stroke-dashoffset: 186;
+    transform: translate(0, 0);
+  }
+  100% {
+    stroke-dashoffset: 355;
+    transform: translate(43px, -43px);
+  }
+}
+/* Left Squiggle */
+.squiggle-left {
+  top: 175px;
+  left: 0;
+}
+
+/* Left Squiggle */
+.squiggle-right {
+  top: 145px;
+  left: 265px;
+}
+
+/* Cross */
+.cross {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  animation-name: spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 1s;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.cross:before {
+  content: '';
+  position: absolute;
+  height: 40px;
+  width: 4px;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  left: 50%;
+  margin-left: -2px;
+  background-color: #520000;
+}
+.cross:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  margin-top: -2px;
+  margin-left: -20px;
+  background-color: #520000;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-90deg);
+  }
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+@keyframes spin2 {
+  0% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(135deg);
+  }
+  100% {
+    transform: rotate(135deg);
+  }
+}
+/* Cross Left */
+.cross-left {
+  top: 225px;
+  left: 45px;
+  animation-delay: 2s;
+  animation-name: spin2;
+  transform: rotate(45deg);
+}
+
+.cross-right {
+  top: 65px;
+  left: 150px;
+}
+
+/* Triangle */
+.triangle {
+  position: absolute;
+  height: 30px;
+  width: 55px;
+}
+.triangle svg {
+  fill: #F7DB98;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.triangle-bottom-left {
+  top: 300px;
+  left: -5px;
+}
+
+.triangle-bottom-middle {
+  top: 300px;
+  left: 235px;
+}
+.triangle-bottom-middle svg {
+  fill: #c6e392;
+}
+
+.ra-triangle {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+}
+
+.ra-top {
+  top: 0;
+  left: 135px;
+}
+.ra-top .bg {
+  fill: #f7cef7;
+  transform-origin: 0% 0%;
+  animation-name: growtriangle;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+}
+.ra-top .line {
+  fill: none;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.ra-bottom {
+  top: 125px;
+  left: 165px;
+}
+.ra-bottom svg {
+  fill: #f7cfd0;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.ra-right {
+  top: 110px;
+  left: 435px;
+}
+.ra-right .bg {
+  fill: #a8e9e3;
+  transform-origin: 100% 100%;
+  animation-name: growtriangle;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+}
+.ra-right .line {
+  fill: none;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+@keyframes growtriangle {
+  0% {
+    transform: scale(0, 0);
+  }
+  20% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: rotate(1, 1);
+  }
+}
+/* Diagonal Line */
+.diag {
+  position: absolute;
+  top: 295px;
+  left: 100px;
+  width: 4px;
+  height: 40px;
+  background-color: #520000;
+  border-radius: 4px;
+  transform: rotate(-45deg);
+}
+
+/* Box */
+.box {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #520000;
+  position: absolute;
+  top: 0;
+  left: 425px;
+  border-radius: 4px;
+  background-color: #f5dcbe;
+  overflow: hidden;
+  animation-name: boxSpin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+}
+.box:before {
+  content: '';
+  border-right: 4px solid #520000;
+  position: absolute;
+  top: 0px;
+  left: -4px;
+  height: 42px;
+  width: 0px;
+  background-color: #ffedd7;
+  animation-name: boxX;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+}
+.box:after {
+  content: '';
+  border-bottom: 4px solid #520000;
+  position: absolute;
+  top: -4px;
+  left: 0px;
+  height: 0px;
+  width: 42px;
+  background-color: #f5dcbe;
+  animation-name: boxY;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+}
+
+@keyframes boxSpin {
+  0% {
+    transform: scale(1, 1);
+  }
+  12.5% {
+    transform: scale(1.1, 1);
+  }
+  25% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  67.5% {
+    transform: scale(1, 1.1);
+  }
+  75% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+@keyframes boxX {
+  0% {
+    width: 0px;
+  }
+  25% {
+    width: calc(100% + 8px);
+  }
+  100% {
+    width: calc(100% + 8px);
+  }
+}
+@keyframes boxY {
+  0% {
+    height: 0px;
+  }
+  50% {
+    height: 0px;
+  }
+  75% {
+    height: calc(100% + 8px);
+  }
+  100% {
+    height: calc(100% + 8px);
+  }
+}
+/* Cylinder */
+.cylinder {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #520000;
+  position: absolute;
+  top: 220px;
+  left: 125px;
+  border-radius: 4px;
+  background-color: #a8e9e3;
+  animation-name: cylinderChop;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+}
+.cylinder .top {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 50px;
+  height: 25px;
+  border: 4px solid #520000;
+  border-radius: 50%;
+  background-color: #a6faf0;
+  z-index: 2;
+  transform: scale(1, 1) translateY(-15px);
+  animation-name: cylinderTop;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+}
+.cylinder .bottom {
+  position: absolute;
+  bottom: -4px;
+  left: -4px;
+  width: 50px;
+  height: 25px;
+  border: 4px solid #520000;
+  border-radius: 50%;
+  background-color: #7bded7;
+  transform: scale(1, 1) translateY(15px);
+  animation-name: cylinderBottom;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+}
+
+@keyframes cylinderChop {
+  0% {
+    overflow: hidden;
+  }
+  15% {
+    overflow: visible;
+  }
+  100% {
+    overflow: visible;
+  }
+}
+@keyframes cylinderTop {
+  0% {
+    height: 0px;
+    transform: scale(1, 0.5) translateY(-50%);
+  }
+  100% {
+    height: 25px;
+    transform: scale(1, 1) translateY(-50%);
+  }
+}
+@keyframes cylinderBottom {
+  0% {
+    height: 0px;
+    transform: scale(1, 0.5) translateY(50%);
+  }
+  100% {
+    height: 25px;
+    transform: scale(1, 1) translateY(50%);
+  }
+}
+@keyframes cylinderReflection {
+  0% {
+    height: 83px;
+    border-radius: 0 0 0 0px;
+  }
+  100% {
+    height: 55px;
+    border-radius: 0 0 0 14px;
+  }
+}
+/* Vertical Line */
+.vertical-line {
+  height: 60px;
+  width: 10px;
+  position: absolute;
+  top: 50px;
+  left: 235px;
+}
+.vertical-line svg {
+  fill: none;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  opacity: 0;
+  animation-name: linecreep;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 0.5s;
+  animation-timing-function: linear;
+}
+
+@keyframes linecreep {
+  0% {
+    stroke-dashoffset: -52;
+    animation-timing-function: linear;
+    opacity: 1;
+  }
+  20% {
+    stroke-dashoffset: -30;
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  30% {
+    stroke-dashoffset: -30;
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: 120;
+    animation-timing-function: linear;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 100;
+    opacity: 1;
+  }
+}
+/* Cone */
+.cone {
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  top: 25px;
+  left: 275px;
+}
+.cone .cone-holder {
+  height: 60px;
+  width: 60px;
+  animation-name: coneSpin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  transform-origin: 50% 55px;
+}
+.cone .bg {
+  fill: #FFCE7A;
+}
+.cone .line {
+  fill: none;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.cone .top-holder {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 50px;
+  height: 50px;
+  transform-origin: 50% 100%;
+  z-index: 2;
+}
+.cone .top {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 52px;
+  height: 25px;
+  border: 4px solid #520000;
+  border-radius: 50%;
+  background-color: #fef4a3;
+  z-index: 2;
+  transform: scale(1, 1) translateY(-50%);
+  animation-name: coneTop;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+}
+
+@keyframes coneSpin {
+  0% {
+    transform: rotate(-62.5deg);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: rotate(45deg);
+    animation-timing-function: ease-in;
+  }
+}
+@keyframes coneTop {
+  0% {
+    height: 0px;
+    transform: scale(1, 0.5) translateY(-50%);
+  }
+  100% {
+    height: 25px;
+    transform: scale(1, 1) translateY(-50%);
+  }
+}
+/* Semicircle Rotated */
+.semicircle-rotated {
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  top: 75px;
+  left: 335px;
+}
+.semicircle-rotated svg {
+  fill: none;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: -100;
+  animation-name: semicircle;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+}
+
+/* Semicircle Bottom */
+.semicircle-bottom {
+  height: 30px;
+  width: 55px;
+  position: absolute;
+  top: 300px;
+  left: 150px;
+}
+.semicircle-bottom svg {
+  fill: none;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: -100;
+  animation-name: semicircle;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+}
+
+@keyframes semicircle {
+  0% {
+    stroke-dasharray: 40;
+    stroke-dashoffset: -152;
+  }
+  100% {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 0;
+  }
+}
+/* Long diagonal lines */
+.longdiag line {
+  fill: none;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: -100;
+  animation-name: linepush;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-delay: 0s;
+  animation-timing-function: ease;
+}
+.longdiag .first {
+  animation-delay: 0s;
+}
+.longdiag .second {
+  animation-delay: 1s;
+}
+
+/* Long diagonal line right */
+.longdiag-right {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  transform: rotate(180deg);
+}
+
+/* Long diagonal line left */
+.longdiag-left {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 135px;
+  left: 90px;
+}
+
+/* Long diagonal line veryright */
+.longdiag-veryright {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 150px;
+  left: 360px;
+}
+.longdiag-veryright .first {
+  animation-delay: 0.5s;
+}
+.longdiag-veryright .second {
+  animation-delay: 1.5s;
+}
+
+@keyframes linepush {
+  0% {
+    stroke-dasharray: 100;
+    stroke-dashoffset: -100;
+  }
+  25% {
+    stroke-dasharray: 100;
+    stroke-dashoffset: -20;
+  }
+  50% {
+    stroke-dasharray: 100;
+    stroke-dashoffset: -30;
+  }
+  75% {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+  }
+}
+/* Hand */
+.hand {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  top: 176px;
+  left: 340px;
+  animation-name: handmove;
+  animation-duration: 0.333s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+}
+
+@keyframes handmove {
+  0% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(2deg) translateY(-6px);
+  }
+}
+/* Drawn Squiggle */
+.drawn-squiggle {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 250px;
+  left: 285px;
+  transform: rotate(-135deg);
+}
+.drawn-squiggle svg {
+  position: absolute;
+  bottom: -48px;
+  left: -48px;
+  width: 100px;
+  height: 100px;
+  fill: none;
+  stroke: #520000;
+  stroke-miterlimit: 10;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 190;
+  stroke-dashoffset: 186;
+  transform: translate(0, 0);
+  animation-duration: 2s;
+  animation-name: squiggle;
+  animation-iteration-count: infinite;
+  animation-direction: linear;
+  animation-timing-function: linear;
+}
+
+.label {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 6px;
+  font-size: 14px;
+  color: #7a7e88;
+  font-family: sans-serif;
+}
+
+.label a {
+  color: #61656f;
+  text-decoration: none;
+}
+
+.label a:hover {
+  color: #fc8899;
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <section>
+  <div class="label">CSS Conversion of artwork by <a href="https://dribbble.com/shots/3092290-Animated-Pattern">Burnt Toast Creative</a></div>
+  <div class="art">
+    <!-- Top left angle -->
+    <div class="angle-topleft"></div>
+    <!-- Bottom left angle -->
+    <div class="angle-bottomleft"></div>
+    <!-- Ball Bounce -->
+    <div class="ball"></div>
+    <!-- Left Squiggle -->
+    <div class="squiggle squiggle-left">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+     viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+        <path d="M6.4,206.4c7.1-7.1-5.6-19.9,1.6-27s19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27c7.1-7.1,19.9,5.6,27-1.6
+          c7.1-7.1-5.6-19.9,1.6-27c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27l0,0c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27
+          c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27s19.9,5.6,27-1.6"/>
+        </svg>
+    </div>
+    <!-- Right Squiggle -->
+    <div class="squiggle squiggle-right">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+     viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+        <path d="M6.4,206.4c7.1-7.1-5.6-19.9,1.6-27s19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27c7.1-7.1,19.9,5.6,27-1.6
+          c7.1-7.1-5.6-19.9,1.6-27c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27l0,0c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27
+          c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27s19.9,5.6,27-1.6"/>
+        </svg>
+    </div>
+    <!-- Cross Left -->
+    <div class="cross cross-left"></div>
+    <!-- Cross Right -->
+    <div class="cross cross-right"></div>
+    <!-- Triangle Bottom Left -->
+    <div class="triangle triangle-bottom-left">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="75.8 -672.6 110 60" style="enable-background:new 75.8 -672.6 110 60;" xml:space="preserve">
+        <path class="st0" d="M84.2-621l45.2-45.2c0.8-0.8,2-0.8,2.8,0l45.2,45.2c1.3,1.3,0.4,3.4-1.4,3.4H85.6
+	C83.8-617.6,82.9-619.8,84.2-621z"/> 
+      </svg>
+    </div>
+    <!-- Triangle Bottom Middle -->
+    <div class="triangle triangle-bottom-middle">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="75.8 -672.6 110 60" style="enable-background:new 75.8 -672.6 110 60;" xml:space="preserve">
+        <path class="st0" d="M84.2-621l45.2-45.2c0.8-0.8,2-0.8,2.8,0l45.2,45.2c1.3,1.3,0.4,3.4-1.4,3.4H85.6
+	C83.8-617.6,82.9-619.8,84.2-621z"/> 
+      </svg>
+    </div>
+    <!-- Right angle Triangle Top -->
+    <div class="ra-triangle ra-top">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;" xml:space="preserve">
+        <path class="bg" d="M9.5,73.4L73.4,9.5c1.3-1.3,0.4-3.4-1.4-3.4H8.1c-1.1,0-2,0.9-2,2v63.9C6.1,73.7,8.2,74.6,9.5,73.4z"/>
+        <path class="line" d="M9.5,73.4L73.4,9.5c1.3-1.3,0.4-3.4-1.4-3.4H8.1c-1.1,0-2,0.9-2,2v63.9C6.1,73.7,8.2,74.6,9.5,73.4z"/>
+      </svg>
+    </div>
+    <!-- Right angle Triangle Bottom -->
+    <div class="ra-triangle ra-bottom">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;" xml:space="preserve">
+        <path class="line bg" d="M70.5,6.6L6.6,70.5c-1.3,1.3-0.4,3.4,1.4,3.4h63.9c1.1,0,2-0.9,2-2V8.1C73.9,6.3,71.8,5.4,70.5,6.6z"/>
+      </svg>
+    </div>
+    <!-- Right Angle Triangle Right -->
+    <div class="ra-triangle ra-right">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 80 80" style="enable-background:new 0 0 80 80;" xml:space="preserve">
+        <path class="bg" d="M70.5,6.6L6.6,70.5c-1.3,1.3-0.4,3.4,1.4,3.4h63.9c1.1,0,2-0.9,2-2V8.1C73.9,6.3,71.8,5.4,70.5,6.6z"/>
+        <path class="line" d="M70.5,6.6L6.6,70.5c-1.3,1.3-0.4,3.4,1.4,3.4h63.9c1.1,0,2-0.9,2-2V8.1C73.9,6.3,71.8,5.4,70.5,6.6z"/>
+      </svg>
+    </div>
+    <!-- Diag Line -->
+    <div class="diag"></div>
+    <!-- Box -->
+    <div class="box"></div>
+    <!-- Cylinder -->
+    <div class="cylinder">
+      <div class="top"></div>
+      <div class="bottom"></div>
+    </div>
+    <!-- Semicircle rotated -->
+    <div class="semicircle-rotated">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve">
+        <path class="st1" d="M89.9,19.1c19.5,19.5,19.5,51.2,0,70.7s-51.2,19.5-70.7,0"/>
+      </svg>
+    </div>
+    <!-- Semicircle bottom -->
+    <div class="semicircle-bottom">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+     viewBox="0 0 110 60" style="enable-background:new 0 0 110 60;" xml:space="preserve">
+        <path class="st1" d="M5,55C5,27.4,27.4,5,55,5s50,22.4,50,50"/>
+      </svg>
+    </div>
+    <!-- Vertical Line -->
+    <div class="vertical-line">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+	 viewBox="0 0 10 60" style="enable-background:new 0 0 10 60;" xml:space="preserve">
+        <line x1="5" y1="5" x2="5" y2="55"/>
+      </svg> 
+    </div>
+    <!-- Cone -->
+    <div class="cone">
+      <div class="cone-holder">
+        <div class="top-holder">
+          <div class="top"></div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+     viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
+          <path class="bg" d="M54.3,6.4L30.9,53.2c-0.4,0.7-1.4,0.7-1.8,0L5.7,6.4C5.4,5.8,5.9,5,6.6,5h46.8C54.1,5,54.6,5.8,54.3,6.4z"/>
+          <path class="line" d="M54.3,6.4L30.9,53.2c-0.4,0.7-1.4,0.7-1.8,0L5.7,6.4C5.4,5.8,5.9,5,6.6,5h46.8C54.1,5,54.6,5.8,54.3,6.4z"/>
+        </svg>
+      </div>
+    </div>
+    <!-- Long diagonal line right -->
+    <div class="longdiag longdiag-right">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+        <line class="first" x1="7.3" y1="7.3" x2="42.7" y2="42.7"/>
+        <line class="second" x1="7.3" y1="7.3" x2="42.7" y2="42.7"/>
+      </svg>
+    </div> 
+    <!-- Long diagonal line left -->
+    <div class="longdiag longdiag-left">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+        <line class="first" x1="42.7" y1="7.3" x2="7.3" y2="42.7"/>
+        <line class="second" x1="42.7" y1="7.3" x2="7.3" y2="42.7"/>
+      </svg>
+    </div>
+    <!-- Long diagonal line very right -->
+    <div class="longdiag longdiag-veryright">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+        <line class="first" x1="42.7" y1="7.3" x2="7.3" y2="42.7"/>
+        <line class="second" x1="42.7" y1="7.3" x2="7.3" y2="42.7"/>
+      </svg>
+    </div>
+    <!-- Drawn Squiggle -->
+    <div class="drawn-squiggle">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+     viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+        <path d="M6.4,206.4c7.1-7.1-5.6-19.9,1.6-27s19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27c7.1-7.1,19.9,5.6,27-1.6
+          c7.1-7.1-5.6-19.9,1.6-27c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27l0,0c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27
+          c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27c7.1-7.1,19.9,5.6,27-1.6c7.1-7.1-5.6-19.9,1.6-27s19.9,5.6,27-1.6"/>
+        </svg>
+    </div>
+    <!-- Hand -->
+    <div class="hand">
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 222 230" style="enable-background:new 0 0 222 230;" xml:space="preserve">
+        <style type="text/css">
+          .hand-st0{fill:#FFF0D8;}
+          .hand-st1{fill:#FEDDBD;}
+          .hand-st2{fill:#F8B3B3;stroke:#4D1111;stroke-width:5;stroke-miterlimit:10;}
+          .hand-st3{fill:none;stroke:#4D1111;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+          .hand-st4{fill:#FFDD94;}
+          .hand-st5{fill:#FFCE7B;}
+          .hand-st6{fill:#FFFFFF;}
+          .hand-st7{fill:#F8B3B3;}
+          .hand-st8{fill:#EDE7E7;}
+          .hand-st9{fill:#F4889A;}
+          .hand-st10{fill:#F4889A;stroke:#4D1111;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+        </style>
+        <g>
+          <path class="hand-st0" d="M218.4,201.3c0,0-9.1-19.6-24.3-48.7c-15.2-29.1-15.3-58.8-25.7-79.3c-10.3-20.5-20.4-28.9-17.4-41.9
+            s9.6-19.9,2.1-25.8s-15.8,4.5-18.6,14.1s-3.8,17.8-2.3,21.6c0,0-4-5-11.4-5.3s-10.3,5.3-10.3,5.3l0,0c-0.4-0.5-0.8-1.1-1.3-1.6
+            c-9.4-10.8-27.1-8.3-36.5,0.4s-10.8,16.3-27,29.4c-16.2,13.1,1.3,24.6,1.3,24.6l0,0c-4.2-0.2-7.6,1.8-9.9,6.8
+            c-5.9,12.5,7.8,23.5,17.5,32.1c9.7,8.6,7.5,4.2,24.3,22.3s25.5,20.3,40.3,21.2c14.7,0.9,17-2.8,17-2.8c3.1,3,7.1,8.3,10.7,17.8
+            c7.3,19.2,14.1,33.6,14.1,33.6c1.2,2.8,14.9-0.3,30.8-6.8S219.6,204.1,218.4,201.3z M71.3,108.2c-7.2-6.4-13.8-11.1-19.4-13.1l0,0
+            c0,0,4.3,0.5,14.5-8.5c4.5-4,8.2-8,11.1-11.5l10.2-6.4c15.2,25.3,6.7,39.3,0.2,45.5C82.4,114.3,76.5,112.8,71.3,108.2z"/>
+          <path class="hand-st1" d="M111.3,59.2c0,0-5.1-12.6,1-15.8l0,0c1.7,2.4,3.3,4.8,4.6,7.1l15.5-9.3c-1.5-3.8-0.5-12,2.3-21.6
+            s11.1-19.9,18.6-14.1s0.9,12.7-2.1,25.8c-0.8,3.6-0.7,6.9,0.3,10.2L111.3,59.2z"/>
+          <path class="hand-st1" d="M156.8,52.8c3.3,5.5,7.5,11.9,11.8,20.5c10.3,20.5,10.5,50.3,25.7,79.3c15.2,29.1,24.3,48.7,24.3,48.7
+            c-1-2.3-10.7-0.6-23.2,3.9c0,0-16.8-32.1-23.8-50.6c-7.1-18.5-8.4-39.3-13.3-57S156.8,64,131,76.3S96.2,92.6,96.2,92.6l0,0
+            c-0.2-3.7-1.1-7.9-2.9-12.5L156.8,52.8z"/>
+          <path class="hand-st1" d="M51.9,95.1c-1.1-0.4-2.2-0.7-3.3-0.9c0,0,14.3-7,23.7-20.4s9.3-11.8,12.8-9.3c0,0-6.3,10.9-18.8,22
+            C56.2,95.6,51.9,95.1,51.9,95.1"/>
+          <ellipse transform="matrix(0.9235 -0.3836 0.3836 0.9235 -67.2539 89.136)" class="hand-st2" cx="189.8" cy="213.2" rx="31" ry="5.5"/>
+          <path class="hand-st3" d="M82.7,118.1c0,0,28.9-14,2.5-53.5c0,0-6.3,10.9-18.8,22c-10.2,9-14.5,8.5-14.5,8.5"/>
+          <path class="hand-st3" d="M47.2,94.1c0,0-17.5-11.5-1.3-24.6s17.6-20.8,27-29.4s27.1-11.3,36.5-0.4c3,3.5,5.5,7.3,7.5,10.8"/>
+          <path class="hand-st3" d="M110.6,41.3c0,0,3-5.6,10.3-5.3s11.4,5.3,11.4,5.3c-1.5-3.8-0.5-12,2.3-21.6s11.1-19.9,18.6-14.1
+            s0.9,12.7-2.1,25.8s7,21.4,17.4,41.9c10.3,20.5,10.5,50.3,25.7,79.3c15.2,29.1,24.3,48.7,24.3,48.7"/>
+          <path class="hand-st4" d="M197.3,32.6l-4.1-9.3L25,97c-0.7,0.3-1.4,0.7-2,1.2l-18.8,15c-1.4,1.1-0.6,3.4,1,3.6c0.2,0,0.4,0,0.6,0
+            l23.7-3.7c0.8-0.1,1.5-0.3,2.3-0.7L200,38.7L197.3,32.6z"/>
+          <path class="hand-st5" d="M5.2,116.8c0.2,0,0.4,0,0.6,0l23.7-3.7c0.8-0.1,1.5-0.3,2.3-0.7L200,38.7l-2.7-6.1L5.2,116.8z"/>
+          <polygon class="hand-st5" points="197.3,32.6 197.3,32.6 200,38.7 	"/>
+          <path class="hand-st6" d="M180.5,39.9c-0.3-0.5-0.5-1-0.8-1.6c-1.9-4.3-1.8-8.4,0.2-9.3l-10.5,4.6c-2,0.9-2,5-0.2,9.3
+            c0.2,0.5,0.5,1.1,0.8,1.6c1.9,3.4,4.5,5.4,6.2,4.6l10.5-4.6C185,45.3,182.4,43.3,180.5,39.9z"/>
+          <path class="hand-st7" d="M197.3,32.6l-4.1-9.3l-13.3,5.8c-2,0.9-2,5-0.2,9.3c0.2,0.5,0.5,1.1,0.8,1.6c1.9,3.4,4.5,5.4,6.2,4.6l13.3-5.8
+            L197.3,32.6z"/>
+          <path class="hand-st8" d="M176.2,49.2l10.5-4.6c-1.7,0.7-4.3-1.3-6.2-4.6L170,44.5C171.9,47.9,174.4,49.9,176.2,49.2z"/>
+          <path class="hand-st9" d="M186.7,44.5l13.3-5.8l-2.7-6.1l-16.8,7.3C182.4,43.3,185,45.3,186.7,44.5z"/>
+          <path class="hand-st3" d="M186.7,44.5c-2,0.9-5.1-1.9-6.9-6.2c-1.9-4.3-1.8-8.4,0.2-9.3l-10.5,4.6c-2,0.9-2,5-0.2,9.3
+            c1.9,4.3,5,7,6.9,6.2L186.7,44.5z"/>
+          <path class="hand-st3" d="M186.7,44.5c-2,0.9-5.1-1.9-6.9-6.2c-1.9-4.3-1.8-8.4,0.2-9.3l13.3-5.8l6.8,15.5L186.7,44.5z"/>
+          <path class="hand-st6" d="M22.9,98.3l-18.8,15c-1.6,1.3-0.4,3.9,1.6,3.6l23-3.6c0,0-8.3,0.9-0.9-3.8c7.5-4.7,0.5-4.6-4.3-5.4
+            c-4.8-0.9,1.6-7,1.6-7H25l0,0C24.2,97.4,23.6,97.8,22.9,98.3z"/>
+          <path class="hand-st3" d="M193.2,23.3L25,97c-0.7,0.3-1.4,0.7-2,1.2l-18.8,15c-1.6,1.3-0.4,3.9,1.6,3.6l23.7-3.7
+            c0.8-0.1,1.5-0.3,2.3-0.7L200,38.7L193.2,23.3z"/>
+          <path class="hand-st3" d="M25.1,97c0,0-6.4,6.1-1.6,7c4.8,0.9,11.8,0.7,4.3,5.4c-7.5,4.7,0.9,3.8,0.9,3.8"/>
+          <path class="hand-st3" d="M6.8,111.1c0,0,4.2,1.1,2.5,5.2"/>
+          <path class="hand-st0" d="M136.4,173.6c0,0-2.3,3.7-17,2.8s-23.4-3.1-40.3-21.2S64.5,141.6,54.8,133s-23.4-19.6-17.5-32.1
+            s18.6-6.4,34.1,7.3c5.2,4.6,11.1,6.1,16.6,6"/>
+          <path class="hand-st1" d="M136.4,173.6c0,0-2.3,3.7-17,2.8c-1.5-0.1-2.9-0.2-4.3-0.3c0,0,3.5-9.4,16-6C131,170,133.2,170.6,136.4,173.6"
+            />
+          <path class="hand-st3" d="M136.4,173.6c0,0-2.3,3.7-17,2.8s-23.4-3.1-40.3-21.2S64.5,141.6,54.8,133s-23.4-19.6-17.5-32.1
+            s18.6-6.4,34.1,7.3c5.2,4.6,11.1,6.1,16.6,6"/>
+          <path class="hand-st3" d="M131,170c0,0,8.7,2.2,16,21.4c7.3,19.2,14.1,33.6,14.1,33.6"/>
+          <ellipse transform="matrix(0.9158 -0.4016 0.4016 0.9158 4.1073 81.5652)" class="hand-st10" cx="196.6" cy="31" rx="3.9" ry="8.4"/>
+        </g>
+       </svg>
+    </div>
+  </div>
+</section>
+  <script>
+   /* CSS Conversion of artwork by Burnt Toast Creative */
+/* https://dribbble.com/shots/3092290-Animated-Pattern */
+  </script>
+ </BODY>
+</HTML>

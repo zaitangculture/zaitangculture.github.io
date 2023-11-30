@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  * {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+html {
+  background: #ece9e6;
+  background: linear-gradient(to top, #ece9e6, #fff);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+html body h1 {
+  text-align: center;
+  padding: 2rem 0 1rem;
+  margin: 0;
+  color: #373f51;
+}
+html body h6 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 300;
+}
+html body p {
+  margin-bottom: 2rem;
+}
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 3rem;
+  padding: 2rem 4rem 4rem;
+}
+.container .wrapper {
+  -webkit-transform: skew(-10deg);
+          transform: skew(-10deg);
+  transition: 0.25s;
+}
+.container .wrapper:before {
+  content: '';
+  left: 0;
+  top: 0;
+  height: calc(100% - 10px);
+  width: calc(100% - 10px);
+  border-radius: 40px;
+  opacity: 0;
+  border: 2px solid #373f51;
+  position: absolute;
+  z-index: -1;
+  transition: 0.5s 0.05s;
+}
+.container .wrapper:hover:before {
+  opacity: 1;
+  -webkit-transform: translateY(1.5rem) translateX(1.5rem);
+          transform: translateY(1.5rem) translateX(1.5rem);
+}
+.container .wrapper:nth-child(1) .card:after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("https://images.pexels.com/photos/442559/pexels-photo-442559.jpeg?cs=srgb&dl=adult-adventure-backpack-442559.jpg&fm=jpg");
+  background-size: cover;
+  background-color: #373f51;
+  background-blend-mode: screen;
+  -webkit-transform: skew(10deg) scale(1.2);
+          transform: skew(10deg) scale(1.2);
+  transition: 0.25s;
+}
+.container .wrapper:nth-child(2) .card:after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("https://images.pexels.com/photos/307008/pexels-photo-307008.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+  background-color: #373f51;
+  background-blend-mode: screen;
+  -webkit-transform: skew(10deg) scale(1.2);
+          transform: skew(10deg) scale(1.2);
+  transition: 0.25s;
+}
+.container .wrapper:nth-child(3) .card:after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("https://images.pexels.com/photos/551650/pexels-photo-551650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+  background-color: #373f51;
+  background-blend-mode: screen;
+  -webkit-transform: skew(10deg) scale(1.2);
+          transform: skew(10deg) scale(1.2);
+  transition: 0.25s;
+}
+.container .wrapper:nth-child(4) .card:after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("https://images.pexels.com/photos/378153/pexels-photo-378153.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+  background-color: #373f51;
+  background-blend-mode: screen;
+  -webkit-transform: skew(10deg) scale(1.2);
+          transform: skew(10deg) scale(1.2);
+  transition: 0.25s;
+}
+.container .wrapper:nth-child(5) .card:after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("https://images.pexels.com/photos/674268/pexels-photo-674268.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+  background-color: #373f51;
+  background-blend-mode: screen;
+  -webkit-transform: skew(10deg) scale(1.2);
+          transform: skew(10deg) scale(1.2);
+  transition: 0.25s;
+}
+.container .wrapper:nth-child(6) .card:after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url("https://images.pexels.com/photos/307006/pexels-photo-307006.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-size: cover;
+  background-color: #373f51;
+  background-blend-mode: screen;
+  -webkit-transform: skew(10deg) scale(1.2);
+          transform: skew(10deg) scale(1.2);
+  transition: 0.25s;
+}
+.container .wrapper:hover {
+  -webkit-transform: translateX(-1rem) translateY(-1rem) skew(-10deg);
+          transform: translateX(-1rem) translateY(-1rem) skew(-10deg);
+}
+.container .wrapper:hover .card {
+  box-shadow: 0.5rem 0.5rem 1rem rgba(0,0,0,0.2);
+}
+.container .wrapper:hover .card:after {
+  background-blend-mode: normal;
+}
+.container .wrapper:hover .card .fal {
+  bottom: 4rem;
+  background-color: rgba(255,255,255,0.8);
+}
+.container .card {
+  background-color: #808080;
+  border-radius: 40px;
+  height: 15rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.container .card:after {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.container .card .fal {
+  position: absolute;
+  bottom: -1rem;
+  right: 3rem;
+  border-radius: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: #373f51;
+  z-index: 1;
+  -webkit-transform: skew(10deg) translateY(50%);
+          transform: skew(10deg) translateY(50%);
+  text-align: center;
+  transition: 0.25s;
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+<h1>Much Hover, Much Wow</h1>
+<h6>Follow Me to See More Cool Things?</h6>
+<p>( Unless you thought this was lame :sadpanda: )</p>
+<div class="container">
+  <div class="wrapper">
+    <div class="card"><i class="fal fa-arrow-right"></i></div>
+  </div>
+  <div class="wrapper">
+    <div class="card"><i class="fal fa-arrow-right"></i></div>
+  </div>
+  <div class="wrapper">
+    <div class="card"><i class="fal fa-arrow-right"></i></div>
+  </div>
+  <div class="wrapper">
+    <div class="card"><i class="fal fa-arrow-right"></i></div>
+  </div>
+  <div class="wrapper">
+    <div class="card"><i class="fal fa-arrow-right"></i></div>
+  </div>
+  <div class="wrapper">
+    <div class="card"><i class="fal fa-arrow-right"></i></div>
+  </div>
+</div>
+ </BODY>
+</HTML>

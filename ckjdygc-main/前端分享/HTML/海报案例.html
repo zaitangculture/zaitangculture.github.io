@@ -1,0 +1,459 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  body {
+  height: 100vh;
+  background: #ffe745;
+}
+
+.poster {
+  width: 400px;
+  overflow: hidden;
+  position: relative;
+  background: #ffe536;
+  margin: 30px auto;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
+}
+.poster:after {
+  content: "";
+  display: block;
+  padding-top: 150%;
+}
+
+.frame {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 2px solid white;
+  z-index: 1;
+}
+
+.heading {
+  left: 50%;
+  top: 10%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+  position: absolute;
+  color: white;
+  font-size: 3em;
+}
+
+.cube {
+  position: absolute;
+  left: 50%;
+  top: 105%;
+  margin: -2.5em;
+  width: 5em;
+  height: 5em;
+  -webkit-animation: animation_rotate 5s ease-in-out both infinite;
+          animation: animation_rotate 5s ease-in-out both infinite;
+}
+.cube:nth-child(even) {
+  z-index: 0;
+}
+.cube:nth-child(odd) {
+  z-index: 2;
+}
+.cube:nth-child(1) {
+  width: 2.5em;
+  height: 2.5em;
+  margin: -1.25em;
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+.cube:nth-child(2) {
+  width: 5em;
+  height: 5em;
+  margin: -2.5em;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+.cube:nth-child(3) {
+  width: 7.5em;
+  height: 7.5em;
+  margin: -3.75em;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+.cube:nth-child(4) {
+  width: 10em;
+  height: 10em;
+  margin: -5em;
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+.cube:nth-child(5) {
+  width: 12.5em;
+  height: 12.5em;
+  margin: -6.25em;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+.cube:nth-child(6) {
+  width: 15em;
+  height: 15em;
+  margin: -7.5em;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+.cube:nth-child(7) {
+  width: 17.5em;
+  height: 17.5em;
+  margin: -8.75em;
+  -webkit-animation-delay: 0.7s;
+          animation-delay: 0.7s;
+}
+.cube:nth-child(8) {
+  width: 20em;
+  height: 20em;
+  margin: -10em;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+.cube:nth-child(9) {
+  width: 22.5em;
+  height: 22.5em;
+  margin: -11.25em;
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+.cube:nth-child(10) {
+  width: 25em;
+  height: 25em;
+  margin: -12.5em;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+.cube:nth-child(11) {
+  width: 27.5em;
+  height: 27.5em;
+  margin: -13.75em;
+  -webkit-animation-delay: 1.1s;
+          animation-delay: 1.1s;
+}
+.cube:nth-child(12) {
+  width: 30em;
+  height: 30em;
+  margin: -15em;
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+}
+.cube:nth-child(13) {
+  width: 32.5em;
+  height: 32.5em;
+  margin: -16.25em;
+  -webkit-animation-delay: 1.3s;
+          animation-delay: 1.3s;
+}
+.cube:nth-child(14) {
+  width: 35em;
+  height: 35em;
+  margin: -17.5em;
+  -webkit-animation-delay: 1.4s;
+          animation-delay: 1.4s;
+}
+.cube:nth-child(15) {
+  width: 37.5em;
+  height: 37.5em;
+  margin: -18.75em;
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+}
+.cube:nth-child(16) {
+  width: 40em;
+  height: 40em;
+  margin: -20em;
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s;
+}
+.cube:nth-child(17) {
+  width: 42.5em;
+  height: 42.5em;
+  margin: -21.25em;
+  -webkit-animation-delay: 1.7s;
+          animation-delay: 1.7s;
+}
+.cube:nth-child(18) {
+  width: 45em;
+  height: 45em;
+  margin: -22.5em;
+  -webkit-animation-delay: 1.8s;
+          animation-delay: 1.8s;
+}
+.cube:nth-child(19) {
+  width: 47.5em;
+  height: 47.5em;
+  margin: -23.75em;
+  -webkit-animation-delay: 1.9s;
+          animation-delay: 1.9s;
+}
+.cube:nth-child(20) {
+  width: 50em;
+  height: 50em;
+  margin: -25em;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+.cube:nth-child(21) {
+  width: 52.5em;
+  height: 52.5em;
+  margin: -26.25em;
+  -webkit-animation-delay: 2.1s;
+          animation-delay: 2.1s;
+}
+.cube:nth-child(22) {
+  width: 55em;
+  height: 55em;
+  margin: -27.5em;
+  -webkit-animation-delay: 2.2s;
+          animation-delay: 2.2s;
+}
+.cube:nth-child(23) {
+  width: 57.5em;
+  height: 57.5em;
+  margin: -28.75em;
+  -webkit-animation-delay: 2.3s;
+          animation-delay: 2.3s;
+}
+.cube:nth-child(24) {
+  width: 60em;
+  height: 60em;
+  margin: -30em;
+  -webkit-animation-delay: 2.4s;
+          animation-delay: 2.4s;
+}
+
+.side {
+  position: absolute;
+  height: 50%;
+  border-left: 2px solid #6e6e6e;
+}
+.side:after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  right: 0;
+  top: 0;
+  height: 15%;
+  background: #fff;
+  opacity: 0.9;
+}
+.side:nth-child(1) {
+  top: 0;
+  left: 50%;
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
+  -webkit-transform: rotatez(90deg) skewx(45deg);
+          transform: rotatez(90deg) skewx(45deg);
+}
+.side:nth-child(1):after {
+  width: 1em;
+}
+.side:nth-child(2) {
+  top: 0;
+  left: 50%;
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
+  -webkit-transform: rotatez(-90deg) skewx(-45deg) rotatey(180deg);
+          transform: rotatez(-90deg) skewx(-45deg) rotatey(180deg);
+}
+.side:nth-child(2):after {
+  width: 1em;
+}
+.side:nth-child(3) {
+  bottom: 0;
+  left: 50%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-transform: rotatez(-90deg) skewx(-45deg);
+          transform: rotatez(-90deg) skewx(-45deg);
+}
+.side:nth-child(4) {
+  bottom: 0;
+  left: 50%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-transform: rotatez(90deg) skewx(45deg);
+          transform: rotatez(90deg) skewx(45deg);
+}
+
+@-webkit-keyframes animation_rotate {
+  to {
+    -webkit-transform: rotatex(-0.5turn);
+            transform: rotatex(-0.5turn);
+  }
+}
+
+@keyframes animation_rotate {
+  to {
+    -webkit-transform: rotatex(-0.5turn);
+            transform: rotatex(-0.5turn);
+  }
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+ <div class='poster'>
+  <div class='heading'>möd</div>
+  <div class='frame'></div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+  <div class='cube'>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+    <div class='side'></div>
+  </div>
+</div>
+
+  <script>
+  🐻 Bear with us while we compile your code to js
+  </script>
+ </BODY>
+</HTML>

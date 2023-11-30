@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱心</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            border: 0px;
+        }
+        body{
+			overflow: hidden;
+            background-color: #000000;
+        }
+        .container{
+            position: relative;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto;
+            height: 260px;
+            width: 200px;
+            transform-origin: 50% 130%;
+            transform-style: preserve-3d;
+            animation: 8s rotate linear infinite;
+        }
+        @keyframes rotate{
+            from{
+                transform:rotateX(0deg) rotateY(0deg);
+            }
+            to{
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+        .square{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            transform:translateX(50px) translateY(300px) translateZ(50px);
+            transform-style: preserve-3d;
+        }
+        .square div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+        }
+        .square div:nth-child(1){
+            top: 100px;
+            transform-origin: top;
+            transform:rotateX(-90deg);
+        }
+        .square div:nth-child(2){
+            left: 100px;
+            transform-origin: left;
+            transform:rotateY(90deg);
+        }
+        .square div:nth-child(3){
+            left: -100px;
+            transform-origin: right;
+            transform:rotateY(-90deg);
+        }
+        .square div:nth-child(4){
+            top: -100px;
+            transform-origin: bottom;
+            transform:rotateX(90deg);
+        }
+        .square div:nth-child(6){
+            top:0;
+            transform:translateZ(-100px);
+        }
+        .square div:nth-child(5){
+
+        }
+        .heart{
+            position: absolute;
+            top:0;
+            left:0;
+            height: 260px;
+            width: 200px;
+            border: 2px solid red;
+            margin: 200px auto;
+            border-radius: 50% 50% 0%/50% 50% 0%;
+            border-bottom: 0;
+            border-left: 0;
+        }
+        img{
+            width: 100px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="square">
+            <div><img src="http://cdn.u1.huluxia.com/g4/M03/A6/A7/rBAAdmIrVFSAaIMSAAHagZSjHvM264.jpg"></div>
+            <div><img src="http://cdn.u1.huluxia.com/g4/M02/A6/A7/rBAAdmIrVDmAIzYwAAKO8w6gKtI205.jpg"></div>
+            <div><img src="https://p5.ssl.qhimgs1.com/sdr/400__/t01b838b4ee7a1ffce5.jpg"></div>
+            <div><img src="http://cdn.u1.huluxia.com/g4/M02/A6/A6/rBAAdmIrVBWAKbOnAAIBCCyYmL8554.jpg"></div>
+            <div><img src="http://cdn.u1.huluxia.com/g4/M02/A6/A6/rBAAdmIrVCeAcU9OAAKWjdKOIbw309.jpg"></div>
+            <div><img src="https://p0.ssl.qhimgs1.com/sdr/400__/t0123210937cfd6d45a.jpg"></div>
+        </div>
+    </div>
+<audio autoplay="autopaly" loop="loop" id="audios" preload="auto">
+    <source src="http://music.163.com/song/media/outer/url?id=1474411443.mp3" type="audio/mp3" />
+</audio>
+</body>
+</html>
+

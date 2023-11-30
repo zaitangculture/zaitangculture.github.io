@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  body {
+  background-color: #FFF;    
+  margin: 0;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
+button {
+  background-color: #459; 
+  bottom: 0;
+  left: 50%;
+  position: absolute;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  min-width: 195px
+}
+
+.h_heat_button {
+  transform: translate(-101%, -20%);
+}
+.h_reset_button {
+  transform: translate(1%, -20%);
+}
+
+.v_heat_button {
+  transform: translate(-50%, -104%);
+}
+.v_reset_button {
+  transform: translate(-50%, -2%);
+}
+
+button:hover {
+  box-shadow: 3px 3px 1px 0 rgba(0,0,0,0.19);
+}
+button:focus {outline:0;}
+
+canvas { display:block; }
+  </style>
+ </HEAD>
+
+ <BODY>
+ <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+  <canvas id=canvas></canvas>
+<body>
+  <button id=heat_button data-text-swap="COOL PARTICLE" class="h_heat_button">HEAT PARTICLE</button>
+  <button id=reset_button class="h_reset_button">RESET</button>
+  
+  <img id=plus src="https://res.cloudinary.com/al-ro/image/upload/v1495830786/szl7IYf_fdgg0q.png" title="source: imgur.com" width="0" height="0"/>
+
+  <img id=minus src="https://res.cloudinary.com/al-ro/image/upload/v1495830780/Fr6Morw_eanxki.png" title="source: imgur.com" width="0" height="0"/>
+</body>
+  <script>
+   const mobile = ( navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i)
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i)
+      );
+
+var ctx = canvas.getContext("2d");
+var discs = [];
+var initialW = canvas.width = window.innerWidth;
+var initialH = canvas.height = window.innerHeight;
+var TWO_PI = 2 * Math.PI;
+
+var heat = 0;
+var op = 1;
+
+var dx = 50;
+var dy = 50;
+
+var increase = false;
+var decrease = false;
+
+var disc = {
+  x: canvas.width / 2,
+  y: canvas.height / 2,
+  radius: Math.min(canvas.height, canvas.width) / 4,
+};
+
+var degrees = [];
+var plus = document.getElementById("plus");
+var minus = document.getElementById("minus");
+
+for(i = 0; i < ((canvas.width/dx)*(canvas.height/dy)); i++){
+  degrees.push((0.5-Math.random())*TWO_PI);
+}
+
+var heat_button = document.getElementById("heat_button");
+heat_button.addEventListener('click', toggle_heat);
+
+var reset_button = document.getElementById("reset_button");
+reset_button.addEventListener('click', reset_heat);
+
+function reset_heat(){
+  heat = 0;
+  increase = false;
+  decrease = false;
+}
+
+function swap_button_label(){
+  if (heat_button.getAttribute("data-text-swap") == heat_button.innerHTML) {
+    heat_button.innerHTML = heat_button.getAttribute("data-text-original");
+    increase = false;
+    decrease = true;
+  } else {
+    heat_button.setAttribute("data-text-original", heat_button.innerHTML);
+    heat_button.innerHTML = heat_button.getAttribute("data-text-swap");
+    increase = true;
+    decrease = false;
+  }
+}
+function toggle_heat(){
+  swap_button_label();
+}
+
+
+var ellipse_width = dx/4;
+var ellipse_height = dy/4;
+
+var offset_start = Math.PI/2;
+var offset_end = 1.5*Math.PI;
+
+function setButtonPosition(){
+  if(canvas.width < canvas.height){
+    document.getElementById("heat_button").className = "v_heat_button";
+    document.getElementById("reset_button").className = "v_reset_button";
+  }else{
+    document.getElementById("heat_button").className = "h_heat_button";
+    document.getElementById("reset_button").className = "h_reset_button";
+  }
+}
+
+window.addEventListener("deviceorientation", setButtonPosition, true);
+
+window.addEventListener( 'resize', setButtonPosition, true);                   
+
+function draw() {
+  ctx.fillStyle = "#000";
+  if (decrease && (heat > -250)) {
+    heat -= 5;
+  }
+  if (increase && (heat < 250)) {
+    heat += 5;
+  }
+
+  if(mobile){
+    canvas.width = initialW;
+    canvas.height = initialH;
+  }else{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  
+  disc.x = canvas.width / 2;
+  disc.y = canvas.height / 2;
+  ctx.strokeStyle = "rgb(0,0,0)";
+
+  ratio = heat/250;
+
+  for (i = 0; i < canvas.width/dx; i++) {
+    for (j = 0; j < canvas.height/dy; j++) {
+
+      theta = degrees[(j*Math.round(canvas.width/dx) + i)%degrees.length];
+
+      target_x = -ratio*(i*dx+dx/2 - disc.x);
+      target_y = -ratio*(j*dy+dy/2 - disc.y);
+
+      target = Math.atan2(target_x, target_y);
+
+      theta = (1-Math.abs(ratio)) * theta + Math.abs(ratio) * target;
+
+      var centre_x = i*dx+dx/2;
+      var centre_y = j*dy+dy/1.5;
+
+      //DRAW LINES
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(centre_x - (ellipse_width * Math.cos(theta+offset_start)), centre_y + (ellipse_height * Math.sin(theta+offset_start)));
+
+      ctx.lineTo(centre_x - (ellipse_width * Math.cos(theta+offset_end)), centre_y + (ellipse_height * Math.sin(theta+offset_end)));
+      ctx.stroke();
+
+      //DRAW ARROW HEADS
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(centre_x - ((ellipse_width+5) * Math.cos(theta+offset_end)), centre_y + ((ellipse_height+5) * Math.sin(theta+offset_end)));
+      ctx.lineTo(centre_x - (ellipse_width/2 * Math.cos(theta+offset_end-0.8)), centre_y + (ellipse_height/2 * Math.sin(theta+offset_end-0.8)));
+      ctx.lineTo(centre_x - (ellipse_width/2 * Math.cos(theta+offset_end+0.8)), centre_y + (ellipse_height/2 * Math.sin(theta+offset_end+0.8)));
+      ctx.fill();
+    }
+  }
+  ctx.strokeStyle = "rgba(250,250,0,"+(heat/250)+")";
+  ctx.lineWidth = 2;
+
+  var grd=ctx.createRadialGradient(disc.x,disc.y,disc.radius/10,disc.x,disc.y,disc.radius);
+
+  var blue;
+  var green;
+  var green_2;
+  if(heat > 0){
+    blue = 0;
+    green = Math.max(heat-50,0);
+  }else{
+    blue = -heat;
+    green = -heat;
+  }
+  grd.addColorStop(0,"rgba(" + heat + ","+ green +","+blue+","+Math.abs(heat/250)+")");
+  grd.addColorStop(1,"rgba(" + heat + ",0,"+blue+","+Math.abs(heat/250)+")");
+
+
+  ctx.beginPath();
+  ctx.arc(disc.x, disc.y, disc.radius, 0, TWO_PI);
+  ctx.fill();
+
+  ctx.fillStyle = grd;
+
+  ctx.beginPath();
+  ctx.arc(disc.x, disc.y, disc.radius, 0, TWO_PI);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(disc.x, disc.y, disc.radius, 0, TWO_PI);
+  ctx.fill();
+  /*
+  ctx.fillStyle = "rgba(255,255,255,"+Math.abs(heat/250)+")";
+  ctx.fillRect(Math.floor(disc.x-dx/2), Math.floor(disc.y-dy/10),Math.floor(dx/2),Math.floor(dy/5));
+  ctx.fillRect(Math.floor(disc.x), Math.floor(disc.y-dy/10),Math.floor(dx/2),Math.floor(dy/5));
+  ctx.fillRect(Math.floor(disc.x-dx/10), Math.floor(disc.y-dy/2), Math.floor(dx/5), Math.floor(dy/2.5));
+  ctx.fillRect(Math.floor(disc.x-dx/10), Math.floor(disc.y+dy/10), Math.floor(dx/5), Math.floor(dy/2.5));
+  */
+  ctx.save();
+  ctx.globalAlpha = Math.abs(heat/250);
+  if(heat < 0){
+    ctx.drawImage(plus, disc.x-dx, disc.y-dy, 2*dx, 2*dy);
+  }else{
+    ctx.drawImage(minus, disc.x-dx, disc.y-dy, 2*dx, 2*dy);
+  }
+  ctx.restore();
+  window.requestAnimationFrame(draw);
+}
+
+window.requestAnimationFrame(draw);
+  </script>
+ </BODY>
+</HTML>

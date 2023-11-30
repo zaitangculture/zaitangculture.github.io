@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   @import url(https://fonts.googleapis.com/css?family=Crafty+Girls);
+
+h1 {
+  font-family: 'Crafty Girls';
+  text-align: center;
+}  
+
+img {
+  position: absolute;
+  width: 200px;
+  margin-top: 230px;
+  cursor: pointer;
+}
+
+img.flip {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <h1>Haters gonna hate</h1> 
+<img id="walker" src="http://media.giphy.com/media/XGnWMiVXL87Xa/giphy.gif">
+
+  <script>
+   // Get the walker image:
+var walker = document.getElementById('walker');
+var walkingLeft = true;
+var dist = 1;
+var leftBorder = 700;
+var rightBorder = 10;
+var position = rightBorder;
+
+function check(){
+  position += walkingLeft ? dist : -dist;
+  walker.style.right = position +'px';
+  if (position > leftBorder || position < rightBorder){
+    walkingLeft = !walkingLeft;
+    walker.classList.toggle('flip')
+  }
+}
+
+setInterval(check, 10)
+
+  </script>
+ </BODY>
+</HTML>

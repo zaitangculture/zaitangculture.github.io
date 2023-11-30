@@ -1,0 +1,539 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   :root {
+    --default-scene-height: 476
+}
+
+body {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    min-width: 320px;
+    height: 100vh;
+}
+
+/**
+ * Bedroom layout
+ */
+.bedroom {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+    background-color: #32303e;
+    overflow: hidden;
+    -webkit-animation: bedroom-color 6s step-end infinite;
+            animation: bedroom-color 6s step-end infinite;
+}
+.nightstand {
+    position: relative;
+    flex: 0 0 40%;
+    max-width: 400px;
+    min-height: 147px;
+    height: calc(100% * 147 / 476);
+}
+.bed {
+    position: relative;
+    flex: 0 0 60%;
+    min-height: 213px;
+    height: calc(100% * 213 / 476);
+}
+
+/**
+ * Nightstand area
+ */
+.lamp-light-svg {
+    position: absolute;
+    height: calc(100% * 1290 / 147);
+    -webkit-transform: translate(calc(-100% * 597 / 1290), calc(-100% * 722 / 1290));
+            transform: translate(calc(-100% * 597 / 1290), calc(-100% * 722 / 1290));
+}
+.lamp-glow-svg {
+    position: absolute;
+    height: calc(100% * 210 / 147);
+    -webkit-transform: translate(calc(-100% * 206 / 499), calc(-100% * 328 / 210));
+            transform: translate(calc(-100% * 206 / 499), calc(-100% * 328 / 210));
+}
+.lamp-shadow-svg {
+    position: absolute;
+    height: 100%;
+    -webkit-transform: translate(calc(-100% * 500 / 900), 0);
+            transform: translate(calc(-100% * 500 / 900), 0);
+}
+.lamp-svg {
+    position: absolute;
+    height: calc(100% * 107 / 147);
+    -webkit-transform: translate(calc(100% * 6 / 92), -100%);
+            transform: translate(calc(100% * 6 / 92), -100%);
+    z-index: 1;
+}
+.clock-svg {
+    position: absolute;
+    height: calc(100% * 34 / 147);
+    -webkit-transform: translate(calc(100% * 78 / 75), -100%);
+            transform: translate(calc(100% * 78 / 75), -100%)
+}
+.clock-front {
+    -webkit-animation: clock-front-color 6s step-end infinite;
+            animation: clock-front-color 6s step-end infinite;
+}
+.nightstand-svg {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    -webkit-transform: translate(calc(100% * 8 / 153), 0);
+            transform: translate(calc(100% * 8 / 153), 0);
+}
+
+/**
+ * Bed area
+ */
+.bed-svg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+.cat {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 112px;
+    width: calc(100vh * 112 / 476);
+    height: calc(100% * 159 / 213);
+    -webkit-transform: translate(calc(-100% * 64 / 112), calc(-100% * 112 / 164));
+            transform: translate(calc(-100% * 64 / 112), calc(-100% * 112 / 164));
+}
+.cat-svg {
+    position: absolute;
+    height: 100%;
+}
+.cat-eye {
+    -webkit-animation: cat-eye-color 6s step-end infinite;
+            animation: cat-eye-color 6s step-end infinite;
+}
+.cat-paw-svg {
+    position: absolute;
+    top: calc(100% * 72 / 159);
+    left: calc(100% * 96 / 112);
+    height: calc(100% * 47 / 159);
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+    z-index: 1;
+    -webkit-animation: 3s cat-paw 2.75s linear infinite;
+            animation: 3s cat-paw 2.75s linear infinite;
+}
+.lamp-switch-1-svg {
+    position: absolute;
+    top: calc(100% * 57 / 159);
+    left: calc(100% * 163 / 112);
+    height: calc(100% * 49 / 159);
+    -webkit-animation: 3s lamp-switch-1 2.75s linear infinite;
+            animation: 3s lamp-switch-1 2.75s linear infinite;
+}
+.lamp-switch-2-svg {
+    position: absolute;
+    top: calc(100% * 106 / 159);
+    left: calc(100% * 163 / 112);
+    width: calc(100% / 112);
+    height: calc(100% * 18 / 159);
+    -webkit-animation: 3s lamp-switch-2 2.75s linear infinite;
+            animation: 3s lamp-switch-2 2.75s linear infinite;
+}
+.blanket-svg {
+    position: absolute;
+    right: 0;
+    -webkit-transform: translate(calc(-100% * 2 / 417), calc(100% * 26 / 144));
+            transform: translate(calc(-100% * 2 / 417), calc(100% * 26 / 144));
+    height: calc(100% * 144 / 213);
+    z-index: 1;
+}
+
+/**
+ * Animations
+ */
+.lamp-light-svg,
+.lamp-glow-svg,
+.lamp-shadow-svg,
+.blanket-shadow,
+.bed-back-shadow,
+.bed-pillow-shadow,
+.lamp-switch-shadow,
+.lamp-stem-glow,
+.lamp-shade,
+.clock-button-shadow,
+.cat-eye-pupil {
+    -webkit-animation: hide 6s step-end infinite;
+            animation: hide 6s step-end infinite;
+}
+.lamp-shade-dark {
+    -webkit-animation: show 6s step-end infinite;
+            animation: show 6s step-end infinite;
+}
+.bed-front-shadow,
+.bed-matress-shadow,
+.bed-back-shadow-2,
+.blanket-shadow-2,
+.bed-pillow-shadow-2,
+.lamp-stem-shadow,
+.lamp-switch-shadow-2,
+.nightstand-shadow {
+    -webkit-animation: darken 6s step-end infinite;
+            animation: darken 6s step-end infinite;
+}
+
+@-webkit-keyframes bedroom-color {
+    50% {
+        background-color: #080810;
+    }
+}
+
+@keyframes bedroom-color {
+    50% {
+        background-color: #080810;
+    }
+}
+@-webkit-keyframes clock-front-color {
+    50% {
+        fill: #000;
+    }
+}
+@keyframes clock-front-color {
+    50% {
+        fill: #000;
+    }
+}
+@-webkit-keyframes cat-eye-color {
+    50% {
+        fill: #fffdb2;
+    }
+}
+@keyframes cat-eye-color {
+    50% {
+        fill: #fffdb2;
+    }
+}
+@-webkit-keyframes hide {
+    50% {
+        fill-opacity: 0;
+    }
+}
+@keyframes hide {
+    50% {
+        fill-opacity: 0;
+    }
+}
+@-webkit-keyframes show {
+    50% {
+        fill-opacity: 1;
+    }
+}
+@keyframes show {
+    50% {
+        fill-opacity: 1;
+    }
+}
+@-webkit-keyframes darken {
+    50% {
+        fill-opacity: .86;
+    }
+}
+@keyframes darken {
+    50% {
+        fill-opacity: .86;
+    }
+}
+@-webkit-keyframes cat-paw {
+    0%, 10% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    5% {
+        -webkit-transform: rotate(10deg);
+                transform: rotate(10deg);
+    }
+}
+@keyframes cat-paw {
+    0%, 10% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    5% {
+        -webkit-transform: rotate(10deg);
+                transform: rotate(10deg);
+    }
+}
+@-webkit-keyframes lamp-switch-1 {
+    0%, 10% {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+    }
+    5% {
+        -webkit-transform: translate(0, calc(100% * 6 / 49));
+                transform: translate(0, calc(100% * 6 / 49));
+    }
+}
+@keyframes lamp-switch-1 {
+    0%, 10% {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+    }
+    5% {
+        -webkit-transform: translate(0, calc(100% * 6 / 49));
+                transform: translate(0, calc(100% * 6 / 49));
+    }
+}
+@-webkit-keyframes lamp-switch-2 {
+    0%, 10% {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+    }
+    5% {
+        -webkit-transform: translate(calc(-100% * 9), calc(100% * 10 / 18));
+                transform: translate(calc(-100% * 9), calc(100% * 10 / 18));
+    }
+}
+@keyframes lamp-switch-2 {
+    0%, 10% {
+        -webkit-transform: translate(0, 0);
+                transform: translate(0, 0);
+    }
+    5% {
+        -webkit-transform: translate(calc(-100% * 9), calc(100% * 10 / 18));
+                transform: translate(calc(-100% * 9), calc(100% * 10 / 18));
+    }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <div class="bedroom">
+    <div class="nightstand">
+        <svg class="lamp-light-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1290 1290">
+            <title>Light from the lamp</title>
+            <defs>
+                <radialGradient id="lamp-light-a" r="49.605%" fx="50%" fy="50%">
+                    <stop stop-color="#FFE89E" offset="0%"/>
+                    <stop stop-color="#000000" stop-opacity="0" offset="100%"/>
+                </radialGradient>
+            </defs>
+            <circle cx="753" cy="257" r="650" fill="url(#lamp-light-a)" fill-rule="evenodd" transform="translate(-108 388)"/>
+        </svg>
+
+        <svg class="lamp-glow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 499 210">
+            <title>Glowing from the lamp</title>
+            <defs>
+                <radialGradient id="lamp-glow-a" cy="117.609%" r="113.761%" fx="50%" fy="117.609%">
+                    <stop stop-color="#FFFBEA" stop-opacity=".372" offset="0%"/>
+                    <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"/>
+                </radialGradient>
+            </defs>
+            <path fill="url(#lamp-glow-a)" fill-rule="evenodd"
+                  d="M1,1 C1,1 143,210 250,210 C393,210 499,1 500,1 L1,1 Z"/>
+        </svg>
+
+        <svg class="lamp-shadow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 147">
+            <title>Shadow</title>
+            <polygon fill="#32303E" fill-rule="evenodd" points="861 329 1100 476 200 476 200 355.67 650 447 708 329"
+                     transform="translate(-200 -329)"/>
+        </svg>
+
+        <svg class="lamp-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 107"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>Lamp</title>
+            <defs>
+                <radialGradient id="lamp-b" cy="0%" r="100%" fx="50%" fy="0%">
+                    <stop stop-color="#FFFFFF" offset="0%"/>
+                    <stop stop-color="#FDFDFD" stop-opacity=".724" offset="89.281%"/>
+                    <stop stop-color="#000000" stop-opacity="0" offset="89.547%"/>
+                    <stop stop-color="#000000" stop-opacity="0" offset="100%"/>
+                </radialGradient>
+                <path id="lamp-a"
+                      d="M42.9354839,32 L48.4516129,32 C48.4516129,32 48.4516129,107 65,107 C49.6774194,107 45.5163342,107 27,107 C42.9354839,107 42.9354839,32 42.9354839,32 Z"/>
+                <radialGradient id="lamp-c" cy="46.094%" r="152.299%" fx="50%" fy="46.094%">
+                    <stop stop-color="#FFFFFF" offset="0%"/>
+                    <stop stop-color="#FFFFFF" offset="25.465%"/>
+                    <stop stop-color="#FDD65E" stop-opacity=".602" offset="100%"/>
+                </radialGradient>
+                <polygon id="lamp-d" points="23 0 66 0 92 70 0 70"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <use fill="#B3A120" xlink:href="#lamp-a"/>
+                <use class="lamp-stem-shadow" fill="#000000" fill-opacity="0" xlink:href="#lamp-a"/>
+                <use class="lamp-stem-glow" fill="url(#lamp-b)" xlink:href="#lamp-a"/>
+                <use class="lamp-shade" xlink:href="#lamp-d" fill="url(#lamp-c)"/>
+                <use class="lamp-shade-dark" xlink:href="#lamp-d" fill="#191919" fill-opacity="0"/>
+            </g>
+        </svg>
+
+        <svg class="clock-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 34"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>Electric clock</title>
+            <defs>
+                <path id="clock-a"
+                      d="M1,2 C2.99997449,2.55149503e-05 21,0 23,2.06366656 C23.9070772,2.999619 24,3 24,3 L3.55271368e-15,3 C3.55271368e-15,3 3.55271368e-15,3 1,2 Z"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <rect width="61" height="31" x="14" y="3" fill="#000000" rx="8"/>
+                <rect class="clock-front" width="61" height="31" y="3" fill="#151515" rx="8"/>
+                <text textLength="45" x="8" y="23" fill="#17CBF6" font-family="Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace" font-size="17">
+                    03:00
+                </text>
+                <g transform="translate(21)">
+                    <mask id="clock-b" fill="white">
+                        <use xlink:href="#clock-a"/>
+                    </mask>
+                    <use fill="#000000" xlink:href="#clock-a"/>
+                    <polygon class="clock-button-shadow" fill="#FFEAB9" fill-opacity=".72" points="1 4 27 -4 -15 -4" mask="url(#clock-b)"/>
+                </g>
+            </g>
+        </svg>
+
+        <svg class="nightstand-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 153 147"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>Nightstand</title>
+            <defs>
+                <path id="nightstand-a"
+                      d="M0,0 L153,0 L153,127 L0,127 L0,0 Z M0,127 L5,127 L5,147 L0,147 L0,127 Z M148,127 L153,127 L153,147 L148,147 L148,127 Z"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <use fill="#8B572A" xlink:href="#nightstand-a"/>
+                <use class="nightstand-shadow" fill="#000000" fill-opacity=".72" xlink:href="#nightstand-a"/>
+                <rect width="143" height="27.646" x="5" y="5.184" fill="#000000"/>
+            </g>
+        </svg>
+    </div>
+
+    <div class="bed">
+        <svg class="bed-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 213"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>Bed and pillows</title>
+            <defs>
+                <path id="bed-a"
+                      d="M1.13686838e-13,0 C102,0 100,27.6431925 149,27.6431925 C182.692708,27.6431925 216.385417,7.77464789 250,7.77464789 C284.385417,7.77464789 318.692708,27.6431925 353,27.6431925 C401,27.6431925 402,0 500,0 L500,184 L1.13686838e-13,184 L1.13686838e-13,0 Z"/>
+                <rect id="bed-c" width="500" height="47" y="137"/>
+                <rect id="bed-d" width="482" height="37" x="9" y="100"/>
+                <path id="bed-e"
+                      d="M8,21 C22.2006643,-4.71601034 180.841009,-6.93690898 199,21 C212,41 199,94 199,94 L8,94 C8,94 -9,51.7853327 8,21 Z"/>
+                <path id="bed-g"
+                      d="M45,75.7002306 C60.6841676,53.0891905 209.205967,55.9879193 236,75.7002306 C250,86 236,100 236,100 L45,100 C45,100 33,93 45,75.7002306 Z"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <mask id="bed-b" fill="white">
+                    <use xlink:href="#bed-a"/>
+                </mask>
+                <use fill="#8B572A" xlink:href="#bed-a"/>
+                <polygon class="bed-back-shadow" fill="#000000" fill-opacity=".72"
+                         points="-25 -38 381 -38 381 137 478 137 547 -3 540 184 381 184 -25 184" mask="url(#bed-b)"/>
+                <use class="bed-back-shadow-2" fill="#000000" fill-opacity="0" xlink:href="#bed-a"/>
+                <use fill="#8B572A" xlink:href="#bed-c"/>
+                <use class="bed-front-shadow" fill="#000000" fill-opacity=".72" xlink:href="#bed-c"/>
+                <use fill="#D8D8D8" xlink:href="#bed-d"/>
+                <use class="bed-matress-shadow" fill="#000000" fill-opacity=".82" xlink:href="#bed-d"/>
+                <polygon fill="#000000" points="39 184 54 184 46.5 213 31.5 213"/>
+                <polygon fill="#000000" points="449 184 464 184 456.5 213 441.5 213" transform="matrix(-1 0 0 1 911.5 0)"/>
+                <g transform="translate(277 6)">
+                    <mask id="bed-f" fill="white">
+                        <use xlink:href="#bed-e"/>
+                    </mask>
+                    <use fill="#E9E9E9" xlink:href="#bed-e"/>
+                    <rect class="bed-pillow-shadow" width="131" height="125" x="-27" y="-19" fill="#000000" fill-opacity=".72" mask="url(#bed-f)"/>
+                    <use class="bed-pillow-shadow-2" fill="#000000" fill-opacity="0" xlink:href="#bed-e"/>
+                </g>
+                <g>
+                    <use class="bed-pillow" fill="#E9E9E9" xlink:href="#bed-g"/>
+                    <use class="bed-pillow-shadow-2" fill="#000000" fill-opacity=".72" xlink:href="#bed-g"/>
+                </g>
+            </g>
+        </svg>
+
+        <div class="cat">
+            <svg class="cat-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 159">
+                <title>Cat</title>
+                <g fill="none" fill-rule="evenodd" transform="translate(0 -5)">
+                    <path fill="#000000"
+                          d="M56,163 C86.927946,163 112,165.421356 112,124 C112,82.5786438 86.927946,59.4443359 56,59.4443359 C25.072054,59.4443359 0,82.5786438 0,124 C0,165.421356 25.072054,163 56,163 Z"/>
+                    <g transform="translate(6)">
+                        <path fill="#000000"
+                              d="M50.5,96 C71.2106781,96 88,73.7689435 88,50.9153079 C88,28.0616722 71.2106781,18 50.5,18 C29.7893219,18 13,28.0616722 13,50.9153079 C13,73.7689435 29.7893219,96 50.5,96 Z"/>
+                        <polygon fill="#000000" points="24.395 6 18 34 37 21.805"/>
+                        <polygon fill="#000000" points="72.929 5 81 32 61 20.983"/>
+                        <g transform="translate(32 51)">
+                            <circle class="cat-eye" cx="6" cy="6" r="6" fill="#F8E81C"/>
+                            <circle class="cat-eye-pupil" cx="6" cy="6" r="4" fill="#000000"/>
+                        </g>
+                        <g transform="translate(59 51)">
+                            <circle class="cat-eye" cx="6" cy="6" r="6" fill="#F8E81C"/>
+                            <circle class="cat-eye-pupil" cx="6" cy="6" r="4" fill="#000000"/>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+
+            <svg class="lamp-switch-1-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59 49"
+                 xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>Lamp chain switch part 1</title>
+                <defs>
+                    <linearGradient id="lamp-switch-1-b" x1="92.157%" x2="1.715%" y1="12.265%" y2="100%">
+                        <stop stop-color="#FFFFFF" offset="0%"/>
+                        <stop stop-color="#FFFFFF" stop-opacity=".189" offset="100%"/>
+                    </linearGradient>
+                    <path id="lamp-switch-1-a"
+                          d="M0,89 C0,89 17,78 31,67 C45,56 58,40 58,40 L59,41 C59,41 45.2697658,56.1905386 31,68 C16.7302342,79.8094614 1,89 1,89 L0,89 Z"/>
+                </defs>
+                <g fill="none" fill-rule="evenodd" transform="translate(0 -40)">
+                    <use fill="#D5AF35" xlink:href="#lamp-switch-1-a"/>
+                    <use class="lamp-switch-shadow" fill="url(#lamp-switch-1-b)" xlink:href="#lamp-switch-1-a"/>
+                    <use class="lamp-switch-shadow-2" fill="#000000" fill-opacity="0" xlink:href="#lamp-switch-1-a"/>
+                </g>
+            </svg>
+
+            <svg class="lamp-switch-2-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 18">
+                <title>Lamp chain switch part 2</title>
+                <defs>
+                    <polygon id="lamp-switch-2-a" fill-rule="evenodd"
+                            points="0 89 1 89 1 107 0 107" transform="translate(0 -89)"/>
+                </defs>
+                <use fill="#D5AF35" xlink:href="#lamp-switch-2-a"/>
+                <use class="lamp-switch-shadow-2" fill="#000000" fill-opacity="0" xlink:href="#lamp-switch-2-a"/>
+            </svg>
+
+            <svg class="cat-paw-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 47">
+                <title>Cat paw</title>
+                <polygon fill="#000000" fill-rule="evenodd"
+                         points="96 77 121 95 155 107 163 103 172 114 165 124 155 121 121 116 105 109"
+                         transform="translate(-96 -77)"/>
+            </svg>
+        </div>
+
+        <svg class="blanket-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 417 144"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+            <title>Blanket</title>
+            <defs>
+                <path id="blanket-a"
+                      d="M150.34209,74 C160.79206,73.1282516 229.085398,65.9416395 242.316406,26.1914119 C254.513672,-10.4531194 347.838819,-4.13007698 356,24 C365.7631,57.6515937 409,65 414,71 C416.874107,74.4489279 416,111 416,111 L410,111 L410,74.1015681 L389.467493,74.1015681 L23,144 L0,74 L150.34209,74 Z"/>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <mask id="blanket-b" fill="white">
+                    <use xlink:href="#blanket-a"/>
+                </mask>
+                <use fill="#4990E2" xlink:href="#blanket-a"/>
+                <path class="blanket-shadow" fill="#000000" fill-opacity=".72"
+                      d="M295,1 C295,1 334,1 333,61 C333,74 423,74 423,74 L423,158 L-5,158 L-5,1 L295,1 Z" mask="url(#blanket-b)"/>
+                <use class="blanket-shadow-2" fill="#000000" fill-opacity="0" xlink:href="#blanket-a"/>
+            </g>
+        </svg>
+    </div>
+</div>
+ </BODY>
+</HTML>

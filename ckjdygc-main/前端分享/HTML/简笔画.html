@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   svg {
+  display: block;
+  margin: 2rem auto;
+  width: 75%;
+}
+@media screen and (min-width: 768px) {
+  svg {
+    margin-top: 2rem;
+    width: 50%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  svg {
+    margin-top: 3rem;
+  }
+}
+
+.cls-1 {
+  fill: #d8568b;
+}
+
+.cls-2 {
+  fill: #d9d9fe;
+}
+
+.cls-3,
+.cls-4 {
+  fill: none;
+  stroke: #494982;
+  stroke-linecap: round;
+  stroke-width: 2px;
+}
+
+.cls-3 {
+  stroke-linejoin: round;
+}
+
+.cls-4 {
+  stroke-miterlimit: 10;
+}
+
+.cls-5 {
+  fill: #494982;
+}
+
+#floatingIsland {
+  -webkit-animation: hideshow 4s ease-in;
+          animation: hideshow 4s ease-in;
+}
+
+#Turbine {
+  -webkit-animation: rotate 8s linear infinite 2s;
+          animation: rotate 8s linear infinite 2s;
+  -webkit-transform-origin: 145px 92.5px;
+          transform-origin: 145px 92.5px;
+}
+
+.cloud {
+  stroke-linejoin: round;
+}
+.cloud-1 {
+  -webkit-animation: moveRight 8.5s linear infinite 3s;
+          animation: moveRight 8.5s linear infinite 3s;
+}
+.cloud-2 {
+  -webkit-animation: moveRight 9s linear infinite 1s;
+          animation: moveRight 9s linear infinite 1s;
+}
+.cloud-3 {
+  -webkit-animation: moveRight 8.5s linear infinite 0.5s;
+          animation: moveRight 8.5s linear infinite 0.5s;
+}
+.cloud-4 {
+  -webkit-animation: moveRight 9.5s linear infinite 3s;
+          animation: moveRight 9.5s linear infinite 3s;
+}
+.cloud-5 {
+  -webkit-animation: moveRight 8.5s linear infinite 1s;
+          animation: moveRight 8.5s linear infinite 1s;
+}
+.cloud-6 {
+  -webkit-animation: moveRight 8.5s linear infinite 2.5s;
+          animation: moveRight 8.5s linear infinite 2.5s;
+}
+.cloud-7 {
+  -webkit-animation: moveRight 11s linear infinite 2.5s;
+          animation: moveRight 11s linear infinite 2.5s;
+}
+.cloud-8 {
+  -webkit-animation: moveRight 10.5s linear infinite 3.5s;
+          animation: moveRight 10.5s linear infinite 3.5s;
+}
+
+.water path {
+  stroke-linejoin: round;
+}
+.water .drop {
+  stroke-linejoin: round;
+}
+.water .drop-1 {
+  -webkit-animation: fall 2.5s linear infinite 0.3s;
+          animation: fall 2.5s linear infinite 0.3s;
+}
+.water .drop-2 {
+  -webkit-animation: fall 3s linear infinite 0.2s;
+          animation: fall 3s linear infinite 0.2s;
+}
+.water .drop-3 {
+  -webkit-animation: fall 3.5s linear infinite 0.2s;
+          animation: fall 3.5s linear infinite 0.2s;
+}
+.water .drop-4 {
+  -webkit-animation: fall 2s linear infinite 0.4s;
+          animation: fall 2s linear infinite 0.4s;
+}
+.water .drop-5 {
+  -webkit-animation: fall 2.5s linear infinite 0.4s;
+          animation: fall 2.5s linear infinite 0.4s;
+}
+.water .drop-6 {
+  -webkit-animation: fall 2.5s linear infinite 0.1s;
+          animation: fall 2.5s linear infinite 0.1s;
+}
+.water .drop-7 {
+  -webkit-animation: fall 2.5s linear infinite 0.3s;
+          animation: fall 2.5s linear infinite 0.3s;
+}
+.water .drop-8 {
+  -webkit-animation: fall 3.5s linear infinite 0.3s;
+          animation: fall 3.5s linear infinite 0.3s;
+}
+
+@-webkit-keyframes hideshow {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-15em);
+            transform: translateY(-15em);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes hideshow {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-15em);
+            transform: translateY(-15em);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@-webkit-keyframes moveRight {
+  0%,
+  10% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    -webkit-transform: translateX(10em);
+            transform: translateX(10em);
+    opacity: 0;
+  }
+}
+@keyframes moveRight {
+  0%,
+  10% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    -webkit-transform: translateX(10em);
+            transform: translateX(10em);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateZ(-360deg);
+            transform: rotateZ(-360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateZ(-360deg);
+            transform: rotateZ(-360deg);
+  }
+}
+@-webkit-keyframes fall {
+  0%,
+  10% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    -webkit-transform: translateY(11em);
+            transform: translateY(11em);
+    opacity: 0;
+  }
+}
+@keyframes fall {
+  0%,
+  10% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    -webkit-transform: translateY(11em);
+            transform: translateY(11em);
+    opacity: 0;
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  
+<svg id="floatingIsland" data-name="floatingIsland" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 498.57 440.43">   
+  <circle class="sun cls-1" id="Sun" cx="312.68" cy="91.44" r="49.34"></circle>
+  <g id="Waterfalls">
+    <path class="cls-2" d="M211.33 254.59h119.5v182.5h-119.5zM116.33 290.09h14.83v61.07h-14.83zM390.83 329.09h8.15v58.78h-8.15z"></path>
+  </g>
+  <g class="water" id="Water">
+    <path class="drop-1 cls-3" d="M241.83 253.76v48.83"></path>
+    <path class="drop-2 cls-3" d="M309.33 283.09v50"></path>
+    <path class="drop-3 cls-3" d="M275.33 320.63v50"></path>
+    <path class="drop-4 cls-3" d="M246.83 366.13v50"></path>
+    <path class="drop-5 cls-3" d="M253.83 316.13v19.8"></path>
+    <path class="drop-6 cls-3" d="M281.17 267.69v19.8"></path>
+    <path class="drop-7 cls-3" d="M294.5 369.03v17.73"></path>
+    <path class="drop-8 cls-3" d="M323.83 385.86v17.73"></path>
+  </g>
+  <g class="clouds" id="Clouds">
+    <path class="cloud-1 cls-3" d="M1 91.43h6s1.08-3.59 4.42-3.59c2.83 0 3.58 3.59 3.58 3.59h10"></path>
+    <path class="cloud-2 cls-3" d="M1 176.09h6s.57-3.59 3.9-3.59c3.49 0 3.24 3.59 3.62 3.59.73 0-.69-7 6.75-7 5.75 0 5.88 7 5.88 7h12.18"></path>
+    <path class="cloud-3 cls-3" d="M242.66 116.76h6s.57-3.59 3.9-3.59c3.49 0 3.24 3.59 3.62 3.59.73 0-.69-7 6.75-7 5.75 0 5.88 7 5.88 7H281"></path>
+    <path class="cloud-4 cls-3" d="M341.33 49.09h6s.57-3.59 3.9-3.59c3.49 0 3.24 3.59 3.62 3.59.73 0-.69-7 6.75-7 5.75 0 5.88 7 5.88 7h12.19"></path>
+    <path class="cloud-5 cls-3" d="M497.57 135.68h-6s-.57-3.59-3.9-3.59c-3.49 0-3.24 3.59-3.62 3.59-.73 0 .69-7-6.75-7-5.75 0-5.87 7-5.87 7h-12.2"></path>
+    <path class="cloud-6 cls-3" d="M131.83 4.59h6S138.91 1 142.25 1c2.83 0 3.58 3.59 3.58 3.59h10"></path>
+    <path class="cloud-7 cls-3" d="M336.5 103.18h6s1.08-3.59 4.42-3.59c2.83 0 3.58 3.59 3.58 3.59h10"></path>
+    <path class="cloud-8 cls-3" d="M476 53.65h-6s-1.08-3.59-4.42-3.59c-2.83 0-3.58 3.59-3.58 3.59h-10"></path>
+  </g>
+  <g id="Windmill">
+    <g id="Bottom">
+      <path class="cls-3" d="M101.17 116.59h84.66M181.16 116.59s9.83 108.33 14.33 136.5M108.33 116.59S98.5 224.92 94 253.09M129.67 165.93v-4.84h30.5v4.84M137 139.92l-.25 21.17H153v-21.17s-1.58-6.17-8.08-6.17-7.92 6.17-7.92 6.17zM144.88 138.51v22.58M140.92 156.01h8M140.92 150.18h8M141.21 144.34h8"></path>
+      <path class="cls-4" d="M131.5 252.09v-38.17s2.25-10.67 13.38-10.67 13.65 10.46 13.65 10.46v38.38M137.33 221.97h14.63"></path>
+      <path class="cls-4" d="M139.89 216.4a5 5 0 0 1 5.11-3.81 5.17 5.17 0 0 1 5.2 3.81v5.56h-10.31zM153.27 231.72v3.75"></path>
+      <path class="cls-3" d="M114.21 187.09v-1.62h8.62v1.62M107.81 184.34v-1.62h8.63v1.62M122.67 184.34v-1.62h8.62v1.62M182.27 218.09v-1.62h8.63v1.62M177.96 220.09v-1.62h8.62v1.62M173.65 240.84v-1.62h8.62v1.62M165.53 243.97v-1.63h8.63v1.63"></path>
+    </g>
+    <g id="Top">
+      <path class="cls-3" d="M101.16 109.76h84.67m-5 0V91.43c-.89-12.19-12.12-33.18-35.9-33.18-24.1 0-35.74 20.84-36.79 33.18v18.32zm-51.12-47.17s3.56 11.63 14.78 11.63 15.72-11.62 15.72-11.62"></path>
+    </g>
+    <g id="Turbine">
+      <circle class="cls-5" cx="144.93" cy="92.59" r="3.34"></circle>
+      <path class="cls-4" d="M151.93 92.59a7 7 0 1 1-7-7 7 7 0 0 1 7 7zm-12.22 6.12l-63.13 62.63 7.25 8.25m.36-15.8l7.47 7.72m1.25-16.1l7.42 7.68m8.25-8.25l-7.47-7.72m8.61-8.48l7.47 7.72m89.34 33.2l7.25-8.25-63.13-62.63m48 62.79l7.47-7.72m-16.09-.66l7.47-7.72m-8.25-8.25l-7.47 7.72m-1.14-16.2l-7.47 7.72m-33.84-48.55L76.75 23.17l-8.34 7.15m15.8.56l-7.81 7.37m8.27 8.82l7.81-7.37m8.15 8.35l-7.81 7.37m16.19 1.34l-7.79 7.33m121.2-33.44l-8.26-7.23-63.27 64m55.73-56.33l7.73 7.45m-16.1 1.28l7.73 7.45m-8.23 8.27l-7.73-7.45m-.69 16.07l-7.73-7.45"></path>
+    </g>
+  </g>
+  <g id="Island">
+    <path class="cls-3" id="Left_Island" data-name="Left Island" d="M99.71 277.59l-56.12-.12-25.26-24.38H221v186.33M85.83 277.56l7.17-7.14v-9.5m-20.5 17.33l23.83 24.51h24.17m-23.17-1.17l12-11.08v-6.75m20 67.17v-60.42s-.83-3.92-4-3.92-3.83 3.58-3.83 3.58v60.75m23.33-48.17L166.5 325l44.92-.33m-44.76-.49l31-15.59v-18.17m-68.33 12.34h30.58l11.08-10.33v-15"></path>
+    <path class="cls-3" id="Right_Island" data-name="Right Island" d="M341.08 439.42l.25-186.33h124.5l-24.75 26.25h-14.5l-27.25 27.75-.25 13.71-4.5 4.17m-52.92 61.25l28.17-23.63v-14l-13.25-13.5m13.5 14l15.4-14.9m-43.92-45.91l11.11-10.69v-13.67m39.17 7c.08 1.08 0 6.83 0 6.83l17.17 17.83m-27.83 11.58v6.75l16.58 6.67m-36.26 1.51l3.66-3.5v-14.58m28.83 82.67v-61.26a3.89 3.89 0 0 0-3.66-2.83 4.68 4.68 0 0 0-4.08 2.75l-.25 61.33"></path>
+  </g>
+  <path class="cls-3" id="Hut" d="M367.83 252.67v-6.33h93v6.33m-94.58-66.5h97.17m-6.17-.42l-24.17-22.66-37.67.5-23.42 22.17m31.25 0v-21.5m23.25 21.5v-21.5m-55.42 23.08v59m4.94-59v59m77.37-59v59m0-30.08h-77.36m77.38 8.33h-77.38m77.37 15.5h-77.37m82.37-52.75v59m-62.23-1.58l-4.33-12H384l-4.33 12m4.33-12l-4.34-19.67m69.83 31.67l-4.33-12h-7.83l-4.33 12m16.5-31.67l-4.33 19.67"></path>
+  <g id="Bridges_fences" data-name="Bridges/fences">
+    <g id="Bridge">
+      <path class="cls-3" d="M213.83 252.09s65.75-23.75 136.75 0M214.42 234.92s63.56-24.08 134.56-.33"></path>
+      <path class="cls-3" d="M205.83 230.59h8l1 21.5h-3.41l-5.59-21.5zM357.17 230.72h-8l-1 21.11h3.41l5.59-21.11zM234.33 221.97v24.67M249.33 221.97v21.19M265.22 221.97v20.14M280.69 221.97v19.59M296.58 221.97v19.57M312.15 221.97v21.12M327.46 221.97v23.62"></path>
+    </g>
+    <g id="Top_Fence" data-name="Top Fence">
+      <path class="cls-3" d="M80.4 232.59v19.5M27.46 236.22h107.87m-99.62-3.63v19.5m15.25-19.5v19.5m15.19-19.5v19.5m30.18-19.5v19.5m14.25-19.5v19.5m15.31-19.5v19.5"></path>
+    </g>
+    <g id="Left_Fence" data-name="Left Fence">
+      <path class="cls-3" d="M129.52 296.84h36.44M170.39 286.59h-44.43m10.88 1.19v8.25m8.63-8.25v8.25m8.88-8.25v8.25m8.94-8.25v8.25"></path>
+    </g>
+    <g id="Right_Fence" data-name="Right Fence">
+      <path class="cls-3" d="M356.9 322.59h33.43M356.89 332.65h28.37m-24.06-9.1v8m-4.62-9v12.31m13.25-11.37v8.1m8.56-8v8"></path>
+    </g>
+  </g>
+</svg>
+ </BODY>
+</HTML>

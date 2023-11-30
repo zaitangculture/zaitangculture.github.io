@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  position: fixed;
+  
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
+<script id="vertexShader" type="x-shader/x-vertex">
+    void main() {
+        gl_Position = vec4( position, 1.0 );
+    }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+    // By Liam Egan
+    // 2018
+  
+    uniform vec2 u_resolution;
+    uniform vec2 u_mouse;
+    uniform float u_time;
+    uniform vec3 u_colours[ 5 ];
+  
+    const float multiplier = .5;
+    const int octaves = 4;
+  
+    const float seed =    86135.7315468;
+  
+    float random2d(vec2 uv) {
+      return fract(
+                sin(
+                  dot( uv.xy, vec2(12.9898, 78.233) )
+                ) * seed);
+    }
+    mat2 rotate2d(float _angle){
+        return mat2(cos(_angle),sin(_angle),
+                    -sin(_angle),cos(_angle));
+    }
+
+  vec2 random2( vec2 p ) {
+      return fract(sin(vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3))))*43758.5453);
+  }
+
+    // Voronoi Created by inigo quilez - iq/2013
+    // License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+    // http://www.iquilezles.org/www/articles/voronoilines/voronoilines.htm
+    vec3 voronoi( in vec2 x, inout vec2 nearest_point, inout vec2 s_nearest_point, inout float s_nearest_distance, inout float nearest_distance, in bool highlight, vec2 mouse) {
+        vec2 n = floor(x);
+        vec2 f = fract(x);
+
+        // first pass: regular voronoi
+        vec2 mg, mr;
+        float md = 8.0;
+        float smd = 8.0;
+        for (int j= -1; j <= 1; j++) {
+            for (int i= -1; i <= 1; i++) {
+                vec2 g = vec2(float(i),float(j));
+                vec2 o = random2( n + g );
+                o = 0.5 + 0.4*sin((u_time / 10.) + 6.2831*o);
+                o *= length(mouse.y) * 2.;
+
+                vec2 r = g + o - f;
+                float d = dot(r,r);
+
+                if( d<md ) {
+                    smd = md;
+                    s_nearest_distance = md;
+                    nearest_distance = d;
+                    md = d;
+                    mr = r;
+                    mg = g;
+                    nearest_point = n + g;
+                } else if( smd > d ) {
+                    s_nearest_distance = d;
+                    nearest_distance = d;
+                    smd = d;
+                    s_nearest_point = n + g;
+                }
+            }
+        }
+
+        // second pass: distance to borders
+        md = 8.0;
+        for (int j= -2; j <= 2; j++) {
+            for (int i= -2; i <= 2; i++) {
+                vec2 g = mg + vec2(float(i),float(j));
+                vec2 o = random2( n + g );
+                o = 0.5 + 0.4*sin((u_time / 10.) + 6.2831*o);
+                o *= length(mouse.y) * 2.;
+
+                vec2 r = g + o - f;
+
+                if ( dot(mr-r,mr-r)>0.00001 ) {
+                    md = min(md, dot( 0.5*(mr+r), normalize(r-mr) ));
+                }
+            }
+        }
+        return vec3(md, mr);
+    }
+  
+    vec3 getColour(vec2 nearest_point, vec2 s_nearest_point, float modMultiplier) {
+      vec3 colour = vec3(0.2);
+      vec3 next_colour = vec3(0.2);
+      float segment = floor(u_time / 2.);
+      float intermix = u_time / 2. - segment;
+      float index = mod(floor(random2d(nearest_point) * modMultiplier) + segment, modMultiplier);
+      float next_index = mod(floor(random2d(nearest_point) * modMultiplier) + segment + 1., modMultiplier);
+      if(index == 0.) {
+        colour = u_colours[0];
+      } else if(index == 1.) {
+        colour = u_colours[1];
+      } else if(index == 2.) {
+        colour = u_colours[2];
+      } else if(index == 3.) {
+        colour = u_colours[3];
+      } else if(index == 4.) {
+        colour = u_colours[4];
+      }
+      if(next_index == 0.) {
+        next_colour = u_colours[0];
+      } else if(next_index == 1.) {
+        next_colour = u_colours[1];
+      } else if(next_index == 2.) {
+        next_colour = u_colours[2];
+      } else if(next_index == 3.) {
+        next_colour = u_colours[3];
+      } else if(next_index == 4.) {
+        next_colour = u_colours[4];
+      }
+      if(index != next_index) {
+        colour = mix(colour, next_colour, intermix);
+      }
+
+      return colour;
+    }
+  
+  vec3 render(vec2 uv, vec2 mouse, inout vec2 refraction, in bool highlight) {
+    vec3 colour = vec3(0.5);
+    // Voronoi
+    vec2 nearest_point = vec2(0., 0.);
+    vec2 s_nearest_point = vec2(0., 0.);
+    float s_nearest_distance = 0.;
+    float nearest_distance = 0.;
+    vec3 c = voronoi(uv, nearest_point, s_nearest_point, s_nearest_distance, nearest_distance, highlight, mouse);
+
+    // colour
+    colour = getColour(nearest_point, s_nearest_point, 10.);
+
+    // Facets
+    // colour -= c.x * 0.9;
+    if(highlight) {
+      float r_point = abs(1. - s_nearest_distance);
+      colour += r_point * r_point * r_point * r_point * r_point;
+      // border += r_point * r_point;
+    }
+
+    // borders
+    vec3 border = vec3(0.2);
+    colour = mix( border, colour, smoothstep( 0.001, 0.01, c.x ) );
+    colour += mix( vec3(0.07), vec3(0.), smoothstep( 0.001, 0.015, c.x - 0.08 ) );
+    
+    // refraction layer
+    refraction = nearest_point;
+    
+    return colour;
+  }
+
+  void main() {
+      vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy);
+    
+      // mat2 transform = mat2(
+      //   cos(uv.y / 100.), -sin(uv.x / 100.),
+      //   sin(uv.y / 100.), cos(uv.x / 100.)
+      // );
+      // uv = transform * uv;
+    
+      vec2 o_uv = uv / 5.;
+      o_uv += (u_time) / 5000.;
+      
+      if(u_resolution.y < u_resolution.x) {
+        uv /= u_resolution.y;
+      } else {
+        uv /= u_resolution.x;
+      }
+    
+      // uv.x *= u_resolution.x/u_resolution.y;
+      vec3 colour = vec3(0.5);
+      vec3 next_colour = vec3(0.1);
+      vec2 mouse = (u_mouse / u_resolution) - 0.5;
+      mouse.y *= -1.;
+
+      // Scale
+      uv *= 2.;
+    
+      uv = rotate2d(u_time / 500.) * uv;
+      uv.x -= (u_time / 10.);
+      // uv.x += cos(u_time / 1000.) * 600.;
+      // uv.y += sin(u_time / 2000.) * 200.;
+    
+      // render
+      vec2 topPassRefraction = vec2(0.);
+      vec3 topPass = render(uv * 3. * multiplier, mouse, topPassRefraction, true);
+      
+      for (int i=octaves; i > 1; i--) {
+        vec2 passRefraction = vec2(0.);
+        vec2 subuv = uv;
+        
+        subuv += topPassRefraction;
+        
+        float med = float(i + 1);
+        subuv *= med;
+        // uv += med;
+        subuv.x += (u_time / 10.);
+        
+        colour += render(subuv, mouse, passRefraction, false);
+        colour /= 2.;
+      }
+      
+      colour *= topPass * 3.;
+      colour /= 2.;
+    
+      // o_uv = floor(o_uv * 2.);
+    
+      // float multi = 10. * (2.5 - length(mouse.x) * 2.);
+      // float noise = (-0.5 + random2d(o_uv + 10.)) / multi;
+      // colour += noise;
+    
+      gl_FragColor = vec4(colour * colour * 3.,1.0);
+  }
+</script>
+
+
+<div id="container"></div>
+  <script>
+   let container;
+let camera, scene, renderer;
+let uniforms;
+
+function init() {
+  container = document.getElementById( 'container' );
+
+  camera = new THREE.Camera();
+  camera.position.z = 1;
+
+  scene = new THREE.Scene();
+
+  var geometry = new THREE.PlaneBufferGeometry( 2, 2 );
+
+  var colours = [];
+  colours.push([138, 79, 125]);
+  colours.push([136, 120, 128]);
+  colours.push([136, 160, 150]);
+  colours.push([187, 171, 139]);
+  colours.push([239, 130, 117]);
+  for(var i = 0; i < colours.length; i++) {
+    var c = colours[i];
+    colours[i] = new THREE.Vector3(c[0] / 255, c[1] / 255, c[2] / 255);
+  }
+  window.colours = colours;
+  
+  uniforms = {
+    u_time: { type: "f", value: 100000.0 },
+    u_resolution: { type: "v2", value: new THREE.Vector2() },
+    u_mouse: { type: "v2", value: new THREE.Vector2() },
+    u_colours: { type: "v3v", value: colours }
+  };
+
+  var material = new THREE.ShaderMaterial( {
+    uniforms: uniforms,
+    vertexShader: document.getElementById( 'vertexShader' ).textContent,
+    fragmentShader: document.getElementById( 'fragmentShader' ).textContent
+  } );
+
+  var mesh = new THREE.Mesh( geometry, material );
+  scene.add( mesh );
+
+  renderer = new THREE.WebGLRenderer();
+  renderer.setPixelRatio( window.devicePixelRatio );
+
+  container.appendChild( renderer.domElement );
+
+  onWindowResize();
+  window.addEventListener( 'resize', onWindowResize, false );
+
+  document.onmousemove = function(e){
+    uniforms.u_mouse.value.x = e.pageX
+    uniforms.u_mouse.value.y = e.pageY
+  }
+}
+
+function onWindowResize( event ) {
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  uniforms.u_resolution.value.x = renderer.domElement.width;
+  uniforms.u_resolution.value.y = renderer.domElement.height;
+}
+
+function animate() {
+  // console.log(uniforms.u_colours);
+  requestAnimationFrame( animate );
+  render();
+}
+
+function render() {
+  uniforms.u_time.value += 0.05;
+  renderer.render( scene, camera );
+}
+
+
+
+init();
+animate();
+  </script>
+ </BODY>
+</HTML>

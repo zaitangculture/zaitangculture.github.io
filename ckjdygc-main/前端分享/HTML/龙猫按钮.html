@@ -1,0 +1,518 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  -webkit-perspective: 600px;
+          perspective: 600px;
+  background: radial-gradient(circle at center, #cfe4a1, #8eb735);
+  overflow: hidden;
+}
+body * {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+body .wrap {
+  width: 275px;
+  height: 100px;
+  position: relative;
+  box-shadow: 0 0 0 2px #eee, 0 0 40px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 500px;
+  background: #fff;
+}
+body .wrap * {
+  transition: 0.25s linear;
+}
+body .wrap .totoro {
+  position: absolute;
+  width: 100px;
+  height: 150px;
+  left: 0px;
+  top: -30px;
+  background: #bbb;
+  border-radius: 170px 170px 100px 100px / 300px 300px 200px 200px;
+  z-index: 2;
+}
+body .wrap .totoro:before, body .wrap .totoro:after {
+  content: "";
+  position: absolute;
+  width: 300vw;
+  height: 300vh;
+  left: -100vw;
+  top: -100vh;
+  background: rgba(6, 61, 109, 0.75);
+  z-index: -1;
+  -webkit-transform: translateZ(-10px);
+          transform: translateZ(-10px);
+  opacity: 0;
+  transition: 0.5s ease-in-out;
+  pointer-events: none;
+}
+body .wrap .totoro:after {
+  z-index: 2;
+  -webkit-transform: translateZ(10px);
+          transform: translateZ(10px);
+}
+body .wrap .totoro .ears {
+  position: absolute;
+  width: 90%;
+  height: 40px;
+  left: 5%;
+}
+body .wrap .totoro .ears .ear {
+  position: absolute;
+  width: 10px;
+  height: 25px;
+  background: #bbb;
+  top: -10px;
+  left: 7.5px;
+  border-radius: 700px 700px 500px 500px / 2750px 2750px 500px 500px;
+}
+body .wrap .totoro .ears .ear:after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 15px;
+  background: #bbb;
+  left: calc(50% - 2px);
+  bottom: -15px;
+}
+body .wrap .totoro .ears .ear:nth-of-type(2) {
+  left: auto;
+  right: 7.5px;
+}
+body .wrap .totoro .foot {
+  width: 40px;
+  height: 20px;
+  background: #bbb;
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  border-radius: 300px 200px 200px 200px / 200px 100px 100px 100px;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transform: rotate(0deg) scaleY(1) scaleX(1);
+          transform: rotate(0deg) scaleY(1) scaleX(1);
+}
+body .wrap .totoro .foot.two {
+  left: auto;
+  right: 5px;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  border-radius: 200px 300px 200px 200px / 100px 200px 100px 100px;
+}
+body .wrap .totoro .arm {
+  width: 25px;
+  height: 60px;
+  background: #bbb;
+  position: absolute;
+  left: 0px;
+  z-index: -1;
+  top: 50px;
+  border-radius: 550px 100px 400px 400px / 700px 200px 600px 800px;
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+body .wrap .totoro .arm:nth-of-type(2) {
+  left: auto;
+  right: 0px;
+  border-radius: 100px 550px 400px 400px / 200px 700px 800px 600px;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+body .wrap .totoro .body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 170px 170px 100px 100px / 300px 300px 200px 200px;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  z-index: 2;
+}
+body .wrap .totoro .body .spots {
+  position: absolute;
+  width: 90%;
+  height: 57.5%;
+  background: #ffffff;
+  bottom: 10px;
+  left: 5%;
+  border-radius: 300px 300px 300px 300px / 300px 300px 500px 500px;
+}
+body .wrap .totoro .body .spots:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 300px 300px 300px 300px / 300px 300px 500px 500px;
+}
+body .wrap .totoro .body .spots .spot {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50px;
+  box-shadow: 0 -5px 0 #888888;
+  left: calc(50% - 6.5px);
+  top: 10px;
+  -webkit-transform: translateZ(20px) scaleX(0.75) scale(0.75);
+          transform: translateZ(20px) scaleX(0.75) scale(0.75);
+}
+body .wrap .totoro .body .spots .spot:nth-of-type(2), body .wrap .totoro .body .spots .spot:nth-of-type(3) {
+  top: 15px;
+  left: calc(50% - 25px);
+}
+body .wrap .totoro .body .spots .spot:nth-of-type(3) {
+  left: calc(50% + 10px);
+}
+body .wrap .totoro .body .spots .spot:nth-of-type(n + 4) {
+  top: 30px;
+  left: 10px;
+}
+body .wrap .totoro .body .spots .spot:nth-of-type(5) {
+  left: 30px;
+}
+body .wrap .totoro .body .spots .spot:nth-of-type(6) {
+  left: 50px;
+}
+body .wrap .totoro .body .spots .spot:nth-of-type(7) {
+  left: 70px;
+}
+body .wrap .totoro .body .spots .spot:before, body .wrap .totoro .body .spots .spot:after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 10px;
+  background: #888888;
+  border-radius: 200%;
+  left: -2.5px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  bottom: 10px;
+}
+body .wrap .totoro .body .spots .spot:after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  left: 10px;
+}
+body .wrap .totoro .body .inner {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  top: 15px;
+}
+body .wrap .totoro .body .inner:before {
+  content: "";
+  position: absolute;
+  width: 17.5px;
+  height: 6px;
+  background: #222;
+  left: calc(50% - 8.75px);
+  top: 10px;
+  border-radius: 200px 200px 100px 100px / 100px 100px 50px 50px;
+}
+body .wrap .totoro .body .inner .mouth {
+  position: absolute;
+  width: 50px;
+  height: 10px;
+  background: repeating-linear-gradient(to right, #fff, #fff 10px, #222 10px, #222 11px, #fff 11px);
+  bottom: 0px;
+  left: calc(50% - 25px);
+  border-radius: 25px 25px 300px 300px / 25px 25px 200px 200px;
+  box-shadow: inset 0 0 0 1px #a2a2a2;
+}
+body .wrap .totoro .body .inner .eye {
+  position: absolute;
+  top: 5px;
+  width: 12.5px;
+  height: 12.5px;
+  background: #222;
+  left: 20px;
+  border-radius: 100%;
+  box-shadow: inset 0 0 0 1px #a2a2a2, inset 0 0 0 4.5px #fff;
+}
+body .wrap .totoro .body .inner .eye:nth-of-type(2) {
+  left: auto;
+  right: 20px;
+}
+body .wrap input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  opacity: 0;
+}
+body .wrap input:checked ~ .totoro {
+  -webkit-transform: translateX(180px) translateY(-5px);
+          transform: translateX(180px) translateY(-5px);
+  transition: 0.5s linear;
+}
+body .wrap input:checked ~ .totoro:before {
+  opacity: 1;
+}
+body .wrap input:checked ~ .totoro:after {
+  opacity: 0.25;
+}
+body .wrap input:checked ~ .totoro * {
+  transition: 0.5s linear;
+}
+body .wrap input:checked ~ .totoro .foot {
+  transition: -webkit-transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: 0.45s, 0.45s;
+  -webkit-transform: rotate(-75deg) scaleY(1.5) scaleX(1.5) translateY(-10px) translateX(10px);
+          transform: rotate(-75deg) scaleY(1.5) scaleX(1.5) translateY(-10px) translateX(10px);
+}
+body .wrap input:checked ~ .totoro .foot.two {
+  -webkit-transform: rotate(75deg) scaleY(1.5) scaleX(1.5) translateY(-10px) translateX(-10px);
+          transform: rotate(75deg) scaleY(1.5) scaleX(1.5) translateY(-10px) translateX(-10px);
+}
+body .wrap input:checked ~ .totoro .arm {
+  transition: -webkit-transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-delay: 0.45s, 0.45s;
+  -webkit-transform: rotate(40deg) translateX(7.5px);
+          transform: rotate(40deg) translateX(7.5px);
+}
+body .wrap input:checked ~ .totoro .arm:nth-of-type(2) {
+  -webkit-transform: rotate(-40deg) translateX(-7.5px);
+          transform: rotate(-40deg) translateX(-7.5px);
+}
+body .wrap input:checked ~ .totoro .ears .ear {
+  left: 70px;
+  -webkit-animation: ear1 1s ease-in-out infinite alternate;
+          animation: ear1 1s ease-in-out infinite alternate;
+  -webkit-transform-origin: -20% 120%;
+          transform-origin: -20% 120%;
+}
+@-webkit-keyframes ear1 {
+  to {
+    -webkit-transform: rotate(5deg) translateY(-2.5px);
+            transform: rotate(5deg) translateY(-2.5px);
+  }
+}
+@keyframes ear1 {
+  to {
+    -webkit-transform: rotate(5deg) translateY(-2.5px);
+            transform: rotate(5deg) translateY(-2.5px);
+  }
+}
+body .wrap input:checked ~ .totoro .ears .ear:nth-of-type(2) {
+  left: auto;
+  right: 70px;
+  -webkit-animation: ear2 1s ease-in-out infinite alternate;
+          animation: ear2 1s ease-in-out infinite alternate;
+  -webkit-transform-origin: 120% 120%;
+          transform-origin: 120% 120%;
+}
+@-webkit-keyframes ear2 {
+  to {
+    -webkit-transform: rotate(-5deg) translateY(-2.5px);
+            transform: rotate(-5deg) translateY(-2.5px);
+  }
+}
+@keyframes ear2 {
+  to {
+    -webkit-transform: rotate(-5deg) translateY(-2.5px);
+            transform: rotate(-5deg) translateY(-2.5px);
+  }
+}
+body .wrap input:checked ~ .totoro .body .mouth {
+  box-shadow: inset 0 0 0 2px #626262;
+  height: 2px;
+  bottom: 2.5px;
+  width: 20px;
+  left: calc(50% - 10px);
+}
+body .wrap input:checked ~ .totoro .body .spots:before {
+  -webkit-animation: breathe2 1s ease-in-out infinite alternate;
+          animation: breathe2 1s ease-in-out infinite alternate;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+}
+@-webkit-keyframes breathe2 {
+  to {
+    -webkit-transform: scale(1.025);
+            transform: scale(1.025);
+  }
+}
+@keyframes breathe2 {
+  to {
+    -webkit-transform: scale(1.025);
+            transform: scale(1.025);
+  }
+}
+body .wrap input:checked ~ .totoro .body .inner:before {
+  -webkit-animation: shake 3s ease-in-out infinite;
+          animation: shake 3s ease-in-out infinite;
+}
+@-webkit-keyframes shake {
+  90% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  91% {
+    -webkit-transform: translateX(1px);
+            transform: translateX(1px);
+  }
+  92% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  93% {
+    -webkit-transform: translateX(-1px);
+            transform: translateX(-1px);
+  }
+  94% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+}
+@keyframes shake {
+  90% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  91% {
+    -webkit-transform: translateX(1px);
+            transform: translateX(1px);
+  }
+  92% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  93% {
+    -webkit-transform: translateX(-1px);
+            transform: translateX(-1px);
+  }
+  94% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+}
+body .wrap input:checked ~ .totoro .body .inner,
+body .wrap input:checked ~ .totoro .body .spots {
+  -webkit-animation: roll1 0.5s linear 1 forwards;
+          animation: roll1 0.5s linear 1 forwards;
+}
+body .wrap input:checked ~ .totoro .body .inner .spot,
+body .wrap input:checked ~ .totoro .body .spots .spot {
+  -webkit-animation: breathe 1s ease-in-out infinite alternate;
+          animation: breathe 1s ease-in-out infinite alternate;
+}
+@-webkit-keyframes breathe {
+  to {
+    -webkit-transform: translateZ(20px) scaleX(0.8) scale(0.75) translateY(-5px) rotateX(-20deg);
+            transform: translateZ(20px) scaleX(0.8) scale(0.75) translateY(-5px) rotateX(-20deg);
+  }
+}
+@keyframes breathe {
+  to {
+    -webkit-transform: translateZ(20px) scaleX(0.8) scale(0.75) translateY(-5px) rotateX(-20deg);
+            transform: translateZ(20px) scaleX(0.8) scale(0.75) translateY(-5px) rotateX(-20deg);
+  }
+}
+body .wrap input:checked ~ .totoro .body .inner .eye,
+body .wrap input:checked ~ .totoro .body .spots .eye {
+  box-shadow: inset 0 0 0 1px #626262, inset 0 0 0 4.5px #fff;
+  height: 2px;
+  width: 7.5px;
+  -webkit-transform: translateX(7.5px);
+          transform: translateX(7.5px);
+}
+body .wrap input:checked ~ .totoro .body .inner .eye:nth-of-type(2),
+body .wrap input:checked ~ .totoro .body .spots .eye:nth-of-type(2) {
+  -webkit-transform: translateX(-7.5px);
+          transform: translateX(-7.5px);
+}
+@-webkit-keyframes roll1 {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  50% {
+    -webkit-transform: translateX(100%) rotateY(150deg);
+            transform: translateX(100%) rotateY(150deg);
+  }
+  50.001% {
+    -webkit-transform: translateX(-100%) rotateY(-150deg);
+            transform: translateX(-100%) rotateY(-150deg);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+}
+@keyframes roll1 {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  50% {
+    -webkit-transform: translateX(100%) rotateY(150deg);
+            transform: translateX(100%) rotateY(150deg);
+  }
+  50.001% {
+    -webkit-transform: translateX(-100%) rotateY(-150deg);
+            transform: translateX(-100%) rotateY(-150deg);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <div class='wrap'>
+  <input type='checkbox'>
+  <div class='totoro'>
+    <div class='ears'>
+      <div class='ear'></div>
+      <div class='ear'></div>
+    </div>
+    <div class='arm'></div>
+    <div class='arm'></div>
+    <div class='foot'></div>
+    <div class='foot two'></div>
+    <div class='body'>
+      <div class='spots'>
+        <div class='spot'></div>
+        <div class='spot'></div>
+        <div class='spot'></div>
+        <div class='spot'></div>
+        <div class='spot'></div>
+        <div class='spot'></div>
+        <div class='spot'></div>
+      </div>
+      <div class='inner'>
+        <div class='mouth'></div>
+        <div class='eye'></div>
+        <div class='eye'></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ </BODY>
+</HTML>

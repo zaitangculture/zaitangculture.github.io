@@ -1,0 +1,381 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   *, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  overflow: hidden;
+  text-align: center;
+}
+
+.wrapper {
+  margin: 0 auto;
+  min-width: 730px;
+  position: relative;
+  -webkit-transform: perspective(600px) rotateX(60deg);
+          transform: perspective(600px) rotateX(60deg);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-animation: spin 10s infinite linear;
+          animation: spin 10s infinite linear;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-animation: backgroundColors 6s infinite linear;
+          animation: backgroundColors 6s infinite linear;
+}
+
+.background_1 {
+  background: radial-gradient(circle closest-side, #F5D3AB 0%, #ffffff 100%);
+  opacity: 0;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+
+.background_2 {
+  background: radial-gradient(circle closest-side, #CDECA3 0%, #ffffff 100%);
+  opacity: 0;
+  -webkit-animation-delay: 2.5s;
+          animation-delay: 2.5s;
+}
+
+.background_3 {
+  background: radial-gradient(circle closest-side, #A3E8D7 0%, #ffffff 100%);
+  opacity: 0;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+}
+
+.background_4 {
+  background: radial-gradient(circle closest-side, #E5B4A0 0%, #ffffff 100%);
+  opacity: 0;
+  -webkit-animation-delay: 5.5s;
+          animation-delay: 5.5s;
+}
+
+.row {
+  margin-top: -28.87px;
+}
+
+.row:first-child {
+  margin-top: 0;
+}
+
+.hexagon {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 57.74px;
+  background-color: #fff;
+  margin: 28.87px 0;
+  border-left: solid 3px #FBEBD9;
+  border-right: solid 3px #FBEBD9;
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 70.71px;
+  height: 70.71px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 11.6447px;
+}
+
+.hexagon:before {
+  top: -35.3553px;
+  border-top: solid 4.2426px #FBEBD9;
+  border-right: solid 4.2426px #FBEBD9;
+}
+
+.hexagon:after {
+  bottom: -35.3553px;
+  border-bottom: solid 4.2426px #FBEBD9;
+  border-left: solid 4.2426px #FBEBD9;
+}
+
+.hexagon span {
+  display: block;
+  position: absolute;
+  top: 1.7320508075688772px;
+  left: 0;
+  width: 94px;
+  height: 54.2709px;
+  z-index: 2;
+  background: inherit;
+}
+
+.ring {
+  -webkit-transform: translate3d(0, 0, 101px);
+          transform: translate3d(0, 0, 101px);
+}
+
+.ring.ring_1.hexagon {
+  -webkit-animation: ringMovement 1.5s 0s infinite linear, ringColors 6s 1s infinite linear;
+          animation: ringMovement 1.5s 0s infinite linear, ringColors 6s 1s infinite linear;
+}
+
+.ring.ring_1.hexagon:after,
+.ring.ring_1.hexagon:before {
+  -webkit-animation: ringColors 6s 1s infinite linear;
+          animation: ringColors 6s 1s infinite linear;
+}
+
+.ring.ring_2.hexagon {
+  -webkit-animation: ringMovement 1.5s 0.33s infinite linear, ringColors 6s 1.33s infinite linear;
+          animation: ringMovement 1.5s 0.33s infinite linear, ringColors 6s 1.33s infinite linear;
+}
+
+.ring.ring_2.hexagon:after,
+.ring.ring_2.hexagon:before {
+  -webkit-animation: ringColors 6s 1.33s infinite linear;
+          animation: ringColors 6s 1.33s infinite linear;
+}
+
+.ring.ring_3.hexagon {
+  -webkit-animation: ringMovement 1.5s 0.66s infinite linear, ringColors 6s 1.66s infinite linear;
+          animation: ringMovement 1.5s 0.66s infinite linear, ringColors 6s 1.66s infinite linear;
+}
+
+.ring.ring_3.hexagon:after,
+.ring.ring_3.hexagon:before {
+  -webkit-animation: ringColors 6s 1.66s infinite linear;
+          animation: ringColors 6s 1.66s infinite linear;
+}
+
+.ring.ring_4.hexagon {
+  -webkit-animation: ringMovement 1.5s 0.99s infinite linear, ringColors 6s 1.99s infinite linear;
+          animation: ringMovement 1.5s 0.99s infinite linear, ringColors 6s 1.99s infinite linear;
+}
+
+.ring.ring_4.hexagon:after,
+.ring.ring_4.hexagon:before {
+  -webkit-animation: ringColors 6s 1.99s infinite linear;
+          animation: ringColors 6s 1.99s infinite linear;
+}
+
+@-webkit-keyframes ringMovement {
+  from {
+    -webkit-transform: translate3d(0, 0, 101px);
+            transform: translate3d(0, 0, 101px);
+  }
+  50% {
+    -webkit-transform: translate3d(0, 0, 151px);
+            transform: translate3d(0, 0, 151px);
+  }
+  66% {
+    -webkit-transform: translate3d(0, 0, 1px);
+            transform: translate3d(0, 0, 1px);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 101px);
+            transform: translate3d(0, 0, 101px);
+  }
+}
+
+@keyframes ringMovement {
+  from {
+    -webkit-transform: translate3d(0, 0, 101px);
+            transform: translate3d(0, 0, 101px);
+  }
+  50% {
+    -webkit-transform: translate3d(0, 0, 151px);
+            transform: translate3d(0, 0, 151px);
+  }
+  66% {
+    -webkit-transform: translate3d(0, 0, 1px);
+            transform: translate3d(0, 0, 1px);
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 101px);
+            transform: translate3d(0, 0, 101px);
+  }
+}
+@-webkit-keyframes ringColors {
+  from {
+    border-color: #FBEBD9;
+  }
+  25% {
+    border-color: #FBEBD9;
+  }
+  25.01% {
+    border-color: #E5ECD9;
+  }
+  50% {
+    border-color: #E5ECD9;
+  }
+  50.01% {
+    border-color: #D6ECE8;
+  }
+  75% {
+    border-color: #D6ECE8;
+  }
+  75.01% {
+    border-color: #EFE2DC;
+  }
+  to {
+    border-color: #EFE2DC;
+  }
+}
+@keyframes ringColors {
+  from {
+    border-color: #FBEBD9;
+  }
+  25% {
+    border-color: #FBEBD9;
+  }
+  25.01% {
+    border-color: #E5ECD9;
+  }
+  50% {
+    border-color: #E5ECD9;
+  }
+  50.01% {
+    border-color: #D6ECE8;
+  }
+  75% {
+    border-color: #D6ECE8;
+  }
+  75.01% {
+    border-color: #EFE2DC;
+  }
+  to {
+    border-color: #EFE2DC;
+  }
+}
+@-webkit-keyframes backgroundColors {
+  from {
+    opacity: 0;
+  }
+  0.01% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  25.01% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes backgroundColors {
+  from {
+    opacity: 0;
+  }
+  0.01% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  25.01% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: perspective(600px) rotateX(60deg) rotateZ(0deg);
+            transform: perspective(600px) rotateX(60deg) rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: perspective(600px) rotateX(60deg) rotateZ(360deg);
+            transform: perspective(600px) rotateX(60deg) rotateZ(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    -webkit-transform: perspective(600px) rotateX(60deg) rotateZ(0deg);
+            transform: perspective(600px) rotateX(60deg) rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: perspective(600px) rotateX(60deg) rotateZ(360deg);
+            transform: perspective(600px) rotateX(60deg) rotateZ(360deg);
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <div class="wrapper">
+   <div class="background background_1"></div>
+   <div class="background background_2"></div>
+   <div class="background background_3"></div>
+   <div class="background background_4"></div>
+
+   <div class="row row_1">
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+   </div>
+   <div class="row row_2">
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+   </div>
+   <div class="row row_3">
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_3"><span></span></div>
+      <div class="hexagon ring ring_3"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+   </div>
+   <div class="row row_4">
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_3"><span></span></div>
+      <div class="hexagon ring ring_4"><span></span></div>
+      <div class="hexagon ring ring_3"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+   </div>
+   <div class="row row_5">
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_3"><span></span></div>
+      <div class="hexagon ring ring_3"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+   </div>
+   <div class="row row_6">
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_2"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+   </div>
+   <div class="row row_7">
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+      <div class="hexagon ring ring_1"><span></span></div>
+   </div>
+</div>
+ </BODY>
+</HTML>

@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  html, body {
+	position: absolute;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background:#000;
+	touch-action: none;
+	content-zooming: none;
+}
+canvas {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background:#191919;
+	background: radial-gradient(circle at center, rgba(60,70,100,1) 0%,rgba(0,0,0,1) 60%);
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+ <canvas></canvas>
+  <script>
+  // Code never lies, comments sometimes do.
+"use strict";
+{
+	// particles class
+	class Particle {
+		constructor(i, x, y, r) {
+			this.a = 0;
+			this.i = i;
+			this.x = x;
+			this.y = y;
+			this.vx = 0.0;
+			this.vy = 0.0;
+			this.r = r | 0;
+		}
+		move(img) {
+			this.vy += 0.01 * this.r;
+			this.x += this.vx;
+			this.y += this.vy;
+			// collisions
+			for (const b of plots) {
+				const dx = b.x - this.x;
+				const dy = b.y - this.y;
+				const sd = dx * dx + dy * dy;
+				const r = this.r + b.r;
+				if (sd < r * r) {
+					const dist = Math.sqrt(sd);
+					const dz = r - dist;
+					const sx = dx / dist * dz;
+					const sy = dy / dist * dz;
+					this.vx -= sx * 1.2;
+					this.vy -= sy * 1.2;
+					this.x -= sx;
+					this.y -= sy;
+				}
+			}
+			// reset particle
+			if (this.y > canvas.height + this.r) {
+				this.x = canvas.width * 0.5;
+				this.y = -2 * pointer.r;
+				this.vx = 0;
+				this.vy = Math.random() * this.r;
+			}
+			// update image position
+			img.position(
+				this.i,
+				this.x - this.r,
+				this.y - this.r,
+				2 * this.r,
+				2 * this.r
+			);
+		}
+		// turbine
+		movePlot(img) {
+			this.r = pointer.r;
+			const a = pointer.a + 2 * Math.PI / 5 * this.i;
+			const d = pointer.k > 0 ? pointer.k * 0.005 : 0;
+			this.x = canvas.width * 0.5 + 2.5 * this.r * Math.cos(a + d);
+			this.y = canvas.height * 0.5 + 2.5 * this.r * Math.sin(a + d);
+			img.position(
+				this.i,
+				this.x - this.r,
+				this.y - this.r,
+				2 * this.r,
+				2 * this.r
+			);
+		}
+		static add() {
+			for (let i = 0; i < 20; i++) {
+				particles.push(
+					new Particle(
+						iP++,
+						0,
+						canvas.height * 2,
+						(Math.random() + 0.2) * Math.max(canvas.width, canvas.height) * 0.018
+					)
+				);
+			}
+		}
+	}
+	// webGL canvas
+	const canvas = {
+		init(options) {
+			// set webGL context
+			this.elem = document.querySelector("canvas");
+			const gl = (this.gl =
+				this.elem.getContext("webgl", options) ||
+				this.elem.getContext("experimental-webgl", options));
+			if (!gl) return false;
+			// compile shaders
+			const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+			gl.shaderSource(
+				vertexShader,
+				`
+					precision highp float;
+					attribute vec2 aPosition;
+					attribute vec2 aTexcoord;
+					uniform vec2 uResolution;
+					varying vec2 vTexcoord;
+					void main() {
+						gl_Position = vec4(((aPosition / uResolution * 2.0) - 1.0) * vec2(1, -1), 0, 1);
+						vTexcoord = aTexcoord;
+					}
+      	`
+			);
+			gl.compileShader(vertexShader);
+			const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+			gl.shaderSource(
+				fragmentShader,
+				`
+					precision highp float;
+					varying vec2 vTexcoord;
+					uniform sampler2D texture;
+					void main() {
+						gl_FragColor = texture2D(texture, vTexcoord);
+					}
+				`
+			);
+			gl.compileShader(fragmentShader);
+			const program = (this.program = gl.createProgram());
+			gl.attachShader(this.program, vertexShader);
+			gl.attachShader(this.program, fragmentShader);
+			gl.linkProgram(this.program);
+			gl.useProgram(this.program);
+			// resolution
+			this.uResolution = gl.getUniformLocation(this.program, "uResolution");
+			gl.enableVertexAttribArray(this.uResolution);
+			// canvas resize
+			this.resize();
+			window.addEventListener("resize", () => this.resize(), false);
+			return gl;
+		},
+		createImages(src, n) {
+			return new this.Images(this, src, n);
+		},
+		Images: class {
+			constructor(canvas, src, n) {
+				this.n = n;
+				const gl = (this.gl = canvas.gl);
+				this.program = canvas.program;
+				// create POT textures
+				this.texture = gl.createTexture();
+				gl.bindTexture(gl.TEXTURE_2D, this.texture);
+				gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, src);
+				gl.generateMipmap(gl.TEXTURE_2D);
+				// textures coordinates buffer
+				this.aTexcoord = gl.getAttribLocation(this.program, "aTexcoord");
+				gl.enableVertexAttribArray(this.aTexcoord);
+				gl.vertexAttribPointer(this.aTexcoord, 2, gl.FLOAT, false, 0, 0);
+				const texArray = [];
+				for (let i = 0; i < n; i++)
+					texArray.push(0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1);
+				this.texBuffer = gl.createBuffer();
+				gl.bindBuffer(gl.ARRAY_BUFFER, this.texBuffer);
+				gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(texArray), gl.STATIC_DRAW);
+				// positions buffer
+				this.aPosition = gl.getAttribLocation(this.program, "aPosition");
+				gl.enableVertexAttribArray(this.aPosition);
+				this.positionBuffer = gl.createBuffer();
+				this.posArray = new Float32Array(n * 12);
+			}
+			// update quad position
+			position(i, x, y, w, h) {
+				const p = i * 12;
+				this.posArray[p + 0] = x;
+				this.posArray[p + 1] = y;
+				this.posArray[p + 2] = x;
+				this.posArray[p + 3] = y + h;
+				this.posArray[p + 4] = x + w;
+				this.posArray[p + 5] = y;
+				this.posArray[p + 6] = x + w;
+				this.posArray[p + 7] = y;
+				this.posArray[p + 8] = x;
+				this.posArray[p + 9] = y + h;
+				this.posArray[p + 10] = x + w;
+				this.posArray[p + 11] = y + h;
+			}
+			// draw all images in one drawArrays call
+			drawImages() {
+				this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.texBuffer);
+				this.gl.vertexAttribPointer(this.aTexcoord, 2, this.gl.FLOAT, false, 0, 0);
+				this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
+				this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.positionBuffer);
+				this.gl.bufferData(
+					this.gl.ARRAY_BUFFER,
+					this.posArray,
+					this.gl.DYNAMIC_DRAW
+				);
+				this.gl.vertexAttribPointer(this.aPosition, 2, this.gl.FLOAT, false, 0, 0);
+				this.gl.drawArrays(this.gl.TRIANGLES, 0, 6 * this.n);
+			}
+		},
+		resize() {
+			this.width = this.elem.width = this.elem.offsetWidth;
+			this.height = this.elem.height = this.elem.offsetHeight;
+			this.gl.uniform2f(this.uResolution, this.width, this.height);
+			this.gl.viewport(
+				0,
+				0,
+				this.gl.drawingBufferWidth,
+				this.gl.drawingBufferHeight
+			);
+		}
+	};
+	const pointer = {
+		init(canvas) {
+			this.k = 0;
+			this.r = 100;
+			this.a = 0;
+			this.x = 0;
+			this.y = canvas.height * 0.5;
+			["mousemove", "touchmove"].forEach((event, touch) => {
+				document.addEventListener(
+					event,
+					e => {
+						if (touch) {
+							e.preventDefault();
+							this.x = e.targetTouches[0].clientX | 0;
+							this.y = e.targetTouches[0].clientY | 0;
+						} else {
+							this.x = e.clientX | 0;
+							this.y = e.clientY | 0;
+						}
+						this.k = -200;
+					},
+					false
+				);
+			});
+		},
+		update() {
+			this.k++;
+			this.a = 0.005 * (canvas.width * 0.5 - this.x);
+			this.r += (Math.max(1, 0.4 * (canvas.height - this.y)) - this.r) * 0.1;
+		}
+	};
+	// draw disks
+	const shape = (size, color, n) => {
+		const shape = document.createElement("canvas");
+		shape.width = shape.height = size;
+		const ctx = shape.getContext("2d");
+		ctx.fillStyle = color;
+		ctx.arc(size / 2, size / 2, size / 2, 0, 2 * Math.PI);
+		ctx.fill();
+		return canvas.createImages(shape, n);
+	};
+	// init webGL canvas
+	const gl = canvas.init({
+		alpha: true,
+		stencil: false,
+		antialias: true,
+		depth: false
+	});
+	// additive blending "lighter"
+	gl.blendFunc(gl.ONE, gl.ONE);
+	gl.enable(gl.BLEND);
+	// init pointer
+	pointer.init(canvas);
+	// create textures
+	const nParticles = 6000;
+	const particleTexture = shape(256, "#631", nParticles);
+	const plotTexture = shape(512, "#000", 5);
+	let iP = 0;
+	const particles = [];
+	// create turbine
+	const plots = Array.from({ length: 5 }, (v, i) => new Particle(i, 0, 0, 0));
+	// main animation loop
+	const run = () => {
+		requestAnimationFrame(run);
+		// add more particles
+		if (iP < nParticles) Particle.add();
+		// update pointer
+		pointer.update();
+		// update particles
+		for (const p of particles) p.move(particleTexture);
+		for (const b of plots) b.movePlot(plotTexture);
+		// draw images
+		particleTexture.drawImages();
+		plotTexture.drawImages();
+	};
+	requestAnimationFrame(run);
+}
+
+  </script>
+ </BODY>
+</HTML>

@@ -1,0 +1,467 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  * {
+  color: green;
+  cursor: default;
+  font: 700 1em 'BenchNine', sans-serif;
+}
+
+html,
+body {
+  background-color: black;
+  color: green;
+  margin: 0;
+}
+
+#welcome-login {
+  border: solid 1px;
+  border-radius: 1em;
+  margin: 0 5%;
+  opacity: 0;
+  position: fixed;
+  text-align: center;
+  width: 90%;
+  z-index: 99;
+}
+
+h1 {
+  font-size: 5em;
+  margin: 0;
+}
+
+#login-input {
+  background: black;
+  border: solid 1px;
+  border-radius: 1em;
+  cursor: text;
+  margin-bottom: 1em;
+  opacity: 0;
+	outline: none;
+  text-align: center;
+  width: 10em;
+}
+
+#terminal {
+  border: none;
+  height: calc(100% - 3em);
+  opacity: 0;
+  overflow-y: auto;
+  position: fixed;
+  width: 100%;
+}
+
+#root {
+  bottom: 0;
+  height: 2.6em;
+  opacity: 0;
+  position: fixed;
+  text-align: center;
+  width: 1em;
+}
+
+#input {
+  background: black;
+  border: none;
+  bottom: 1em;
+  cursor: text;
+  display: none;
+  height: 1.9em;
+  margin: 0;
+	outline: none;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  width: calc(100% - 1em);
+}
+
+#blinking {
+  -webkit-animation: blink 1s linear 0s infinite;
+  -moz-animation: blink 1s linear 0s infinite;
+  -ms-animation: blink 1s linear 0s infinite;
+  -o-animation: blink 1s linear 0s infinite;
+  animation: blink 1s linear 0s infinite;
+}
+
+@-webkit-keyframes blink {
+  from {
+    color: #000;
+  }
+
+  to {
+    color: #fff;
+  }
+}
+
+@-moz-keyframes blink {
+  from {
+    color: #000;
+  }
+
+  to {
+    color: #fff;
+  }
+}
+
+@-ms-keyframes blink {
+  from {
+    color: #000;
+  }
+
+  to {
+    color: #fff;
+  }
+}
+
+@-o-keyframes blink {
+  from {
+    color: #000;
+  }
+
+  to {
+    color: #fff;
+  }
+}
+
+@keyframes blink {
+  from {
+    color: #000;
+  }
+
+  to {
+    color: #fff;
+  }
+}
+
+#time {
+  opacity: 0;
+  position: fixed;
+  right: 1em;
+  top: .5em;
+}
+
+#objectives {
+  opacity: 0;
+  position: fixed;
+  right: .5em;
+  top: 1em;
+  width: 25%;
+}
+
+#won,
+#lost {
+  display: none;
+  opacity: 0;
+}
+
+#objectives li {
+  opacity: 0;
+}
+
+::-webkit-scrollbar {
+    width: .5em;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0em 0em .5em rgba(0, 255, 0, .25);
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0em 0em .25em rgba(0, 255, 0, .5);
+}
+
+footer {
+  bottom: 0;
+  font-size: .8em;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+ <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+ <link href='https://fonts.googleapis.com/css?family=BenchNine:300,400,700' rel='stylesheet' type='text/css'>
+<title>HACKSYS the hacking game</title>
+
+<audio autoplay loop>
+  <source src="https://dl-web.dropbox.com/get/Public/Call%20of%20Duty%20Black%20Ops%202%20-%20Express%20Theme.mp3?_subject_uid=13406744&duc_id=dropbox_duc_id&w=AACds9Gc67jRLs0SWsEy6ero1eVj40ZwmTxutqNoOR0PDw" type="audio/mpeg">
+</audio>
+
+<div id="welcome-login">
+  <h1>Welcome to HACKSYS the hacking game!</h1>
+  <input id="login-input" type="text" placeholder="Hacker nickname">
+</div>
+  
+<div id="terminal">
+    <div>Loading...<span id="blinking">_</span></div>
+</div>
+
+<div id="root">></div>
+<input id="input" type="text" placeholder="Enter your command here..." autofocus>
+
+<div id="time">Trace time: 0:00</div>
+
+<ol id="objectives">
+  Welcome to HACKSYS the hacking game.<br><br>
+  <div id="won">Congratulations! You are going to receive all the important conversations from this phone relay.</div>
+  <div id="lost">You got tracked down. You better run while you can... Computer autodistruction process will clean up the rest...</div><br>
+  Objectives:
+  <li id="help">Type 'help' in the console, at the bottom of the screen.</li>
+  <li id="list">Check the list of the currently available applications.</li>
+  <li id="connect">Connect to the nearest phone relay (connect nearest.phone.relay).</li>
+  <li id="trojan">Send a trojan to the phone relay you just connected to (send trojan).</li>
+  <li id="disconnect">Disconnect from the phone relay before you are traced down.</li>
+</ol>
+
+<footer>
+  &copy; Copyright 2014-2018 by bulanmaster. All rights reserved.
+</footer>
+  <script>
+  $(document).ready(function() {
+  var divx = document.getElementById('terminal');
+  /* Welcome screen */
+  $('#welcome-login').animate({'opacity': '1', 'top': $(window).height()/2 - $('#welcome-login').height()/2 }, 3000);
+
+  setTimeout(function() {
+      $('#login-input').animate({'opacity': '1'}, 3000);
+  }, 4000);
+
+  /* player login */
+  var player_name = "Anonymous";
+  var logged = 0;
+
+  $('#login-input').keypress(function(e) {
+    if(e.which === 13 && $(this).val() != '') {
+      player_name = $(this).val();
+      logged = 1;
+      $('#welcome-login').animate({'opacity': '0'}, 1000);
+      /* objectives */
+      var help = 0;
+      var list = 0;
+      var connect = 0;
+      var trojan = 0;
+      var disconnect = 0;
+
+      var won = 0;
+      var able = 0;
+
+      window.setInterval(function() {
+        if (won === 0) {
+          if (help === 1) {
+            $('#objectives #help').css({'color': 'red'});
+            $('#objectives #list').animate({'opacity': '1'}, 1000);
+            if (list === 1) {
+              $('#objectives #list').css({'color': 'red'});
+              $('#objectives #connect').animate({'opacity': '1'}, 1000);
+              if (connect === 1) {
+                $('#objectives #connect').css({'color': 'red'});
+                $('#objectives #trojan').animate({'opacity': '1'}, 1000);
+                if (trojan === 1) {
+                  $('#objectives #trojan').css({'color': 'red'});
+                  $('#objectives #disconnect').animate({'opacity': '1'}, 1000);
+                }
+              }
+            }
+          }
+        }
+
+        if (disconnect === 1) {
+          $('#objectives #disconnect').css({'color': 'red'});
+        }
+
+        if (minutes <= 1 && help === 1 && list === 1 && connect === 0 && trojan === 1 && disconnect === 1) {
+          won++;
+        }
+
+        if (won === 1) {
+          $('#objectives li').animate({'opacity': '0'}, 3000);
+          $('#objectives #won').show(3000).animate({'opacity': '1'}, 3000);
+        } else if (won > 1) {
+          won = 2;
+        }
+      }, 1000);
+
+      /* timer */
+      var seconds = 0;
+      var minutes = 0;
+      var danger = 0;
+      var lost = 0;
+
+      window.setInterval(function() {
+        if (connect === 1) {
+          if (seconds < 10) {
+            $('#time').text('Being traced: ' + minutes + ':0' +seconds);
+          } else {
+            $('#time').text('Being traced: ' + minutes + ':' +seconds);
+          }
+          if (seconds < 59) {
+            seconds++;
+          } else {
+            seconds = 0;
+            minutes++;
+          }
+          if (minutes >= 0 && seconds > 45) {
+            $('#time').css({'color': 'red'});
+            danger++;
+          }
+          if (danger === 1) {
+            $('span').remove();
+            $('#terminal').append('<div>You have only 15 seconds left...<span id="blinking">_</span></div><br>');
+            divx.scrollTop = divx.scrollHeight;
+          } else if (danger > 1) {
+            danger = 2;
+          }
+          if (minutes >= 1 && seconds > 0) {
+            $('#time').text('You\'ve been traced down!');
+            lost++;
+            able = 0;
+          }
+          if (lost === 1) {
+            $('span').remove();
+            $('#terminal').append('<div>You\'ve been traced down!<br>Formatting HDD...<br>Goodbye...<span id="blinking">_</span></div><br>');
+            $('#objectives li').animate({'opacity': '0'}, 3000);
+            $('#objectives #lost').show(3000).animate({'opacity': '1'}, 3000);
+            divx.scrollTop = divx.scrollHeight;
+            $('#objectives li').css({'color': 'green'}).animate({'opacity': '1'}, 3000);
+            setTimeout(function() {
+              $('#terminal').animate({'opacity': '0'}, 1000);
+              $('#root').animate({'opacity': '0'}, 1000);
+              $('input').animate({'opacity': '0'}, 1000).hide(3000);
+              $('#objectives').animate({'opacity': '0'}, 1000);
+              $('#time').animate({'opacity': '0'}, 1000);
+              help = 0;
+              list = 0;
+              connect = 0;
+              trojan = 0;
+              disconnect = 0;
+              won = 0;
+              $('#objectives li').css({'color': 'green'});
+            }, 20000);
+          } else if (lost > 1) {
+            lost = 2;
+          }
+        }
+      }, 1000);
+
+      setTimeout(function(){
+        $('#terminal').animate({'opacity': '1'}, 1000);
+      }, 1000);
+
+      setTimeout(function(){
+        $('#root').animate({'opacity': '1'}, 1000);
+        $('input').animate({'opacity': '1'}, 1000).show();
+      }, 5000);
+
+      setTimeout(function(){
+        $('span').remove();
+        $('#terminal').append('<br><div>Welcome to HACKSYS [version 1.0.0].<br>(c) Copyright 2014 HACorp Corporation. All rights reserved.<br><br>' + player_name + ' authenticated.<br>HACKSYS ready for use.<br>Use the help command for a list of commands.<br><br><span id="initial-root">$</span>&nbsp;&nbsp;&nbsp;<span id="blinking">_</span></div>');
+      }, 6500);
+
+      setTimeout(function() {
+        $('#time').animate({'opacity': '1'}, 3000);
+        $('#objectives').animate({'opacity': '1'}, 3000);
+      }, 7000);
+
+      setTimeout(function() {
+        $('#objectives #help').animate({'opacity': '1'}, 500);
+        able = 1;
+      }, 10000);
+
+      $('#input').keypress(function(e) {
+          if(e.which === 13 && $(this).val() != '' && able === 1) {
+            $('div span').remove();
+            $('initial-root').remove();
+
+            /* 
+             * List of commands available in the game:
+             * 
+             * help
+             * list
+             * connect nearest-phone-relay
+             * send trojan
+             * send adware
+             * disconnect
+             * exit
+             * 
+             */
+
+            switch( $(this).val() ) {
+              case 'help':
+                $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>List of commands:<br>help - Show this message (command list)<br>connect [DNS name] - Connects host computer with the targeted DNS name<br>disconnect - Disconnects host computer from the connected DNS name<br>exit - Shuts down host computer<br>list - Shows the list of the currently available applications<br>send [application type] - Sends given application name to the connected DNS name<span id="blinking">_</span></div>');
+                help = 1;
+                break;
+              case 'connect nearest.phone.relay':
+                if (connect === 0) {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Connecting...<br>Connected.<br>You have 1 minute before you get traced down.<span id="blinking">_</span></div>');
+                  connect = 1;
+                } else {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>You are already connected to nearest.phone.relay.<span id="blinking">_</span></div>');
+                }
+                break;
+              case 'list':
+                $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>List of currently available applications:<br>AdBreak - bombard targeted computer with advertisement pop-ups (type: adware)<br>Trojan.Vaklik.BBB - steals vital information from the targeted computer (type: trojan)<span id="blinking">_</span>');
+                list = 1;
+                break;
+              case 'send trojan':
+                if (connect === 1) {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Sending Trojan.Vaklik.BBB...<br>Trojan.Vaklik.BBB sent.<span id="blinking">_</span></div>');
+                  trojan = 1;
+                } else {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>You are not connected to any DNS name.<span id="blinking">_</span></div>');
+                }
+                break;
+              case 'send adware':
+                if (connect === 1) {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Sending AdBreak...<br>Unable to send AdBreak.<span id="blinking">_</span></div>');
+                } else {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>You are not connected to any DNS name.<span id="blinking">_</span></div>');
+                }
+                break;
+              case 'disconnect':
+                if (connect === 1) {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Disconnecting...<br>Disconnected<span id="blinking">_</span></div>');
+                  disconnect = 1;
+                  connect = 0;
+                  minutes = 0;
+                  seconds = 0;
+                } else {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>You are not connected to any DNS name.<span id="blinking">_</span></div>');
+                }
+                break;
+              case 'exit':
+                $('#terminal').animate({'opacity': '0'}, 1000);
+                $('#root').animate({'opacity': '0'}, 1000);
+                $('input').animate({'opacity': '0'}, 1000).hide(3000);
+                $('#objectives').animate({'opacity': '0'}, 1000);
+                $('#time').animate({'opacity': '0'}, 1000);
+                help = 0;
+                list = 0;
+                connect = 0;
+                trojan = 0;
+                disconnect = 0;
+                won = 0;
+                $('#objectives li').css({'color': 'green'});
+                break;
+              default:
+                $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Command not recognized. Type in help for a list of commands.<span id="blinking">_</span></div>');
+            }
+            $('#terminal').append('<br>');
+
+            divx.scrollTop = divx.scrollHeight;
+            $(this).val('');
+          }
+      });
+    }
+  });
+});
+  </script>
+ </BODY>
+</HTML>

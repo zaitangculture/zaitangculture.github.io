@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body {
+  background: #000;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  font-family: 'Anton', sans-serif;
+  justify-content: center;
+  align-items: center;
+  -webkit-perspective: 600px;
+          perspective: 600px;
+}
+
+div {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.spiral {
+  -webkit-transform: rotateX(-30deg);
+          transform: rotateX(-30deg);
+}
+
+.line {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  -webkit-transform-origin: 0 50%;
+          transform-origin: 0 50%;
+  -webkit-transform: translateX(100%) rotateY(10deg) rotateX(0deg);
+          transform: translateX(100%) rotateY(10deg) rotateX(0deg);
+}
+.line::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-animation: slide 900ms linear infinite;
+          animation: slide 900ms linear infinite;
+  -webkit-filter: drop-shadow(0 -100px 0 rgba(200, 220, 255, 0.15)) blur(40px) contrast(10);
+          filter: drop-shadow(0 -100px 0 rgba(200, 220, 255, 0.15)) blur(40px) contrast(10);
+}
+.line.line_1::before {
+  -webkit-animation-delay: -99900ms;
+          animation-delay: -99900ms;
+}
+.line.line_2::before {
+  -webkit-animation-delay: -99800ms;
+          animation-delay: -99800ms;
+}
+.line.line_3::before {
+  -webkit-animation-delay: -99700ms;
+          animation-delay: -99700ms;
+}
+.line.line_4::before {
+  -webkit-animation-delay: -99600ms;
+          animation-delay: -99600ms;
+}
+.line.line_5::before {
+  -webkit-animation-delay: -99500ms;
+          animation-delay: -99500ms;
+}
+.line.line_6::before {
+  -webkit-animation-delay: -99400ms;
+          animation-delay: -99400ms;
+}
+.line.line_7::before {
+  -webkit-animation-delay: -99300ms;
+          animation-delay: -99300ms;
+}
+.line.line_8::before {
+  -webkit-animation-delay: -99200ms;
+          animation-delay: -99200ms;
+}
+.line.line_9::before {
+  -webkit-animation-delay: -99100ms;
+          animation-delay: -99100ms;
+}
+.line.line_10::before {
+  -webkit-animation-delay: -99000ms;
+          animation-delay: -99000ms;
+}
+.line.line_11::before {
+  -webkit-animation-delay: -98900ms;
+          animation-delay: -98900ms;
+}
+.line.line_12::before {
+  -webkit-animation-delay: -98800ms;
+          animation-delay: -98800ms;
+}
+.line.line_13::before {
+  -webkit-animation-delay: -98700ms;
+          animation-delay: -98700ms;
+}
+.line.line_14::before {
+  -webkit-animation-delay: -98600ms;
+          animation-delay: -98600ms;
+}
+.line.line_15::before {
+  -webkit-animation-delay: -98500ms;
+          animation-delay: -98500ms;
+}
+.line.line_16::before {
+  -webkit-animation-delay: -98400ms;
+          animation-delay: -98400ms;
+}
+.line.line_17::before {
+  -webkit-animation-delay: -98300ms;
+          animation-delay: -98300ms;
+}
+.line.line_18::before {
+  -webkit-animation-delay: -98200ms;
+          animation-delay: -98200ms;
+}
+.line.line_19::before {
+  -webkit-animation-delay: -98100ms;
+          animation-delay: -98100ms;
+}
+.line.line_20::before {
+  -webkit-animation-delay: -98000ms;
+          animation-delay: -98000ms;
+}
+.line.line_21::before {
+  -webkit-animation-delay: -97900ms;
+          animation-delay: -97900ms;
+}
+.line.line_22::before {
+  -webkit-animation-delay: -97800ms;
+          animation-delay: -97800ms;
+}
+.line.line_23::before {
+  -webkit-animation-delay: -97700ms;
+          animation-delay: -97700ms;
+}
+.line.line_24::before {
+  -webkit-animation-delay: -97600ms;
+          animation-delay: -97600ms;
+}
+.line.line_25::before {
+  -webkit-animation-delay: -97500ms;
+          animation-delay: -97500ms;
+}
+.line.line_26::before {
+  -webkit-animation-delay: -97400ms;
+          animation-delay: -97400ms;
+}
+.line.line_27::before {
+  -webkit-animation-delay: -97300ms;
+          animation-delay: -97300ms;
+}
+.line.line_28::before {
+  -webkit-animation-delay: -97200ms;
+          animation-delay: -97200ms;
+}
+.line.line_29::before {
+  -webkit-animation-delay: -97100ms;
+          animation-delay: -97100ms;
+}
+.line.line_30::before {
+  -webkit-animation-delay: -97000ms;
+          animation-delay: -97000ms;
+}
+.line.line_31::before {
+  -webkit-animation-delay: -96900ms;
+          animation-delay: -96900ms;
+}
+.line.line_32::before {
+  -webkit-animation-delay: -96800ms;
+          animation-delay: -96800ms;
+}
+.line.line_33::before {
+  -webkit-animation-delay: -96700ms;
+          animation-delay: -96700ms;
+}
+.line.line_34::before {
+  -webkit-animation-delay: -96600ms;
+          animation-delay: -96600ms;
+}
+.line.line_35::before {
+  -webkit-animation-delay: -96500ms;
+          animation-delay: -96500ms;
+}
+.line.line_36::before {
+  -webkit-animation-delay: -96400ms;
+          animation-delay: -96400ms;
+}
+
+@-webkit-keyframes slide {
+  0% {
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+    -webkit-transform: scaleX(0) skewX(95deg);
+            transform: scaleX(0) skewX(95deg);
+    background: #c8dcff;
+  }
+  50% {
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+    -webkit-transform: scaleX(1) skewX(0deg);
+            transform: scaleX(1) skewX(0deg);
+    background: white;
+  }
+  50.1% {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transform: scaleX(1) skewX(0deg);
+            transform: scaleX(1) skewX(0deg);
+    background: white;
+  }
+  100% {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transform: scaleX(0) skewX(95deg);
+            transform: scaleX(0) skewX(95deg);
+    background: #c8dcff;
+  }
+}
+
+@keyframes slide {
+  0% {
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+    -webkit-transform: scaleX(0) skewX(95deg);
+            transform: scaleX(0) skewX(95deg);
+    background: #c8dcff;
+  }
+  50% {
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+    -webkit-transform: scaleX(1) skewX(0deg);
+            transform: scaleX(1) skewX(0deg);
+    background: white;
+  }
+  50.1% {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transform: scaleX(1) skewX(0deg);
+            transform: scaleX(1) skewX(0deg);
+    background: white;
+  }
+  100% {
+    -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+    -webkit-transform: scaleX(0) skewX(95deg);
+            transform: scaleX(0) skewX(95deg);
+    background: #c8dcff;
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  
+<div class="spiral">
+  <div class="lines">
+    <div class="line line_1">
+      <div class="line line_2">
+        <div class="line line_3">
+          <div class="line line_4">
+            <div class="line line_5">
+              <div class="line line_6">
+                <div class="line line_7">
+                  <div class="line line_8">
+                    <div class="line line_9">
+                      <div class="line line_10">
+                        <div class="line line_11">
+                          <div class="line line_12">
+                            <div class="line line_13">
+                              <div class="line line_14">
+                                <div class="line line_15">
+                                  <div class="line line_16">
+                                    <div class="line line_17">
+                                      <div class="line line_18">
+                                        <div class="line line_19">
+                                          <div class="line line_20">
+                                            <div class="line line_21">
+                                              <div class="line line_22">
+                                                <div class="line line_23">
+                                                  <div class="line line_24">
+                                                    <div class="line line_25">
+                                                      <div class="line line_26">
+                                                        <div class="line line_27">
+                                                          <div class="line line_28">
+                                                            <div class="line line_29">
+                                                              <div class="line line_30">
+                                                                <div class="line line_31">
+                                                                  <div class="line line_32">
+                                                                    <div class="line line_33">
+                                                                      <div class="line line_34">
+                                                                        <div class="line line_35">
+                                                                          <div class="line line_36"></div>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ </BODY>
+</HTML>

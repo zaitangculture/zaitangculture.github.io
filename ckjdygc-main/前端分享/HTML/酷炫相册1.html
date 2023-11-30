@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ondragstart="return false"><!--不可拖拽-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="3D相册">
+    <meta name="description" content="旋转相册">
+    <title>旋转相册制作</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            background: #000000;
+            overflow: hidden;
+        }
+        #wrap{
+            width: 133px;
+            height: 200px;
+            margin: 200px auto;
+            position: relative;
+            transform-style:preserve-3d;/*设置3d元素风格*/
+            transform: rotateX(-12deg);
+        }
+        #wrap img{
+              position: absolute;
+              border: 2px solid hotpink;
+              -webkit-box-reflect:below 5px -webkit-linear-gradient(top, rgba(0,0,0,0)30%, rgba(0,0,0,.5)100%);
+          }
+        #wrap p{
+            width: 1200px;
+            height: 1200px;
+            border-radius: 100%;
+            background: -webkit-radial-gradient(center,600px 600px,rgba(244,23,234,0.2),rgba(0,0,0,0));
+            position: absolute;
+            top: 112%;
+            left: 50%;
+            margin-left: -600px;
+            margin-top: -600px;
+            transform: rotateX(90deg);
+        }
+        #perspective{
+            perspective: 800px;/*场景景深800,仅对3D有效*/
+        }
+        /*平面到三维   景深*/
+    </style>
+</head>
+<body>
+<div id="perspective"></div>
+<div id="wrap">
+    <!--img[src="images/$.jpg"]*11-->
+
+    <img src="https://p5.ssl.qhimgs1.com/sdr/400__/t01b838b4ee7a1ffce5.jpg" alt=""><p></p>
+    <img src="images/2.jpg" alt=""><p></p>
+    <img src="images/3.jpg" alt=""><p></p>
+    <img src="images/4.jpg" alt=""><p></p>
+    <img src="images/5.jpg" alt=""><p></p>
+    <img src="images/6.jpg" alt=""><p></p>
+    <img src="images/7.jpg" alt=""><p></p>
+    <img src="images/8.jpg" alt=""><p></p>
+    <img src="images/9.jpg" alt=""><p></p>
+    <img src="images/10.jpg" alt=""><p></p>
+    <img src="images/11.jpg" alt=""><p></p>
+</div>
+<script type="text/javascript">
+            var oImg=document.getElementsByTagName("img");//获取元素集合
+            var deg =360/oImg.length;//每两张图片间的角度
+            //遍历
+            window.onload=function () {
+                //页面加载完执行的函数
+                for(var i=0;i<oImg.length;i++){
+                    oImg[i].style.transform="rotateY("+i*deg+"deg) translateZ(350px)";
+            oImg[i].style.transition="1s "+(oImg.length-i)*0.1+"s";
+        }
+    }
+    /*鼠标移动  使相册旋转*/
+    document.onmousedown = function (ev) {
+        var oldX = ev.clientX;
+        var  oldY = ev.clientY;//鼠标第一次点击的坐标值
+        var rotateX = -15,
+            rotateY=0;
+        this.onmousemove = function (ev) {
+            console.log(ev.clientX,ev.clientY);
+            var newX = ev.clientX;//每次移动时产生的鼠标位置值
+            var newY = ev.clientY;
+            var minusX = newX - oldX;
+            var minusY = newY - oldY;
+            rotateX -= minusY * 0.2;
+            rotateY += minusX * 0.2;//累加改变度数差值
+            wrap.style.transform="rotateX("+rotateX+"deg)rotateY("+rotateY+"deg)";
+            oldX = newX;//新坐标值变旧坐标值
+            oldY = newY;
+            this.onmouseup=function () {
+                this.onmousemove = null;//清空移动鼠标事件
+                console.log("ccccc");
+            }
+        }
+  }
+</script>
+</body>
+</html>

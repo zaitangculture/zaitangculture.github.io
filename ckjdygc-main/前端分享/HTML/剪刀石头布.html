@@ -1,0 +1,438 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style> 
+  * {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+::selection {
+  background: #inherit;
+  color: black;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: inherit;
+  color: black;
+  text-shadow: none;
+}
+
+a,
+a:visited,
+a:active,
+a:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body {
+}
+
+.container {
+  margin: 30px auto;
+  box-shadow: inset 0px 0px 4px 1px black;
+  width: 600px;
+  min-height: 470px;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #ffffff),
+    color-stop(47%, #f6f6f6),
+    color-stop(100%, #ededed)
+  ); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(
+    top,
+    #ffffff 0%,
+    #f6f6f6 47%,
+    #ededed 100%
+  ); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(
+    top,
+    #ffffff 0%,
+    #f6f6f6 47%,
+    #ededed 100%
+  ); /* Opera 11.10+ */
+  background: -ms-linear-gradient(
+    top,
+    #ffffff 0%,
+    #f6f6f6 47%,
+    #ededed 100%
+  ); /* IE10+ */
+  background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+
+  border-radius: 4px;
+  position: relative;
+}
+
+h1 {
+  font-family: "Glass Antiqua";
+  text-align: center;
+  padding-top: 10px;
+  margin-left: 20px;
+  font-size: 50px;
+  text-shadow: 3px 1px 6px grey;
+}
+
+h3 {
+  font-family: "Just Another Hand", cursive;
+  font-size: 35px;
+  text-align: center;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.links {
+  padding-top: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.links h3 {
+  padding-bottom: 10px;
+}
+
+#reset,
+button {
+  display: inline-block;
+  top: 0;
+  -moz-box-shadow: 0px 3px 1px rgba(30, 29, 30, 0.8);
+  box-shadow: 0px 3px 1px rgba(30, 29, 30, 0.8);
+  -moz-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  padding: 8px 15px;
+  background: white;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+  margin-left: 10px;
+  border: 1px solid black;
+  font-family: "Segoe UI";
+  position: relative;
+}
+
+#reset {
+  margin-left: 20px;
+}
+
+#reset:active,
+button:active {
+  top: 4px;
+  -moz-box-shadow: 0px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.computer {
+  width: 200px;
+  margin-left: calc(50% - 80px);
+  padding-top: 30px;
+  margin-bottom: 30px;
+}
+
+.computer label {
+  display: block;
+  font-size: 30px;
+  letter-spacing: 1px;
+  font-family: "Just Another Hand";
+  margin-left: 15px;
+  padding-bottom: 8px;
+}
+
+.computer input {
+  border: 1px solid black;
+  padding: 20px 7px;
+  border-radius: 4px;
+}
+
+#reset {
+  margin-top: 50px;
+  width: 80px;
+  font-size: 16px;
+  text-align: center;
+  margin-left: calc(50% - 43px);
+}
+
+.lose {
+  position: relative;
+  top: -45px;
+}
+
+#win,
+#lose,
+#draw {
+  width: 240px;
+  font-size: 27px;
+  font-family: "Glass Antiqua";
+  text-align: center;
+  margin: auto;
+  display: none;
+}
+
+span {
+  font-size: 21px;
+  font-family: "Segoe UI";
+  font-weight: normal;
+  display: block;
+  width: 100%;
+}
+
+.count {
+  margin-left: 25px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.count label {
+  font-size: 25px;
+  letter-spacing: 1px;
+  margin-left: 19px;
+  font-family: "Just Another Hand";
+}
+
+.count input[type="text"] {
+  margin-right: 30px;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 10px 5px;
+  margin-left: 10px;
+  width: 50px;
+}
+
+#choose {
+  position: absolute;
+  top: 0;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.escolha {
+  text-align: center;
+  position: relative;
+  z-index: 90;
+  background: white;
+  margin: auto;
+  margin-top: 30%;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 10px 0;
+}
+
+.escolha a {
+  display: inline-block;
+  padding: 5px 20px;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-top: 10px;
+  font-family: "Segoe UI";
+}
+
+#autor {
+  padding: 10px;
+  display: block;
+  font-family: "Just Another Hand";
+  font-size: 28px;
+}
+
+#autor a {
+  color: red;
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+<div class="container">
+
+  <h1>JO - KEN - PO</h1>
+
+  <div class="links">
+    <h3>Choose your weapon:</h3>
+    <button id="pedra">Rock!</button>
+    <button id="papel">Paper!</button>
+    <button id="tesoura">Scissors!</button>
+
+  </div>
+
+  <div class="computer">
+    <form id="pchoose">
+      <p>
+        <label for="pc">Computer chose:</label>
+        <input type="text" name="pc" readonly>
+      </p>
+    </form>
+  </div>
+
+  <div class="count">
+    <form id="contar">
+      <label for="vic">Wins:</label>
+      <input type="text" name="vic" readonly>
+      <label for="lose">Defeats:</label>
+      <input type="text" name="lose" readonly>
+      <label for="empate">Draws:</label>
+      <input type="text" name="empate" readonly>
+
+      <input type="reset" value="Reset" id="reset">
+    </form>
+  </div>
+
+  <div id="choose">
+    <div class="escolha">
+      <div id="win">
+        <h2 class="h2">You Won!</h2>
+        <span>Congratulations!</span>
+      </div>
+
+      <div id="lose">
+        <h2 class="h2">You lost!<h2>
+        <span>Noob!</span>
+      </div>
+      <div id="draw">
+        <h2 class="h2">Draw!</h2>
+        <span> Maybe next time...</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="autor"> made by <a href="https://www.facebook.com/pietrocp" target="_blank">pietro coelho</a></div>
+</div>
+  <script>
+  var contador = document.getElementById("contar"),
+  formPc = document.getElementById("pchoose"),
+  rock = document.getElementById("pedra"),
+  paper = document.getElementById("papel"),
+  scissors = document.getElementById("tesoura"),
+  choose = document.getElementById("choose"),
+  win = document.getElementById("win"),
+  lose = document.getElementById("lose"),
+  empate = document.getElementById("draw"),
+  resetar = document.getElementById("reset"),
+  back = document.getElementById("jogar"),
+  vitoria = 0,
+  derrota = 0;
+
+resetar.onclick = function() {
+  formPc.reset();
+  contador.reset();
+};
+function winDisappear() {
+  choose.style.display = "none";
+  win.style.display = "none";
+  lose.style.display = "none";
+  empate.style.display = "none";
+}
+
+function delay() {
+  setTimeout(function() {
+    winDisappear();
+  }, 650);
+}
+
+function showWin() {
+  choose.style.display = "block";
+  win.style.display = "block";
+  delay();
+}
+
+function showDraw() {
+  choose.style.display = "block";
+  empate.style.display = "block";
+  delay();
+}
+
+function showLose() {
+  choose.style.display = "block";
+  lose.style.display = "block";
+  delay();
+}
+
+var compare = function(arma) {
+  var computer = [1, 2, 3];
+  var random = computer[Math.floor(Math.random() * computer.length)];
+
+  if (random == 1) {
+    computer = "Stone!";
+  } else if (random == 2) {
+    computer = "Paper!";
+  } else {
+    computer = "Scissor!";
+  }
+
+  if (arma == "pedra") {
+    if (computer == "Stone!") {
+      formPc.pc.value = computer;
+      contador.empate.value = +contador.empate.value + 1;
+      showDraw();
+    } else if (computer == "Paper!") {
+      formPc.pc.value = computer;
+      contador.lose.value = +contador.lose.value + 1;
+      showLose();
+    } else {
+      formPc.pc.value = computer;
+      contador.vic.value = +contador.vic.value + 1;
+      showWin();
+    }
+  }
+  if (arma == "papel") {
+    if (computer == "Stone!") {
+      formPc.pc.value = computer;
+      contador.vic.value = +contador.vic.value + 1;
+      showWin();
+    } else if (computer == "Paper!") {
+      formPc.pc.value = computer;
+      contador.empate.value = +contador.empate.value + 1;
+      showDraw();
+    } else {
+      formPc.pc.value = computer;
+      contador.lose.value = +contador.lose.value + 1;
+      showLose();
+    }
+  }
+  if (arma == "tesoura") {
+    if (computer == "Stone!") {
+      formPc.pc.value = computer;
+      contador.lose.value = +contador.lose.value + 1;
+      showLose();
+    } else if (computer == "Paper!") {
+      formPc.pc.value = computer;
+      contador.vic.value = +contador.vic.value + 1;
+      showWin();
+    } else {
+      formPc.pc.value = computer;
+      contador.empate.value = +contador.empate.value + 1;
+      showDraw();
+    }
+  }
+};
+
+rock.onclick = function() {
+  compare("pedra");
+};
+paper.onclick = function() {
+  compare("papel");
+};
+
+scissors.onclick = function() {
+  compare("tesoura");
+};
+
+  </script>
+ </BODY>
+</HTML>

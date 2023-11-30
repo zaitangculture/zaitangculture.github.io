@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <embed src="1.mp3" hidden="true" autostart="true" loop="true"> -->
+    <title>相册</title>
+    <style>
+    *{ padding:0; margin:0; list-style:none; border:0;}
+    html,body #stars .abc{
+            margin: 0;
+            padding: 0;
+        }
+        body,#stars .abc{
+            width: 100%;
+            height: 100%;
+             perspective: 1000px;
+            background-color:black;
+        }
+        .abc
+        {
+            position:absolute;
+             /* overflow: hidden;*/
+             margin:20px auto;
+        }
+         #stars
+        
+        {
+          position: absolute;
+
+          overflow: hidden;
+        
+        }
+    .all{
+            width:250px;
+            height:400px;
+            padding:1px;
+            border:1px solid #ccc;
+            margin:120px 0px 0px 35px;
+            position:relative;
+            float :left;
+             background-size:contain;
+        }
+        .screen{
+          width:250px;
+            height:400px;
+            overflow:hidden;
+            position:relative;
+        }
+        .screen li{ width:250px;height:400px; overflow:hidden; float:left;}
+        .screen ul{ position:absolute; left:0; top:0px; width:3000px;}
+        .all1{
+           width:250px;
+           height:400px;
+            padding:1px;
+            border:1px solid #ccc;
+            margin:120px auto;
+            position:relative;
+            left:300px;
+            float :right;
+            background-size:contain;
+        }
+        .screen1{
+           width:250px;
+           height:400px;
+             padding:0px;
+            overflow:hidden;
+            position:relative;
+        }
+        .screen1 li{ width:250px;height:400px;overflow:hidden; float:left;}
+        .screen1 ul{ position:absolute; left:-10; top:0px; width:3000px;}
+    
+         .album
+         {
+            width: 546px;
+            height: 546px;
+         margin: 300px 0px 0px 0px;
+         }
+        .album,#stars{
+            perspective: 2000px; 
+        }
+        .album .photos{
+            position:relative ;
+            width: 246px;
+            height: 246px;
+            margin: 0px 300px;
+            transform-style: preserve-3d; /*设置3d风格*/
+            transform: rotateX(-10deg) rotateY(0deg);
+        }
+        .album .photos .photo{
+            display: inline-block;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #fff;
+            /*background-color: ;*/
+            background-size:contain;
+            transition: 2s;
+        }
+</style>
+</head>
+<body >
+<div class="abc" >
+<!-- <p> <marquee style="background-color: white "> 时光 </marquee></p> -->
+<canvas id="stars"></canvas>
+<div class="all" id='all'>
+    <div class="screen" id="screen">
+        <ul id="ul">
+            <li><img src="https://p5.ssl.qhimgs1.com/sdr/400__/t01b838b4ee7a1ffce5.jpg" width="250" height="400" /></li>
+            <li><img src="https://p0.ssl.img.360kuai.com/t01b6453426d4a8a006.jpg" width="250" height="400"/></li>
+            <li><img src="https://p0.ssl.qhimgs1.com/sdr/400__/t0123210937cfd6d45a.jpg" width="250" height="400" /></li>
+            <li><img src="https://p5.ssl.qhimgs1.com/sdr/400__/t01b838b4ee7a1ffce5.jpg" width="250" height="400"/></li>
+            <li><img src="https://cdn.imgcn.top/20200923/f10514be54f50e93ac8e6b21d490e49e.jpg" width="250" height="400"/></li>
+        </ul>
+    </div>
+</div>
+    <div class="album " style="float: left"  >
+        <div class="photos" >
+            <div class="photo" style="background-image:url(https://cdn.imgcn.top/20200923/f10514be54f50e93ac8e6b21d490e49e.jpg)" >1</div>
+            <div class="photo" style="background-image:url(https://p0.ssl.qhimgs1.com/sdr/400__/t0123210937cfd6d45a.jpg)" >2</div>
+            <div class="photo" style="background-image:url(https://c-ssl.duitang.com/uploads/item/202004/01/20200401124340_rimpa.jpeg)" >3</div>
+            <div class="photo" style="background-image:url(https://p5.ssl.qhimgs1.com/sdr/400__/t01b838b4ee7a1ffce5.jpg)" >4</div>
+            <div class="photo" style="background-image:url(https://c-ssl.duitang.com/uploads/item/202003/31/20200331135146_ddrvg.jpg)" >5</div>
+            <div class="photo" style="background-image:url(https://p0.ssl.qhimgs1.com/sdr/400__/t0123210937cfd6d45a.jpg)" >6</div>
+            <div class="photo" style="background-image:url(https://pic.rmb.bdstatic.com/2118d07a3ed12fa67e9d25cea830471a.jpeg)" >7</div>
+            <div class="photo" style="background-image:url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb0ee601cc15cae557cbeaab85dceb14563eadd461e9e5-CX8rBU_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649761480&t=002068c9372a161dcc5e06f46e9ee2ef)" >8</div>
+            <div class="photo" style="background-image:url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp2.itc.cn%2Fimages01%2F20210428%2F8bdb3bba83a84d1fb8416602a82b6164.jpeg&refer=http%3A%2F%2Fp2.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649761618&t=cf2ce516c13b7694d4158f764b6332eb)" >9</div>
+            <div class="photo" style="background-image:url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F7LsWdDW5_xN3otqbppnN2DJv%2Fzhidao%2Fpic%2Fitem%2F4610b912c8fcc3ce01eb018c9945d688d43f2062.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649761618&t=624eded9f13d32af9e1a046ee29feaf3)">10</div>
+            <div class="photo" style="background-image:url(https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-Po3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fwh%253D450%252C600%2Fsign%3D3784d4ac53df8db1bc7b74603c13f162%2F023b5bb5c9ea15ce5d37353dbb003af33a87b22d.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649761618&t=5a1812fa213960770cd43e414124faf4)">11</div>
+            <div class="photo" style="background-image:url(https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D680%2C800/sign=72e2f4d0af0f4bfb8c8596523b7f54c8/b2de9c82d158ccbf9c612e7512d8bc3eb03541a4.jpg)">12</div>
+        </div>
+    </div>
+     <div class="all1" id='all1'>
+     <div class="screen1" id="screen1">
+        <ul id="ull1">
+            <li><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Falbum%2Fb5a7f387f1ea2ad35c968245df736d11107b3868.jpg&refer=http%3A%2F%2Fi0.hdslb.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649761235&t=6b60effc0a3bcf9fad7b05d4ff5e38e4" width="270" height="400" /></li>
+            <li><img src="https://img0.baidu.com/it/u=3823925601,3231002200&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=750" width="270" height="400" /></li>
+            <li><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F-fo3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2F08f790529822720e726461bc70cb0a46f31fabca.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649761480&t=a4d2d049bed8ad121a7f5c7aacefbf67" width="270" height="400"/></li>
+            <li><img src="https://ss1.baidu.com/-4o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/6d81800a19d8bc3eed587597898ba61ea8d3451e.jpg" width="270" height="400"/></li>
+            <li><img src="https://pics1.baidu.com/feed/0dd7912397dda14428df14818b65b1a40df48603.jpeg?token=c8b67a4c0144e39da1abe925b0ada38b" width="370" height="450" /></li>
+        </ul>
+    </div>
+</div>
+</div> 
+<p> <marquee style="background-color: white "> ***************</marquee></p>   //跑马灯
+</body>
+<script>
+ var context;
+var arr = new Array();
+var starCount = 800;
+var rains = new Array();
+var rainCount =20;
+//初始化画布及context
+function init(){
+//获取canvas
+var stars = document.getElementById("stars");
+windowWidth = window.innerWidth; //当前的窗口的高度
+stars.width=windowWidth;
+stars.height=window.innerHeight;
+//获取context
+context = stars.getContext("2d");
+}
+//创建一个星星对象
+var Star = function (){
+this.x = windowWidth * Math.random();//横坐标
+this.y = 5000 * Math.random();//纵坐标
+this.text=".";//文本
+this.color = "white";//颜色
+//产生随机颜色
+this.getColor=function(){
+var _r = Math.random();
+if(_r<0.5){
+this.color = "#333";
+}else{
+this.color = "white";
+}
+}
+//初始化
+this.init=function(){
+this.getColor();
+}
+//绘制
+this.draw=function(){
+context.fillStyle=this.color;
+context.fillText(this.text,this.x,this.y);
+}
+}
+function drawMoon(){
+var moon = new Image();
+context.drawImage(moon,-5,-10);
+}
+//页面加载的时候
+//星星闪起来
+function playStars(){
+for (var n = 0; n < starCount; n++){ 
+arr[n].getColor(); 
+arr[n].draw(); 
+} 
+setTimeout("playStars()",100);
+}
+
+/*流星雨开始*/
+var MeteorRain = function(){
+this.x = -1;
+this.y = -1;
+this.length = -1;//长度
+this.angle = 30; //倾斜角度
+this.width = -1;//宽度
+this.height = -1;//高度
+this.speed = 1;//速度
+this.offset_x = -1;//横轴移动偏移量
+this.offset_y = -1;//纵轴移动偏移量
+this.alpha = 1; //透明度
+this.color1 = "";//流星的色彩
+this.color2 = ""; //流星的色彩
+/****************初始化函数********************/
+this.init = function () //初始化
+{
+this.getPos();
+this.alpha = 1;//透明度
+this.getRandomColor();
+//最小长度，最大长度
+var x = Math.random() * 80 + 150;
+this.length = Math.ceil(x);
+// x = Math.random()*10+30;
+this.angle = 30; //流星倾斜角
+x = Math.random()+0.5;
+this.speed = Math.ceil(x); //流星的速度
+var cos = Math.cos(this.angle*3.14/180);
+var sin = Math.sin(this.angle*3.14/180) ;
+this.width = this.length*cos ; //流星所占宽度
+this.height = this.length*sin ;//流星所占高度
+this.offset_x = this.speed*cos ;
+this.offset_y = this.speed*sin;
+}
+/**************获取随机颜色函数*****************/
+this.getRandomColor = function (){
+var a = Math.ceil(255-240* Math.random()); 
+//中段颜色
+this.color1 = "rgba("+a+","+a+","+a+",1)";
+//结束颜色
+this.color2 = "black";
+}
+/***************重新计算流星坐标的函数******************/
+this.countPos = function ()//
+{
+//往左下移动,x减少，y增加
+this.x = this.x - this.offset_x;
+this.y = this.y + this.offset_y;
+}
+/*****************获取随机坐标的函数*****************/
+this.getPos = function () //
+{
+//横坐标200--1200
+this.x = Math.random() * window.innerWidth; //窗口高度
+//纵坐标小于600
+this.y = Math.random() * window.innerHeight; //窗口宽度
+}
+/****绘制流星***************************/
+this.draw = function () //绘制一个流星的函数
+{
+context.save();
+context.beginPath();
+context.lineWidth = 1; //宽度
+context.globalAlpha = this.alpha; //设置透明度
+//创建横向渐变颜色,起点坐标至终点坐标
+var line = context.createLinearGradient(this.x, this.y, 
+this.x + this.width, 
+this.y - this.height);
+//分段设置颜色
+line.addColorStop(0, "white");
+line.addColorStop(0.3, this.color1);
+line.addColorStop(0.6, this.color2);
+context.strokeStyle = line;
+//起点
+context.moveTo(this.x, this.y);
+//终点
+context.lineTo(this.x + this.width, this.y - this.height);
+context.closePath();
+context.stroke();
+context.restore();
+}
+this.move = function(){
+//清空流星像素
+var x = this.x+this.width-this.offset_x;
+var y = this.y-this.height;
+context.clearRect(x-3,y-3,this.offset_x+5,this.offset_y+5); 
+// context.strokeStyle="red";
+// context.strokeRect(x,y-1,this.offset_x+1,this.offset_y+1);
+//重新计算位置，往左下移动
+this.countPos();
+//透明度增加
+this.alpha -= 0.002;
+//重绘
+this.draw(); 
+}
+}
+//绘制流星
+function playRains(){
+
+for (var n = 0; n < rainCount; n++){ 
+var rain = rains[n];
+rain.move();//移动
+if(rain.y>window.innerHeight){//超出界限后重来
+context.clearRect(rain.x,rain.y-rain.height,rain.width,rain.height);
+rains[n] = new MeteorRain();
+rains[n].init();
+}
+} 
+setTimeout("playRains()",2);
+}
+    var embed=document.querySelector("embed");
+    var photos = document.querySelector(".photos");
+    var photo = photos.querySelectorAll(".photo");
+     window.onload = function(){
+          var screen1 = document.getElementById("screen1");
+            var ul1 = screen1.children[0];
+            var div1 = screen1.children[2];
+            var imgWidth1 = screen1.offsetWidth;
+            var tempLi1 = ul1.children[0].cloneNode(true);
+            ul1.appendChild(tempLi1);
+            var key1 = 0;
+            var square1 = 0;
+            var timer1 = setInterval(autoPlay1, 2000);
+         
+            function autoPlay1() {
+                key1++;
+                if(key1 > ul1.children.length - 1) {
+                    ul1.style.left = 0;
+                    key1 = 1;
+                }
+                animate1(ul1, -key1* imgWidth1);
+                square1++;
+                if(square1 > 4) {
+                    square1 = 0;
+                }
+            }
+              function animate1(ele,target){
+                    clearInterval(ele.timer);
+                    var speed = target>ele.offsetLeft?10:-10;
+                    ele.timer = setInterval(function () {
+                        var val = target - ele.offsetLeft;
+                        ele.style.left = ele.offsetLeft + speed + "px";
+                        if(Math.abs(val)<Math.abs(speed)){
+                            ele.style.left = target + "px";
+                            clearInterval(ele.timer1);
+                        }
+                    },10)  
+            }
+       var screen = document.getElementById("screen");
+            var ul = screen.children[0];
+            var div = screen.children[2];
+            var imgWidth = screen.offsetWidth;
+            var tempLi = ul.children[0].cloneNode(true);
+            ul.appendChild(tempLi);
+            var key = 0;
+            var square = 0;
+            var timer = setInterval(autoPlay, 2000);
+            function autoPlay() {
+                key++;
+                if(key > ul.children.length - 1) {
+                    ul.style.left = 0;
+                    key = 1;
+                }
+                animate(ul, -key * imgWidth);
+                square++;
+                if(square > 4) {
+                    square = 0;
+                }
+            }
+            function animate(ele,target){
+                    clearInterval(ele.timer);
+                    var speed = target>ele.offsetLeft?10:-10;
+                    ele.timer = setInterval(function () {
+                        var val = target - ele.offsetLeft;
+                        ele.style.left = ele.offsetLeft + speed + "px";
+                        if(Math.abs(val)<Math.abs(speed)){
+                            ele.style.left = target + "px";
+                            clearInterval(ele.timer);
+                        }
+                    },10)  
+            }
+        for(var i=0;i<4;i=i+1){
+            photo[i].style.transform = "rotateY("+90*(i+1)+"deg) translateZ(100px)";
+                  //这里需要明白   transform的用法
+            photo[i+6].style.transform = "rotateY("+90*(i+1)+"deg) translateZ(100px)";
+           }
+             photo[4].style.transform = "rotateX("+90+"deg)  translateZ(100px)";
+             photo[10].style.transform = "rotateX("+90+"deg) translateZ(100px)";
+             photo[5].style.transform = "rotateX("+270+"deg)  translateZ(100px)";
+             photo[11].style.transform = "rotateX("+270+"deg) translateZ(100px)";
+    
+	        kaishi= function(e){// 实现外层照片的变大功能
+	       for(var i=0;i<4;i=i+1){
+	        photo[i+6].style.transform = "rotateY("+90*(i+1)+"deg) translateZ(250px)";
+	        photo[i+6].style.width="400px";
+	        photo[i+6].style.height="400px";
+	        photo[i+6].style.margin= "-110px -110px";
+	        photo[i+6].style.opacity="0.85";
+	           }
+              photo[10].style.transform = "rotateX("+90+"deg) translateZ(250px)";
+              photo[10].style.width="400px";
+              photo[10].style.height="400px";
+              photo[10].style.margin= "-110px -110px";
+              photo[10].style.opacity="0.85";
+              photo[11].style.transform = "rotateX("+270+"deg) translateZ(250px)";
+              photo[11].style.width="400px";
+              photo[11].style.height="400px";
+              photo[11].style.margin= "-110px -110px";
+              photo[10].style.opacity="0.85";//照片的透明度
+             var t=0; 
+
+           show=function(){
+               t++;
+            photos.style.transform = "rotateX("+t*0.3+"deg) rotateY("+t*0.15+"deg)";
+           
+            }
+             var t1=setInterval('show()',20);          
+}
+init();
+//画星星
+for (var i=0;i<starCount;i++) {
+var star = new Star();
+star.init();
+star.draw();
+arr.push(star);
+}
+//画流星
+for (var i=0;i<rainCount;i++) {
+var rain = new MeteorRain();
+rain.init();
+rain.draw();
+rains.push(rain);
+}
+drawMoon();//绘制月亮
+playStars();//绘制闪动的星星
+playRains();//绘制流星
+}
+ var t2=setTimeout('kaishi()',3000);
+</script>
+</html >
