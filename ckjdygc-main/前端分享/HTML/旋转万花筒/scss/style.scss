@@ -1,0 +1,44 @@
+html,body{
+  width: 100%;height: 100%;
+}
+body{
+  background-color: #140032;
+  overflow: hidden;
+  margin:0;
+  *,*:after{
+    position: absolute;top: 0;bottom: 0;left: 0;right: 0;margin: auto;border-radius: 50%;
+  }
+}
+.👁️{
+  @for $i from 0 through 9{
+    &:nth-child(#{$i + 1}){
+      transform: rotate($i * 360deg / 10) translate(100px);
+    }
+  }
+  .💀{
+    &:after{
+      content: '';
+      width: 50px;
+      height: 500px;
+      border-top: 3px solid transparent;
+      animation: symphony 3s linear infinite;
+    } 
+    @for $i from 0 through 19{
+      &:nth-child(#{$i + 1}){
+        transform: rotate($i * 360deg / 20) translate(100px);
+        &:after{
+          animation-delay: -$i * 3s / 40;
+          border-color: hsla(250 + ($i * 50 / 20),100%,50%,1);
+        }        
+      }
+    }
+  }
+}
+@keyframes symphony {
+  50%{
+    transform: rotate(-180deg) translate3d(-100px,-100px,0);
+  }
+  100%{
+    transform: rotate(-360deg) translate3d(0,0,0);
+  }
+}

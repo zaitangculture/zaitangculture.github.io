@@ -1,0 +1,120 @@
+body {
+  background: linear-gradient(to bottom, #57c1eb 0%, #246fa8 100%);
+  margin: 0;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background: linear-gradient(100deg, #b1b5ea, #9be2fe, #57c1eb, #246fa8, #1e528e, #020111, #3a3a52, #090401, #00000c);
+  background-size: 400% 400%;
+  animation: gradientBG 30.14s linear infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+svg {
+  height: 75vh;
+  width: 75vw;
+}
+
+svg path:nth-child(odd) {
+  transform: rotate(2deg);
+  transform-origin: center center;
+}
+
+.cls {
+  fill: #4ba11f;
+}
+
+.cls-136 {
+  fill: #7c443b;
+}
+
+.cls-137 {
+  fill: #003415;
+}
+
+.cls-138 {
+  fill: #031e0d;
+}
+
+.cls-139 {
+  fill: #260c09;
+}
+
+.cls-140 {
+  fill: #5b1614;
+}
+
+.cls-141 {
+  fill: #421f1c;
+}
+
+.cls-142 {
+  fill: #3f7027;
+}
+
+.cls-143 {
+  fill: #64a32b;
+}
+
+.cls-144 {
+  fill: #99b061;
+}
+
+.cls-145 {
+  fill: #8f5549;
+}
+
+.cls-146 {
+  fill: #511b19;
+}
+
+.cls-147 {
+  fill: #260b0a;
+}
+
+.cls-148 {
+  fill: #5b1a1c;
+}
+
+.cls-149 {
+  fill: #512621;
+}
+
+.cls-150 {
+  fill: #9b5d4c;
+}
+
+.cls-151 {
+  fill: #451312;
+}
+
+.cls-152 {
+  fill: #301612;
+}
+
+.cls-153 {
+  fill: #541414;
+}
+
+.cls-154 {
+  fill: #632e28;
+}
+
+.cls-155 {
+  fill: #1c4416;
+}
+
+.cls-156 {
+  fill: #2e5718;
+}
