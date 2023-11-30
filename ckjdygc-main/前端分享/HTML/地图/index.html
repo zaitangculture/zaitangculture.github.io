@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!--Step:1 引入一个模块加载器，如esl.js或者require.js-->
+    <script src="js/esl.js"></script>
+</head>
+
+<body>
+    <!--Step:2 为ECharts准备一个具备大小（宽高）的Dom-->
+    <div id="mainMap" style="height:800px;border:1px solid #ccc;padding:10px;"></div>
+    <span id="wrong-message" style="color:red">当前选择：浙江 </span>
+    <script type="text/javascript">
+    // Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
+    require.config({
+        paths:{ 
+            echarts:'./js/echarts',
+            'echarts/chart/map' : './js/echarts-map'
+        }
+    });
+    
+    // Step:4 动态加载echarts然后在回调函数中开始使用，注意保持按需加载结构定义图表路径
+    require(
+        [
+            'echarts',
+            'echarts/chart/map'
+        ],
+        function(ec) {
+            // --- 地图 ---
+            var myChart = ec.init(document.getElementById('mainMap'));
+            myChart.setOption({
+                tooltip : {
+                    trigger: 'item',
+                    formatter: '{b}'
+                },
+                series : [
+                    {
+                        name: '中国',
+                        type: 'map',
+                        mapType: 'china',
+                        selectedMode : 'multiple',
+                        itemStyle:{
+                            normal:{label:{show:true}},
+                            emphasis:{label:{show:true}}
+                        },
+                        data:[
+                            {name:'广东',selected:true}
+                        ]
+                    }
+                ]
+            });
+            var ecConfig = require('echarts/config');
+            myChart.on(ecConfig.EVENT.MAP_SELECTED, function (param) {
+                var selected = param.selected;
+                var str = '当前选择： ';
+                for (var p in selected) {
+                    if (selected[p]) {
+                        str += p + ' ';
+                    }
+                }
+                document.getElementById('wrong-message').innerHTML = str;
+            })
+        }
+    );
+    </script>
+</body>
+</html>

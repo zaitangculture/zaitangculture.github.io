@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS霓虹灯动画</title>
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=Poppins:900&display=swap");
+body {
+  background-color: black;
+  margin: 5rem 6rem;
+  text-align: center;
+  font-family: 'Poppins', 'sans-serif';
+}
+
+h1, h2 {
+  margin: 0;
+  padding: 0;
+  color: white;
+  display: inline-block;
+  font-size: 10rem;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+}
+
+h2 {
+  font-size: 8rem;
+}
+
+h1:nth-child(0n + 0), h2:nth-child(5n + 0) {
+  -webkit-animation-name: animateGlithcy;
+          animation-name: animateGlithcy;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-duration: 0s;
+          animation-duration: 0s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+h1:nth-child(0n + 1), h2:nth-child(5n + 1) {
+  -webkit-animation-name: animateGlithcy;
+          animation-name: animateGlithcy;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+h1:nth-child(0n + 2), h2:nth-child(5n + 2) {
+  -webkit-animation-name: animateGlithcy;
+          animation-name: animateGlithcy;
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+h1:nth-child(0n + 3), h2:nth-child(5n + 3) {
+  -webkit-animation-name: animateGlithcy;
+          animation-name: animateGlithcy;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+h1:nth-child(0n + 4), h2:nth-child(5n + 4) {
+  -webkit-animation-name: animateGlithcy;
+          animation-name: animateGlithcy;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+h1:nth-child(0n + 5), h2:nth-child(5n + 5) {
+  -webkit-animation-name: animateGlithcy;
+          animation-name: animateGlithcy;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  -webkit-animation-duration: 2.5s;
+          animation-duration: 2.5s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  animation-direction: alternate-reverse;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes animateGlithcy {
+  0% {
+    opacity: .1;
+    background-position: 0 0;
+    -webkit-filter: hue-rotate(0deg);
+            filter: hue-rotate(0deg);
+  }
+  10% {
+    background-position: 5px 0;
+  }
+  20% {
+    background-position: -5px 0;
+  }
+  30% {
+    background-position: 15px 0;
+  }
+  40% {
+    background-position: -5px 0;
+  }
+  50% {
+    background-position: -25px 0;
+  }
+  60% {
+    background-position: -50px 0;
+  }
+  70% {
+    background-position: 0 -20px;
+  }
+  80% {
+    background-position: -60px -20px;
+  }
+  81% {
+    background-position: 0 0;
+  }
+  100% {
+    opacity: 1;
+    background-position: 0 0;
+    -webkit-filter: hue-rotate(360deg);
+            filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes animateGlithcy {
+  0% {
+    opacity: .1;
+    background-position: 0 0;
+    -webkit-filter: hue-rotate(0deg);
+            filter: hue-rotate(0deg);
+  }
+  10% {
+    background-position: 5px 0;
+  }
+  20% {
+    background-position: -5px 0;
+  }
+  30% {
+    background-position: 15px 0;
+  }
+  40% {
+    background-position: -5px 0;
+  }
+  50% {
+    background-position: -25px 0;
+  }
+  60% {
+    background-position: -50px 0;
+  }
+  70% {
+    background-position: 0 -20px;
+  }
+  80% {
+    background-position: -60px -20px;
+  }
+  81% {
+    background-position: 0 0;
+  }
+  100% {
+    opacity: 1;
+    background-position: 0 0;
+    -webkit-filter: hue-rotate(360deg);
+            filter: hue-rotate(360deg);
+  }
+}
+</style>
+</head>
+<body>
+<div class="hello-world">
+   <h1>H</h1>
+   <h1>E</h1>
+   <h1>L</h1>
+   <h1>L</h1>
+   <h1>O</h1>
+   <br/>
+   <h2>W</h2>
+   <h2>O</h2>
+   <h2>R</h2>
+   <h2>L</h2>
+   <h2>D</h2>
+</div>
+   
+</body>
+</html>
