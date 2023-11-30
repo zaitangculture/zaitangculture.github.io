@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  @import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono");
+html,
+body {
+  background: #141E30;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #243B55, #141E30);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: url(https://images.unsplash.com/photo-1520038569969-98da7959fcbd?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=92d803eff8b460c5a12d650db90e6149);
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.window {
+  display: block;
+  overflow: auto;
+  box-shadow: 0 0.8em 1.5em rgba(51, 51, 51, 0.6), 0 0.5em 2em rgba(51, 51, 51, 0.6);
+  width: 600px;
+  height: 400px;
+  background: rgba(0, 0, 0, 0.75);
+}
+.window .bar {
+  padding: .5em;
+  flex: 0 0 auto;
+  display: flex;
+  background: linear-gradient(to bottom, #eaeaea, #d2d2d2);
+  border-bottom: 1px solid #7d7d7d;
+  color: #4c4c4c;
+}
+.window .bar .title {
+  margin: 0;
+  display: inline-block;
+  flex: 1 1 auto;
+  line-height: 1;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Lucida Grande', 'Lucida', 'Arial';
+  text-align: center;
+}
+.window .bar .buttons {
+  display: inline-block;
+  flex: 0 0 auto;
+}
+.window .bar .buttons .button {
+  margin: 0 .5em 0 0;
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  float: left;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0.1em rgba(51, 51, 51, 0.4);
+}
+.window .bar .buttons .button:nth-child(1) {
+  position: relative;
+  background: #fe6058;
+}
+.window .bar .buttons .button:nth-child(1)::after {
+  width: .35em;
+  height: .35em;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #4c0000;
+  content: '';
+}
+.window .bar .buttons .button:nth-child(2) {
+  background: #fdbd34;
+}
+.window .bar .buttons .button:nth-child(3) {
+  background: #23c944;
+}
+.window .console {
+  padding: 1em;
+  box-sizing: border-box;
+  color: #f9f9f9;
+  font-size: 1.5em;
+  font-family: 'Ubuntu Mono', monospace;
+  line-height: 1;
+}
+.window .console .line {
+  display: block;
+}
+.window .console .mandelbrot {
+  white-space: pre;
+  line-height: .5;
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+ 
+<div class="window">
+  <!-- I know it's the macOS taskbar but I didn't bother changing it... consider it a linux skin :D-->
+  <div class="bar">
+    <div class="buttons">
+      <div class="button"></div>
+      <div class="button"></div>
+      <div class="button"></div>
+    </div><span class="title">root@kali: ~/Desktop</span>
+  </div>
+  <div class="console">
+    <div class="line">root@kali:~$ gcc mandelbrot.c</div>
+    <div class="mandelbrot"></div>
+  </div>
+</div>
+  <script>
+  /**
+ * Generate the mandelbrot set data
+ */
+
+var mandelbrot = [];
+
+var maxiter = 100,
+    radius = 2,
+    xmin = -2,
+    xmax = 1,
+    ymin = -1,
+    ymax = 1,
+    res = 0.085;
+
+var width = Math.round(Math.abs(xmax - xmin) / res),
+    height = Math.round(Math.abs(ymax - ymin) / res);
+
+var za = void 0,
+    zb = void 0; // z_0 of the Mandelbrot set
+var x = void 0,
+    y = void 0; // x and y position on the complex plane
+
+// _x and _y represent pixels on the canvas
+for (_y = 0; _y < height; _y++) {
+  mandelbrot[_y] = [];
+  for (_x = 0; _x < width; _x++) {
+    // Map _x between 0, c.width and xmin, xmax ; same for y
+    x = (_x - 0) / (width - 0) * (xmax - xmin) + xmin;
+    y = (_y - 0) / (height - 0) * (ymax - ymin) + ymin;
+    za = 0;
+    zb = 0;
+    // Convergence test
+    for (i = 0; i < maxiter; i++) {
+      // Temporary za
+      _za = za * za - zb * zb + x;
+      zb = 2 * za * zb + y;
+      za = _za;
+      // Optimization
+      if (za * za + zb * zb > radius * radius) break;
+    }
+    if (i === maxiter) {
+      // Point belongs to set
+      mandelbrot[_y][_x] = 1;
+    } else {
+      mandelbrot[_y][_x] = 0;
+    }
+  }
+}
+
+/**
+ * So now our mandelbrot data is ready to rock, let's render it in text
+ */
+
+var charfull = '*',
+    // <--- Change the "white pixel"
+charwhite = ' ',
+    // <--- Change the "black pixel"
+asciiplot = document.getElementsByClassName('mandelbrot')[0],
+    speed = 2; // <--- Change to adjust rendering effect
+
+var line = void 0;
+y = 0, x = 0;
+
+// We simulate a double for loop
+renderinterval = setInterval(function () {
+  // End of line
+  if (x === width) {
+    // Reset loop
+    x = 0;
+    y++;
+    if (y === height) {
+      clearInterval(renderinterval);
+      return;
+    }
+  }
+
+  // New line
+  if (x === 0) {
+    // Create new line
+    line = document.createElement('div');
+    line.classList.add('line');
+    line.innerHTML = '';
+    asciiplot.appendChild(line);
+  }
+
+  // Draw character
+  if (mandelbrot[y][x] === 1) line.innerHTML += charfull;else line.innerHTML += charwhite;
+
+  x++;
+}, speed);
+
+// for (let y=0; y<height; y++) {
+//   line = document.createElement('div');
+//   line.classList.add('line');
+//   line.innerHTML = '';
+//   for (let x=0; x<width; x++) {
+//     if (mandelbrot[y][x] === 1) line.innerHTML += char;
+//     else line.innerHTML += ' ';
+//   }
+//   asciiplot.appendChild(line);
+// }
+  </script>
+ </BODY>
+</HTML>

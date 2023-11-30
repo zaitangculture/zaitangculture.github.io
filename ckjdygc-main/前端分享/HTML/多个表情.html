@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body {
+  background-color: #ccc;
+  height: 100vh;
+  width: 100%;
+}
+
+.blob {
+  border-radius: 25px;
+  cursor: pointer;
+  border: 10px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+}
+
+.eye {
+  background-color: black;
+  border-radius: 100%;
+  transition: 0.10s;
+  width: 30px;
+  height: 30px;
+}
+
+.left-eye-area, .right-eye-area, .mouth-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mouth-area { grid-column: span 2; }
+
+.mouth {
+  grid-area: 'mouth';
+  background-color: black;
+  height: 20px;
+  width: 60px;
+  border-radius: 0 0 100% 100%;
+}
+
+.blob:hover .eye {
+  height: 5px;
+  border-radius: 0;
+}
+
+.blob:hover .eyes {
+  top: 45px;
+}
+
+.look-up .eye {
+  margin-bottom: 30px;
+}
+
+.look-down .eye {
+  margin-top: 30px;
+}
+
+.look-left .eye {
+  margin-right: 30px;
+}
+
+.look-right .eye {
+  margin-left: 30px;
+}
+
+/* Colors generated with Paletton */
+/* http://paletton.com/#uid=7000u0kllllaFw0g0qFqFg0w0aF */
+
+.color-primary-0 { background-color: #AA3939 }
+.color-primary-1 { background-color: #FFAAAA }
+.color-primary-2 { background-color: #D46A6A }
+.color-primary-3 { background-color: #801515 }
+.color-primary-4 { background-color: #550000 }
+
+.color-secondary-1-0 { background-color: #AA6C39 }
+.color-secondary-1-1 { background-color: #FFD1AA }
+.color-secondary-1-2 { background-color: #D49A6A }
+.color-secondary-1-3 { background-color: #804515 }
+.color-secondary-1-4 { background-color: #552700 }
+
+.color-secondary-2-0 { background-color: #226666 }
+.color-secondary-2-1 { background-color: #669999 }
+.color-secondary-2-2 { background-color: #407F7F }
+.color-secondary-2-3 { background-color: #0D4D4D }
+.color-secondary-2-4 { background-color: #003333 }
+
+.color-complement-0 { background-color: #2D882D }
+.color-complement-1 { background-color: #88CC88 }
+.color-complement-2 { background-color: #55AA55 }
+.color-complement-3 { background-color: #116611 }
+.color-complement-4 { background-color: #004400 }
+  </style>
+ </HEAD>
+
+ <BODY>
+  <script>
+   const colors = [
+  "color-primary-0",
+  "color-primary-1",
+  "color-primary-2",
+  "color-primary-3",
+  "color-primary-4",
+  "color-secondary-1-0",
+  "color-secondary-1-1",
+  "color-secondary-1-2",
+  "color-secondary-1-3",
+  "color-secondary-1-4",
+  "color-secondary-2-0",
+  "color-secondary-2-1",
+  "color-secondary-2-2",
+  "color-secondary-2-3",
+  "color-secondary-2-4",
+  "color-complement-0",
+  "color-complement-1",
+  "color-complement-2",
+  "color-complement-3",
+  "color-complement-4"
+];
+const body = document.getElementsByTagName('body')[0];
+
+class Blob {
+  constructor() {
+    this.height = Math.floor(Math.random() * 150 + 100);
+    this.width = Math.floor(Math.random() * 200 + 100);
+    this.color = colors[Math.floor(Math.random() * 20)];
+    this.x = Math.floor(Math.random() * window.innerWidth);
+    this.y = Math.floor(Math.random() * window.innerHeight);
+  }
+
+  hatch() {
+    const blob = document.createElement('div');
+    blob.classList.add('blob');
+    blob.style.cssText = `position: absolute; left: ${this.x}px; top: ${this.y}px; height: ${this.height}px; width: ${this.width}px`;
+    blob.classList.add(this.color);
+    blob.classList.add('animated');
+
+    const leftEyeArea = document.createElement('div');
+    const rightEyeArea = document.createElement('div');
+    const mouthArea = document.createElement('div');
+    leftEyeArea.classList.add('left-eye-area');
+    rightEyeArea.classList.add('right-eye-area');
+    mouthArea.classList.add('mouth-area');
+
+    const leftEye = document.createElement('div');
+    leftEye.classList.add('eye', 'left-eye');
+    leftEyeArea.appendChild(leftEye);
+    blob.appendChild(leftEyeArea)
+
+    const rightEye = document.createElement('div');
+    rightEye.classList.add('eye', 'right-eye');
+    rightEyeArea.appendChild(rightEye);
+    blob.appendChild(rightEyeArea);
+
+    const mouth = document.createElement('div');
+    mouth.classList.add('mouth');
+    mouthArea.appendChild(mouth);
+    blob.appendChild(mouthArea);
+
+    return blob;
+  }
+}
+
+class BlobGenerator {
+  constructor() {
+    this.nest = [];
+  }
+
+  generateBlob() {
+    const hatchling = new Blob();
+    this.nest.push(hatchling);
+    return this;
+  }
+
+  generateBlobs(n) {
+    for (let i = 0; i < n; i++) {
+      this.generateBlob();
+    }
+    return this;
+  }
+
+  releaseBlob(hatchling) {
+    body.appendChild(hatchling.hatch());
+  }
+
+  releaseBlobs() {
+    this.nest.forEach(hatchling => {
+      this.releaseBlob(hatchling);
+    });
+    return this;
+  }
+}
+
+const myBlobs = new BlobGenerator();
+myBlobs.generateBlobs(20).releaseBlobs();
+
+const animationType = 'headShake'
+const allBlobs = document.getElementsByClassName('blob');
+
+for (let i = 0; i < allBlobs.length; i++) {
+  const blob = allBlobs[i];
+  blob.addEventListener('mouseenter', () => {
+    blob.classList.add(animationType);
+  });
+
+  blob.addEventListener('mouseleave', () => {
+    blob.classList.remove(animationType);
+  });
+}
+
+const matchElementClassToCondition = (element, className, condition) => {
+  element.classList[condition ? 'add' : 'remove'](className);
+}
+
+const applyBlobClassRules = (blob, rules) => {
+  rules.forEach(rule => {
+    matchElementClassToCondition(blob, rule.className, rule.when);
+  });
+};
+
+body.addEventListener('mousemove', (e) => {
+  for (let i = 0; i < allBlobs.length; i++) {
+    const blob = allBlobs[i];
+    applyBlobClassRules(blob, [
+      {className: 'look-up', when: e.clientY < blob.offsetHeight},
+      {className: 'look-down', when: e.clientY > (blob.offsetHeight + 150)},
+      {className: 'look-left', when: e.clientX < blob.offsetLeft},
+      {className: 'look-right', when: e.clientX > (blob.offsetLeft + 235)}
+    ]);
+  }
+});
+  </script>
+ </BODY>
+</HTML>

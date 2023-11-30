@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #000000
+}
+
+input{
+height:40px;
+font-Size:30px;
+background: #aaaaaa 
+}
+
+canvas{
+position: relative; top:50%;
+left:50%;
+margin-left:-50vmin;
+width:100vmin;
+height:100vmin;
+overflow:hidden;
+display: block;
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+  
+<canvas></canvas>
+
+<span style="position:absolute;top:0px;left:100px;">
+
+<input type="button" onclick="init(2)" value=" 2 " />
+<input type="button" onclick="init(4)" value=" 4 " />
+<input type="button" onclick="init(6)" value=" 6 " />
+<br /><br />
+<input type="button" onclick="typ=!typ" value=" Gravity reverse ">
+</span>
+  <script>
+   var canvas,ctx,typ,N,max,len,pt,tim;
+canvas = document.getElementsByTagName('canvas')[0];
+ctx = canvas.getContext('2d');
+canvas.width=canvas.height=400;
+init(6);
+aaa();
+
+function init(n){
+    var a,b,c,d;
+    n=+n;
+    N=n;
+    
+    if(n==2){
+        max=7;
+        len=14;
+    }else if(n==4){
+        max=13;
+        len=24;
+    }else{
+        max=17;
+        len=42;
+    }
+    
+    pt=[];
+    for(d=0;d<10;d++){
+        for(a=0;a<len;a++){
+            pt[a]=a%max;
+        }
+        for(a=0;a<len;a++){
+            b=(Math.random()*len)|0;
+            c=pt[a];pt[a]=pt[b];pt[b]=c;
+        }
+        
+        for(a=0;a<len;a++){
+            if(pt[a]==pt[(a+1)%len])break;
+            if(pt[a]==pt[(a+2)%len])break;
+            if(pt[a]==pt[(a+3)%len])break;
+        }
+        if(a==len-1)break;
+    }
+}
+
+function aaa(){
+    var a,b,c,d,e,f,tim,tx,ty,bai,kx,x,y,hei,kt,hj,te,hou,
+        t,t0,v,px,p,zh,ps,x1,y1,x2,y2,y3;
+    ctx.fillStyle="rgb(192,212,242)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    tx=canvas.width/2;
+    ty=canvas.height/2;
+    tim=new Date().getTime()/30;
+    
+    bai=0.7+Math.sin(tim/37)/4;
+    x=Math.sin(tim/31)*50*bai;
+    y=Math.sin(tim/29)*10*bai;
+    kx=Math.sin(tim/43);
+    
+    ctx.lineWidth=2;
+    ctx.save();
+    ctx.translate(tx,ty);
+    ctx.scale(bai,bai);
+    ctx.translate(-tx+x,-ty+y);
+    
+    te=[];
+    hei=ty+140;
+    a=tx+kx*25;
+    te[0]=[a-60,hei];
+    te[1]=[a+60,hei];
+    te[2]=[a-140,hei-10];
+    te[3]=[a+140,hei-10];
+    te[4]=[a-190,hei-50];
+    te[5]=[a+190,hei-50];
+    
+    hou=[-1,1,-1,1,-1,1];
+    ctx.fillStyle="rgb(255,255,255)";
+    a=Math.sin(tim/3)*5;
+    nmaru([tx+20,ty+170,0,15],[tx+30,ty+190+a,0,15]);
+    nmaru([tx-20,ty+170,0,15],[tx-30,ty+190-a,0,15]);
+    nmaru([tx,ty-30,0,25],[tx,ty+150,0,40]);
+    ctx.fillStyle="rgb(0,0,0)";
+    maru([tx-13+kx*3,ty-25],4);
+    maru([tx+13+kx*3,ty-25],4);
+    ctx.fillStyle="rgb(255,255,255)";
+    
+    hj=[];
+    kt=[];
+    for(a=0;a<3;a++){
+        x=20+a*5+kx;
+        y=5-a*2;
+        kt.push([tx-x,ty+y,0,6]);
+        kt.push([tx+x,ty+y,0,6]);
+        x=40+a*15+kx*5;
+        y=100-a*5;
+        hj.push([tx-x,ty+y,0,10]);
+        hj.push([tx+x,ty+y,0,10]);
+    }
+    for(a=N-1;a>=0;a--)nmaru(kt[a],hj[a]);
+    
+    t0=(tim/1/len/3)%1;
+    t=len*t0;
+    v=(t)|0;
+    
+    ps=0.1;
+    p=[];
+    zh=[];
+    for(a=0;a<max;a++){
+        d=a;
+        for(b=v;b>=-len;b--){
+            if(b<0)d=(a+max-1)%max;
+            c=(b+len)%len;
+            if(pt[c]==d){
+                st=b;
+                sn=c%N;
+                break;
+            }
+        }//b
+        
+        d=a;
+        for(b=v+1;b<len*2;b++){
+            c=b%len;
+            if(b>=len)d=(a+1)%max;
+            if(pt[c]==d){
+                ed=b;
+                en=c%N;
+                break;
+            }
+        }//b
+        
+        c=ed-st;
+        b=(t-st)/c;
+        ps=0.5/c;
+        e=-ps*1.5+b*(1+ps*3);
+        b=-ps+b*(1+ps*2);
+        d=1;
+        y3=0;
+        
+        if(b<0){
+            d=1+b/ps;
+            b=0;
+        }
+        
+        if(b>1){
+            d=1-(b-1)/ps;
+            b=1;
+        }
+        y3=Math.sin((1-d)*Math.PI/2)*20;
+        
+        x1=te[sn][0]-hou[sn]*d*30;
+        x2=te[en][0]+hou[en]*d*30;
+        y1=te[sn][1];
+        y2=te[en][1];
+        x=x1+(x2-x1)*b;
+        y=y1+(y2-y1)*b;
+        
+        b=Math.abs(b-0.5)*2;
+        b*=b;
+        if(!typ)b=1-b;
+        y=y-(b)*250/len*c+y3;
+        
+        if(e<0){
+            f=1;
+            if(e<-ps)f=1-(-e-ps)/ps*2;
+            zh[sn]=[x,y+10,f];
+        }
+        
+        if(e>1){
+            f=1;
+            if(e>ps)f=1-(e-1-ps)/ps*2;
+            zh[en]=[x,y+20,f];
+        }
+        p.push([x,y]);
+    }//a
+    
+    for(a=N-1;a>=0;a--){
+        if(zh[a]){
+            c=zh[a];
+        }else{
+            c=te[a];
+        }
+        nmaru(hj[a],[c[0],c[1],0,20]);
+    }
+    
+    for(a=0;a<max;a++){
+        ctx.fillStyle="hsl("+((((a/max+t0/max)*360)%360)|0)+",90%,40%)";
+        maru(p[a]);
+    }
+    ctx.restore();
+    requestAnimationFrame(aaa);
+}
+
+function nmaru(p1,p2){
+    var a,b,c,px,py,kyo,sx,sy,ex,ey,han,han2,
+        r,hi,x1,y1,x2,y2,x3,y3,x4,y4,sya;
+    
+    if(p2[3]>p1[3]){
+        a=p1;p1=p2;p2=a;
+    }
+    
+    sx=p1[0];
+    sy=p1[1];
+    han=p1[3];
+    ex=p2[0];
+    ey=p2[1];
+    han2=p2[3];
+    px=ex-sx;
+    py=ey-sy;
+    r=Math.atan2(py,px);
+    kyo=Math.pow(px*px+py*py,0.5);
+    if(kyo+han2<=han*1.05){
+        ctx.beginPath();
+        ctx.arc(sx,sy,han,0,Math.PI*2,0);
+        ctx.fill();
+        ctx.stroke();
+        return;
+    }
+    
+    hi=han2-han;
+    sya=Math.atan2(hi,kyo);
+    a=r-Math.PI/2-sya;
+    //x1=Math.cos(a)*han+sx;
+    //y1=Math.sin(a)*han+sy;
+    x2=Math.cos(a)*han2+ex;
+    y2=Math.sin(a)*han2+ey;
+    b=r+Math.PI/2+sya;
+    
+    x3=Math.cos(b)*han+sx;
+    y3=Math.sin(b)*han+sy;
+    //x4=Math.cos(b)*han2+ex;
+    //y4=Math.sin(b)*han2+ey;
+    
+    ctx.beginPath();
+    ctx.arc(sx,sy,han,b,a,0);
+    ctx.lineTo(x2,y2);
+    ctx.arc(ex,ey,han2,a,b,0);
+    ctx.lineTo(x3,y3);
+    ctx.fill();
+    ctx.stroke();
+}
+
+function maru(p,s){
+    if(!s)s=15;
+    ctx.beginPath();
+    ctx.arc(p[0],p[1],s,0,Math.PI*2,0);
+    ctx.fill();
+    ctx.stroke();
+}
+  </script>
+ </BODY>
+</HTML>

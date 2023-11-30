@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   html,body{
+  margin:0;
+  padding:0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.label{
+  position: absolute;
+  width: 270px;
+  height: 80px;
+  color: #fff;
+  top:30px;
+  left: 30px;
+  font-size: 2em;
+  font-family: verdana, sans-serif;
+  border: 1px solid #fff;
+  line-height: 80px;
+  text-align: center;
+  background: rgba(0,0,0,0.7);
+}
+
+canvas{
+  width: 100%;
+  height: 100%;
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+  <canvas id="canvas"></canvas>
+<div class="label">Click on Field</div>
+  <script>
+   var canvas = document.getElementById('canvas'),
+    c = canvas.getContext('2d'),
+    numP = 200,
+    vx = 5,
+    vy = 5,
+    grav = 0.9,
+    arr = [],
+    r = 10,
+    distance =100;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var w = canvas.width,
+        h = canvas.height;
+
+
+
+class Part{
+  constructor(r,vx,vy,x,y){
+    this.r = Math.floor(Math.random()*r+5);
+    this.x = x;
+    this.y = y;
+    if(x===undefined && y===undefined){
+    this.x = Math.floor(Math.random()*w);
+    this.y = Math.floor(Math.random()*h);
+    }
+    this.vy = vy;
+    this.vx = vx;
+  }
+  draw(){
+     this.y += (2 * Math.sin(Math.random()*360));
+     this.x += (2 * Math.cos(Math.random()*360));
+     
+    if(this.x >= (w - this.r*2)){
+         this.x = w - this.r*2;
+       }
+     if(this.x <= (this.r*2)){
+         this.x =  this.r*2;
+       }
+     if(this.y >= (h - this.r*2)){
+         this.y = h - this.r*2;
+       }
+     if(this.y <= (this.r*2)){
+         this.y =  this.r*2;
+       }
+    c.beginPath();
+    c.arc(this.x,this.y, this.r, 0,Math.PI *2,true);
+    c.fillStyle= 'rgba(255,255,255,0.3)';
+    c.strokeStyle ='darkblue'; 
+    c.lineWidth = 2;
+    c.fill();
+    c.stroke();
+    
+  }
+}
+
+ for(let i = 0; i < numP; i++){
+      let parts = new Part(r,vx,vy);
+      arr.push(parts);
+   }
+ 
+function lines(){
+  for(let j = 0; j<numP; j++){
+     for(let i = 0;i<numP; i++){
+      let cA = Math.hypot((arr[j].y - arr[i].y),(arr[j].x - arr[i].x)); 
+       if(cA <= distance){
+      c.beginPath();
+      c.moveTo(arr[j].x, arr[j].y);
+      c.lineTo(arr[i].x, arr[i].y);
+      c.strokeStyle ='rgba(255,255,255,'+ (cA - distance)/-100 +')'; 
+      c.stroke();
+    }
+  }
+ }
+}
+
+function disp(){
+  for(let i = 0; i< numP; i++){
+       arr[i].draw();   
+  }
+}
+
+function paint(){
+  c.clearRect(0,0,w,h);
+  c.fillStyle = 'rgba(0,0,0,1)';
+  c.fillRect(0,0,w,h); 
+  disp();
+  lines();
+  window.requestAnimationFrame(paint);
+}
+paint()
+
+
+document.addEventListener('click',(e)=>{
+ var pos = {
+             xPos: e.clientX,
+             yPos: e.clientY
+      }; 
+  let parts = new Part(r,vx,vy,pos.xPos,pos.yPos);
+      arr.push(parts);
+  numP++;
+});
+  </script>
+ </BODY>
+</HTML>

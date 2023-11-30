@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  html {
+  overflow: hidden;
+  display: grid;
+  height: 100%;
+  margin: 0;
+  background: #0b253a; 
+  place-content: center;
+}
+
+css-doodle {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent; 
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+ <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/52982/css-doodle.v0.2.2.min.js"></script>
+ <script>
+ document.body.addEventListener('click', function(e) {
+  e.target.update && e.target.update();
+})
+ </script>
+  <!-- 
+  Created with css-doodle 
+  http://yuanchuan.name/css-doodle 
+-->
+
+<css-doodle>
+  :doodle { 
+    --rspeed: @rand(28s, 35s);
+    --delay: @rand(-200ms, -10ms);
+    --cycle: @rand(.5s, 2.5s, .1);
+    --angle: @rand(2deg, 4deg, .2); 
+    --da: @rand(1vmin, 8vmin, .1);
+    --db: @rand(1vmin, 8vmin, .1);
+    --bg: hsl(@rand(360), 80%, 80%);
+  
+    @grid: 1x180 / 50vmin; 
+    animation: r var(--rspeed) linear infinite; 
+  }
+  
+  @size: 1px 100%; 
+  @place-cell: center;
+  
+  transform: rotate(calc(
+    @calc(@index() - 1) * var(--angle)
+  )); 
+  
+  :after {
+    content: '';
+    position: aboslute;
+    @size: 100%;
+    background: var(--bg);
+    animation: 
+      w var(--cycle) linear 
+      calc(@index() * var(--delay)) infinite; 
+  }
+  
+  --f: calc(@sin(@index() / 4) * @PI()); 
+  @keyframes w {
+    0 { transform: translateY(calc(var(--da) * var(--f))) } 
+    50% { transform: translateY(calc(var(--db) * var(--f))) } 
+  }
+  
+  @keyframes r {
+    to { transform: rotate(@pick(-1turn, 1turn)) }
+  }
+</css-doodle>
+ </BODY>
+</HTML>

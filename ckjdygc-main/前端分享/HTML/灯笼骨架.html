@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   * {
+  border: none;
+  margin: 0;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  background: radial-gradient(#555, #111);
+  overflow: hidden;
+}
+canvas {
+  background: black;
+  //filter: blur(1px) contrast(5);
+}
+.ui {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  padding: 10px;
+}
+.ui p {
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+}
+  </style>
+ </HEAD>
+ <BODY> 
+  <!-- Yo, wait for 30secs then it gets cool somewhat -->
+<div class="ui">
+  <p>Dead: <span class="dead">0</span></p>
+  <p>Alive: <span class="alive">0</span></p>
+  <p>Drawn: <span class="drawn">0</span></p>
+  <p><span class="fps">0</span> FPS</p>
+</div>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
+  <script>
+   /**
+ * JS for Dipolar Meteors 3D
+ * @author Alex Andrix <alex@alexandrix.com>
+ * @since 2018-04-25
+ * @lastest 2018-07-23
+ *
+ * NB: This piece is like wine, the more you wait the better it gets :)
+ */
+
+var App = {};
+App.setup = function() {
+  var canvas = document.createElement('canvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  this.ctx = canvas.getContext('2d');
+  this.width = canvas.width;
+  this.height = canvas.height;
+  // Blend mode /!\ Don't use if you can! Mega source of lag, proportional to canvas size
+  //this.ctx.globalCompositeOperation = 'soft-light';// This one is super laggy
+  this.ctx.globalCompositeOperation = 'lighter';// This one is OK
+  
+  this.xC = canvas.width / 2;
+  this.yC = canvas.height / 2;
+  this.zC = 10000;
+  this.zNearPlan = 8000;
+  this.zFarPlan = 12000;
+  this.drawLimitDistance = 2000;
+  this.deathDistance = 2000;
+  
+  document.getElementsByTagName('body')[0].appendChild(canvas);
+  
+  this.stepCount = 0;
+  this.particles = [];
+  this.popPerBirth = 180;
+  this.popPerAngle = Math.round(Math.sqrt(this.popPerBirth));//Birth happens on spheres
+  this.maxPop = 2 * Math.pow(this.popPerAngle, 2);
+  this.lifespan = 1000000;
+  
+  // Counters for UI
+  this.drawnInLastFrame = 0;
+  this.deathCount = 0;
+  
+  // Bewt
+  this.birth();
+};
+App.birth = function() {
+  var popPerAngle = Math.round(Math.sqrt(this.popPerBirth));
+  
+  for (var i = 0; i < popPerAngle; i++) {
+    for (var j = 0; j < popPerAngle; j++) {
+      // Add some variation based on stepCount otherwise it re-pops on same pos
+      var r = 200,
+          theta = 6.28 * i / popPerAngle + this.stepCount / 500,
+          phi = 6.28 * j / popPerAngle + theta;
+      /*
+      var x = this.xC + r * Math.cos(theta),
+          y = this.yC + 50,//this.yC + r * (2 * Math.random() - 1),
+          z = this.zC + r * Math.sin(theta);*/
+      var x = this.xC + r * Math.cos(theta) * Math.cos(phi);
+      var y = this.yC + r * Math.sin(phi);
+      var z = this.zC + r * Math.sin(theta) * Math.cos(phi);
+      
+      var particle = {
+        x: x,
+        y: y,
+        z: z,
+        xSpeed: 0,
+        ySpeed: 0,
+        zSpeed: 0,
+        dist: r,// Particle distance to force center
+        size: 5 + 15 * Math.random(),
+        name: 'seed-' + this.stepCount + '-' + Math.floor(1000000 * Math.random()),
+        age: 0
+      };
+
+      this.particles.push(particle);
+    }
+  }
+};
+App.evolve = function() {
+  var time1 = performance.now();
+  
+  this.stepCount++;
+  
+  // Sometimes launch new generation
+  if (this.stepCount % 50 == 0 && (this.particles.length + this.popPerBirth) < this.maxPop) {
+    this.birth();
+  }
+  App.move();
+  App.draw();
+  
+  var time2 = performance.now();
+  
+  // Update UI
+  document.getElementsByClassName('dead')[0].textContent = this.deathCount;
+  document.getElementsByClassName('alive')[0].textContent = this.particles.length;
+  document.getElementsByClassName('fps')[0].textContent = Math.floor(1000 / (time2 - time1));
+  document.getElementsByClassName('drawn')[0].textContent = this.drawnInLastFrame;
+  
+};
+App.kill = function(particleName) {
+ var newArray = _.reject(this.particles, function(seed) {
+    return (seed.name == particleName);
+  });
+  this.particles = _.cloneDeep(newArray);
+};
+App.move = function() {
+  var M = 1000, norm = 5, visc = 0.7;//0.9;
+  
+  for (var i = 0; i < this.particles.length; i++) {
+    // Get particle
+    var p = this.particles[i];
+    
+    var x = p.x - this.xC,
+        y = p.y - this.yC,
+        z = p.z - this.zC;
+    var dist = Math.sqrt(x*x + y*y + z*z);
+    p.dist = dist;
+    
+    var multi = M * Math.pow(dist, -5);
+    var xAcc = 3 * x * y * multi,
+        zAcc = 3 * z * y * multi,
+        yAcc = (3 * y * y - dist*dist) * multi;
+    var accNorm = Math.sqrt(xAcc*xAcc + yAcc*yAcc + zAcc*zAcc);
+    p.xSpeed += norm * xAcc / accNorm;
+    p.ySpeed += norm * yAcc / accNorm;
+    p.zSpeed += norm * zAcc / accNorm;
+    p.xSpeed *= visc;
+    p.ySpeed *= visc;
+    p.zSpeed *= visc;
+    p.x += 0.1 * p.xSpeed;
+    p.y += 0.1 * p.ySpeed;
+    p.z += 0.1 * p.zSpeed;
+    
+    // Get older
+    p.age++;
+    
+    // Kill if too old or too far
+    if (p.age > this.lifespan || p.dist > this.deathDistance) {
+      this.kill(p.name);
+      this.deathCount++;
+    }
+  }
+};
+App.draw = function() {
+  this.drawnInLastFrame = 0;
+  if (!this.particles.length) return false;
+  
+  var zCbaseRad = 1;
+  var zoom = 5000;
+  
+  for (var i = 0; i < this.particles.length; i++) {
+    // Draw particle
+    var p = this.particles[i];
+    
+    // Don't draw particle if too far from center!
+    if (p.dist > this.drawLimitDistance) return false;
+    // And only if visible by 'camera'
+    if (p.z < this.zNearPlan || p.z > this.zFarPlan) return false;
+    
+    var depthEffect = 30;
+    var r = zCbaseRad * Math.pow(this.zC / p.z, depthEffect);
+    
+    // Draw circle
+    this.ctx.beginPath();
+    var x = this.xC + zoom * (p.x - this.xC) / p.z;
+    var y = this.yC + zoom * (p.y - this.yC) / p.z;
+    //this.ctx.arc(x, y, r, 0, 6.283, false);
+    this.ctx.rect(x, y, r, r);
+
+    // Color mapping
+    var h = 35 - p.dist / 40;
+    var s = 1 - p.dist / 500;
+    var l = 0.4 - p.dist / 2000;
+    if (s < 0.7) s = 0.7;// Minimum sat
+    if (l < 0.3) l = 0.3;
+
+    // Opacity/radius
+    var maxOpaDist = 500, zeroOpaDist = 1500;
+    var a = p.dist < maxOpaDist ? 0.01 + p.dist / maxOpaDist : 1 - (p.dist - maxOpaDist) / (zeroOpaDist - maxOpaDist);
+    a *= 0.5;
+
+    this.ctx.strokeStyle = 'hsla(' + h + ', ' + 100*s + '%, ' + 100*l + '%, ' + a + ')';
+    this.ctx.stroke();
+    this.ctx.closePath();
+
+    // UI counter
+    this.drawnInLastFrame++;
+  }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  App.setup();
+  App.draw();
+  
+  var frame = function() {
+    App.evolve();
+    requestAnimationFrame(frame);
+  };
+  frame();
+});
+  </script>
+ </BODY>
+</HTML>

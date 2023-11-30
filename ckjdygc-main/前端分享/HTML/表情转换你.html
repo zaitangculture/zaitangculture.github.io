@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   * {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 48px #53FFCB);
+  }
+  50% {
+    filter: drop-shadow(0 0 24px #53FFCB);
+  }
+  100% {
+    filter: drop-shadow(0 0 48px #53FFCB);
+  }
+}
+@keyframes changeHead {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(#3A67FF, #052DB2);
+}
+
+#emoji-man {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 75vh;
+  animation-name: glow;
+  animation-delay: 0;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+#head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25vh;
+  height: 25vh;
+}
+#head p {
+  font-size: 25vh;
+  line-height: 0;
+}
+#head p.changed {
+  animation-name: changeHead;
+  animation-delay: 0;
+  animation-duration: 0.4s;
+  animation-iteration-count: 1;
+}
+
+#torso {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-width: 25vw;
+  min-height: 25vh;
+}
+#torso #body {
+  position: reative;
+  height: 30vh;
+  min-width: 30vh;
+}
+#torso #body p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28vh;
+}
+#torso .arm {
+  min-width: 33.333%;
+  z-index: 1;
+}
+#torso .arm p {
+  position: relative;
+  font-size: 25vh;
+  line-height: 0;
+}
+#torso #right-arm {
+  transform: translate(-25%, 5vh) scale(-1, 1);
+}
+#torso #left-arm {
+  transform: translate(25%, 5vh);
+}
+
+#bottom {
+  position: reative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 25vw;
+  min-height: 25vh;
+}
+#bottom #legs {
+  position: reative;
+  height: 30vh;
+}
+#bottom #legs p {
+  font-size: 25vh;
+}
+#bottom .foot {
+  position: absolute;
+  z-index: 1;
+}
+#bottom .foot p {
+  position: relative;
+  font-size: 15vh;
+}
+#bottom #left-foot {
+  transform: translate(-42%, 8vh) scale(-1, 1);
+}
+#bottom #right-foot {
+  transform: translate(42%, 8vh);
+}
+
+#sidebar {
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
+  background: #fff;
+  border-radius: 1vh;
+  list-style: none;
+  padding: 1vh;
+}
+#sidebar li {
+  padding: 1vh;
+  cursor: pointer;
+  font-size: 4vh;
+}
+#sidebar li:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 1vh rgba(0, 0, 0, 0.4);
+}
+
+.reference {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  color: #fff;
+  font-family: arial;
+  text-decoration: none;
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  
+<!-- Author: Ali Soueidan-->
+<!-- Author URI: https//: www.alisoueidan.com-->
+<div id="emoji-man">
+  <div id="head">
+    <p>😏</p>
+  </div>
+  <div id="torso">
+    <div class="arm" id="left-arm">
+      <p>💪</p>
+    </div>
+    <div id="body">
+      <p>👕</p>
+    </div>
+    <div class="arm" id="right-arm">
+      <p>💪</p>
+    </div>
+  </div>
+  <div id="bottom">
+    <div class="foot" id="left-foot">
+      <p>👟</p>
+    </div>
+    <div id="legs">
+      <p>👖</p>
+    </div>
+    <div class="foot" id="right-foot">
+      <p>👟</p>
+    </div>
+  </div>
+</div>
+<ul id="sidebar"> 
+  <li class="list-element">😏</li>
+  <li class="list-element">😃</li>
+  <li class="list-element">😋</li>
+  <li class="list-element">🤯</li>
+  <li class="list-element">😍</li>
+  <li class="list-element">😭</li>
+  <li class="list-element">🤩</li>
+  <li class="list-element">😒</li>
+  <li class="list-element">🤑</li>
+  <li class="list-element">🤬</li>
+  <li class="list-element">🧐</li>
+  <li class="list-element">🤖</li>
+</ul><a class="reference" href="https://alisoueidan.com/" target="_blank">🔗 Ali Soueidan</a>
+  <script>
+   // Author: Ali Soueidan
+// Author URI: https//: www.alisoueidan.com
+
+// select all listitems
+  var listItem = document.querySelectorAll(".list-element");
+  var identity = document.querySelector("#head > p");
+
+// Functionality for identity change of emoji man
+  function changeIdenttity() {
+    var newIdentity = this.innerHTML;
+    identity.classList.add("changed");
+    identity.innerHTML = newIdentity;
+    setTimeout(function(){ identity.classList.remove("changed"); }, 500);
+  };
+
+let i = 0;
+// set clickevent for each item
+  listItem.forEach( function() {
+    listItem[i].addEventListener( "click", changeIdenttity );
+    ++i;
+  });
+  </script>
+ </BODY>
+</HTML>

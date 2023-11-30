@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  #btn--yp {
+  box-sizing: content-box;
+  position: fixed;
+  z-index: 9;
+  bottom: 1rem;
+  right: 1rem;
+  border: solid 1rem transparent;
+  width: 4.625rem;
+  height: 3.25rem;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2017/icon-yp.svg) 50%/cover content-box;
+  text-indent: 200vw;
+  text-shadow: none;
+  filter: grayscale(1) drop-shadow(0 0 1px #e8e0e0);
+  transition: .5s;
+  white-space: nowrap;
+}
+#btn--yp:before {
+  box-sizing: inherit;
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  margin: 1rem -.5rem;
+  padding: .5rem;
+  width: 100%;
+  border-radius: 5px;
+  background: #e8e0e0;
+  color: #000;
+  font: 1rem/1.25rem trebuchet ms, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0vw;
+  white-space: normal;
+  animation: float 1s ease-in-out infinite alternate;
+  content: attr(data-txt);
+}
+#btn--yp:hover, #btn--yp:focus {
+  outline: none;
+  filter: grayscale(0) drop-shadow(0 0 1px crimson);
+}
+
+@keyframes float {
+  to {
+    transform: translateY(0.75rem);
+  }
+}
+body {
+  overflow: hidden;
+  height: 100vh;
+  perspective: 21em;
+  background: #141e37;
+}
+
+div, :before, :after {
+  position: absolute;
+}
+
+div {
+  transform-style: preserve-3d;
+}
+
+.a3d {
+  top: 50%;
+  left: 50%;
+}
+
+.arm {
+  margin-left: calc(var(--f)*3*0.25em);
+  transform-origin: calc(-1*calc(var(--f)*3*0.25em)) 0;
+  transform: rotate(calc(var(--k)*1turn));
+}
+
+.rot {
+  --d: calc((var(--i) + 1)*0.25em);
+  --dt: calc((var(--i)/var(--nr) + var(--k))*-2s);
+  --a: r 2s linear var(--dt) infinite;
+  margin-left: calc(.5*var(--i)*(var(--i) + 1)*0.3125em);
+  animation: var(--a);
+}
+.rot:before, .rot:after {
+  --s: 0;
+  margin: calc(-.5*var(--d) + .625*(2*var(--s) - 1)*var(--d)) calc(-.5*var(--d));
+  width: var(--d);
+  height: var(--d);
+  border-radius: 50%;
+  background: hsl(295, 61%, calc(100% - var(--s)*38%));
+  animation: var(--a) reverse, f 1s calc(var(--dt) + (.25 + var(--s)*.5)*2s) ease-in infinite alternate;
+  content: "";
+}
+.rot:after {
+  --s: 1 ;
+}
+
+@keyframes r {
+  0% {
+    transform: rotatex(1turn);
+  }
+}
+@keyframes f {
+  to {
+    opacity: 0.1;
+  }
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+ <script type="text/javascript" src="https://codepen.io/thebabydino/pen/evPbxv.js"></script>
+
+  
+<style>.rot:nth-child(1) { --i: 0 }.rot:nth-child(2) { --i: 1 }.rot:nth-child(3) { --i: 2 }.rot:nth-child(4) { --i: 3 }.rot:nth-child(5) { --i: 4 }.rot:nth-child(6) { --i: 5 }.rot:nth-child(7) { --i: 6 }.rot:nth-child(8) { --i: 7 }.rot:nth-child(9) { --i: 8 }.rot:nth-child(10) { --i: 9 }
+</style>
+<div class="a3d" style="--nr: 10; --f: 2.414213562373095;">
+  <div class="arm" style="--k: 0;">
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+  </div>
+  <div class="arm" style="--k: 0.125;">
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+  </div>
+  <div class="arm" style="--k: 0.25;">
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+  </div>
+  <div class="arm" style="--k: 0.375;">
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+  </div>
+  <div class="arm" style="--k: 0.5;">
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+  </div>
+  <div class="arm" style="--k: 0.625;">
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+  </div>
+  <div class="arm" style="--k: 0.75;">
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+  </div>
+  <div class="arm" style="--k: 0.875;">
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+    <div class="rot"></div>
+  </div>
+</div>
+ </BODY>
+</HTML>

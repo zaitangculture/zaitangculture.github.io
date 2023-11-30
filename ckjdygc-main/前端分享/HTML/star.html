@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            overflow: hidden;
+            /* background-color:purple; */
+            background-color: #000;
+        }
+        .circle{
+            width: 50px;
+            height: 50px;
+            /* background: lightseagreen; */
+            border-radius: 100%;
+            position: absolute;
+
+        }
+        #box{
+            width: 800px;
+            height: 500px;
+            border-right:3px solid red;
+            border-left:3px solid blue;
+            border-top:3px solid yellow;
+            border-bottom:3px solid pink;
+            border-radius: 10px;
+            background-color: #000;
+            margin-left: 300px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<!--  <div id="box">
+
+   </div> -->
+<script>
+var Circle = function (x,y,r,bg,speedx,speedy) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.bg = bg;
+        this.speedx = speedx;
+        this.speedy = speedy;
+        this.box=document.getElementById("box");
+        this.winWidth = document.documentElement.clientWidth;
+        this.winHeight = document.documentElement.clientHeight;
+        this.render();
+        this.move();
+    };
+    Circle.prototype = {
+        createCircle:function () {
+            var div = document.createElement('img');
+
+            div.className = 'circle';
+            div.src="star.png"
+            this.div = div;
+
+        },
+        setStyle:function () {
+            this.div.style.cssText = 'height:'+this.r*2+'px;width:'+this.r*2+'px;' +
+                'left:'+(this.x-this.r)+'px;top:'+(this.y-this.r)+'px;';
+
+        },
+        render:function () {
+            this.createCircle();
+            this.setStyle();
+            document.body.appendChild(this.div)
+
+        },
+        move:function () {
+            var th=this;
+
+            setInterval(function () {
+                if(this.x-this.r<=0 || this.x+this.r>=this.winWidth){
+                   this.speedx*=-1
+                }
+                if(this.y-this.r<=0 || this.y+this.r>=this.winHeight){
+                   this.speedy*=-1
+                }
+                this.x+=this.speedx;
+                this.y+=this.speedy;
+                this.setStyle();
+            }.bind(this),1000/50)
+        }
+    };
+
+    function random(min,max) {
+        return Math.floor(Math.random()*(max-min+1)+min)
+    }
+    function randomColor() {
+
+        return 'rgba('+random(0,255)+','+random(0,255)+','+random(0,255)+',1)'
+    }
+
+    function createBalls(number,x,y) {
+        for(var i=0; i<number; i++){
+            new Circle(x,y,random(1,20),randomColor(),random(-9,9),random(-9,9));
+        }
+    }
+
+    document.onclick = function (e) {
+        createBalls(80,e.x,e.y);
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>二十面体</title>
+<style type="text/css">
+html, body {
+height: 100%;
+margin: 0;
+background: rgba(0, 0, 0,1);
+}
+.sharp {
+animation: ani 4s linear infinite;
+}
+div {
+transform-style: preserve-3d;
+transform: translate(-50%, -50%) rotate3d(0, 1, 0, 72deg);
+position: absolute;
+left: 50%;
+top: 50%;
+}
+span { /*利用边框做一个三角形*/
+border-color: transparent transparent rgba(255, 255, 255, 0.5) transparent;/*每个span下方设置颜色，其余边透明*/
+border-width: 173.2px 100px;
+border-style: solid;
+width: 0;
+height: 0;
+position: absolute;
+left: 50%;
+margin-left: -100px;
+top: 50%;
+margin-top: -346.4px;
+}
+
+span:before { /*利用边框在span中做一个三角形，实现嵌套，让span变成边框,span:before变成要显示的东西*/
+content: '';
+border-color: transparent transparent rgba(0, 123, 123, 0.5) transparent;/*设置每面的颜色*/
+border-width: 165.2px 92px;
+border-style: solid;
+width: 0;
+height: 0;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+margin-top: 4px;
+}
+
+div span:nth-child(1) {
+transform: rotate3d(0, 1, 0, 72deg) rotate3d(1, 0, 0, 51.5deg);
+}
+
+div span:nth-child(2) {
+transform: rotate3d(0, 1, 0, 144deg) rotate3d(1, 0, 0, 51.5deg);
+}
+
+div span:nth-child(3) {
+transform: rotate3d(0, 1, 0, 216deg) rotate3d(1, 0, 0, 51.5deg);
+}
+
+div span:nth-child(4) {
+transform: rotate3d(0, 1, 0, 288deg) rotate3d(1, 0, 0, 51.5deg);
+}
+
+div span:nth-child(5) {
+transform: rotate3d(0, 1, 0, 360deg) rotate3d(1, 0, 0, 51.5deg);
+}
+
+.sharp div:nth-child(1) {
+transform: translateY(51px) rotateY(108deg) rotateX(116deg) translateZ(31px);
+}
+
+.sharp div:nth-child(2) {
+transform: translateY(51px) rotateY(180deg) rotateX(116deg) translateZ(31px);
+}
+
+.sharp div:nth-child(3) {
+transform: translateY(51px) rotateY(252deg) rotateX(116deg) translateZ(31px);
+}
+
+.sharp div:nth-child(4) {
+transform: translateY(51px) rotateY(324deg) rotateX(116deg) translateZ(31px);
+}
+
+.sharp div:nth-child(5) {
+transform: translateY(51px) rotateY(396deg) rotateX(116deg) translateZ(31px);
+}
+
+@keyframes ani {
+100% {
+transform: rotateY(360deg);
+}
+}
+</style>
+</head>
+<body>
+<div class="sharp">
+<div>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+</body>
+</html>
+————————————————
+版权声明：本文为CSDN博主「kun鲲」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/shilipeng666/article/details/84393035

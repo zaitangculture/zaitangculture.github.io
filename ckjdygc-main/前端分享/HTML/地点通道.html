@@ -1,0 +1,432 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  position: fixed;
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
+<script id="vertexShader" type="x-shader/x-vertex">
+    void main() {
+        gl_Position = vec4( position, 1.0 );
+    }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+    uniform vec2 u_resolution;
+    uniform float u_time;
+  
+    const int octaves = 2;
+    const float seed = 43758.5453123;
+    const float seed2 = 73156.8473192;
+
+    // Gloable variables for the raymarching algorithm.
+    const int maxIterations = 128;
+    const float stepScale = .7;
+    const float stopThreshold = 0.0005; // I'm not quite sure why, but thresholds in the order of a pixel seem to work better for me... most times. 
+  
+    // smooth min
+    // reference: http://iquilezles.org/www/articles/smin/smin.htm
+    float smin(float a, float b, float k) {
+        float res = exp(-k*a) + exp(-k*b);
+        return -log(res)/k;
+    }
+  
+    float random(float val) {
+      return fract(sin(val) * seed);
+    }
+  
+    vec2 random2(vec2 st, float seed){
+        st = vec2( dot(st,vec2(127.1,311.7)),
+                  dot(st,vec2(269.5,183.3)) );
+        return -1.0 + 2.0*fract(sin(st)*seed);
+    }
+  
+    float random2d(vec2 uv) {
+      return fract(
+                sin(
+                  dot( uv.xy, vec2(12.9898, 78.233) )
+                ) * seed);
+    }
+  
+    // Value Noise by Inigo Quilez - iq/2013
+    // https://www.shadertoy.com/view/lsf3WH
+    float noise(vec2 st, float seed) {
+        vec2 i = floor(st);
+        vec2 f = fract(st);
+
+        vec2 u = f*f*(3.0-2.0*f);
+
+        return mix( mix( dot( random2(i + vec2(0.0,0.0), seed ), f - vec2(0.0,0.0) ), 
+                         dot( random2(i + vec2(1.0,0.0), seed ), f - vec2(1.0,0.0) ), u.x),
+                    mix( dot( random2(i + vec2(0.0,1.0), seed ), f - vec2(0.0,1.0) ), 
+                         dot( random2(i + vec2(1.0,1.0), seed ), f - vec2(1.0,1.0) ), u.x), u.y);
+    }
+  // Simplex 2D noise
+  //
+  vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+
+  float snoise(vec2 v){
+    const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+             -0.577350269189626, 0.024390243902439);
+    vec2 i  = floor(v + dot(v, C.yy) );
+    vec2 x0 = v -   i + dot(i, C.xx);
+    vec2 i1;
+    i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+    vec4 x12 = x0.xyxy + C.xxzz;
+    x12.xy -= i1;
+    i = mod(i, 289.0);
+    vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+    + i.x + vec3(0.0, i1.x, 1.0 ));
+    vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy),
+      dot(x12.zw,x12.zw)), 0.0);
+    m = m*m ;
+    m = m*m ;
+    vec3 x = 2.0 * fract(p * C.www) - 1.0;
+    vec3 h = abs(x) - 0.5;
+    vec3 ox = floor(x + 0.5);
+    vec3 a0 = x - ox;
+    m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+    vec3 g;
+    g.x  = a0.x  * x0.x  + h.x  * x0.y;
+    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+    return 130.0 * dot(m, g);
+  }
+  
+    vec3 plotCircle(vec2 pos, vec2 uv, float size) {
+      return vec3(smoothstep(size, size + 0.05, length(uv - pos)));
+    }
+  
+    float fbm (in vec2 st, float seed) {
+      // Initial values
+      float value = 0.0;
+      float amplitude = .5;
+      float frequency = 0.;
+      //
+      // Loop of octaves
+      for (int i = octaves; i > 0; i--) {
+          value += amplitude * abs(noise(st, seed));
+          st *= 2.;
+          amplitude *= .5;
+      }
+      return value;
+  }
+    float fbm1 (in vec2 st, float seed) {
+      // Initial values
+      float value = 0.0;
+      float amplitude = .5;
+      float frequency = 0.;
+      //
+      // Loop of octaves
+      for (int i = octaves; i > 0; i--) {
+          value += amplitude * fract(noise(st, seed));
+          st *= 2.;
+          amplitude *= .5;
+      }
+      return value;
+  }
+  
+  // params:
+  // p: arbitrary point in 3D space
+  // c: the center of our sphere
+  // r: the radius of our sphere
+  float sphere_sdf(in vec3 p, in vec3 c, float r)
+  { 
+    return length(p - c) - r;
+  }
+  float torus_sdf( vec3 p, in vec3 c, vec2 t )
+  {
+    vec3 pos = p - c;
+    vec2 q = vec2(length(pos.xz)-t.x,pos.y);
+    return length(q)-t.y;
+  }
+  float roundbox_udf( vec3 p, vec3 b, float r )
+  {
+    return length(max(abs(p)-b,0.0))-r;
+  }
+  vec2 W(vec2 p){
+
+    float t = u_time / 20.;
+
+    // Layered, sinusoidal feedback, with time component.
+    for (int i=0; i<octaves; i++){
+        p += cos( p.yx * 3. + vec2(t,1.6)) / 3.,
+        p += sin( p.yx + t + vec2(1.6,0)) / 2.,
+        p *= 1.3;
+    }
+
+    // A bit of jitter to counter the high frequency sections.
+    // p += fract(sin(p+vec2(13, 7))*5e5)*.03-.015;
+
+    return mod(p,2.)-1.; // Range: [vec2(-1), vec2(1)]
+
+  }
+  float landscape_sfd(vec3 p, float offset, bool reverse) {
+    float a = fbm(p.xz / 3., seed);
+    if(reverse) {
+      a = 1. - a;
+    }
+    // a = length(W(p.xz / 5.)) * .5 + .5;
+    vec3 plane = vec3(p.x, a * 3. +offset, p.z);
+    return length(plane - p);
+  }
+  
+  mat4 rotationMatrix(vec3 axis, float angle)
+  {
+      axis = normalize(axis);
+      float s = sin(angle);
+      float c = cos(angle);
+      float oc = 1.0 - c;
+
+      return mat4(oc * axis.x * axis.x + c,           oc * axis.x * axis.y - axis.z * s,  oc * axis.z * axis.x + axis.y * s,  0.0,
+                  oc * axis.x * axis.y + axis.z * s,  oc * axis.y * axis.y + c,           oc * axis.y * axis.z - axis.x * s,  0.0,
+                  oc * axis.z * axis.x - axis.y * s,  oc * axis.y * axis.z + axis.x * s,  oc * axis.z * axis.z + c,           0.0,
+                  0.0,                                0.0,                                0.0,                                1.0);
+  }
+  
+  float world_sdf(in vec3 p)
+  {
+    // p = (vec4(p, 0.) * rotationMatrix(vec3(0., 1., 0.), u_time * .05)).xyz;
+    float world = 0.;
+    
+    world = landscape_sfd(p, -8., true);
+    
+    world = smin(world, world, .4); // I have no idea why this removes the tears, but it does...
+    
+    world = smin(world, sphere_sdf(p, vec3(cos(u_time / 5.) * 5., -3., 15. + u_time), 4.), .5);
+    world = smin(world, landscape_sfd(p, 3., false), .5);
+    // world = min(world, sphere_sdf(p, vec3(cos(u_time / 5.) * 5., -1., 15. + u_time), 4.));
+    
+    // world = smin(world, sphere_sdf(p, vec3(cos(u_time / 5.) * 5. + cos(u_time / 2.) * 2., 2., 15. + u_time + sin(u_time / 2.) * 2.), .5), 1.);
+    // world = smin(world, sphere_sdf(p, vec3(sin(u_time / 5.) * 5., cos(u_time) + 2., 15. + u_time), 3.), .5);
+    
+    return world;
+  }
+  
+  vec3 calculate_normal(in vec3 p)
+  {
+      const vec3 small_step = vec3(0.0001, 0.0, 0.0);
+
+      float gradient_x = world_sdf(p + small_step.xyy) - world_sdf(p - small_step.xyy);
+      float gradient_y = world_sdf(p + small_step.yxy) - world_sdf(p - small_step.yxy);
+      float gradient_z = world_sdf(p + small_step.yyx) - world_sdf(p - small_step.yyx);
+
+      vec3 normal = vec3(gradient_x, gradient_y, gradient_z);
+
+      return normalize(normal);
+  }
+  
+
+
+
+// Raymarching.
+float rayMarching( vec3 origin, vec3 dir, float start, float end, inout float field ) {
+  
+  float sceneDist = 1e4;
+	float rayDepth = start; // Ray depth. "start" is usually zero, but for various reasons, you may wish to start the ray further away from the origin.
+	for ( int i = 0; i < maxIterations; i++ ) {
+		sceneDist = world_sdf( origin + dir * rayDepth ); // Distance from the point along the ray to the nearest surface point in the scene.
+
+		if (( sceneDist < stopThreshold ) || (rayDepth >= end)) {	
+			break;
+		}
+		rayDepth += sceneDist * stepScale;
+
+	}
+	if ( sceneDist >= stopThreshold ) rayDepth = end;
+	else rayDepth += sceneDist;
+		
+	// We've used up our maximum iterations. Return the maximum distance.
+	return rayDepth;
+}
+  
+  
+vec3 lighting( vec3 sp, vec3 camPos, int reflectionPass, float dist, float field){
+
+    // Start with black.
+    vec3 sceneColor = vec3(0.0);
+
+    // Obtain the surface normal at the scene position "sp."
+    vec3 surfNormal = calculate_normal(sp);
+
+    // Object's color.
+    vec3 objColor = vec3(1.2);
+    objColor += vec3(0., 0., 1.) * field * 5.;
+    objColor += vec3(-1.5, -1.5, -1.5) * 0.3 * clamp((sp.y) / 2., 0., 2.);
+    objColor += vec3(2., -1.2, -.2) * clamp(sp.y - 3., 0., 1.);
+    objColor += vec3(-3., -3.2, -3.2) * clamp(-sp.y - 3.2, 0., 1.);
+
+    // Lighting.
+
+    // lp - Light position. Keeping it in the vacinity of the camera, but away from the objects in the scene.
+    vec3 lp = vec3(0., 3.0, -2.0+u_time);
+    // ld - Light direction.
+    vec3 ld = lp-sp;
+    // lcolor - Light color.
+    vec3 lcolor = vec3(1.,0.97,0.92) * 2.;
+    
+     // Light falloff (attenuation).
+    float len = length( ld ); // Distance from the light to the surface point.
+    ld /= len; // Normalizing the light-to-surface, aka light-direction, vector.
+    float lightAtten = min( 1.0 / ( 0.25*len ), 1.0 ); // Keeps things between 0 and 1.   
+
+    // Obtain the reflected vector at the scene position "sp."
+    vec3 ref = reflect(-ld, surfNormal);
+
+    float ambient = .05; //The object's ambient property.
+    float specularPower = 0.9; // The power of the specularity. Higher numbers can give the object a harder, shinier look.
+    float diffuse = max( 0.0, dot(surfNormal, ld) ); //The object's diffuse value.
+    float specular = max( 0.0, dot( ref, normalize(camPos-sp)) ); //The object's specular value.
+    specular = pow(specular, specularPower); // Ramping up the specular value to the specular power for a bit of shininess.
+  
+    // Bringing all the lighting components togethr to color the screen pixel.
+    sceneColor += (objColor*(diffuse*0.8+ambient)+specular*0.5)*lcolor*lightAtten;
+    
+    return sceneColor;
+
+}
+
+    void main() {
+      
+      // Setting up our screen coordinates.
+      vec2 aspect = vec2(u_resolution.x/u_resolution.y, 1.0); //
+      vec2 uv = (2.0*gl_FragCoord.xy/u_resolution.xy - 1.0)*aspect;
+      
+      // Using polars to warp the domain
+      float len = length(uv);
+      float angle = atan(uv.y, uv.x);
+      angle += sin(u_time / 20.) * .3;
+      
+      uv = vec2(len * cos(angle), len * sin(angle));
+
+      // Camera Setup.
+      // the scene now has a moving camera.
+      vec3 lookAt = vec3(0., 0.8, u_time);  // This is the point you look towards, or at, if you prefer.
+      // vec3 lookAt = vec3(0., 1.*sin(time*0.5), time);  // This is the point you look towards, or at, if you prefer.
+      vec3 camera_position = vec3(0., 1., -1.0 + u_time); // This is the point you look from, or camera you look at the scene through. Whichever way you wish to look at it.
+
+      vec3 forward = normalize(lookAt-camera_position); // Forward vector.
+      vec3 right = normalize(vec3(forward.z, 0., -forward.x )); // Right vector... or is it left? Either way, so long as the correct-facing up-vector is produced.
+      vec3 up = normalize(cross(forward,right)); // Cross product the two vectors above to get the up vector.
+
+      // FOV - Field of view.
+      float FOV = 0.8;
+
+      // ro - Ray origin.
+      vec3 ro = camera_position; 
+      // rd - Ray direction.
+      vec3 rd = normalize(forward + FOV*uv.x*right + FOV*uv.y*up);
+      
+      // Ray marching.
+      const float clipNear = 0.0;
+      const float clipFar = 64.0;
+      float field = 0.;
+      float dist = rayMarching(ro, rd, clipNear, clipFar, field );
+      if ( dist >= clipFar ) {
+          gl_FragColor = vec4(vec3(0.), 1.0);
+          return;
+      }
+
+      // sp - Surface position.
+      vec3 sp = ro + rd*dist;
+
+      // Light the pixel that corresponds to the surface position.
+      vec3 sceneColor = lighting( sp, camera_position, 0, dist, field);
+
+        // Clamping the lit pixel, then put it on the screen.
+      gl_FragColor = vec4(clamp(sceneColor, 0.0, 1.0), 1.0);
+
+
+    }
+</script>
+
+
+<div id="container"></div>
+  <script>
+   /*
+Most of the stuff in here is just bootstrapping. Essentially it's just
+setting ThreeJS up so that it renders a flat surface upon which to draw 
+the shader. The only thing to see here really is the uniforms sent to 
+the shader. Apart from that all of the magic happens in the HTML view
+under the fragment shader.
+*/
+
+var container = void 0;
+var camera = void 0,
+    scene = void 0,
+    renderer = void 0;
+var uniforms = void 0;
+
+function init() {
+  container = document.getElementById('container');
+
+  camera = new THREE.Camera();
+  camera.position.z = 1;
+
+  scene = new THREE.Scene();
+
+  var geometry = new THREE.PlaneBufferGeometry(2, 2);
+
+  uniforms = {
+    u_time: { type: "f", value: 1.0 },
+    u_resolution: { type: "v2", value: new THREE.Vector2() },
+    u_mouse: { type: "v2", value: new THREE.Vector2() }
+  };
+
+  var material = new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    vertexShader: document.getElementById('vertexShader').textContent,
+    fragmentShader: document.getElementById('fragmentShader').textContent
+  });
+
+  var mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  renderer = new THREE.WebGLRenderer();
+  renderer.setPixelRatio(1);
+
+  container.appendChild(renderer.domElement);
+
+  onWindowResize();
+  window.addEventListener('resize', onWindowResize, false);
+
+  document.onmousemove = function (e) {
+    uniforms.u_mouse.value.x = e.pageX;
+    uniforms.u_mouse.value.y = e.pageY;
+  };
+}
+
+function onWindowResize(event) {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  uniforms.u_resolution.value.x = renderer.domElement.width;
+  uniforms.u_resolution.value.y = renderer.domElement.height;
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  render();
+}
+
+function render() {
+  uniforms.u_time.value += 0.05;
+  renderer.render(scene, camera);
+}
+
+init();
+animate();
+  </script>
+ </BODY>
+</HTML>

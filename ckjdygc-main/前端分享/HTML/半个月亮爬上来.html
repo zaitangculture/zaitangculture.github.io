@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <script>
+  html, body {
+  padding: 0;
+  margin: 0;
+}
+html canvas, body canvas {
+  display: block;
+  margin: 2em auto 0;
+}
+
+  </script>
+ </HEAD>
+
+ <BODY>
+  <canvas id="canvas" width="800" height="600"></canvas>
+  <script>
+  let canvas = document.getElementById("canvas"),
+		c = canvas.getContext("2d"),
+  	w = canvas.width,
+    h = canvas.height,
+		arr = [],
+		starArr = [],
+		windowsArr = [],
+		starsCount = 300,
+		housesCount = 50;
+
+class Fig {
+	constructor () {
+		this.x = Math.floor(Math.random() * (canvas.width - 60));
+		this.y = Math.floor(Math.random() * 500);
+		this.w = 60;
+		this.h = this.w + Math.floor(Math.random() * 120);
+		this.yy = 0.2 + this.w / 10;
+		this.upy = 0.8;
+		this.hi = canvas.height;
+		this.wi = canvas.width;
+		this.color = 'rgba('+Math.floor(Math.random()*255)+', '+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+',1)';
+		this.win = Math.floor(Math.random() * 5);
+		
+	}
+	windows () {
+		
+				for(let i = 0; i < 10; i++) {
+			 		for(let j = 0; j < 7; j++){
+						if (i / j == this.win || i / j == 3) {
+							c.fillStyle = "transparent";
+						}else{
+							c.fillStyle = "#fff";}
+							c.fillRect( (this.x + j * 8) + 4, (this.y + i * 10) + 5, 4, 4 );
+						}
+				}
+		
+	}
+	drawRect () {
+
+			c.beginPath();
+			c.fillStyle = this.color;
+	
+	 		this.y += this.yy;
+				if((this.y) < this.hi){
+					this.yy += 0.52;
+		   		}
+			if((this.y + this.h) > this.hi){
+				this.yy = -this.yy * this.upy;
+			 		this.upy -= 0.1;
+					if((this.y + this.h) > this.hi){
+				 		this.y = this.hi - this.h;
+					}	
+	  		}
+			  c.fillRect(this.x, this.y, this.w, this.h );
+			
+			  this.windows ();  // draw windows
+		   
+		}
+}
+class Night extends Fig{
+	constructor(){
+		super();
+		this.time = 0;
+		this.timeMoonMove = 0;
+	}
+	night () {
+		c.fillStyle = 'rgba(0,0,0,'+this.time+')';
+	  c.fillRect(0,0,w,h);
+		
+		this.time += 0.009;
+		
+			if(this.time >=1){
+					this.time = 1;
+				}
+	}
+	moon () {
+		c.beginPath();
+		c.arc(this.wi+50-this.timeMoonMove, this.hi-200-this.timeMoonMove, 30, 0, 2*Math.PI, false);
+		c.fillStyle = "#fff";
+		c.fill();
+		c.beginPath();
+		c.fillStyle = "#000";
+		c.arc(this.wi+60-this.timeMoonMove, this.hi-205-this.timeMoonMove, 30, 0, 2*Math.PI, false);
+		c.fill();
+		this.timeMoonMove += 0.7;
+		this.timeMoonMove *= 0.998;
+	}
+}
+class Star extends Fig{
+	constructor(){
+		super();
+		this.x = Math.floor(Math.random() * (canvas.width));
+		this.time = 0;
+	}
+	star () {
+		c.beginPath();
+		c.arc(this.x, this.y, 1, 0, 2*Math.PI, false);
+		
+			if(this.time <= 1 ){
+			 	c.fillStyle = "transparent";
+			}else{
+				c.fillStyle = 'rgba('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+',1)';
+				this.win = Math.floor(Math.random() * 5);
+			}
+		
+		c.fill();
+		
+		this.time >= 1 ? this.time = 2 : this.time += 0.01;
+		
+	}
+}
+
+for(let i = 0; i < housesCount; i++){
+	let rect = new Fig();
+		arr.push(rect);
+}
+for(let i = 0; i < starsCount; i++){
+	let stars = new Star();
+   	starArr.push(stars);
+}
+
+let newNight = new Night();
+
+function paintStars(){
+		for (let i = 0; i< starArr.length; i++) {  
+	    starArr[i].star();
+    }
+}
+function paintHouses(){
+	for(let i = 0; i < arr.length; i++){
+			arr[i].drawRect();  
+	  }
+}
+	
+
+function animateAll(){
+	  c.clearRect(0, 0, w,h);
+	
+		newNight.night(); // in to the night:)
+		paintStars();     // stars up!
+		newNight.moon();  // moooon ...:)
+		paintHouses();    // houses
+		
+	window.requestAnimationFrame(animateAll);
+}
+
+animateAll();
+
+
+  </script>
+ </BODY>
+</HTML>

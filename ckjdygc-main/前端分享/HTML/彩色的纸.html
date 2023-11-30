@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+  </style>
+ </HEAD>
+
+ <BODY>
+  <div id="js-app"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.20.0/polyfill.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.min.js"></script>
+<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three-bas@2.0.2/dist/bas.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/292951/GPUComputationRenderer.js"></script>
+<script>(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';document.head.appendChild(script);})()</script>
+  <script>
+   var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+setTimeout(function () {
+  var size = 32;
+  var boidSize = 1.5;
+  var boxRipple = new BoxRipple(size, boidSize, 2, 0); // size, cubeSize, duration, maxDelay
+  var simulation = new Simulation('js-app', [boxRipple], [28, 36, -64]); // domNode, entities, [cameraX, cameraY, cameraZ]
+  var generatePositionTexture = positionGenerator(size, 100, boidSize * 4, 1, simulation.renderer);
+  simulation.addUpdateCallback(function (timeDelta) {
+    boxRipple.ctPosition = generatePositionTexture(timeDelta);
+  });
+}, 0);
+
+var ctPositionShader = function ctPositionShader() {
+  return '\nvoid main () {\n  vec2 uv = gl_FragCoord.xy / resolution.xy;\n  vec3 pos = texture2D(ctPosition, uv).xyz;\n  vec3 vel = texture2D(ctVelocity, uv).xyz;\n  vec3 newPos = pos + vel;\n  gl_FragColor = vec4(newPos, 1.0);\n}\n';
+};
+
+var ctVelocityShader = function ctVelocityShader(bounds, size, separationDistance) {
+  return '\n' + noiseStuff + '\n\n#define noiseAmplitude 2.0\n\nuniform float uTime;\nuniform float uBounds;\nuniform float uSpeed;\nconst float COHESION_RADIUS = ' + bounds.toFixed(Math.max(1, ('' + bounds).length - 2)) + ';\nconst float ALIGNMENT_RADIUS = ' + bounds.toFixed(Math.max(1, ('' + bounds).length - 2)) + ';\nconst float SEPARATION_RADIUS = ' + separationDistance.toFixed(Math.max(1, ('' + separationDistance).length - 2)) + ';\nconst float SQRT_BOIDS_COUNT = ' + size.toFixed(Math.max(1, ('' + size).length - 2)) + ';\n\nfloat gt (float a, float b, float t, float f) {\n  return mix(f, t, clamp(sign(a - b), 0.0, 1.0));\n}\n\nvec2 getTextureCoords (int colIndex, int rowIndex) {\n  return vec2(float(colIndex) / float(SQRT_BOIDS_COUNT), float(rowIndex) / float(SQRT_BOIDS_COUNT));\n}\n\nvec3 boidPosition (int colIndex, int rowIndex) {\n  vec2 coords = getTextureCoords(colIndex, rowIndex);\n  return texture2D(ctPosition, coords).xyz;\n}\n\nvec3 boidVelocity (int colIndex, int rowIndex) {\n  vec2 coords = getTextureCoords(colIndex, rowIndex);\n  return texture2D(ctVelocity, coords).xyz;\n}\n\nvec3 cohesion (int colIndex, int rowIndex, vec3 pos) {\n  vec3 perceivedCenter = vec3(0.0, 0.0, 0.0);\n  int neighborCount = 0;\n  for (int y = 0; y < int(SQRT_BOIDS_COUNT); y++) {\n    for (int x = 0; x < int(SQRT_BOIDS_COUNT); x++) {\n      if (x == colIndex && y == rowIndex) {\n        continue;\n      }\n      vec3 boidPos = boidPosition(x, y);\n      float gap = length(boidPos - pos);\n      if (gap > 0.0 && gap < COHESION_RADIUS) {\n        neighborCount += 1;\n        perceivedCenter += boidPos;\n      }\n    }\n  }\n  return ((perceivedCenter / float(neighborCount)) - pos) / 500.0;\n}\n\nvec3 separation (int colIndex, int rowIndex, vec3 pos) {\n  // vec3 perceivedCenter = vec3(0.0, 0.0, 0.0);\n  vec3 sum = vec3(0.0, 0.0, 0.0);\n  int neighborCount = 0;\n  for (int y = 0; y < int(SQRT_BOIDS_COUNT); y++) {\n    for (int x = 0; x < int(SQRT_BOIDS_COUNT); x++) {\n      if (x == colIndex && y == rowIndex) {\n        continue;\n      }\n      vec3 boidPos = boidPosition(x, y);\n      float gap = length(boidPos - pos);\n      if (gap > 0.0 && gap < SEPARATION_RADIUS) {\n        vec3 diff = pos - boidPos;\n        diff = normalize(diff);\n        sum += diff / gap;\n        neighborCount += 1;\n        // perceivedCenter -= boidPos - pos;\n      }\n    }\n  }\n  if (neighborCount > 0) {\n    sum = sum / float(neighborCount);\n  }\n  return sum;\n  // return perceivedCenter;\n}\n\nvec3 alignment (int colIndex, int rowIndex, vec3 pos, vec3 vel) {\n  vec3 perceivedDirection = vec3(0.0, 0.0, 0.0);\n  int neighborCount = 0;\n  for (int y = 0; y < int(SQRT_BOIDS_COUNT); y++) {\n    for (int x = 0; x < int(SQRT_BOIDS_COUNT); x++) {\n      if (x == colIndex && y == rowIndex) {\n        continue;\n      }\n      vec3 boidPos = boidPosition(x, y);\n      float gap = length(boidPos - pos);\n      if (gap < ALIGNMENT_RADIUS) {\n        neighborCount += 1;\n        vec3 boidVel = boidVelocity(x, y);\n        perceivedDirection += boidVel;\n      }\n    }\n  }\n  return ((perceivedDirection / float(neighborCount)) - vel) / 2.0;\n}\n\nvec3 limitVelocity (vec3 vel) {\n  float speed = min(length(vel), 0.25);\n  return vel * (speed / length(vel));\n}\n\nvec3 boundaries (vec3 pos) {\n  float correctionImpulse = uSpeed / 10.0;\n  vec3 vector = vec3(0.0, 0.0, 0.0);\n  if (pos.x < -uBounds) {\n    vector.x = correctionImpulse;\n  }\n  if (pos.x > uBounds) {\n    vector.x = -correctionImpulse;\n  }\n  if (pos.y < -uBounds) {\n    vector.y = correctionImpulse;\n  }\n  if (pos.y > uBounds) {\n    vector.y = -correctionImpulse;\n  }\n  if (pos.z < -uBounds) {\n    vector.z = correctionImpulse;\n  }\n  if (pos.z > uBounds) {\n    vector.z = -correctionImpulse;\n  }\n  return vector;\n}\n\nvec3 wind (vec3 pos) {\n  return vec3(\n    snoise((pos + (uTime * 1000.0)) / 32.0) * noiseAmplitude,\n    snoise((pos + (uTime * 1000.0)) / 56.0) * noiseAmplitude,\n    snoise((pos + (uTime * 1000.0)) / 82.0) * noiseAmplitude\n  );\n}\n\nvoid main () {\n  vec2 uv = gl_FragCoord.xy / resolution.xy;\n  vec3 pos = texture2D(ctPosition, uv).xyz;\n  vec3 vel = texture2D(ctVelocity, uv).xyz;\n  int colIndex = int(uv.x * float(SQRT_BOIDS_COUNT));\n  int rowIndex = int(uv.y * float(SQRT_BOIDS_COUNT));\n  vec3 newVel = vel;\n  newVel += separation(colIndex, rowIndex, pos) * 2.0;\n  newVel += alignment(colIndex, rowIndex, pos, vel);\n  newVel += cohesion(colIndex, rowIndex, pos);\n  newVel += wind(pos);\n  newVel += boundaries(pos);\n  gl_FragColor = vec4(limitVelocity(newVel), uSpeed);\n}\n';
+};
+
+var noiseStuff = '\n#define M_PI 3.1415926535897932384626433832795\n\nvec3 mod289 (vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }\nvec4 mod289 (vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }\nvec4 permute (vec4 x) { return mod289(((x * 34.0) + 1.0) * x); }\nvec4 taylorInvSqrt (vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }\n\nfloat snoise (vec3 v) {\n  const vec2 C = vec2(1.0 / 6.0, 1.0 / 3.0);\n  const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);\n  vec3 i  = floor(v + dot(v, C.yyy)); // First corner\n  vec3 x0 = v - i + dot(i, C.xxx);\n  vec3 g = step(x0.yzx, x0.xyz); // Other corners\n  vec3 l = 1.0 - g;\n  vec3 i1 = min(g.xyz, l.zxy);\n  vec3 i2 = max(g.xyz, l.zxy);\n  vec3 x1 = x0 - i1 + C.xxx;\n  vec3 x2 = x0 - i2 + C.yyy; // 2.0 * C.x = 1 / 3 = C.y\n  vec3 x3 = x0 - D.yyy; // -1.0 + 3.0 * C.x = -0.5 = -D.y\n  i = mod289(i); // Permutations\n  vec4 p = permute(permute(permute(i.z + vec4(0.0, i1.z, i2.z, 1.0)) + i.y + vec4(0.0, i1.y, i2.y, 1.0)) + i.x + vec4(0.0, i1.x, i2.x, 1.0));\n  // Gradients: 7x7 points over a square, mapped onto an octahedron.\n  // The ring size 17 * 17 = 289 is close to a multiple of 49 (49 * 6 = 294)\n  float n_ = 0.142857142857; // 1.0 / 7.0\n  vec3  ns = n_ * D.wyz - D.xzx;\n  vec4 j = p - 49.0 * floor(p * ns.z * ns.z); // mod(p, 7 * 7)\n  vec4 x_ = floor(j * ns.z);\n  vec4 y_ = floor(j - 7.0 * x_); // mod(j, N)\n  vec4 x = x_ *ns.x + ns.yyyy;\n  vec4 y = y_ *ns.x + ns.yyyy;\n  vec4 h = 1.0 - abs(x) - abs(y);\n  vec4 b0 = vec4(x.xy, y.xy);\n  vec4 b1 = vec4(x.zw, y.zw);\n  vec4 s0 = floor(b0) * 2.0 + 1.0;\n  vec4 s1 = floor(b1) * 2.0 + 1.0;\n  vec4 sh = -step(h, vec4(0.0));\n  vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;\n  vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;\n  vec3 p0 = vec3(a0.xy, h.x);\n  vec3 p1 = vec3(a0.zw, h.y);\n  vec3 p2 = vec3(a1.xy, h.z);\n  vec3 p3 = vec3(a1.zw, h.w);\n  //Normalise gradients\n  vec4 norm = taylorInvSqrt(vec4(dot(p0, p0), dot(p1, p1), dot(p2, p2), dot(p3, p3)));\n  p0 *= norm.x;\n  p1 *= norm.y;\n  p2 *= norm.z;\n  p3 *= norm.w;\n  // Mix final noise value\n  vec4 m = max(0.6 - vec4(dot(x0, x0), dot(x1, x1), dot(x2, x2), dot(x3, x3)), 0.0);\n  m = m * m;\n  return 42.0 * dot(m * m, vec4(dot(p0, x0), dot(p1, x1), dot(p2, x2), dot(p3, x3)));\n}\n';
+
+function positionGenerator(size, fieldSize, separationDistance, speed, renderer) {
+  var width = size;
+  var height = size;
+  var gpuCompute = new GPUComputationRenderer(width, height, renderer);
+  var ctVelocity = gpuCompute.createTexture();
+  var ctPosition = gpuCompute.createTexture();
+  for (var i = 0; i < width * height; i++) {
+    var index = i * 4;
+    var xPos = THREE.Math.randFloatSpread(fieldSize);
+    var yPos = THREE.Math.randFloatSpread(fieldSize);
+    var zPos = THREE.Math.randFloatSpread(fieldSize);
+    var xVel = THREE.Math.randFloatSpread(speed);
+    var yVel = THREE.Math.randFloatSpread(speed);
+    var zVel = THREE.Math.randFloatSpread(speed);
+    ctPosition.image.data[index + 0] = xPos;
+    ctPosition.image.data[index + 1] = yPos;
+    ctPosition.image.data[index + 2] = zPos;
+    ctPosition.image.data[index + 3] = 1;
+    ctVelocity.image.data[index + 0] = xVel;
+    ctVelocity.image.data[index + 1] = yVel;
+    ctVelocity.image.data[index + 2] = zVel;
+    ctVelocity.image.data[index + 3] = 1;
+  }
+  var varVelocity = gpuCompute.addVariable('ctVelocity', ctVelocityShader(fieldSize / 2, size, separationDistance), ctVelocity);
+  var varPosition = gpuCompute.addVariable('ctPosition', ctPositionShader(fieldSize / 2, size, separationDistance), ctPosition);
+  gpuCompute.setVariableDependencies(varVelocity, [varPosition, varVelocity]);
+  gpuCompute.setVariableDependencies(varPosition, [varPosition, varVelocity]);
+  varVelocity.material.uniforms.uBounds = { value: fieldSize / 2 };
+  varVelocity.material.uniforms.uSpeed = { value: speed };
+  varVelocity.material.uniforms.uTime = { value: 0 };
+  var error = gpuCompute.init();
+  if (error) {
+    throw new Error(error);
+  }
+  return function (timeDelta) {
+    gpuCompute.compute();
+    return gpuCompute.getCurrentRenderTarget(varPosition).texture;
+    varVelocity.material.uniforms.time = { value: varVelocity.material.uniforms.time + timeDelta };
+  };
+}
+
+var BoxRipple = function (_THREE$Mesh) {
+  _inherits(BoxRipple, _THREE$Mesh);
+
+  function BoxRipple(size, cubeSize, duration, maxDelay) {
+    _classCallCheck(this, BoxRipple);
+
+    var totalDuration = duration + maxDelay;
+    var geometry = new BoxRippleGeometry(cubeSize, size, duration, maxDelay);
+    var material = new BoxRippleMaterial(size);
+    material.uniforms.uDuration.value = totalDuration; // refactor, not the right place for this
+
+    var _this = _possibleConstructorReturn(this, (BoxRipple.__proto__ || Object.getPrototypeOf(BoxRipple)).call(this, geometry, material));
+
+    _this.frustumCulled = false;
+    return _this;
+  }
+
+  _createClass(BoxRipple, [{
+    key: 'time',
+    get: function get() {
+      return this.material.uniforms.uTime.value;
+    },
+    set: function set(newTime) {
+      this.material.uniforms.uTime.value = newTime;
+    }
+  }, {
+    key: 'ctPosition',
+    set: function set(texture) {
+      this.material.uniforms.ctPosition.value = texture;
+    }
+  }]);
+
+  return BoxRipple;
+}(THREE.Mesh);
+
+var BoxRippleGeometry = function (_BAS$PrefabBufferGeom) {
+  _inherits(BoxRippleGeometry, _BAS$PrefabBufferGeom);
+
+  function BoxRippleGeometry(cubeSize, size, duration, maxDelay) {
+    _classCallCheck(this, BoxRippleGeometry);
+
+    var boxGeometry = new THREE.TetrahedronGeometry(cubeSize, 0);
+
+    var _this2 = _possibleConstructorReturn(this, (BoxRippleGeometry.__proto__ || Object.getPrototypeOf(BoxRippleGeometry)).call(this, boxGeometry, size * size));
+
+    _this2.computeVertexNormals();
+    _this2.bufferUvs();
+    _this2.assignProps(duration, maxDelay, size, cubeSize);
+    return _this2;
+  }
+
+  _createClass(BoxRippleGeometry, [{
+    key: 'assignProps',
+    value: function assignProps(duration, maxDelay) {
+      var size = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 256;
+      var cubeSize = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+
+      var aDelayDuration = this.createAttribute('aDelayDuration', 2);
+      var aColor = this.createAttribute('aColor', 3);
+      var aRotation = this.createAttribute('aRotation', 4);
+      var aVOffset = this.createAttribute('aVOffset', 3);
+      var aRef = this.createAttribute('aRef', 2);
+      for (var z = 0; z < size; z++) {
+        var zPos = (-size + 1) * 3 / 2 + z * 3;
+        for (var x = 0; x < size; x++) {
+          var index = z * size + x;
+          var xPos = (-size + 1) * 3 / 2 + x * 3;
+          var position = new THREE.Vector3(xPos, 0, zPos);
+          this.setPrefabData(aVOffset, index, position.toArray());
+          var color = new THREE.Vector3(Math.random() * 0.75 + 0.25, Math.random() * 0.75 + 0.25, Math.random() * 0.75 + 0.25);
+          this.setPrefabData(aColor, index, color.toArray());
+          var rotation = new THREE.Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1);
+          rotation.normalize(); // ew, not functional
+          this.setPrefabData(aRotation, index, [].concat(_toConsumableArray(rotation.toArray()), [Math.PI * 2]));
+          var delay = Math.random() * maxDelay;
+          var delayDuration = new THREE.Vector2(delay, duration);
+          this.setPrefabData(aDelayDuration, index, delayDuration.toArray());
+          this.setPrefabData(aRef, index, [x / size, z / size]);
+        }
+      }
+    }
+  }]);
+
+  return BoxRippleGeometry;
+}(BAS.PrefabBufferGeometry);
+
+var BoxRippleMaterial = function (_BAS$PhongAnimationMa) {
+  _inherits(BoxRippleMaterial, _BAS$PhongAnimationMa);
+
+  function BoxRippleMaterial(size) {
+    _classCallCheck(this, BoxRippleMaterial);
+
+    return _possibleConstructorReturn(this, (BoxRippleMaterial.__proto__ || Object.getPrototypeOf(BoxRippleMaterial)).call(this, {
+      shading: THREE.FlatShading,
+      side: THREE.FrontSide,
+      uniforms: {
+        uTime: { value: 0 },
+        uDuration: { value: 0 },
+        ctPosition: { value: null }
+      },
+      uniformValues: {},
+      varyingParameters: ['varying vec3 vColor;'],
+      vertexFunctions: [BAS.ShaderChunk['quaternion_rotation']],
+      vertexParameters: ['uniform float uTime;', 'uniform float uDuration;', 'uniform sampler2D ctPosition;', 'attribute vec2 aDelayDuration;', 'attribute vec3 aVOffset;', 'attribute vec4 aRotation;', 'attribute vec3 aColor;', 'attribute vec2 aRef;'],
+      vertexInit: ['float seed = 5625463739.0;', 'float time = mod(uTime, uDuration);', 'float tProgress = clamp(time - aDelayDuration.x, 0.0, aDelayDuration.y) / aDelayDuration.y;', 'vec4 tQuatOrient = quatFromAxisAngle(aRotation.xyz, aRotation.w * tProgress);'],
+      vertexNormal: [],
+      vertexPosition: ['transformed = rotateVector(tQuatOrient, transformed);', 'transformed += texture2D(ctPosition, aRef).xyz;'
+      // 'float delta = length(aVOffset);',
+      // 'transformed += aVOffset + vec3(0.0, sin(((uTime * 10.0) + delta) * 0.125) * 8.0, 0.0);'
+      ],
+      vertexColor: ['vColor = aColor;'],
+      fragmentFunctions: [],
+      fragmentParameters: [],
+      fragmentInit: [],
+      fragmentMap: [],
+      fragmentDiffuse: ['diffuseColor.xyz = vColor;']
+    }));
+  }
+
+  return BoxRippleMaterial;
+}(BAS.PhongAnimationMaterial);
+
+var Simulation = function () {
+  function Simulation(domId, entities, _ref) {
+    var _ref2 = _slicedToArray(_ref, 3),
+        cameraX = _ref2[0],
+        cameraY = _ref2[1],
+        cameraZ = _ref2[2];
+
+    _classCallCheck(this, Simulation);
+
+    this.updateCallbacks = [];
+    var camera = this.createCamera(55, cameraX, cameraY, cameraZ, window.innerWidth, window.innerHeight);
+    camera.target = new THREE.Vector3(0, 0, 0);
+    camera.lookAt(camera.target);
+    var scene = new THREE.Scene();
+    this.createLights(scene);
+    var renderer = this.createRenderer(0x000000);
+    document.getElementById(domId).appendChild(renderer.domElement);
+    var handleWindowResize = this.onWindowResize(camera, renderer);
+    handleWindowResize();
+    window.addEventListener('resize', handleWindowResize, false);
+    entities.map(function (e, i) {
+      scene.add(e);
+    });
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    this.animate(renderer, scene, camera, controls, entities, +new Date());
+    this.renderer = renderer;
+  }
+
+  _createClass(Simulation, [{
+    key: 'addUpdateCallback',
+    value: function addUpdateCallback(callback) {
+      this.updateCallbacks.push(callback);
+    }
+  }, {
+    key: 'onWindowResize',
+    value: function onWindowResize(camera, renderer) {
+      return function (event) {
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      };
+    }
+  }, {
+    key: 'animate',
+    value: function animate(renderer, scene, camera, controls, entities, lastTime) {
+      var _this4 = this;
+
+      var currentTime = +new Date();
+      var timeDelta = currentTime - lastTime;
+      entities.forEach(function (e) {
+        return e.time += timeDelta / 1000;
+      });
+      requestAnimationFrame(function () {
+        _this4.animate(renderer, scene, camera, controls, entities, currentTime);
+      });
+      controls.update();
+      this.updateCallbacks.forEach(function (callback) {
+        return callback(timeDelta);
+      });
+      renderer.render(scene, camera);
+    }
+  }, {
+    key: 'createCamera',
+    value: function createCamera(fov) {
+      var x = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var y = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+      var z = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+      var width = arguments[4];
+      var height = arguments[5];
+
+      var camera = new THREE.PerspectiveCamera(fov, width / height, 0.5, 30000);
+      camera.position.x = x;
+      camera.position.y = y;
+      camera.position.z = z;
+      return camera;
+    }
+  }, {
+    key: 'createLights',
+    value: function createLights(scene) {
+      scene.add(new THREE.AmbientLight(0x444444));
+      scene.add(new THREE.DirectionalLight(0xffffff));
+    }
+  }, {
+    key: 'createRenderer',
+    value: function createRenderer() {
+      var clearColor = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0x000000;
+
+      var renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true
+      });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.autoClear = false;
+      renderer.setClearColor(clearColor, 0);
+      return renderer;
+    }
+  }]);
+
+  return Simulation;
+}();
+  </script>
+ </BODY>
+</HTML>

@@ -1,0 +1,1310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  /* 
+GOOGLE CHROME & FIREFOX ONLY
+-----------------------------------
+Use Keys A and S to rotate blocks
+Use Arrow keys to move left and right
+*/
+
+body{
+			  margin: 0;
+			  padding: 0;
+			  background: #222;
+			}
+
+
+			/* TETRIS BLOCKS */
+			.cube{
+			  position: absolute;
+			  top: 0px;
+			  left: 0px;
+			  width: 15px;
+			  height: 15px;
+			  -webkit-transform: rotateX(45deg) rotateZ(45deg) translate3d(0,0,0);
+			  -moz-transform: rotateX(45deg) rotateZ(45deg) translate3d(0,0,0);
+			  -o-transform: rotateX(45deg) rotateZ(45deg) translate3d(0,0,0);
+			  transform: rotateX(45deg) rotateZ(45deg) translate3d(0,0,0);
+			}
+
+			.tpiece{
+			  position: absolute;
+			  top: 214px;
+			  left: 36px;
+			}
+
+			.tpiece .cube{
+			  background: #ffce54;
+			}
+
+			.tpiece .cube:after{
+			  background: #ddac32;
+			}
+
+			.tpiece .cube:before{
+			  background: #bb8a10;
+			}
+
+			.tpiece.deg0 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.tpiece.deg0 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.tpiece.deg0 .c4{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.tpiece.deg90 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.tpiece.deg90 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.tpiece.deg90 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 0px;
+			}
+
+			.tpiece.deg90 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.tpiece.deg180 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.tpiece.deg180 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.tpiece.deg180 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 0px;
+			}
+
+			.tpiece.deg180 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 0px;
+			}
+
+			.tpiece.deg270 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.tpiece.deg270 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.tpiece.deg270 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 0px;
+			}
+
+			.tpiece.deg270 .c4{
+			  position: absolute;
+			  top: 0px;
+			  left: 0px;
+			}
+
+
+
+			.lpiece{
+			  position: absolute;
+			  top: 214px;
+			  left: 36px;
+			}
+
+			.lpiece .cube{
+			  background: #4fc1e9;
+			}
+
+			.lpiece .cube:after{
+			  background: #2da0c7;
+			}
+
+			.lpiece .cube:before{
+			  background: #0b80a5;
+			}
+
+			.lpiece.deg0 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.lpiece.deg0 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.lpiece.deg0 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.lpiece.deg270 .c1{
+			  position: absolute;
+			  top: -9px;
+			  left: 36px;
+			}
+
+			.lpiece.deg270 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.lpiece.deg270 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.lpiece.deg270 .c4{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.lpiece.deg180 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 0px;
+			}
+
+			.lpiece.deg180 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: -12px;
+			}
+
+			.lpiece.deg180 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.lpiece.deg180 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.lpiece.deg90 .c4{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.lpiece.deg90 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 0px;
+			}
+
+			.lpiece.deg90 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.lpiece.deg90 .c1{
+			  position: absolute;
+			  top: -9px;
+			  left: 12px;
+			}
+
+
+			.lrpiece{
+			  position: absolute;
+			  top: 214px;
+			  left: 36px;
+			}
+
+			.lrpiece .cube{
+			  background: #48cfad;
+			}
+
+			.lrpiece .cube:after{
+			  background: #26ad8b;
+			}
+
+			.lrpiece .cube:before{
+			  background: #048b6a;
+			}
+
+			.lrpiece.deg0 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.lrpiece.deg0 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.lrpiece.deg0 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 48px;
+			}
+
+			.lrpiece.deg0 .c4{
+			  position: absolute;
+			  top: 27px;
+			  left: 36px;
+			}
+
+			.lrpiece.deg270 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 48px;
+			}
+
+			.lrpiece.deg270 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.lrpiece.deg270 .c4{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.lrpiece.deg270 .c3{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.lrpiece.deg180 .c1{
+			  position: absolute;
+			  top: -9px;
+			  left: 36px;
+			}
+
+			.lrpiece.deg180 .c3{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.lrpiece.deg180 .c4{
+			  position: absolute;
+			  top: 18px;
+			  left: 48px;
+			}
+
+			.lrpiece.deg180 .c2{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.lrpiece.deg90 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 60px;
+			}
+
+			.lrpiece.deg90 .c3{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.lrpiece.deg90 .c4{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.lrpiece.deg90 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 48px;
+			}
+
+			.cpiece{
+			  position: absolute;
+			  top: 214px;
+			  left: 36px;
+			}
+
+			.cpiece .cube{
+			  background: #ac92ec;
+			}
+
+			.cpiece .cube:after{
+			  background: #8a70ca;
+			}
+
+			.cpiece .cube:before{
+			  background: #6850a8;
+			}
+
+			.cpiece.deg0 .c1{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.cpiece.deg0 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.cpiece.deg0 .c3{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.cpiece.deg0 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.cpiece.deg270 .c1{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.cpiece.deg270 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.cpiece.deg270 .c3{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.cpiece.deg270 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.cpiece.deg180 .c1{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.cpiece.deg180 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.cpiece.deg180 .c3{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.cpiece.deg180 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.cpiece.deg90 .c1{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.cpiece.deg90 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.cpiece.deg90 .c3{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.cpiece.deg90 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+
+			.spiece{
+			  position: absolute;
+			  top: 214px;
+			  left: 36px;
+			}
+
+			.spiece .cube{
+			  background: #fc826a;
+			}
+
+			.spiece .cube:after{
+			  background: #da6048;
+			}
+
+			.spiece .cube:before{
+			  background: #b84026;
+			}
+
+			.spiece.deg270 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 0px;
+			}
+
+			.spiece.deg270 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.spiece.deg270 .c3{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.spiece.deg270 .c4{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.spiece.deg0 .c4{
+			  position: absolute;
+			  top: -9px;
+			  left: 36px;
+			}
+
+			.spiece.deg0 .c1{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.spiece.deg0 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.spiece.deg0 .c3{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.spiece.deg90 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 0px;
+			}
+
+			.spiece.deg90 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.spiece.deg90 .c3{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.spiece.deg90 .c4{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+
+			.spiece.deg180 .c4{
+			  position: absolute;
+			  top: -9px;
+			  left: 36px;
+			}
+
+			.spiece.deg180 .c1{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.spiece.deg180 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.spiece.deg180 .c3{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+			
+			.srpiece{
+			  position: absolute;
+			  top: 205px;
+			  left: 36px;
+			}
+
+			.srpiece .cube{
+			  background: #d770ad;
+			}
+
+			.srpiece .cube:after{
+			  background: #b5508b;
+			}
+
+			.srpiece .cube:before{
+			  background: #933069;
+			}
+
+			.srpiece.deg0 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 12px;
+			}
+
+			.srpiece.deg0 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 0px;
+			}
+
+			.srpiece.deg0 .c3{
+			  position: absolute;
+			  top: 0px;
+			  left: 36px;
+			}
+
+			.srpiece.deg0 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 24px;
+			}
+
+			.srpiece.deg270 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 12px;
+			}
+
+			.srpiece.deg270 .c4{
+			  position: absolute;
+			  top: 27px;
+			  left: 24px;
+			}
+
+			.srpiece.deg270 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 24px;
+			}
+
+			.srpiece.deg270 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 12px;
+			}
+
+			.srpiece.deg180 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 12px;
+			}
+
+			.srpiece.deg180 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 0px;
+			}
+
+			.srpiece.deg180 .c3{
+			  position: absolute;
+			  top: 0px;
+			  left: 36px;
+			}
+
+			.srpiece.deg180 .c4{
+			  position: absolute;
+			  top: 9px;
+			  left: 24px;
+			}
+
+			.srpiece.deg90 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 12px;
+			}
+
+			.srpiece.deg90 .c4{
+			  position: absolute;
+			  top: 27px;
+			  left: 24px;
+			}
+
+			.srpiece.deg90 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 24px;
+			}
+
+			.srpiece.deg90 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 12px;
+			}
+
+
+			.ipiece{
+			  position: absolute;
+			  top: 214px;
+			  left: 36px;
+			}
+
+			.ipiece .cube{
+			  background: #a0d468;
+			}
+
+			.ipiece .cube:after{
+			  background: #80b246;
+			}
+
+			.ipiece .cube:before{
+			  background: #689004;
+			}
+
+			.ipiece.deg0 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 0px;
+			}
+
+			.ipiece.deg0 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.ipiece.deg0 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.ipiece.deg0 .c4{
+			  position: absolute;
+			  top: 27px;
+			  left: 36px;
+			}
+
+			.ipiece.deg270{
+			  position: absolute;
+			  top: 100px;
+			  left: 500px;
+			}
+
+			.ipiece.deg270 .c1{
+			  position: absolute;
+			  top: 9px;
+			  left: 36px;
+			}
+
+			.ipiece.deg270 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 24px;
+			}
+
+			.ipiece.deg270 .c3{
+			  position: absolute;
+			  top: 27px;
+			  left: 12px;
+			}
+
+			.ipiece.deg270 .c4{
+			  position: absolute;
+			  top: 36px;
+			  left: 0px;
+			}
+
+
+
+			.ipiece.deg180{
+			  position: absolute;
+			  top: 200px;
+			  left: 500px;
+			}
+
+			.ipiece.deg180 .c1{
+			  position: absolute;
+			  top: 9px;
+			  left: -12px;
+			}
+
+			.ipiece.deg180 .c2{
+			  position: absolute;
+			  top: 18px;
+			  left: 0px;
+			}
+
+			.ipiece.deg180 .c3{
+			  position: absolute;
+			  top: 27px;
+			  left: 12px;
+			}
+
+			.ipiece.deg180 .c4{
+			  position: absolute;
+			  top: 36px;
+			  left: 24px;
+			}
+
+			.ipiece.deg90{
+			  position: absolute;
+			  top: 300px;
+			  left: 500px;
+			}
+
+			.ipiece.deg90 .c1{
+			  position: absolute;
+			  top: 0px;
+			  left: 24px;
+			}
+
+			.ipiece.deg90 .c2{
+			  position: absolute;
+			  top: 9px;
+			  left: 12px;
+			}
+
+			.ipiece.deg90 .c3{
+			  position: absolute;
+			  top: 18px;
+			  left: 0px;
+			}
+
+			.ipiece.deg90 .c4{
+			  position: absolute;
+			  top: 27px;
+			  left: -12px;
+			}
+
+			.cube:after{
+			  content: '';
+			  position: absolute;
+			  top: 15px;
+			  left: 7px;
+			  width: 15px;
+			  height: 15px;
+			  -webkit-transform: skew(45deg);
+			  -moz-transform: skew(45deg);
+			  -o-transform: skew(45deg);
+			  transform: skew(45deg);
+			}
+
+			.cube:before{
+			  content: '';
+			  position: absolute;
+			  top: 8px;
+			  left: 15px;
+			  width: 15px;
+			  height: 15px;
+			  -webkit-transform: skew(0deg, 45deg);
+			  -moz-transform: skew(0deg, 45deg);
+			  -o-transform: skew(0deg, 45deg);
+			  transform: skew(0deg, 45deg);
+			}
+
+
+			/* PLAYING FIELD */
+
+			.field{
+			  text-align:center;
+			  position: absolute;
+			  top: 146px;
+			  left: 52px;
+			  width: 756px;
+			  height: 375px;
+			  background-color: #111;
+			  z-index: 0;
+			    /*background-image:       linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 32%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 80%, rgba(255, 255, 255, .05) 85%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .05) 25%, rgba(255, 255, 255, .05) 32%, transparent 27%, transparent 74%, rgba(255, 255, 255, .05) 75%, rgba(255, 255, 255, .05) 80%, transparent 77%, transparent);
+			  background-size:35px 35px;*/
+			  -webkit-transform: rotateX(45deg) rotateZ(45deg) translate3d(0,0,0);
+			  -moz-transform: rotateX(45deg) rotateZ(45deg) translate3d(0,0,0);
+			  -o-transform: rotateX(45deg) rotateZ(45deg) translate3d(0,0,0);
+			  transform: rotateX(45deg) rotateZ(45deg) translate3d(0,0,0);
+			}
+
+			.ref{
+				display: none;
+			}
+
+			.cube{
+				z-index: 1;
+			}
+
+			.points_title{
+				position: absolute;
+				top: 316px;
+				left: 14px;
+				width: 80px;
+				font-family: Arial;
+				color: #555;
+				font-size: 14px;
+				padding: 10px;
+				text-align: center;
+				-webkit-transform: rotateX(-45deg) rotateZ(-45deg);
+				-moz-transform: rotateX(-45deg) rotateZ(-45deg);
+				-o-transform: rotateX(-45deg) rotateZ(-45deg);
+				transform: rotateX(-45deg) rotateZ(-45deg);
+			}
+
+			.points{
+				position: absolute;
+				top: 320px;
+				left: 50px;
+				width: 80px;
+				font-family: Arial;
+				color: #555;
+				font-size: 18px;
+				padding: 10px;
+				text-align: center;
+				background-color: #111;
+				-webkit-transform: rotateX(-45deg) rotateZ(-45deg);
+				-moz-transform: rotateX(-45deg) rotateZ(-45deg);
+				-o-transform: rotateX(-45deg) rotateZ(-45deg);
+				transform: rotateX(-45deg) rotateZ(-45deg);
+			}
+
+			.points span{
+				font-size: 15px;
+			}
+  </style>
+ </HEAD>
+
+ <BODY>
+ <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <span class="points_title">POINTS</span>
+		<div class="points">0</div>
+		<div class="field"></div>
+		<div class="tpiece deg0 tpieceref ref">
+		  <div class="cube c1"></div>
+		  <div class="cube c4"></div>
+		  <div class="cube c2"></div>
+		  <div class="cube c3"></div>
+		</div>
+		<div class="lpiece deg0 lpieceref ref">
+		  <div class="cube c1"></div>
+		  <div class="cube c4"></div>
+		  <div class="cube c2"></div>
+		  <div class="cube c3"></div>
+		</div>
+		<div class="lrpiece deg0 lrpieceref ref">
+		  <div class="cube c1"></div>
+		  <div class="cube c2"></div>
+		  <div class="cube c3"></div>
+		  <div class="cube c4"></div>
+		</div>
+		<div class="cpiece deg0 cpieceref ref">
+		  <div class="cube c3"></div>
+		  <div class="cube c4"></div>
+		  <div class="cube c1"></div>
+		  <div class="cube c2"></div>
+		</div>
+		<div class="spiece deg0 spieceref ref">
+		  <div class="cube c4"></div>
+		  <div class="cube c3"></div>
+		  <div class="cube c1"></div>
+		  <div class="cube c2"></div>
+		</div>
+		<div class="srpiece deg0 srpieceref ref">
+		  <div class="cube c1"></div>
+		  <div class="cube c2"></div>
+		  <div class="cube c3"></div>
+		  <div class="cube c4"></div>
+		</div>
+		<div class="ipiece deg0 ipieceref ref">
+		  <div class="cube c1"></div>
+		  <div class="cube c2"></div>
+		  <div class="cube c3"></div>
+		  <div class="cube c4"></div>
+		</div>
+
+		<script>
+		
+		var interval = null;
+			$(document).ready(function(){
+			  generate_blocks();
+			  interval = setInterval("update_blocks(false)",200);
+			});
+
+			var points = 0;
+			var y_arr = [];
+
+			function y_count(arr) {
+			    var a = [], b = [], prev;
+			    
+			    arr.sort();
+			    for ( var i = 0; i < arr.length; i++ ) {
+			        if ( arr[i] !== prev ) {
+			            a.push(arr[i]);
+			            b.push(1);
+			        } else {
+			            b[b.length-1]++;
+			        }
+			        prev = arr[i];
+			    }
+			    
+			    return [a, b];
+			}
+
+			function update_blocks(row_removed){
+				var move = true;
+				var y_const = 215;
+				y_arr = [];
+				$(".active > .cube").each(function(){
+				  	if($(this).attr("data-y") > 41){
+				    	move = false;
+				  	}
+				  	$(this).css("z-index",Math.round($(this).offset().top+((1/$(this).offset().left)*100)));
+				  	var active_cube = $(this);
+			  	
+				  	$(".cube").each(function(){
+				  		var classes = $(this).parent().attr("class").split(" ");
+				  		var ignore = false;
+				  		for(var i = 0; i<classes.length;i++){
+				  			if(classes[i] == "active" || classes[i] == "ref"){
+				  				ignore = true;
+				  			}
+				  		}
+				  		if(ignore){
+
+				  		}
+				  		else{
+				  			var x = $(this).offset().left;
+				  			var y = $(this).offset().top;
+
+				  			var a_x = active_cube.offset().left+12.7;
+				  			var a_y = active_cube.offset().top+9;
+
+				  			if(x >= a_x-6 && x <= a_x+6){
+				  				if(y >= a_y-6 && y <= a_y+6){
+				  					move = false;
+				  				}
+				  			}
+				  		}
+				  	});
+				});
+				if(move){
+					if($(".active").length != 0){
+			    		$(".active").css("top",$(".active").offset().top+9+"px");
+						$(".active").css("left",$(".active").offset().left+12.7+"px");
+					}	
+				}	
+				else{
+					$(".active").removeClass("active");
+					points++
+					if(row_removed){
+
+					}
+					else{
+						$.when(generate_blocks()).done(function( x ) {
+						  console.log("finished generating block... continue")
+						});
+					}
+				}
+				$(".points").html(points);
+				$(".cube").each(function(){
+					var y = Math.round((($(this).offset().top-50)+(($(this).offset().left-31)/12.7)*9)/9)-58;
+			  		var x = 0;
+			  		$(this).attr("data-y",y);
+			  		if(y < 0){
+
+			  		}else{
+			  			y_arr.push(y);
+			  		}
+				});
+				//console.log("X:" + x + ", Y: " + y + " | " + $(this).attr("class"));
+			  	var array = y_count(y_arr);
+			  	var objects = array[0];
+			  	var counts = array[1];
+			  	var y_full = 0;
+			  	var row_removed=false;
+			  	for(var i=0;i<counts.length;i++){
+			  		if(counts[i] >= 21){
+			  			y_full = objects[i];
+			  			$(".cube").each(function(){
+					  		if($(this).attr("data-y")==y_full){
+					  			$(this).remove();
+					  			row_removed = true;
+					  			$(".active").removeClass("active");
+					  		}
+					  	});
+			  		}
+			  	}
+			  	array =[];
+			  	$(".cube").each(function(){
+			  		if(row_removed){
+			  			clearInterval(interval);
+			  			var classes = $(this).parent().attr("class").split(" ");
+				  		var ignore = false;
+				  		for(var i = 0; i<classes.length;i++){
+				  			if(classes[i] == "active" || classes[i] == "ref"){
+				  				ignore = true;
+				  			}
+				  		}
+				  		if(ignore){
+
+				  		}
+				  		else{
+			  				$(this).parent().addClass("active");
+			  				update_blocks(true);
+			  			}
+			  		}
+			  	});
+			  	if(row_removed){
+			  		points+=10;
+			  		row_removed = false;
+			  		interval = setInterval("update_blocks(false)",200);
+			  	}
+			}
+
+			function sleepFor( sleepDuration ){
+			    var now = new Date().getTime();
+			    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+			}
+
+			function generate_blocks(){
+				$(".lrpiece").addClass("active");
+				var r_no = (Math.floor((Math.random() * 0.7)*10))/10;
+				var block_generate = null;
+				if(r_no == 0){
+					block_generate = "tpiece";
+				}
+				else if(r_no == 0.1){
+					block_generate = "lpiece";
+				}
+				else if(r_no == 0.2){
+					block_generate = "lrpiece";
+				}
+				else if(r_no == 0.3){
+					block_generate = "cpiece";
+				}
+				else if(r_no == 0.4){
+					block_generate = "spiece";
+				}
+				else if(r_no == 0.5){
+					block_generate = "srpiece";
+				}
+				else if(r_no == 0.6){
+					block_generate = "ipiece";
+				}
+				else{
+					console.log("/!\\ ERROR: Random Number Generate falls outwith cats");
+					var error = true;
+					generate_blocks();
+				}
+				if(!error){
+					$(".active").removeClass("active");
+					$(document.body).append("<div class='"+block_generate+" deg0 active'>"+$("."+block_generate+"ref").html()+"</div>");
+				}
+			}
+
+			$(document).keydown(function(e){
+			  if (e.keyCode == 65) { 
+			    //left (A)
+			    if($(".active.deg0").length != 0){
+			      $(".active.deg0").addClass("deg270").removeClass("deg0");
+			    }
+			    else if($(".active.deg270").length != 0){
+			      $(".active.deg270").addClass("deg180").removeClass("deg270");
+			    }
+			    else if($(".active.deg180").length != 0){
+			      $(".active.deg180").addClass("deg90").removeClass("deg180");
+			    }
+			    else if($(".active.deg90").length != 0){
+			      $(".active.deg90").addClass("deg0").removeClass("deg90");
+			    }
+			    return false;
+			  }
+			  else if (e.keyCode == 83) { 
+			    //RIGHT (S)
+			    if($(".active.deg0").length != 0){
+			      $(".active.deg0").addClass("deg90").removeClass("deg0");
+			    }
+			    else if($(".active.deg90").length != 0){
+			      $(".active.deg90").addClass("deg180").removeClass("deg90");
+			    }
+			    else if($(".active.deg180").length != 0){
+			      $(".active.deg180").addClass("deg270").removeClass("deg180");
+			    }
+			    else if($(".active.deg270").length != 0){
+			      $(".active.deg270").addClass("deg0").removeClass("deg270");
+			    }
+			    return false;
+			  }
+			  else if (e.keyCode == 40) { 
+			  	update_blocks(false);
+			  }
+			  else if (e.keyCode == 37) { 
+			    //MOVE LEFT (arrow left)
+			    console.log("LEFT");
+			    var move = true;
+				$(".active > .cube").each(function(){
+				  	if($(this).offset().left < 32 + (($(this).offset().top-200)/9)*12.7){
+				    	move = false;
+				  	}
+				});
+				if(move){
+					if(check_left() && $(".active").length != 0){
+			    		$(".active").css("top",$(".active").offset().top+9+"px");
+			    		$(".active").css("left",$(".active").offset().left-12.7+"px");
+			    	}
+			    }
+			  }
+			  else if (e.keyCode == 39) { 
+			    //MOVE RIGHT (arrow right)
+			    console.log("RIGHT");
+			     var move = true;
+				$(".active > .cube").each(function(){
+				  	if($(this).offset().left > 32 + (($(this).offset().top+138)/9)*12.7){
+				    	move = false;
+				  	}
+				});
+				if(move){
+					if(check_right() && $(".active").length != 0){
+			    		$(".active").css("top",$(".active").offset().top-9+"px");
+			   			$(".active").css("left",$(".active").offset().left+12.7+"px");
+			   		}
+			   	}
+			  }	
+			});
+
+			function check_left(){
+				var move = true;
+				$(".active > .cube").each(function(){
+					$(this).css("z-index",Math.round($(this).offset().top+((1/$(this).offset().left)*100)));
+				  	var active_cube = $(this);
+				  	$(".cube").each(function(){
+				  		var classes = $(this).parent().attr("class").split(" ");
+				  		var ignore = false;
+				  		for(var i = 0; i<classes.length;i++){
+				  			if(classes[i] == "active" || classes[i] == "ref"){
+				  				ignore = true;
+				  			}
+				  		}
+				  		if(ignore){
+
+				  		}
+				  		else{
+				  			var x = $(this).offset().left;
+				  			var y = $(this).offset().top;
+
+				  			var a_x = active_cube.offset().left-12.7;
+				  			var a_y = active_cube.offset().top+9;
+
+				  			if(x >= a_x-5 && x <= a_x+5){
+				  				if(y >= a_y-5 && y <= a_y+5){
+				  					move = false;
+				  				}
+				  			}
+				  		}
+				  	});
+				});
+				return move;
+			}
+
+			function check_right(){
+				var move = true;
+				$(".active > .cube").each(function(){
+					$(this).css("z-index",Math.round($(this).offset().top+((1/$(this).offset().left)*100)));
+				  	var active_cube = $(this);
+				  	$(".cube").each(function(){
+				  		var classes = $(this).parent().attr("class").split(" ");
+				  		var ignore = false;
+				  		for(var i = 0; i<classes.length;i++){
+				  			if(classes[i] == "active" || classes[i] == "ref"){
+				  				ignore = true;
+				  			}
+				  		}
+				  		if(ignore){
+
+				  		}
+				  		else{
+				  			var x = $(this).offset().left;
+				  			var y = $(this).offset().top;
+
+				  			var a_x = active_cube.offset().left+12.7;
+				  			var a_y = active_cube.offset().top-9;
+
+				  			if(x >= a_x-5 && x <= a_x+5){
+				  				if(y >= a_y-5 && y <= a_y+5){
+				  					move = false;
+				  				}
+				  			}
+				  		}
+				  	});
+				});
+				return move;
+			}
+		</script>
+		    
+ </BODY>
+</HTML>

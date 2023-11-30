@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   body{
+  background-color: #F85C00;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.container{
+  height: 385px;
+  width: 317px;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.albumen{
+  height: 300px;
+  width: 300px;
+  border: 10px solid #292826;
+  background-color: #F5F5F5;
+  border-radius: 50%;
+  box-shadow: inset -14px -26px 0px #D1D1D1;
+}
+.yolk{
+  background-color: #FFDD00;
+  height: 140px;
+  width: 140px;
+  border: 10px solid #292826; 
+  margin: auto;
+  position: relative;
+  top: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: inset -6px -10px 0px rgba(0,0,0,.15); 
+  animation: 4s yolkAnimate infinite;
+}
+@keyframes yolkAnimate{
+  0%{}
+  50%{ box-shadow: inset -10px -18px 0px rgba(0,0,0,.15)}
+  100%{}
+}
+.yolk .eyebrow1{
+  position: absolute;
+  top: 30px;
+  left: 14px;
+  height: 20px;
+  width: 32px;
+  overflow: hidden;
+  border-radius: 50%;
+  animation: 4s eyebrow1Animate infinite;
+}
+@keyframes eyebrow1Animate{
+  0%{}
+  50%{top: 20px; left: 10px; transform: rotate(10deg);}
+  70%{top: 20px; left: 10px; transform: rotate(10deg);}
+  100%{}
+}
+.yolk .eyebrow1 .eyebrowinner{
+  border: 7px solid #292826;
+  height: 50px;
+  width: 55px;
+  border-radius: 50%;
+}
+
+.yolk .eyebrow2{
+  position: absolute;
+  top: 29px;
+  left: 90px;
+  height: 20px;
+  width: 32px;
+  overflow: hidden;
+  border-radius: 50%;
+  animation: 4s eyebrow2Animate infinite;
+  direction: rtl;
+}
+@keyframes eyebrow2Animate{
+  0%{}
+  50%{top: 20px; left: 83px; transform: rotate(8deg);}
+  70%{top: 20px; left: 83px; transform: rotate(8deg);}
+  100%{}
+}
+.yolk .eyebrow2 .eyebrowinner{
+  border: 7px solid #292826;
+  height: 50px;
+  width: 55px;
+  border-radius: 50%;
+}
+.eye{
+  background-color: #292826;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: absolute;
+}
+.eye.eye1{
+  top: 45px;
+  left: 30px;
+  animation: 4s eye1Animate infinite;
+}
+@keyframes eye1Animate{
+  0%{}
+  10%{height: 0px; top: 45px;}
+  20%{height: 20px;}
+  25%{top: 35px; height: 20px; left: 25px;}
+  50%{top: 35px; height: 20px; left: 25px;}
+  75%{top: 35px; height: 20px; left: 25px;}
+  85%{height: 0px; top: 45px; left: 30px;}
+  100%{}
+}
+.eye.eye2{
+  top: 45px;
+  left: 85px;
+  animation: 4s eye2Animate infinite;
+}
+@keyframes eye2Animate{
+  0%{}
+  10%{height: 0px; top: 45px;}
+  20%{height: 20px;}
+  25%{top: 35px; height: 20px; left: 80px;}
+  50%{top: 35px; height: 20px; left: 80px;}
+  75%{top: 35px; height: 20px; left: 80px;}
+  85%{height: 0px; top: 45px; left: 85px;}
+  100%{}
+}
+.mouth{
+  background-color: #292826;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: absolute; 
+  top: 85px;
+  left: 57px;
+  animation: 4s mouthAnimate infinite;
+}
+@keyframes mouthAnimate{
+  0%{}
+  15%{height: 50px; width: 50px;top: 60px; left: 40px;}
+  50%{height: 45px; width: 20px;}
+  85%{height: 50px; width: 50px;top: 60px; left: 40px;}
+  100%{}
+}
+.text{
+ color: 292826;
+  text-align: center;
+  font-size: 40px;
+  margin-top: 20px;
+}
+.whiteLine{
+  position: absolute;
+  top: 3px;
+  left: 1px;
+  height: 40px;
+  width: 60px;
+  overflow: hidden;
+  animation: 4s whiteLineAnimate infinite;
+}
+.whiteLine:after{
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 7px;
+  background-color: #FFDD00;
+  height: 12px;
+  width: 10px;
+  border-radius: 50%;
+}
+@keyframes whiteLineAnimate{
+  0%{}
+  50%{top: -15px;}
+  70%{top: -15px;}
+  0%{}
+}
+.whiteLine .whiteLineInner{
+  border: 7px solid #F5F5F5;
+  height: 127px;
+  width: 127px;
+  border-radius: 50%;
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+  <div class='head'>
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet'>
+</div>
+<div class='container'>
+  <div class='egg'>
+    <div class='albumen'>
+      <div class='yolk'>
+        <div class='eyebrow1'>
+          <div class='eyebrowinner'></div>
+        </div>
+        <div class='eyebrow2'>
+          <div class='eyebrowinner'></div>
+        </div>
+        <div class='whiteLine'>
+          <div class='whiteLineInner'></div>
+        </div>
+        <div class='eye eye1'></div>
+        <div class='eye eye2'></div>
+        <div class='mouth'></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ </BODY>
+</HTML>
