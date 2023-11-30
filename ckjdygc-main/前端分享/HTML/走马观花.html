@@ -1,0 +1,465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> New Document </TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+   :root {
+  --radius: 50vmin;
+  --radius-outer: 53vmin; /*Edge had issues using calc in the translateZ, so broke out -outer and -inverse */
+  --radius-inverse: -50vmin;
+  --width: 13.5vmin;
+  --height: 15vmin;
+  --zoe: 2deg; /* 10deg is a fun value*/;
+  --pull-closer: 50vmin;
+  --spin-duration: 1601.5ms;
+}
+main {
+  position: relative;
+  width: calc(var(--radius) * 2);
+  height: calc(var(--radius) * 2);
+  animation: zoe-it-on-up var(--spin-duration) infinite reverse linear;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+main > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--width);
+  height: var(--height);
+  background: white;
+  -webkit-transform: 
+    translate(-50%, -50%)
+    rotateY(var(--ry, 0deg))
+    translateZ(var(--radius-inverse));
+          transform: 
+    translate(-50%, -50%)
+    rotateY(var(--ry, 0deg))
+    translateZ(var(--radius-inverse));
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  
+  display: flex;
+}
+div svg {
+  width: calc(var(--width) / 1.25);
+  margin: auto;
+}
+aside {
+  position: absolute;
+  width: calc(var(--radius) * 2);
+  height: calc(var(--radius) * 2);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+aside.shown {
+  opacity: 1;
+}
+aside > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--width) * .7925);
+  height: calc(var(--height) * 1);
+  background: hsl(183, 12%, 12%);
+  -webkit-transform: 
+    translate(-50%, -50%)
+    rotateY(var(--ry, 0deg))
+    translateZ(var(--radius-outer));
+          transform: 
+    translate(-50%, -50%)
+    rotateY(var(--ry, 0deg))
+    translateZ(var(--radius-outer));
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+aside.shown > div {
+  opacity: 1;
+}
+
+@-webkit-keyframes zoe-it-on-up {
+  0% {
+    -webkit-transform: translateZ(var(--pull-closer)) rotateX(var(--zoe)) rotateY(0deg);
+            transform: translateZ(var(--pull-closer)) rotateX(var(--zoe)) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: translateZ(var(--pull-closer)) rotateX(var(--zoe)) rotateY(-360deg);
+            transform: translateZ(var(--pull-closer)) rotateX(var(--zoe)) rotateY(-360deg);
+  }
+}
+
+@keyframes zoe-it-on-up {
+  0% {
+    -webkit-transform: translateZ(var(--pull-closer)) rotateX(var(--zoe)) rotateY(0deg);
+            transform: translateZ(var(--pull-closer)) rotateX(var(--zoe)) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: translateZ(var(--pull-closer)) rotateX(var(--zoe)) rotateY(-360deg);
+            transform: translateZ(var(--pull-closer)) rotateX(var(--zoe)) rotateY(-360deg);
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  -webkit-perspective: 150vmin;
+          perspective: 150vmin;
+  background: radial-gradient(circle, hsl(343, 38%, 30%),hsl(343, 38%, 20%));
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 1rem;
+  color: #fdfeff;
+  font-family: system-ui, 'Segoe UI', -apple-system, sans-serif;
+  background: hsla(0, 0%, 0%, .2);
+}
+  </style>
+ </HEAD>
+
+ <BODY>
+ <svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position:absolute;opacity:0" id="filters">
+  <defs>
+    <filter id="drawn">
+      <feTurbulence baseFrequency="0.00325" numOctaves="8" />
+      <feDisplacementMap in="SourceGraphic" scale="30" />
+    </filter>
+  </defs>
+</svg>
+
+
+
+
+<main>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <div><svg viewBox="0 20 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g class="drawable" fill="#ffffff" stroke="#000000" filter="url(#drawn)">
+    <ellipse class="head" cx="100" cy="115" rx="80" ry="75" stroke-width="3.25" />
+    <ellipse class="eye-right" cx="130" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-right" cx="114.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <ellipse class="eye-left" cx="65" cy="106" rx="30" ry="35" stroke-width="3.25" />
+    <ellipse class="pupil-left" cx="47.5" cy="106" rx="1" ry="1.5" stroke-width="3.25" />
+    <path class="mouth" d="M90,170 c0,15 20,15 20,0" transform="translate(0 -10)" stroke-width="3.25" />
+  </g>
+</svg></div>
+  <aside class="shown">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </aside>
+</main>
+<form>
+  <input type="checkbox" id="show-outer-ring" checked />
+  <label for="show-outer-ring">Show Outer Ring</label>
+</form>
+  <script>
+   var images = Array.from(document.querySelectorAll('main > div'));
+var zoe = Array.from(document.querySelectorAll('aside > div'));
+
+images.forEach((panel, i) => {
+  panel.style.setProperty('--ry', (i * 360 / images.length) + 'deg');
+});
+zoe.forEach((panel, i) => {
+  panel.style.setProperty('--ry', (i * 360 / zoe.length) + 'deg');
+});
+
+var outerRing = document.querySelector('aside');
+document.getElementById('show-outer-ring').addEventListener('click', function(e) {
+  var cl = outerRing.classList;
+  if (e.currentTarget.checked) {
+    cl.add('shown');
+  } else {
+    cl.remove('shown');
+  }
+});
+
+let svgs = Array.from(document.querySelectorAll('svg:not(#filters)'));
+let leftStart = 47.5;
+let rightStart = 114.5;
+let step = 68 / images.length;
+
+for (let i = 0, l = images.length; i < l / 2; ++i) {
+  let image = svgs[i];
+  let image2 = svgs[l - i - 1];
+  let diff = i * step;
+  
+  let left1 = image.querySelector('.pupil-left');
+  let right1 = image.querySelector('.pupil-right');
+  let left2 = image2.querySelector('.pupil-left');
+  let right2 = image2.querySelector('.pupil-right');
+  
+  [left1,left2].forEach(left => { left.setAttribute('cx', '' + (leftStart + diff)) });
+  [right1,right2].forEach(right => {right.setAttribute('cx', '' + (rightStart + diff))});
+}
+  </script>
+ </BODY>
+</HTML>
