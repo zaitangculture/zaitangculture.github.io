@@ -1,0 +1,128 @@
+BODY {
+  -webkit-perspective: 300px;
+          perspective: 300px;
+  -webkit-perspective-origin: center center;
+          perspective-origin: center center;
+  overflow: hidden;
+  font-size: 14px;
+  background: #000;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.025) 50%, transparent 50%);
+  background-size: 2rem 100%;
+}
+
+.side,
+.container {
+  width: 10em;
+  height: 10em;
+}
+
+.container {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-animation: rotate 10s infinite linear;
+          animation: rotate 10s infinite linear;
+}
+
+.side {
+  position: absolute;
+  width: 10em;
+  height: 10em;
+  border: .15em solid white;
+  border-radius: 3em;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.side:before,
+.side:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  -webkit-transform: translateZ(2em) rotateZ(45deg);
+          transform: translateZ(2em) rotateZ(45deg);
+}
+
+.side:before {
+  width: 5em;
+  height: 5em;
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5) inset;
+  border: 2px dotted rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-sizing: border-box;
+  -webkit-transform: translateZ(3em) rotateZ(45deg);
+          transform: translateZ(3em) rotateZ(45deg);
+}
+
+.side:after {
+  width: 10em;
+  height: 10em;
+  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.5) inset;
+  border: 4px dotted rgba(255, 255, 255, 0.5);
+  box-sizing: border-box;
+  -webkit-transform: translateZ(2em) rotateZ(45deg);
+          transform: translateZ(2em) rotateZ(45deg);
+}
+
+.back {
+  -webkit-transform: translateZ(-5em) rotateY(180deg);
+          transform: translateZ(-5em) rotateY(180deg);
+  background: url(http://img-fotki.yandex.ru/get/4301/yoksel.51/0_3b50c_c6d45e3c_M.jpg) center;
+}
+
+.left {
+  -webkit-transform: translateX(-5em) rotateY(-90deg);
+          transform: translateX(-5em) rotateY(-90deg);
+  background: url(http://img-fotki.yandex.ru/get/4210/yoksel.53/0_3b958_71cef6e0_M.jpg) center;
+}
+
+.right {
+  -webkit-transform: translateX(5em) rotateY(90deg);
+          transform: translateX(5em) rotateY(90deg);
+  background: url(http://img-fotki.yandex.ru/get/4209/yoksel.52/0_3b7b2_ee1602c6_M.jpg) center;
+}
+
+.top {
+  -webkit-transform: translateY(-5em) rotateX(90deg);
+          transform: translateY(-5em) rotateX(90deg);
+  background: url(http://img-fotki.yandex.ru/get/4805/yoksel.56/0_425cc_71e2c792_M.jpg) center;
+}
+
+.bottom {
+  -webkit-transform: translateY(5em) rotateX(-90deg);
+          transform: translateY(5em) rotateX(-90deg);
+  background: url(http://img-fotki.yandex.ru/get/4301/yoksel.53/0_3b973_b0fad25e_M.jpg) center;
+}
+
+.front {
+  -webkit-transform: translateZ(5em);
+          transform: translateZ(5em);
+  background: url(http://img-fotki.yandex.ru/get/4906/yoksel.59/0_44a79_99dfc7ec_M.jpg) center;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg);
+            transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg);
+            transform: rotateX(360deg) rotateY(-360deg) rotateZ(360deg);
+  }
+}
+HTML, BODY {
+  height: 100%;
+}
+
+BODY {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
