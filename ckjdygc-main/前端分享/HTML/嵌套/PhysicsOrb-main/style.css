@@ -1,0 +1,15 @@
+html{
+    background-color: black;
+}
+
+body {
+    overflow: hidden;
+}
+
+
+/* CSS */
+#interactiveCanvas {
+    position: absolute; /* Positioned absolutely to move with window */
+    top: 0;
+    left: 0;
+}
