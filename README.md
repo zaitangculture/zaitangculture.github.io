@@ -1,16 +1,16 @@
 <p>
-<strong><h2>無名の主页 </h2></strong>
+<strong><h2>再唐の主页 </h2></strong>
 简单的小主页，原来的看够了，重新弄了一个
 </p>
 
-![無名の主页](https://img.imsyy.top/other/imsyy-home.png)
+![再唐主页](https://img.imsyy.top/other/imsyy-home.png)
 
 >主页的名称字体已经过压缩，若用名称以外的字母会变回默认字体，这里是 [完整字体](https://cdn.jsdelivr.net/gh/imsyy/file/font/Pacifico-Regular.ttf)
 
 ### Demo
 >由于 CDN 缓存原因，查看最新效果可能需要 `Ctrl` + `F5` 强制刷新浏览器缓存
 
-- [無名の主页](https://www.imsyy.top)
+- [再唐の主页](https://www.cszg.cc)
 
 ### 功能
 
