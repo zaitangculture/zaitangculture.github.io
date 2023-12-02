@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>520Ïà²á</title>
+	<title>520ç›¸å†Œ</title>
 	<style>
 		*{margin: 0;padding: 0;}
 		html,body{height: 100%;}
@@ -96,7 +96,7 @@ function init(){
 		desY = 0,
 		tX = 0,
 		tY = 10,
-		index = 0;//¹öÂÖ³õÊ¼Öµ
+		index = 0;//æ»šè½®åˆå§‹å€¼
 	document.onmousedown = function(e){
 		clearInterval(obox.timer);
 		e = e || window.event;
@@ -106,7 +106,7 @@ function init(){
 				e = e || window.event;
 				var nX = e.clientX,
 					nY = e.clientY;
-					 // µ±Ç°µãµÄ×ø±êºÍÇ°Ò»µãµÄ×ø±ê²îÖµ
+					 // å½“å‰ç‚¹çš„åæ ‡å’Œå‰ä¸€ç‚¹çš„åæ ‡å·®å€¼
 					desX = nX - sX;
 					desY = nY - sY;
                     tX += desX*0.1; 
@@ -131,7 +131,7 @@ function init(){
 			}
 		return false;
 	}
-	//¹öÂÖ·Å´óËõĞ¡
+	//æ»šè½®æ”¾å¤§ç¼©å°
 	mousewheel(document,function(e){
 		e = e || window.event;
 		var d = e.wheelDelta/120 || -e.detail/3;
