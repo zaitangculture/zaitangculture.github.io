@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="cuiyuan" />
+		<meta name="Keywords" content="cuiyuan的博客"/>
+		<meta name="Description" content="cuiyuan的博客,技术分享,记录回忆"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>cuiyuan的博客-学无止境</title>
+		
+		<link rel="shortcut icon" href="img/touch-icon-iphone-144.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="img/touch-icon-iphone-144.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="img/touch-icon-iphone-144.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="img/touch-icon-iphone-144.png" />
+		<link  rel="apple-touch-icon" sizes="144x144" href="img/touch-icon-iphone-144.png" />
+		
+		<link rel="stylesheet" href="css/icon-study.css"/>
+		<link rel="stylesheet" href="css/common.css"/>
+		<link rel="stylesheet" href="css/study.css"/>
+		<script type="text/javascript" src="js/selector.js"></script>
+		<script type="text/javascript" src="js/study.js"></script>
+		
+	</head>
+	<body ondragstart="return false" oncontextmenu="return false" onselect="document.selection.empty()">
+		<!--[if lte IE 8]>
+		<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，请 <a href="https://support.dmeng.net/upgrade-your-browser.html" target="_blank">升级浏览器</a> 以获得更好的体验！</p>
+		<![endif]-->
+		<header>
+			<div class="header-box">
+				<p>
+					“他说风雨中这点痛算什么，擦干泪不要怕，至少我们还有梦!”
+					“我相信我就是我，我相信明天，我相信青春没有地平线。”
+				</p>
+				<div class="box">
+					<div class="light"></div>
+					<span class="box1">
+						<div class="star">
+							<div class="srT sr1"></div>
+							<div class="srL sr2"></div>
+							<div class="srL sr3"></div>
+							<div class="srT sr4"></div>
+							<div class="spot"></div>
+						</div>
+					</span>
+					<span class="box2">
+						<div class="star">
+							<div class="srT sr1"></div>
+							<div class="srL sr2"></div>
+							<div class="srL sr3"></div>
+							<div class="srT sr4"></div>
+							<div class="spot"></div>
+						</div>
+					</span>
+				</div>
+				<div class="album r">
+					<img src="img/h1.jpg" alt="相册"/>
+				</div>
+				<div class="album r">
+					<img src="img/h2.jpg" alt="相册"/>
+				</div>
+			</div>
+		</header>
+		<nav class="nav">
+			<div class="title l">记录回忆</div>
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li class="current"><a href="study.html">学无止境</a></li>
+				<li><a href="css-js.html">CSS/JS特效</a></li>
+				<li><a href="http://www.lmlblog.com/blog/11/" target="_blank">博客模板</a></li>
+				<li><a href="message.html">留言板</a></li>
+			</ul>
+		</nav>
+		<div class="embellish">
+			<a class="rocket"></a>
+		</div>
+		<section>
+			<aside>
+			<div class="aside">
+				<dl>
+					<dt class="leaf">页面常用设置</dt>
+					<dd class="current"> <em class="iconfont icon-dian "></em>设为首页</dd>
+					<dd> <em class="iconfont icon-dian "></em>加入收藏</dd>
+				</dl>
+				<dl>
+					<dt class="leaf">页面常用禁止项</dt>
+					<dd> <em class="iconfont icon-dian "></em>禁止鼠标右键</dd>
+					<dd> <em class="iconfont icon-dian "></em>禁止拖拽图片</dd>
+					<dd> <em class="iconfont icon-dian "></em>禁止复制文本</dd>
+					<dd> <em class="iconfont icon-dian "></em>禁止剪切文本</dd>
+					<dd> <em class="iconfont icon-dian "></em>禁止粘贴文本</dd>
+					<dd> <em class="iconfont icon-dian "></em>禁止选中内容</dd>
+				</dl>
+				<dl>
+					<dt class="leaf">页面组件自定义</dt>
+					<dd> <em class="iconfont icon-dian "></em>鼠标指针</dd>
+					<dd> <em class="iconfont icon-dian "></em>滚动条样式</dd>
+				</dl>
+				<dl>
+					<dt class="leaf">搜索引擎优化项</dt>
+					<dd> <em class="iconfont icon-dian "></em>SEO</dd>
+				</dl>
+			</div>
+			</aside>
+			<article>
+				<div style="background-color: #c6c6c6; margin: 0 auto; padding: 10px; width: 720px;">
+					<strong><em>以下功能均可通过其他代码进行实现，此处只挑选了简便、灵活的个别代码进行介绍</em></strong><br>
+					<strong><em>经测试目前以下代码均可在各大常见浏览器中正常使用</em></strong><br>
+					<strong><em>代码仅作页面优化作用，解决普通用户的操作行为</em></strong>
+				</div>
+				<div class="project">
+					<h2><em class="iconfont icon-biji1"></em>页面常用设置</h2>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>设为首页</h3>
+						<p>
+							html上面图片拖动的时候会在一个新窗口打开。html上面图片拖动的时候会在一个新窗口打开。
+						</p>
+						<code>
+						<div class="code">
+							<p>oncontextmenu="return false"</p>
+						</div>
+						</code>
+					</div>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>加入收藏</h3>
+						<p>
+							html上面图片拖动的时候会在一个新窗口打开。html上面图片拖动的时候会在一个新窗口打开。
+						</p>
+						<code>
+						<div class="code">
+							<p>oncontextmenu="return false"</p>
+						</div>
+						</code>
+					</div>
+				</div>
+				<div class="project">
+					<h2><em class="iconfont icon-biji1"></em>页面常用禁止项</h2>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>禁止鼠标右键</h3>
+						<p>当网页中的某些功能与浏览器自带右键功能发生冲突时，则可以通过不同的方式对页面进行优化。</p>
+						<p>方式一：可以通过给标签添加 oncontextmenu 属性来禁止鼠标右键。</p>
+						<code><div class="code">
+							<p>&lt;body oncontextmenu="return false"&gt;&lt;/body&gt;</p>
+						</div></code>
+						<p>方式二：可以通过在&lt;body&gt;底部添加JS代码来禁止鼠标右键。</p>
+						<code><div class="code">
+							<p>&lt;script type="text/javascript"&gt;</p>
+							<p class="indent-40">document.oncontextmenu = function() { return false; };</p>
+							<p>&lt;/script&gt;</p>
+						</div></code>
+					</div>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>禁止拖拽图片</h3>
+						<p>当网页中图片的数量较多时，导致发生误触的概率增大，给用户带来不必要的不良体验，则可以通过不同的方式对页面进行优化。</p>
+						<p>方式一：可以通过给标签添加 ondragstart 属性来禁止拖拽图片。</p>
+						<code><div class="code">
+							<p>&lt;body ondragstart="return false"&gt;&lt;/body&gt;</p>
+						</div></code>
+						<p>方式二：可以通过在&lt;body&gt;底部添加JS代码来禁止拖拽图片。</p>
+						<code><div class="code">
+							<p>&lt;script type="text/javascript"&gt;</p>
+							<p class="indent-40">let im = document.getElementsByTagName('img');</p>
+							<p class="indent-40">for(i in im)im[i].onmousedown = function() { return false; };</p>
+							<p>&lt;/script&gt;</p>
+						</div></code>
+					</div>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>禁止复制文本</h3>
+						<p>当页面中某些内容不想被用户复制，但又不想影响选中时，则可以通过不同的方式对页面进行优化，使右键复制和 Ctrl+C 失效(名存实亡)</p>
+						<p>方式一：给标签添加 oncopy 属性来禁止复制文本。</p>
+						<code><div class="code">
+							<p>&lt;body oncopy="return false"&gt;&lt;/body&gt;</p>
+						</div></code>
+						<p>方式二：可以通过在&lt;body&gt;底部添加JS代码来禁止复制文本。</p>
+						<code><div class="code">
+							<p>&lt;script type="text/javascript"&gt;</p>
+							<p class="indent-40">document.oncopy = function() { return false; };</p>
+							<p>&lt;/script&gt;</p>
+						</div></code>
+					</div>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>禁止剪切文本</h3>
+						<p>当页面中某些内容不想被用户剪切，但又不想影响选中时，则可以通过不同的方式对页面进行优化，使右键剪切和 Ctrl+X 失效(名存实亡)</p>
+						<p>方式一：给标签添加 oncut 属性来禁止复制文本。</p>
+						<code><div class="code">
+							<p>&lt;body oncut="return false"&gt;&lt;/body&gt;</p>
+						</div></code>
+						<p>方式二：可以通过在&lt;body&gt;底部添加JS代码来禁止复制文本。</p>
+						<code><div class="code">
+							<p>&lt;script type="text/javascript"&gt;</p>
+							<p class="indent-40">document.oncut = function() { return false; };</p>
+							<p>&lt;/script&gt;</p>
+						</div></code>
+					</div>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>禁止粘贴文本</h3>
+						<p>当用户操作输入框时，不想让用户以粘贴的形式输入信息，则可以通过不同的方式对页面进行优化，使右键粘贴和 Ctrl+V 失效(名存实亡)</p>
+						<p>方式一：给标签添加 onpaste 属性来禁止复制文本。</p>
+						<code><div class="code">
+							<p>&lt;body onpaste="return false"&gt;&lt;/body&gt;</p>
+						</div></code>
+						<p>方式二：可以通过在&lt;body&gt;底部添加JS代码来禁止粘贴文本。</p>
+						<code><div class="code">
+							<p>&lt;script type="text/javascript"&gt;</p>
+							<p class="indent-40">document.onpaste = function() { return false; };</p>
+							<p>&lt;/script&gt;</p>
+						</div></code>
+					</div>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>禁止选中内容</h3>
+						<p>当页面中的某些内容不想被用户选中时，则可以通过不同的方式对页面进行优化。</p>
+						<p>方式一：给标签添加 onselectstart 属性来禁止选中内容。</p>
+						<code><div class="code">
+							<p>&lt;body onselectstart="return false"&gt;&lt;/body&gt;</p>
+						</div></code>
+						<p>方式二：可以通过在CSS中添加 onselectstart 属性来禁止选中内容。</p>
+						<code><div class="code">
+							<p>&lt;style type="text/css"&gt;</p>
+							<p class="indent-40">*{ -moz-user-select: none; -o-user-select:none; -khtml-user-select:none;</p>
+							<p class="indent-60">-webkit-user-select:none; -ms-user-select:none; user-select:none; }</p>
+							<p>&lt;/style&gt;</p>
+						</div></code>
+							<p><strong><em>注：该方式可以更加灵活、简便的控制页面中需要禁止和无需禁止的部分</em></strong></p>
+							<p><strong><em>如果页面中的某些部分无需禁止，则将属性值none更换为text，重新写入所需部分的CSS即可</em></strong></p><br>
+						<p>方式三：可以通过在&lt;body&gt;底部添加JS代码来禁止选中内容。</p>
+						<code><div class="code">
+							<p>&lt;script type="text/javascript"&gt;</p>
+							<p class="indent-40">document.onselectstart = function() { return false; };</p>
+							<p>&lt;/script&gt;</p>
+						</div></code>
+					</div>
+				</div>
+				<div class="project">
+					<h2><em class="iconfont icon-biji1"></em>页面组件自定义</h2>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>鼠标指针</h3>
+						<p>
+							为了满足一些特殊页面样式的需求，可以通过在CSS中添加 cursor
+							属性来自定义鼠标指针样式。<br>
+ 						</p>
+						<code>
+						<div class="code">
+							<p>&lt;style type="text/css"&gt;</p>
+							<p style="text-indent:40px">body { cursor: url( a1.png ), auto; }</p>
+							<p>&lt;/style&gt;</p>
+						</div>
+						</code>
+						<table>
+							<tbody>
+								<tr>
+									<th>属性值</th>
+									<th>描述</th>
+								</tr>
+								<tr>
+									<td><i>url</i></td>
+									<td>
+									<p>需使用的自定义光标的 URL</p>
+									<p><em>注释：请在此列表的末端始终定义一种普通的光标，以防没有由 URL 定义的可用光标</em></p>
+									</td>
+								</tr>
+								<tr style="cursor:default">
+									<td >default</td>
+									<td>默认光标（通常是一个箭头）</td>
+								</tr>
+								<tr style="cursor:auto">
+									<td>auto</td>
+									<td>默认。浏览器设置的光标</td>
+								</tr>
+								<tr style="cursor:crosshair">
+								<td>crosshair</td>
+								<td>光标呈现为十字线</td>
+								</tr>
+								<tr style="cursor:pointer">
+									<td>pointer</td>
+									<td>光标呈现为指示链接的指针（一只手）</td>
+								</tr>
+								<tr style="cursor:move">
+									<td>move</td>
+									<td>此光标指示某对象可被移动</td>
+								</tr>
+								<tr style="cursor:e-resize">
+									<td>e-resize</td>
+									<td>此光标指示矩形框的边缘可被向右（东）移动</td>
+								</tr>
+								<tr style="cursor:ne-resize">
+									<td>ne-resize</td>
+									<td>此光标指示矩形框的边缘可被向上及向右移动（北/东）</td>
+								</tr>
+								<tr style="cursor:nw-resize">
+									<td>nw-resize</td>
+									<td>此光标指示矩形框的边缘可被向上及向左移动（北/西）</td>
+								</tr>
+								<tr style="cursor:n-resize">
+									<td>n-resize</td>
+									<td>此光标指示矩形框的边缘可被向上（北）移动</td>
+								</tr>
+								<tr style="cursor:se-resize">
+									<td>se-resize</td>
+									<td>此光标指示矩形框的边缘可被向下及向右移动（南/东）</td>
+								</tr>
+								<tr style="cursor:sw-resize">
+									<td>sw-resize</td>
+									<td>此光标指示矩形框的边缘可被向下及向左移动（南/西）</td>
+								</tr>
+								<tr style="cursor:s-resize">
+									<td>s-resize</td>
+									<td>此光标指示矩形框的边缘可被向下移动（北/西）</td>
+								</tr>
+								<tr style="cursor:w-resize">
+									<td>w-resize</td>
+									<td>此光标指示矩形框的边缘可被向左移动（西）</td>
+								</tr>
+								<tr style="cursor:text">
+									<td>text</td>
+									<td>此光标指示文本</td>
+								</tr>
+								<tr style="cursor:wait">
+									<td>wait</td>
+									<td>此光标指示程序正忙（通常是一只表或沙漏）</td>
+								</tr>
+								<tr style="cursor:help">
+									<td>help</td>
+									<td>此光标指示可用的帮助（通常是一个问号或一个气球）</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>滚动条样式</h3>
+						<p>
+							html上面图片拖动的时候会在一个新窗口打开。html上面图片拖动的时候会在一个新窗口打开。
+						</p>
+						<code>
+						<div class="code">
+							<p>oncontextmenu="return false"</p>
+						</div>
+						</code>
+					</div>
+				</div>
+				<div class="project">
+					<h2><em class="iconfont icon-biji1"></em>搜索引擎优化</h2>
+					<div class="case">
+						<h3><em class="iconfont icon-yumaobi"></em>SEO</h3>
+						<p>
+							html上面图片拖动的时候会在一个新窗口打开。html上面图片拖动的时候会在一个新窗口打开。
+						</p>
+						<code>
+						<div class="code">
+							<p>oncontextmenu="return false"</p>
+						</div>
+						</code>
+					</div>
+				</div>
+			</article>
+		</section>
+		<footer class="clearfix"><p>@cuiyuan的个人博客</p></footer>
+	</body>
+</html>

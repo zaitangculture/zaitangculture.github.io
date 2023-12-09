@@ -1,0 +1,23 @@
+section { margin: 20px auto; padding: 15px; width: 1050px; overflow: hidden; border-radius: 15px; }
+.aside { float: left; width: 200px; }
+.aside dl { overflow: hidden; height: 100%; transition: height 0.4s; }
+.aside dt { z-index: 2; position: relative; cursor: url(../img/a2.png),pointer; margin-bottom: 6px; color: rgba(255,255,255,0.8); font-weight: bold; }
+.aside dd { position: relative; top: 0; cursor: url(../img/a2.png),pointer; padding: 5px 0 5px 20px; width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: top 0.4s linear 0s; }
+.aside dd:nth-child(even) { color: rgba(255,255,255,0.5); }
+.aside dd:nth-child(odd) { color: rgba(255,255,255,0.9); }
+.aside dd:hover { font-size: 18px; font-weight: bold; color: #87de0d;  text-shadow: rgba(0,0,0,0.5) 2px 0 0, rgba(0,0,0,0.5) 0 2px 0, rgba(0,0,0,0.5) -2px 0 0, rgba(0,0,0,0.5) 0 -2px 0; }
+.aside .current { font-size: 18px; font-weight: bold; color: #87de0d !important;  text-shadow: rgba(0,0,0,0.5) 2px 0 0, rgba(0,0,0,0.5) 0 2px 0, rgba(0,0,0,0.5) -2px 0 0, rgba(0,0,0,0.5) 0 -2px 0; }
+article { float: right; background-color: rgba(255,255,255,0.7); padding: 20px 20px 345px 20px; width: 800px; border-radius: 15px; }
+article .project h2 { color: #31763f; font-size: 26px; margin-bottom: 10px; }
+article .project h2 em { font-weight: bold; font-size: 24px; margin-right: 5px; }
+article .project .case h3 { color: #565656; font-size: 18px; margin-bottom: 10px; }
+article .project .case h3 em { font-size: 20px; margin: 0 5px 0 20px; }
+article .project .case p { letter-spacing: 1px; margin: 0 0 6px 32px; width: 740px; font-size: 16px; }
+article .project .case table { font-size: 14px; border-collapse: collapse; margin: 10px auto; width: 740px; background-color: rgba(255,255,255,0.8); }
+article .project .case table tr:nth-child(even) { background-color: rgba(255,255,255,0.7); }
+article .project .case table tr:nth-child(odd) { background-color: #f6f3ed; }
+article .project .case table p { letter-spacing: 0; width: 100%; margin: 0; }
+article .project .case table th { padding: 5px; background-color: #555; border-right: 1px solid #ccc; text-align: left; color: #fff; }
+article .project .case table td { user-select: text; padding: 5px 6px; min-width: 24px; line-height: 24px; border: 1px solid #d4d4d4;}
+article .project .case .code { cursor: url(../img/a2.png),pointer; margin: 5px auto; padding: 10px; width: 720px; font-family: "arial"; background-color: #c6c6c6;}
+article .project .case .code p { letter-spacing: 0; margin: 0; width: 100%; height: 26px; line-height: 26px; font-size: 20px; user-select: text; }

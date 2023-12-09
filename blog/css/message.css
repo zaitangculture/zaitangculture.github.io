@@ -1,0 +1,26 @@
+section { padding: 35px 0; width: 100%; min-height: 640px; background: url(../img/cloud.jpg) top center; }
+section .comment { margin: 0 auto; padding: 10px; width: 620px; min-height: 500px; background-color: rgb(204,224,209); border-radius: 15px; }
+section .frame { position: relative; margin: 0 auto; margin-bottom: 40px; padding: 10px; width: 580px; height: 200px; }
+section .frame .record { position: absolute; top: 16px;left: 20px; z-index: 3; cursor: url(../img/a2.png),pointer; width: 40px; height: 40px; background-color: rgb(204,224,209); font-size: 14px; text-align: center; line-height: 40px; border: 1px solid #31763F; border-radius: 50%; }
+section .frame .arc { position: absolute; top: 12px; left: 15px; z-index: 2; width: 50px; height: 50px; background-color: rgb(204,224,209); border-bottom: 1px solid #31763F; border-radius: 50%; border-left: 1px solid transparent; border-right: 1px solid transparent; }
+section .frame .box { position: relative; top: 45px; padding: 20px; height: 70px; border: 1px solid #31763F; border-radius: 10px; }
+section .frame textarea { background-color: rgb(204,224,209); margin: 0 auto; width: 100%; height: 100%; font-size: 16px; resize: none; }
+section .frame a { position: relative; top: 55px; }
+section .frame a i { font-size: 24px;  }
+section .frame a:nth-of-type(1) { left: 15px; }
+section .frame a:nth-of-type(2) { left: 30px; }
+section .frame .oButton { background-color: #44c578; font-size: 18px; color: #FFFFFF; width: 100px; height: 40px; text-align: center; line-height: 40px; border-radius: 10px; }
+section .frame a:nth-of-type(3) { right: -400px; }
+section .show { position: relative; margin: 0 auto; padding: 15px; width: 580px; min-height: 130px; border-top: 1px solid #31763F;  }
+section .show .tl { position: absolute; top: -31px; background-color: rgb(204,224,209); width: 60px; height: 30px; text-align: center; line-height: 30px; color: #31763F; font-weight: bold; border: 1px solid #31763F; border-bottom: transparent; border-radius: 10px; }
+section .show .people { margin-bottom: 12px; padding: 15px; box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4); border-radius: 15px; position: relative; min-height: 100px; }
+section .show .people img { width: 50px; height: 50px; border-radius: 40%; }
+section .show .people .issuer { margin: 5px 0 0 15px; font-size: 14px; color: #31763F; }
+section .show .people .issue { margin: 5px 0 0 20px; width: 84%; min-height: 40px; }
+section .show .people .time { position: absolute; top: 15px; right: 15px; font-size: 14px; color: #9d9d9d; }
+section .show .people a { position: absolute; bottom: 15px; }
+section .show .people .a1 { right: 115px; }
+section .show .people .a2 { right: 80px; }
+section .show .people .a3 { right: 25px; }
+section .show .people .icon-zan11, .icon-zan22 { font-size: 18px; color: #44c578; }
+footer { margin-top: 0; }

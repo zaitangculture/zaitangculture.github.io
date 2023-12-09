@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="author" content="cuiyuan" />
+		<meta name="Keywords" content="cuiyuan的博客"/>
+		<meta name="Description" content="cuiyuan的博客,技术分享,记录回忆"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>cuiyuan的博客-留言板</title>
+		
+		<link rel="shortcut icon" href="img/touch-icon-iphone-144.png">
+		<link rel="apple-touch-icon" sizes="57x57" href="img/touch-icon-iphone-144.png" />
+		<link rel="apple-touch-icon" sizes="72x72" href="img/touch-icon-iphone-144.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="img/touch-icon-iphone-144.png" />
+		<link  rel="apple-touch-icon" sizes="144x144" href="img/touch-icon-iphone-144.png" />
+		
+		<link rel="stylesheet" href="css/common.css"/>
+		<link rel="stylesheet" href="css/icon-mass.css"/>
+		<link rel="stylesheet" href="css/message.css"/>
+		<script type="text/javascript" src="js/selector.js"></script>
+	</head>
+	<body ondragstart="return false" oncontextmenu="return false" onselectstart="return false" onselect="document.selection.empty()">
+		<!--[if lt IE 8]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		<header>
+			<div class="header-box">
+				<p>		
+					“他说风雨中这点痛算什么，擦干泪不要怕，至少我们还有梦!”
+					“我相信我就是我，我相信明天，我相信青春没有地平线。”
+				</p>
+				<div class="box">
+					<div class="light"></div>
+					<span class="box1">
+						<div class="star">
+							<div class="srT sr1"></div>
+							<div class="srL sr2"></div>
+							<div class="srL sr3"></div>
+							<div class="srT sr4"></div>
+							<div class="spot"></div>
+						</div>
+					</span>
+					<span class="box2">
+						<div class="star">
+							<div class="srT sr1"></div>
+							<div class="srL sr2"></div>
+							<div class="srL sr3"></div>
+							<div class="srT sr4"></div>
+							<div class="spot"></div>
+						</div>
+					</span>
+				</div>
+				<div class="album r">
+					<img src="img/h1.jpg" alt="相册"/>
+				</div>
+				<div class="album r">
+					<img src="img/h2.jpg" alt="相册"/>
+				</div>
+			</div>
+		</header>
+		<nav class="nav">
+			<div class="title l">记录回忆</div>
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="study.html">学无止境</a></li>
+				<li><a href="css-js.html">CSS/JS特效</a></li>
+				<li><a href="http://www.lmlblog.com/blog/11/" target="_blank">博客模板</a></li>
+				<li class="current"><a href="message.html">留言板</a></li>
+			</ul>
+		</nav>
+		<div class="embellish">
+			<a class="rocket"></a>
+			<div class="aside"></div>
+		</div>
+		<section>
+			<div class="comment">
+				<div class="frame">
+					<div class="record">登录</div>
+					<div class="arc"></div>
+					<div class="box">
+						<textarea node-type="textarea" placeholder="一起来吐槽的神马,来盖楼吧"></textarea>
+					</div>
+					<a><i class="iconfont icon-xiaolian"></i></a>
+					<a><i class="iconfont icon-tupian"></i></a>
+					<a><span class="oButton">畅言一下</span></a>
+				</div>
+				<div class="show">
+					<div class="tl">评论</div>
+					<div class="people">
+						<img class="l" src="img/h2.jpg" >
+						<span class="issuer">骑着蜗牛去旅行</span>
+						<span class="issue">测试留言</span>
+						<span class="time">2020年3月21日</span>
+						<a class="a1"><i class="iconfont z1 icon-zan1"></i></a>
+						<a class="a2"><i class="iconfont z2 icon-zan2"></i></a>
+						<a class="a3"><span class="reply">回复</span></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer class="clearfix"><p>@cuiyuan的个人博客</p></footer>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript">
+			//oButton
+			var d = new Date();
+			$(".oButton")[0].onclick = function() {
+				if($('textarea')[0].value != ""){
+					const oImg = document.createElement("img");
+					oImg.classList.add("l"); oImg.src = "img/h2.jpg";
+					const oSpan1 = document.createElement("span");
+					oSpan1.classList.add("issuer"); oSpan1.innerHTML = "骑着蜗牛去旅行";
+					const oSpan2 = document.createElement("span");
+					oSpan2.classList.add("issue"); oSpan2.innerHTML = $('textarea')[0].value;
+					const oSpan3 = document.createElement("span");
+					oSpan3.classList.add("time");
+					oSpan3.innerHTML = d.getFullYear()+"年"+(d.getMonth()+1)+"月"+d.getDate()+"日";
+					const oSpan4 = document.createElement("span");
+					oSpan4.classList.add("reply"); oSpan4.innerHTML = "回复";
+					const oI1 = document.createElement("i");
+					oI1.classList.add("iconfont","z1","icon-zan1");
+					const oI2 = document.createElement("i");
+					oI2.classList.add("iconfont","z2","icon-zan2");
+					const oA1 = document.createElement("a");
+					oA1.classList.add("a1"); oA1.appendChild(oI1);
+					const oA2 = document.createElement("a");
+					oA2.classList.add("a2"); oA2.appendChild(oI2);
+					const oA3 = document.createElement("a");
+					oA3.classList.add("a3"); oA3.appendChild(oSpan4);
+					const oDiv = document.createElement("div");
+					oDiv.classList.add("people");
+					oDiv.appendChild(oImg); oDiv.appendChild(oSpan1); oDiv.appendChild(oSpan2); oDiv.appendChild(oSpan3); oDiv.appendChild(oA1); oDiv.appendChild(oA2); oDiv.appendChild(oA3);
+					$(".show")[0].appendChild(oDiv);
+					$('textarea')[0].value = "";
+				}else{
+					alert("请输入内容");
+				}
+				zan();
+			}
+			//zan
+			var state1,state2 = false; zan();
+			function zan(){
+				for(let i=0; i<$(".z1").length; i++){
+					$(".z1")[i].onclick = function() {
+						state1 = !state1; state2 = false;
+						if(state1){
+							$(".z1")[i].classList.remove("icon-zan1");
+							$(".z1")[i].classList.add("icon-zan11");
+						}else{
+							$(".z1")[i].classList.remove("icon-zan11");
+							$(".z1")[i].classList.add("icon-zan1");
+						}
+						if(state2){
+							$(".z2")[i].classList.remove("icon-zan2");
+							$(".z2")[i].classList.add("icon-zan22");
+						}else{
+							$(".z2")[i].classList.remove("icon-zan22");
+							$(".z2")[i].classList.add("icon-zan2");
+						}
+					}
+					$(".z2")[i].onclick = function() {
+						state2 = !state2; state1 = false;
+						if(state1){
+							$(".z1")[i].classList.remove("icon-zan1");
+							$(".z1")[i].classList.add("icon-zan11");
+						}else{
+							$(".z1")[i].classList.remove("icon-zan11");
+							$(".z1")[i].classList.add("icon-zan1");
+						}
+						if(state2){
+							$(".z2")[i].classList.remove("icon-zan2");
+							$(".z2")[i].classList.add("icon-zan22");
+						}else{
+							$(".z2")[i].classList.remove("icon-zan22");
+							$(".z2")[i].classList.add("icon-zan2");
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
