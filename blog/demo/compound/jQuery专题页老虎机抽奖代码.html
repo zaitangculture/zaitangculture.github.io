@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 30.72px;">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery专题页老虎机抽奖代码</title>
+		<script type="text/javascript" src="./jQuery专题页老虎机抽奖代码_files/simpl-fontSize.min.js.下载"></script>
+		<link rel="stylesheet" href="./jQuery专题页老虎机抽奖代码_files/simpl-public.min.css">
+		<link rel="stylesheet" href="./jQuery专题页老虎机抽奖代码_files/compound.min.css">
+		<script type="text/javascript" src="./jQuery专题页老虎机抽奖代码_files/jquery.min.js.下载"></script>
+		<script type="text/javascript" src="./jQuery专题页老虎机抽奖代码_files/easing.min.js.下载"></script>
+	</head>
+	<body>
+		<div class="com-main">
+			<ul class="coin">
+				<li class="gb">
+					<h3>2559</h3>
+				</li>
+				<li class="jd">
+					<h3>2550</h3>
+				</li>
+			</ul>
+			<div class="slots">
+				<ul class="clearfix">
+					<li class="fl active" data-type="gb">钢镚合成</li>
+					<li class="fr" data-type="jd">金豆分解</li>
+				</ul>
+				<h3>50 钢镚/次</h3>
+				<dl class="clearfix">
+					<dd class="fl gb" style="background-position-y: 320.8rem;"></dd>
+					<dd class="fl gb" style="background-position-y: 320.8rem;"></dd>
+					<dd class="fl gb" style="background-position-y: 320.8rem;"></dd>
+				</dl>
+				<div class="play-btn" data-type="gb"></div>
+				<div class="yg"></div>
+				<div class="rule"></div>
+			</div>
+		</div>
+
+		<script>
+			$(function() {
+				//抽奖切换
+				$('.com-main .slots ul li').each(function() {
+					$(this).click(function() {
+						if ($(this).hasClass('active')) {
+							return false
+						}
+						$(this).addClass('active').siblings().removeClass('active');
+						var type = $(this).attr('data-type');
+						$(".com-main .slots dl dd").attr({
+							'class': "fl " + type
+						});
+						$('.com-main .slots .play-btn').attr('data-type', type);
+						if (type === 'gb') {
+							$('.com-main .slots h3').html('50 钢镚/次');
+						} else if (type === 'jd') {
+							$('.com-main .slots h3').html('1 金豆/次')
+						}
+					});
+				});
+
+				//抽奖play按钮
+				$('.com-main .slots .play-btn').click(function() {
+					var u = 160.4; //盒子的高度
+					var random = '000'; //中奖随机数 ,分解金豆获取钢镚'000','111','222'，
+					var _this = $(this);
+					var type = $(this).attr('data-type');
+					if (!_this.hasClass('active')) {
+						_this.addClass('active');
+						$(".com-main .slots dl dd").slots(u, random, function() {
+							_this.removeClass('active'); //还有抽奖机会移除active
+							$.giftWarm("恭喜你", '合成了<span>4</span>个金豆')
+						});
+					}
+				});
+			});
+		</script>
+
+
+	</body>
+</html>

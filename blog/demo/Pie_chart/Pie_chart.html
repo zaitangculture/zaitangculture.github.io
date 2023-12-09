@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html charset="UTF-8">
+	<title>Pie_chart</title>
+	<style>
+		html { cursor: url(../../img/a1.png),default; }
+		body { display: inline-block; }
+		#container {  margin: 0 auto; }
+		#chart { float: left; cursor: url(../../img/a2.png),pointer; }
+		#chartData { font-size: 10px; float: left; border-collapse: collapse; border: 1px solid #333; width: 105px; text-align: center; }
+		#chartData th,#chartData td { padding: 4px; cursor: url(../../img/a2.png),pointer; border: 1px dotted #666; text-align: center; }
+		#chartData th { cursor: url(../../img/a1.png),default; color: #333; border-bottom: 2px solid #333; text-transform: uppercase; }
+		#chartData td.highlight { background: #e1e1e1; }
+		#chartData tr:hover td { background: #e1e1e1; }
+	</style>
+	<script src="jquery.min.js"></script>
+	<script>
+		// 当DOM准备好时运行代码
+		$(pieChart);
+		function pieChart() {
+	      //配置设置
+			var chartSizePercent = 80; // 相对于画布宽度/高度的图表半径（百分比）
+			var sliceBorderWidth = 1; // 每个切片周围边框的宽度（像素）
+			var sliceBorderStyle = "#fff"; // 每片边缘的颜色
+			var sliceGradientColour = "#ddd"; // 用于图表渐变的一端的颜色
+			var maxPullOutDistance = 10; // 单击时将切片拉出的距离（以像素为单位）
+			var pullOutFrameStep = 1; // 每个动画帧移动一个切片的像素数
+			var pullOutFrameInterval = 40; // 每个动画帧之间的时间（毫秒）
+			var pullOutBorderWidth = 1; // 拉出切片边框的宽度（像素）
+			var pullOutBorderStyle = "#333"; // 拉出式切片边框的颜色
+			var pullOutLabelPadding = -20; // 拉出切片与标签之间的填充
+			var pullOutLabelFont = "bold 16px 'Trebuchet MS', Verdana, sans-serif"; // 拉出切片标签字体
+			var pullOutValueFont = "bold 10px 'Trebuchet MS', Verdana, sans-serif"; // 拉出切片值字体
+			var pullOutValuePrefix = "￥"; // 拉出切片值前缀
+			var pullOutShadowColour = "rgba( 0, 0, 0, .3 )"; // 用于拉出切片阴影的颜色
+			var pullOutShadowOffsetX = 5; // 拉出切片阴影的X偏移（像素）
+			var pullOutShadowOffsetY = 5; // 拉出切片阴影的Y偏移（像素）
+			var pullOutShadowBlur = 6; // 模糊拉出切片阴影的程度
+			var chartStartAngle = -.5 * Math.PI; // 从12点开始而不是3点
+
+			// 为图表声明一些变量
+			var canvas; // 页面中的canvas元素
+			var currentPullOutSlice = -1; // 当前取出的切片（-1=无切片）
+			var currentPullOutDistance = 0; // 当前在动画中拉出的切片有多少像素
+			var animationId = 0; // 跟踪由setInterval（）创建的动画的间隔ID
+			var chartData = []; // 图表数据（标签、值和角度）
+			var chartColours = []; // 图表颜色（从HTML表中提取）
+			var totalValue = 0; // 图表中所有值的总和
+			var canvasWidth; // 画布的宽度（像素）
+			var canvasHeight; // 画布的高度（像素）
+			var centreX; // 画布/图表中心的X坐标
+			var centreY; // 画布/图表中心的Y坐标
+			var chartRadius; // 饼图的半径（像素）
+
+			// 把事情准备好并画出图表
+			init();
+
+			/**
+			 设置图表数据和颜色，以及图表和表单击处理程序，并绘制初始饼图
+			 */
+			function init() {
+
+				// 获取页面中的canvas元素
+				canvas = document.getElementById('chart');
+				// 如果浏览器不支持画布，则退出
+				if (typeof canvas.getContext === 'undefined') return;
+				// 初始化画布和图表的一些属性
+				canvasWidth = canvas.width;
+				canvasHeight = canvas.height;
+				centreX = canvasWidth / 2;
+				centreY = canvasHeight / 2;
+				chartRadius = Math.min(canvasWidth, canvasHeight) / 2 * (chartSizePercent / 100);
+
+				// 从表中获取数据，并将单击处理程序分配给表数据单元格
+				var currentRow = -1;
+				var currentCell = 0;
+
+				$('#chartData td').each(function() {
+					currentCell++;
+					if (currentCell % 2 != 0) {
+						currentRow++;
+						chartData[currentRow] = [];
+						chartData[currentRow]['label'] = $(this).text();
+					} else {
+						var value = parseFloat($(this).text());
+						totalValue += value;
+						value = value.toFixed(2);
+						chartData[currentRow]['value'] = value;
+					}
+
+					// 将切片索引存储在此单元格中，并向其附加一个单击处理程序
+					$(this).data('slice', currentRow);
+					$(this).click(handleTableClick);
+
+					// 提取并储存细胞颜色
+					if (rgb = $(this).css('color').match(/rgb\((\d+), (\d+), (\d+)/)) {
+						chartColours[currentRow] = [rgb[1], rgb[2], rgb[3]];
+					} else if (hex = $(this).css('color').match(/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/)) {
+						chartColours[currentRow] = [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+					} else {
+						alert("错误：无法确定颜色！请使用‘#xxxxxx’格式指定表格颜色");
+						return;
+					}
+
+				});
+
+				//现在计算并存储图表数据中每个切片的开始和结束角度
+				//饼图中切片的当前位置（从0到1）
+				var currentPos = 0;
+
+				for (var slice in chartData) {
+					chartData[slice]['startAngle'] = 2 * Math.PI * currentPos;
+					chartData[slice]['endAngle'] = 2 * Math.PI * (currentPos + (chartData[slice]['value'] / totalValue));
+					currentPos += chartData[slice]['value'] / totalValue;
+				}
+
+				// 准备好了！现在绘制饼图，并将单击处理程序添加到其中
+				drawChart();
+				$('#chart').click(handleChartClick);
+			}
+
+			/**
+				在图表区域中处理鼠标单击。
+				如果单击了某个切片，则将其打开或关闭。
+				如果用户在馅饼外单击，请将任何切片推回。
+				@param Event单击事件
+			*/
+			function handleChartClick(clickEvent) {
+
+				//获取鼠标光标在单击时相对于画布的位置
+				var mouseX = clickEvent.pageX - this.offsetLeft;
+				var mouseY = clickEvent.pageY - this.offsetTop;
+
+				//是饼图内部的点击吗？
+				var xFromCentre = mouseX - centreX;
+				var yFromCentre = mouseY - centreY;
+				var distanceFromCentre = Math.sqrt(Math.pow(Math.abs(xFromCentre), 2) + Math.pow(Math.abs(yFromCentre), 2));
+
+				if (distanceFromCentre <= chartRadius) {
+
+					//是的，点击在图表中。
+					//通过比较相对于图表中心的角度来查找单击的切片。
+					var clickAngle = Math.atan2(yFromCentre, xFromCentre) - chartStartAngle;
+					if (clickAngle < 0) clickAngle = 2 * Math.PI + clickAngle;
+
+					for (var slice in chartData) {
+						if (clickAngle >= chartData[slice]['startAngle'] && clickAngle <= chartData[slice]['endAngle']) {
+							//找到切片。根据需要将其拉出或推入。
+							toggleSlice(slice);
+							return;
+						}
+					}
+				}
+
+				//用户必须已在饼图外部单击。把拔出的切片推回去。
+				pushIn();
+			}
+
+			/**
+			 在表区域中处理鼠标单击。
+			 从存储在单击表格单元格，然后切换切片
+			 @param Event点击事件
+			*/
+			function handleTableClick(clickEvent) {
+				var slice = $(this).data('slice');
+				toggleSlice(slice);
+			}
+
+			/**
+			*往里或往外推一片。
+			*如果已经拔出了，就把它推进去。否则，拔出来。
+			*@param对切片索引进行编号（介于0和切片数-1之间）
+			*/
+
+			function toggleSlice(slice) {
+				if (slice == currentPullOutSlice) {
+					pushIn();
+				} else {
+					startPullOut(slice);
+				}
+			}
+
+			/**
+			*开始从馅饼里取出一片。
+			*@param对切片索引进行编号（介于0和切片数-1之间）
+			*/
+
+			function startPullOut(slice) {
+
+				// 如果我们已经把这个切出来了就退出
+				if (currentPullOutSlice == slice) return;
+
+				// 记录我们取出的切片，清除之前的任何动画，然后开始动画
+				currentPullOutSlice = slice;
+				currentPullOutDistance = 0;
+				clearInterval(animationId);
+				animationId = setInterval(function() {
+					animatePullOut(slice);
+				}, pullOutFrameInterval);
+
+				// 突出显示关键字表中的相应行
+				$('#chartData td').removeClass('highlight');
+				var labelCell = $('#chartData td:eq(' + (slice * 2) + ')');
+				var valueCell = $('#chartData td:eq(' + (slice * 2 + 1) + ')');
+				labelCell.addClass('highlight');
+				valueCell.addClass('highlight');
+			}
+
+			/**
+			*绘制一个拉出动画的帧。
+			*@param Number被取出的切片的索引
+			*/
+
+			function animatePullOut(slice) {
+
+				// 再把切片拿出来
+				currentPullOutDistance += pullOutFrameStep;
+
+				// 如果我们把它拉出来了，就不要再做动画了
+				if (currentPullOutDistance >= maxPullOutDistance) {
+					clearInterval(animationId);
+					return;
+				}
+
+				// 画框
+				drawChart();
+			}
+
+			/**
+			*把拔出的切片推回去。
+			*重置动画变量并重新绘制图表。
+			*同时取消亮显表中的所有行。
+			*/
+			function pushIn() {
+				currentPullOutSlice = -1;
+				currentPullOutDistance = 0;
+				clearInterval(animationId);
+				drawChart();
+				$('#chartData td').removeClass('highlight');
+			}
+
+
+			/**
+			*画出图表。
+			*把馅饼的每一片都圈起来，然后画出来。
+			*/
+			function drawChart() {
+
+				// 获取绘图上下文
+				var context = canvas.getContext('2d');
+
+				// 清理画布，准备好新的画框
+				context.clearRect(0, 0, canvasWidth, canvasHeight);
+
+				// 绘制图表的每个切片，跳过拉出切片（如果有）
+				for (var slice in chartData) {
+					if (slice != currentPullOutSlice) drawSlice(context, slice);
+				}
+
+				// 如果有一个有效的拉出切片，就画出来
+				//（我们最后画一个拉出片，这样它的阴影就不会被画掉）
+				if (currentPullOutSlice != -1) drawSlice(context, currentPullOutSlice);
+			}
+
+			/**
+			*在图表中绘制单个切片。
+			*@param Context要绘制的画布上下文
+			*@param Number要绘制的切片的索引
+			*/
+
+			function drawSlice(context, slice) {
+
+				// 计算切片调整后的开始和结束角度
+				var startAngle = chartData[slice]['startAngle'] + chartStartAngle;
+				var endAngle = chartData[slice]['endAngle'] + chartStartAngle;
+
+				if (slice == currentPullOutSlice) {
+
+					//我们正在把这块切出来。
+					//将其从饼图中心偏移，绘制文本标签，加上阴影。
+					var midAngle = (startAngle + endAngle) / 2;
+					var actualPullOutDistance = currentPullOutDistance * easeOut(currentPullOutDistance / maxPullOutDistance, .8);
+					startX = centreX + Math.cos(midAngle) * actualPullOutDistance;
+					startY = centreY + Math.sin(midAngle) * actualPullOutDistance;
+					context.shadowOffsetX = pullOutShadowOffsetX;
+					context.shadowOffsetY = pullOutShadowOffsetY;
+					context.shadowBlur = pullOutShadowBlur;
+
+				} else {
+
+					// 这一块没有拔出来，所以从馅饼中心拔出来
+					startX = centreX;
+					startY = centreY;
+				}
+
+				// 设置切片的渐变填充
+				var sliceGradient = context.createLinearGradient(0, 0, canvasWidth * .75, canvasHeight * .75);
+				sliceGradient.addColorStop(0, sliceGradientColour);
+				sliceGradient.addColorStop(1, 'rgb(' + chartColours[slice].join(',') + ')');
+
+				// 绘制切片
+				context.beginPath();
+				context.moveTo(startX, startY);
+				context.arc(startX, startY, chartRadius, startAngle, endAngle, false);
+				context.lineTo(startX, startY);
+				context.closePath();
+				context.fillStyle = sliceGradient;
+				context.shadowColor = (slice == currentPullOutSlice) ? pullOutShadowColour : "rgba( 0, 0, 0, 0 )";
+				context.fill();
+				context.shadowColor = "rgba( 0, 0, 0, 0 )";
+
+				// 适当设置切片边框的样式
+				if (slice == currentPullOutSlice) {
+					context.lineWidth = pullOutBorderWidth;
+					context.strokeStyle = pullOutBorderStyle;
+				} else {
+					context.lineWidth = sliceBorderWidth;
+					context.strokeStyle = sliceBorderStyle;
+				}
+
+				// 绘制切片边框
+				context.stroke();
+				
+				// 绘制数据
+				// context.fillStyle = 'rgb(' + chartColours[slice].join(',') + ')';
+				context.fillStyle = "#323232";
+				context.textAlign = "center";
+				context.font = pullOutLabelFont;
+				context.fillText(chartData[slice]['label'] + " (" + (parseInt(chartData[slice]['value'] /
+						totalValue * 100 + .5)) + "%)", centreX + Math.cos(midAngle) * (chartRadius + maxPullOutDistance +
+					pullOutLabelPadding), centreY + Math.sin(midAngle) * (chartRadius + maxPullOutDistance + pullOutLabelPadding));
+				// context.font = pullOutValueFont;
+				// context.fillText(pullOutValuePrefix + chartData[slice]['value'], centreX + Math.cos(midAngle) * (chartRadius + maxPullOutDistance +
+				// 	pullOutLabelPadding), centreY + Math.sin(midAngle) * (chartRadius + maxPullOutDistance + pullOutLabelPadding)+15);
+				
+			}
+
+
+			/*
+			*@param Number当前行驶距离与最大距离之比
+			*@param Number幂（数字越大，表示逐渐变缓）
+			*@return Number新比率
+			*/
+			function easeOut(ratio, power) {
+				return (Math.pow(1 - ratio, power) + 1);
+			}
+
+		}
+	</script>
+
+	</head>
+	<body>
+		<div id="container">
+			<canvas id="chart" width="180" height="175"></canvas>
+			<table id="chartData">
+				<tbody>
+					<tr>
+						<th>项目</th>
+						<th>销售额 (￥)</th>
+					</tr>
+					<tr style="color: #0DA068">
+						<td>A</td>
+						<td>1862.12</td>
+					</tr>
+					<tr style="color: #194E9C">
+						<td>B</td>
+						<td>1316.00</td>
+					</tr>
+					<tr style="color: #ED9C13">
+						<td>C</td>
+						<td>712.49</td>
+					</tr>
+					<tr style="color: #ED5713">
+						<td>D</td>
+						<td>3236.27</td>
+					</tr>
+					<tr style="color: #057249">
+						<td>E</td>
+						<td>6122.06</td>
+					</tr>
+					<tr style="color: #5F91DC">
+						<td>F</td>
+						<td>1280.11</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

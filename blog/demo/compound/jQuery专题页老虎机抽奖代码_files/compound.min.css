@@ -1,0 +1,261 @@
+.com-main {
+	position: relative;
+	width: 100%;
+}
+
+.com-main .title {
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: right center;
+	height: 7.56666667rem;
+	background-image: url("../images/compound-zi.png");
+	background-size: 19.46666667rem 100%;
+	margin-top: 2.7rem;
+}
+
+.com-main .coin {
+	position: absolute;
+	left: .8rem;
+	top: 6.6rem;
+	z-index: 2;
+}
+
+.com-main .coin li {
+	width: 4.33333333rem;
+	height: 4.33333333rem;
+	border: 1px dashed #ff9c1b;
+	background-color: #fffae4;
+	border-radius: 4.2rem;
+	margin: .4rem 0;
+	padding: .4rem;
+	overflow: hidden;
+	background-size: 1.13333333rem 1.13333333rem;
+	background-repeat: no-repeat;
+	background-position: center 2.7rem;
+}
+
+.com-main .coin li h3 {
+	margin-top: .2rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #f74646;
+	text-align: center;
+	width: 100%;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	font-weight: bolder;
+	font-size: .93333333rem;
+}
+
+.com-main .coin li.gb {
+	background-image: url("../images/compound-gangbeng@2x.png");
+}
+
+.com-main .coin li.jd {
+	background-image: url("../images/compound-jingdou@2x.png");
+}
+
+.com-main .slots {
+	position: relative;
+	background-image: url("../images/compound---Push_03.png");
+	background-size: 100% 100%;
+	height: 23.03333333rem;
+	width: 18.7rem;
+	margin-left: 4rem;
+}
+
+.com-main .slots h3 {
+	text-align: center;
+	color: #dc7500;
+	font-size: .86666667rem;
+	padding-top: .83333333rem;
+}
+
+.com-main .slots dl {
+	height: 5.4rem;
+	width: 13.33333333rem;
+	margin: 2.7rem auto;
+	border-radius: .6rem;
+	overflow: hidden;
+	position: relative;
+}
+
+.com-main .slots dl dd {
+	width: 32%;
+	height: 5.33333333rem;
+	background-color: #fff;
+	margin-left: 1.1%;
+	background-size: 4.33333333rem 16.03333333rem;
+	background-position: left top;
+	background-repeat: repeat-y;
+}
+
+.com-main .slots dl dd.gb {
+	background-image: url("../images/compoundPush-gb.jpg");
+}
+
+.com-main .slots dl dd.jd {
+	background-image: url("../images/compoundPush-jd.jpg");
+}
+
+.com-main .slots dl dd:last-child {
+	margin-right: 0;
+}
+
+.com-main .slots .rule {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: .5rem;
+	height: 2.5rem;
+}
+
+.com-main .slots ul {
+	width: 12.66666667rem;
+	margin: 0 auto;
+}
+
+.com-main .slots ul li {
+	cursor: url(../images/a2.png),pointer;
+	color: #fff;
+	font-size: 1.06666667rem;
+	text-align: center;
+	height: 2.16666667rem;
+	padding-top: .6rem;
+	width: 6.16666667rem;
+	transition: all 400ms;
+	-webkit-transition: all 400ms;
+	-o-transition: all 400ms;
+	-moz-transition: all 400ms;
+}
+
+.com-main .slots ul li:first-child {
+	padding-right: .2rem;
+}
+
+.com-main .slots ul li.active {
+	color: #f33a4c;
+	cursor: url(../images/a2.png),pointer;
+}
+
+.com-main .slots .play-btn {
+	width: 5.9rem;
+	height: 4.5rem;
+	cursor: url(../images/a2.png),pointer;
+	background-image: url("../images/compound-iay@2x.png");
+	background-size: 100% 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	position: absolute;
+	bottom: 4rem;
+	right: 0;
+	left: 0;
+	margin: auto;
+	transition: all 200ms;
+	-webkit-transition: all 200ms;
+	-o-transition: all 200ms;
+	-moz-transition: all 200ms;
+}
+
+.com-main .slots .play-btn.active {
+	background-image: url("../images/compound-piay_push@2x.png");
+	background-size: 5.9rem 3.23333333rem;
+	background-position: center bottom;
+}
+
+.iosTest {
+	display: none;
+	margin: 1.2rem auto;
+	line-height: 1.2rem;
+	width: 15rem;
+	font-size: .93333333rem;
+	color: #5c5c5c;
+	text-align: center;
+}
+
+.fixed {
+	position: fixed;
+	right: 0;
+	left: 0;
+	top: 0;
+	margin: auto;
+	max-width: 768px;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.compound-warm .box {
+	border-radius: .6rem;
+	background-color: #fff;
+	width: 80%;
+	min-height: 8rem;
+	margin-top: 45px;
+}
+
+.compound-warm .box .img {
+	width: 19.06666667rem;
+	height: 13.6rem;
+	background-image: url("../images/compound-warm-img.png");
+	background-size: 100% 100%;
+	margin: -6.33333333rem auto;
+	margin-bottom: 0;
+}
+
+.compound-warm .box h3 {
+	text-align: center;
+	line-height: 2rem;
+	color: #323232;
+	font-size: 1.4rem;
+}
+
+.compound-warm .box h3 span {
+	margin: 0 .2rem;
+	color: #f74646;
+	font-weight: bolder;
+}
+
+.compound-warm .box .btn {
+	text-align: center;
+	padding: 1.2rem;
+}
+
+.compound-warm .box .btn button {
+	height: 2.7rem;
+	width: 11.33333333rem;
+	border-radius: .5rem;
+	font-size: 1.06666667rem;
+	color: #fff;
+	background-color: #ff9000;
+}
+
+.rule>h3 {
+	color: #323232;
+	font-size: 1.06666667rem;
+	padding: 1rem;
+	text-align: center;
+}
+
+.rule ul {
+	padding-left: 1rem;
+}
+
+.rule ul li {
+	color: #323232;
+	font-size: .93333333rem;
+	line-height: 1.6rem;
+	list-style: decimal outside;
+}

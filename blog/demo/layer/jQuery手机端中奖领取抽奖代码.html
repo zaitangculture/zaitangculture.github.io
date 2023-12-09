@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery手机端中奖领取抽奖代码</title>
+		<link href="./jQuery手机端中奖领取抽奖代码_files/layer.css" rel="stylesheet" type="text/css">
+		<script src="./jQuery手机端中奖领取抽奖代码_files/jquery-2.2.0.min.js.下载" type="text/javascript"></script>
+		<style>
+			*,
+			:after,
+			:before {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html { cursor: url(../../img/a1.png),default; }
+
+			table {
+				border-spacing: 0;
+				border-collapse: collapse;
+				text-align: center;
+			}
+
+			.draw {
+				margin: 0 auto;
+				padding: 20px;
+				background-image: url(./jQuery手机端中奖领取抽奖代码_files/bg.png);
+				background-repeat: no-repeat;
+				background-size: 94%;
+			}
+
+			.draw .item {
+				width: 64px;
+				background-image: url(./jQuery手机端中奖领取抽奖代码_files/bg1.png);
+				background-repeat: no-repeat;
+				background-size: 100%;
+				border-radius: 8px;
+			}
+
+			.draw .item.active {
+				background-image: url(./jQuery手机端中奖领取抽奖代码_files/bg2.png);
+				background-repeat: no-repeat;
+				background-size: 100%;
+			}
+
+			.draw .img {
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			}
+
+			.draw .img img {
+				vertical-align: top;
+				width: 60px;
+				height: 48px;
+				margin-left: 2px;
+				margin-right: 2px
+			}
+
+			.draw .gap {
+				width: 5px;
+			}
+
+			.draw .gap-2 {
+				height: 5px;
+			}
+
+			.draw .name {
+				display: block;
+				font-size: 10px;
+			}
+
+			.draw .draw-btn {
+				display: block;
+				height: 64px;
+				border-radius: 8px;
+				font-size: 25px;
+				font-weight: 700;
+				text-decoration: none;
+				background-image: url(./jQuery手机端中奖领取抽奖代码_files/bg3.png);
+				background-repeat: no-repeat;
+				background-size: 100%;
+				cursor: url(../../img/a2.png),pointer;
+			}
+		</style>
+
+		<link href="./jQuery手机端中奖领取抽奖代码_files/layer(1).css" type="text/css" rel="styleSheet" id="layermcss">
+	</head>
+	<body ng-app="mainApp" ng-controller="indexCtrl" style="overflow: hidden;">
+
+		<main>
+			<div class="draw" id="lottery">
+				<table>
+					<tbody>
+						<tr>
+							<td class="item lottery-unit lottery-unit-0">
+								<div class="img">
+									<img src="./jQuery手机端中奖领取抽奖代码_files/img1.png" alt="">
+								</div>
+								<span class="name">终身VIP</span>
+							</td>
+							<td class="gap"></td>
+							<td class="item lottery-unit lottery-unit-1">
+								<div class="img">
+									<img src="./jQuery手机端中奖领取抽奖代码_files/img2.png" alt="">
+								</div>
+								<span class="name">三年VIP</span>
+							</td>
+							<td class="gap"></td>
+							<td class="item lottery-unit lottery-unit-2">
+								<div class="img">
+									<img src="./jQuery手机端中奖领取抽奖代码_files/img3.png" alt="">
+								</div>
+								<span class="name">半年VIP</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="gap-2" colspan="5"></td>
+						</tr>
+						<tr>
+							<td class="item lottery-unit lottery-unit-7">
+								<div class="img">
+									<img src="./jQuery手机端中奖领取抽奖代码_files/img4.png" alt="">
+								</div>
+								<span class="name">49元充值卡</span>
+							</td>
+							<td class="gap"></td>
+							<td class="">
+								<a class="draw-btn" href="javascript:"></a>
+							</td>
+							<td class="gap"></td>
+							<td class="item lottery-unit lottery-unit-3">
+								<div class="img">
+									<img src="./jQuery手机端中奖领取抽奖代码_files/img5.png" alt="">
+								</div>
+								<span class="name">99元充值卡</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="gap-2" colspan="5"></td>
+						</tr>
+						<tr>
+							<td class="item lottery-unit lottery-unit-6">
+								<div class="img">
+									<img src="./jQuery手机端中奖领取抽奖代码_files/img7.png" alt="">
+								</div>
+								<span class="name">免费体验</span>
+							</td>
+							<td class="gap"></td>
+							<td class="item lottery-unit lottery-unit-5">
+								<div class="img">
+									<img src="./jQuery手机端中奖领取抽奖代码_files/img6.png" alt="">
+								</div>
+								<span class="name">九折优惠券</span>
+							</td>
+							<td class="gap"></td>
+							<td class="item lottery-unit lottery-unit-4">
+								<div class="img">
+									<img src="./jQuery手机端中奖领取抽奖代码_files/img8.png" alt="">
+								</div>
+								<span class="name">参与大礼包</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</main>
+
+		<!--弹窗layer-->
+		<script src="./jQuery手机端中奖领取抽奖代码_files/layer.js.下载"></script>
+
+		<script type="text/javascript">
+			var lottery = {
+				index: -1, //当前转动到哪个位置，起点位置
+				count: 0, //总共有多少个位置
+				timer: 0, //setTimeout的ID，用clearTimeout清除
+				speed: 20, //初始转动速度
+				times: 0, //转动次数
+				cycle: 50, //转动基本次数：即至少需要转动多少次再进入抽奖环节
+				prize: -1, //中奖位置
+				init: function(id) {
+					if ($('#' + id).find('.lottery-unit').length > 0) {
+						$lottery = $('#' + id);
+						$units = $lottery.find('.lottery-unit');
+						this.obj = $lottery;
+						this.count = $units.length;
+						$lottery.find('.lottery-unit.lottery-unit-' + this.index).addClass('active');
+					};
+				},
+				roll: function() {
+					var index = this.index;
+					var count = this.count;
+					var lottery = this.obj;
+					$(lottery).find('.lottery-unit.lottery-unit-' + index).removeClass('active');
+					index += 1;
+					if (index > count - 1) {
+						index = 0;
+					};
+					$(lottery).find('.lottery-unit.lottery-unit-' + index).addClass('active');
+					this.index = index;
+					return false;
+				},
+				stop: function(index) {
+					this.prize = index;
+					return false;
+				}
+			};
+
+			function roll() {
+				lottery.times += 1;
+				lottery.roll(); //转动过程调用的是lottery的roll方法，这里是第一次调用初始化
+
+				if (lottery.times > lottery.cycle + 10 && lottery.prize == lottery.index) {
+					clearTimeout(lottery.timer);
+
+					layer.open({
+						type: 1,
+						shadeClose: true,
+						shade: false,
+						maxmin: true, //开启最大化最小化按钮
+						area: ['893px', '600px'],
+						content: $("#info").html()
+					});
+
+					lottery.prize = -1;
+					lottery.times = 0;
+					click = false;
+				} else {
+					if (lottery.times < lottery.cycle) {
+						lottery.speed -= 10;
+					} else if (lottery.times == lottery.cycle) {
+						var index = Math.random() * (lottery.count) | 0; //静态演示，随机产生一个奖品序号，实际需请求接口产生
+						lottery.prize = index;
+					} else {
+						if (lottery.times > lottery.cycle + 10 && ((lottery.prize == 0 && lottery.index == 7) || lottery.prize == lottery
+								.index + 1)) {
+							lottery.speed += 110;
+						} else {
+							lottery.speed += 20;
+						}
+					}
+					if (lottery.speed < 40) {
+						lottery.speed = 40;
+					};
+					lottery.timer = setTimeout(roll, lottery.speed); //循环调用
+				}
+				return false;
+			}
+
+			var click = false;
+
+			window.onload = function() {
+				lottery.init('lottery');
+				$('.draw-btn').click(function() {
+					if (click) { //click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
+						return false;
+
+					} else {
+						lottery.speed = 100;
+						roll(); //转圈过程不响应click事件，会将click置为false
+						click = true; //一次抽奖完成后，设置click为true，可继续抽奖		
+						return false;
+					}
+				});
+			};
+		</script>
+
+		<div id="info" style="display : none">
+			<a href="jQuery手机端中奖领取抽奖代码.html" style="cursor: url(../../img/a2.png),pointer;"><img src="./jQuery手机端中奖领取抽奖代码_files/tk_img.png" width="92%" style="cursor: url(../img/a2.png),pointer;"></a>
+			<h1>恭喜中奖</h1>
+		</div>
+
+	</body>
+</html>
